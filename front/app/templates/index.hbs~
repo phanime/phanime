@@ -1,0 +1,16 @@
+<div class="fancy-heading" style="background-image: url('{{unbound season_image}}'); height: 350px; padding-top: 100px">
+	<div class="container">
+		<h1>Featured Anime</h1>
+		<h3>Summer</h3>
+	</div>
+	<div class="banner-gradient"></div>
+</div>
+
+
+<div class="container">
+	{{current_season}}
+	{{#each}}
+		<div>{{anime_title}}</div>
+	{{/each}}
+</div>
+

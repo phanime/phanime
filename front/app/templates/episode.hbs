@@ -1,0 +1,63 @@
+<div class="video-container">
+	<div class="container">
+		{{outlet}}
+	</div>
+</div>
+
+
+<div class="container">
+	<div class="row main-content">
+		<div class="col-sm-9">
+			<div class="row" style="padding-bottom: 20px;">
+				<div class="col-sm-12">
+					{{format-date-default episode_air_date}}
+
+					{{#if session.isAuthenticated}}
+						<button style="float: right" class="btn btn-primary btn-sm" {{action 'edit'}}>Edit</button>
+					{{/if}}
+				</div>
+			</div>
+
+			{{#if session.isAuthenticated}}
+				{{#if isEditing}}
+					<div class="well">
+						<div class="row">
+							<div class="col-sm-12">
+								<form role="form">
+									<div class="row">
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Episode Title</label>
+												{{input type="text" value=episode_title class="form-control"}}
+											</div>
+										</div>
+
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Air Date</label>
+												{{input type="text" value=episode_air_date class="form-control"}}
+											</div>
+										</div>
+
+									</div>			
+								{{input type="text" value=episode_number class="form-control"}}
+							</div>
+
+						</div>
+
+					</div>
+				{{/if}}
+			{{/if}}
+
+		</div>
+
+		<div class="col-sm-3">
+			{{#each videos}}
+				<div>{{#link-to 'video' this}}{{video_host}}{{/link-to}}</div>
+			{{/each}}
+		</div>
+	</div>
+</div>
+

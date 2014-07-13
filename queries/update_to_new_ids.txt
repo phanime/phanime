@@ -1,0 +1,66 @@
+The patchup work: New anime ids are generated, new episode_ids are generated. As a result, tables need to be updated
+
+Episodes table anime_id update query:
+
+UPDATE episodes e
+JOIN anime a ON
+    a.post_id = e.anime_id
+set e.anime_id = a.id;
+
+Videos table episode_id update query:
+
+UPDATE videos v
+JOIN episodes e ON
+	e.post_id = v.episode_id
+set v.episode_id = e.id;
+
+library_entries table anime_id update query:
+
+UPDATE library_entries l
+JOIN anime a ON
+	a.post_id = l.anime_id
+set l.anime_id = a.id;
+
+Only after import
+Update all user_ids to the new user_id
+
+
+For ANIME
+UPDATE anime a
+JOIN users u ON
+	a.user_id = u.user_id_old
+set a.user_id = u.id;
+
+FOR EPISODES
+UPDATE episodes a
+JOIN users u ON
+	a.user_id = u.user_id_old
+set a.user_id = u.id;
+
+
+FOR VIDEOS
+UPDATE videos a
+JOIN users u ON
+	a.user_id = u.user_id_old
+set a.user_id = u.id;
+
+FOR LIBRARY ENTRIES
+UPDATE library_entries a
+JOIN users u ON
+	a.user_id = u.user_id_old
+set a.user_id = u.id;
+
+
+
+FOR anime_id, genre_id with their new IDS
+
+UPDATE animes_genres e
+JOIN anime a ON
+    a.post_id = e.anime_id
+set e.anime_id = a.id;
+
+UPDATE animes_genres e
+JOIN genres g ON
+    g.term_id = e.genre_id
+set e.genre_id = g.id;
+

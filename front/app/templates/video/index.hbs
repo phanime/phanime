@@ -1,0 +1,36 @@
+<div class="col-sm-9">
+	{{anime_type}}
+	{{anime_episode_duration}}
+	{{age_rating}}
+
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td>#</td>
+					<td>Episode Title</td>
+					<td>Air Date</td>
+					<td>Subbed</td>
+					<td>Dubbed</td>
+				</tr>
+			<thead>
+
+			<tbody>
+				{{#each episodes}}
+					<tr>
+						<td>{{#link-to 'episode' this}}{{episode_number}}{{/link-to}}</td>
+						<td>{{#if episode_name}} {{episode_title}} {{else}} -- {{/if}}</td>
+						<td>{{#if episode_air_date}} {{format-date-default episode_air_date}} {{else}} -- {{/if}}</td>
+						<td> -- </td>
+						<td> -- </td>
+					<tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+
+</div>
+
+<div class="col-sm-3">
+	<div class="thin-text">{{anime_description}}</div>
+</div>
