@@ -1,0 +1,19 @@
+<div class="fancy-heading" style="height: 350px">
+	<div class="container">
+		{{#if isTitleLink}} 
+			<h1>{{#link-to 'anime' controllers.anime.model}} {{title}} {{/link-to}}</h1>
+		{{else}}
+			<h1>{{title}}</h1>
+		{{/if}}
+
+
+		{{#if isSubLink}} 
+			<h3>{{#link-to 'anime' controllers.anime.model}} {{subTitle}} {{/link-to}}</h3>
+		{{else}}
+			<h3>{{subTitle}}</h3>
+		{{/if}}
+	</div>
+	<div class="banner-gradient"></div>
+</div>
+
+{{outlet}}

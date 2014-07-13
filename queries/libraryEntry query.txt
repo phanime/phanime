@@ -1,0 +1,38 @@
+user_id,anime_id,library_entry_anime_name,library_entry_episodes_seen,library_entry_status,library_entry_private,library_entry_watch_priority,library_entry_score,library_entry_comments,created_at,updated_at,post_id
+
+SELECT
+	u1.meta_value as 'user_id',
+	m1.meta_value as 'anime_id',   
+	m2.meta_value as 'library_entry_anime_name', 
+	m3.meta_value as 'library_entry_episodes_seen', 
+	m4.meta_value as 'library_entry_status', 
+	m5.meta_value as 'library_entry_private',
+	m6.meta_value as 'library_entry_priority',
+	m7.meta_value as 'library_entry_score',
+	m8.meta_value as 'library_entry_comments',  
+	p.post_date as 'created_at',
+	p.post_modified as 'updated_at',
+	p.id as 'post_id'
+FROM wp_posts p
+LEFT JOIN wp_postmeta m1
+    ON p.id = m1.post_id AND m1.meta_key = 'anime_id_list_entry'
+LEFT JOIN wp_postmeta m2
+    ON p.id = m2.post_id AND m2.meta_key = 'anime_name_list_entry'
+LEFT JOIN wp_usermeta u1
+    ON p.post_author = u1.user_id AND u1.meta_key = 'xenForo_integrationID'
+LEFT JOIN wp_postmeta m3
+    ON p.id = m3.post_id AND m3.meta_key = 'episodes_seen_list_entry'
+LEFT JOIN wp_postmeta m4
+    ON p.id = m4.post_id AND m4.meta_key = 'status_list_entry'
+LEFT JOIN wp_postmeta m5
+    ON p.id = m5.post_id AND m5.meta_key = 'privacy_anime_list_entry'
+LEFT JOIN wp_postmeta m6
+    ON p.id = m6.post_id AND m6.meta_key = 'priority_list_entry'
+LEFT JOIN wp_postmeta m7
+    ON p.id = m7.post_id AND m7.meta_key = 'score_anime_list_entry'
+LEFT JOIN wp_postmeta m8
+    ON p.id = m8.post_id AND m8.meta_key = 'comments_list_entry'
+WHERE p.post_type = 'anime-list-entry' AND p.post_status = 'publish';
+
+
+

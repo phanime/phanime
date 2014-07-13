@@ -1,0 +1,38 @@
+
+user_id,anime_id,episode_name,episode_multiple,episode_number,episode_number_other,episode_title,episode_air_date,episode_already_aired,episode_version,created_at,updated_at,post_id
+
+SELECT
+	u1.meta_value as 'user_id',
+	a1.p2p_to as 'anime_id', 
+	p.post_title as 'episode_name', 
+	m2.meta_value as 'episode_multiple', 
+	m3.meta_value as 'episode_number', 
+	m4.meta_value as 'episode_number_other', 
+	m5.meta_value as 'episode_title', 
+	m6.meta_value as 'episode_air_date', 
+	m7.meta_value as 'episode_already_aired', 
+	m8.meta_value as 'episode_version',
+	p.post_date as 'created_at',
+	p.post_modified as 'updated_at',
+	p.id as 'post_id'
+FROM wp_posts p
+LEFT JOIN wp_postmeta m2
+    ON p.id = m2.post_id AND m2.meta_key = 'anime_multiple_episodes'
+LEFT JOIN wp_usermeta u1
+    ON p.post_author = u1.user_id AND u1.meta_key = 'xenForo_integrationID'
+LEFT JOIN wp_postmeta m3
+    ON p.id = m3.post_id AND m3.meta_key = 'anime_episode_number'
+LEFT JOIN wp_postmeta m4
+    ON p.id = m4.post_id AND m4.meta_key = 'anime_other_episode_number'
+LEFT JOIN wp_postmeta m5
+    ON p.id = m5.post_id AND m5.meta_key = 'episode_title'
+LEFT JOIN wp_postmeta m6
+    ON p.id = m6.post_id AND m6.meta_key = 'air_date'
+LEFT JOIN wp_postmeta m7
+    ON p.id = m7.post_id AND m7.meta_key = 'already_aired'
+LEFT JOIN wp_postmeta m8
+    ON p.id = m8.post_id AND m8.meta_key = 'episode_sdversion'
+JOIN wp_p2p a1
+    ON p.id = a1.p2p_from AND p2p_type = 'posts_to_anime'
+WHERE p.post_type = 'post' AND p.post_status = 'publish' AND a1.p2p_from is NOT NULL;
+

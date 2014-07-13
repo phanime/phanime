@@ -1,0 +1,7 @@
+genre_name,genre_slug,genre_description,anime_count,term_id
+
+SELECT a.name, a.slug, b.description, b.count, b.term_id
+FROM wp_terms a
+JOIN wp_term_taxonomy b ON a.term_id = b.term_id
+WHERE b.taxonomy =  'genre'
+ORDER BY  `a`.`name` ASC

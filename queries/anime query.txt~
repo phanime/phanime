@@ -1,0 +1,68 @@
+Note, after running this query and importing the csv into mysql all the blank user_ids (there should only be one) should be set to 59 (Faeron)
+
+Column Names to use when importing the csv (they should be in order):
+
+user_id,anime_title,anime_slug,anime_cover_image,anime_type,anime_status,anime_start_date,anime_end_date,anime_version,age_rating,anime_description,anime_season_number,anime_total_episodes,anime_episode_duration,anime_main_alternative_title,anime_alternative_titles,anime_featured,anime_rating,anime_rating_updated_at,created_at,updated_at,post_id
+
+
+SELECT
+	u1.meta_value as 'user_id', 
+	p.post_title,
+	p.post_name as 'anime_slug', 
+	m1_link.meta_value as 'cover_image_of_anime', 
+	m2.meta_value as 'anime_type', 
+	m3.meta_value as 'anime_status', 
+	m4.meta_value as 'anime_start_date', 
+	m5.meta_value as 'anime_end_date', 
+	m6.meta_value as 'anime_version', 
+	m7.meta_value as 'age_rating', 
+	m8.meta_value as 'description', 
+	m9.meta_value as 'season_number_in_series_anime', 
+	m10.meta_value as 'anime_total_episodes', 
+	m11.meta_value as 'episode_duration', 
+	m12.meta_value as 'main_alternative_title_anime', 
+	m13.meta_value as 'alternative_titles', 
+	m14.meta_value as 'anime_featured', 
+	m15.meta_value as 'anime_rating_average',
+	m16.meta_value as 'anime_rating_last_updated',
+	p.post_date as 'created_at',
+	p.post_modified as 'updated_at',
+	p.id as 'post_id'
+FROM wp_posts p
+LEFT JOIN wp_postmeta m1
+    ON p.id = m1.post_id AND m1.meta_key = 'cover_image_of_anime'
+	LEFT JOIN wp_postmeta m1_link
+		ON m1.meta_value = m1_link.post_id AND m1_link.meta_key = '_wp_attached_file'
+LEFT JOIN wp_usermeta u1
+    ON p.post_author = u1.user_id AND u1.meta_key = 'xenForo_integrationID'
+LEFT JOIN wp_postmeta m2
+    ON p.id = m2.post_id AND m2.meta_key = 'anime_type'
+LEFT JOIN wp_postmeta m3
+    ON p.id = m3.post_id AND m3.meta_key = 'anime_status'
+LEFT JOIN wp_postmeta m4
+    ON p.id = m4.post_id AND m4.meta_key = 'anime_start_date'
+LEFT JOIN wp_postmeta m5
+    ON p.id = m5.post_id AND m5.meta_key = 'anime_end_date'
+LEFT JOIN wp_postmeta m6
+    ON p.id = m6.post_id AND m6.meta_key = 'anime_version'
+LEFT JOIN wp_postmeta m7
+    ON p.id = m7.post_id AND m7.meta_key = 'age_rating'
+LEFT JOIN wp_postmeta m8
+    ON p.id = m8.post_id AND m8.meta_key = 'description'
+LEFT JOIN wp_postmeta m9
+    ON p.id = m9.post_id AND m9.meta_key = 'season_number_in_series_anime'
+LEFT JOIN wp_postmeta m10
+    ON p.id = m10.post_id AND m10.meta_key = 'anime_total_episodes'
+LEFT JOIN wp_postmeta m11
+    ON p.id = m11.post_id AND m11.meta_key = 'episode_duration'
+LEFT JOIN wp_postmeta m12
+    ON p.id = m12.post_id AND m12.meta_key = 'main_alternative_title_anime'
+LEFT JOIN wp_postmeta m13
+    ON p.id = m13.post_id AND m13.meta_key = 'alternative_titles'
+LEFT JOIN wp_postmeta m14
+    ON p.id = m14.post_id AND m14.meta_key = 'anime-featured'
+LEFT JOIN wp_postmeta m15
+    ON p.id = m15.post_id AND m15.meta_key = 'anime_rating_average'
+LEFT JOIN wp_postmeta m16
+    ON p.id = m16.post_id AND m16.meta_key = 'anime_rating_last_updated'
+WHERE p.post_type = 'anime' AND p.post_status = 'publish';
