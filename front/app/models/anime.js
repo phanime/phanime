@@ -9,6 +9,7 @@ export default DS.Model.extend({
 	anime_title: attr(),
 	anime_slug: attr(),
 	anime_cover_image: attr(),
+	anime_banner_image: attr(),
 	anime_type: attr(),
 	anime_status: attr(),
 	anime_start_date: attr(),
@@ -25,5 +26,6 @@ export default DS.Model.extend({
 	anime_rating: attr(),
 	anime_rating_count: attr(),
 	anime_rating_updated_at: attr(),
-	episodes: hasMany('episode', {async: true})
+	episodes: hasMany('episode', {async: true}),
+	genres: hasMany('genre', {async: true}),
 });

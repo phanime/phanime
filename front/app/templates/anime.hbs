@@ -1,7 +1,13 @@
 <div {{bind-attr class=":fancy-heading coverClass"}}>
 	<div class="container">
-		<h1>{{#link-to 'anime' this}} {{coverTitle}} {{/link-to}}</h1>
-		<h3>{{coversubTitle}}</h3>
+		<div class="anime-important">
+			<h1>{{#link-to 'anime' this}} {{coverTitle}} {{/link-to}}</h1>
+			<div class="genreList">
+				{{#each genres}}
+					<a>{{genre_name}}</a>
+				{{/each}}
+			</div>
+		</div>
 	</div>
 	<div class="banner-gradient"></div>
 </div>
