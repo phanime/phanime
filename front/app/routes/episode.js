@@ -26,14 +26,10 @@ export default Ember.Route.extend({
 			anime_type = 'Episode';
 		}
 
-		console.log(episode.get('episode_title'));
-		if (episode.get('episode_title')) {
-			this.controllerFor('anime').set('title', episode.get('episode_title'));
-			this.controllerFor('anime').set('subTitle', anime.get('anime_title') + " > " + anime_type + " " + episode.get('episode_number'));
-		} else {
-			this.controllerFor('anime').set('title', anime.get('anime_title'));
-			this.controllerFor('anime').set('isTitleLink', true);
-			this.controllerFor('anime').set('subTitle', anime_type + " " + episode.get('episode_number'));
-		}
+		this.controllerFor('anime').set('coverClass', 'episodeCover');
+		
+		this.controllerFor('anime').set('coverTitle', anime.get('anime_title'));
+		this.controllerFor('anime').set('coversubTitle', anime_type + " " + episode.get('episode_number'));
+
 	}
 });

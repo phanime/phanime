@@ -100,7 +100,7 @@ class AnimeController extends \BaseController {
 		$anime = Anime::find($id);
 		$inputs = Input::get('anime');
 
-		Log::info(print_r($inputs, true));
+		//Log::info(print_r($inputs, true));
 
 
 		// Assume trusted member is doing an update, and let them update any property on the anime model

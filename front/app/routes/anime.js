@@ -17,16 +17,16 @@ export default Ember.Route.extend({
 	},
 	setupController:function(controller, anime) {
 		controller.set('model', anime);
-		this.controllerFor('anime').set('isSubLink', false);
-		this.controllerFor('anime').set('isTitleLink', false);
-		this.controllerFor('anime').set('subTitle', '');
-		this.controllerFor('anime').set('title', anime.get('anime_title'));
 
 		if(Ember.isNone(anime.get('episodes.data'))){
 			anime.reload();
 		}
 	
 		this._super();
-	}
+	},
+	// TODO Move these into controller if updates properly
+	coverClass: "animeCover",
+	coverTitle: "",
+	coversubTitle: "",
 
 });

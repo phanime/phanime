@@ -1,17 +1,7 @@
-<div class="fancy-heading" style="height: 350px">
+<div {{bind-attr class=":fancy-heading coverClass"}}>
 	<div class="container">
-		{{#if isTitleLink}} 
-			<h1>{{#link-to 'anime' controllers.anime}} {{title}} {{/link-to}}</h1>
-		{{else}}
-			<h1>{{title}}</h1>
-		{{/if}}
-
-
-		{{#if isSubLink}} 
-			<h3>{{#link-to 'anime' controllers.anime}} {{subTitle}} {{/link-to}}</h3>
-		{{else}}
-			<h3>{{subTitle}}</h3>
-		{{/if}}
+		<h1>{{#link-to 'anime' this}} {{coverTitle}} {{/link-to}}</h1>
+		<h3>{{coversubTitle}}</h3>
 	</div>
 	<div class="banner-gradient"></div>
 </div>

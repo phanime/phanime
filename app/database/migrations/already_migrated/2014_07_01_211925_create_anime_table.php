@@ -19,6 +19,7 @@ class CreateAnimeTable extends Migration {
 			$table->string('anime_title');
 			$table->string('anime_slug');
 			$table->string('anime_cover_image')->nullable();
+			$table->string('anime_banner_image')->nullable();
 			$table->string('anime_type')->nullable();
 			$table->string('anime_status')->nullable();
 			$table->date('anime_start_date')->nullable();
@@ -35,6 +36,7 @@ class CreateAnimeTable extends Migration {
 			$table->decimal('anime_rating', 6, 4)->nullable();
 			$table->integer('anime_rating_count')->nullable();
 			$table->integer('anime_rating_updated_at')->nullable();
+			$table->integer('anime_views')->nullable();
 			$table->timestamps();
 			$table->integer('post_id')->unsigned();
 		});

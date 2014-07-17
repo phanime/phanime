@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Notify from 'ember-notify';
 
 export default Ember.ObjectController.extend({
 	needs: 'anime',
@@ -16,7 +17,23 @@ export default Ember.ObjectController.extend({
 	actions: {
 		edit: function() {
 			this.toggleProperty('isEditing');
-		}
+		},
+		save_changes: function(episode) {
+
+			var onSuccess = function(episode) {
+				var msg = episode.get('episode_name') + " was successfully saved.";
+				console.log(msg);
+				Notify.success(msg);
+			};
+
+			var onFailure = function() {
+				var msg = "Something went wrong, episode was not saved.";
+				console.log(msg);
+				Notify.warning(msg);
+			};
+
+			episode.save().then(onSuccess, onFailure);
+		},
 	},
 
 	// Select required properties 

@@ -22,7 +22,20 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::post('oauth/token', function()
 	{
-		return AuthorizationServer::performAccessTokenFlow();
+		$response = AuthorizationServer::performAccessTokenFlow();
+		$input = Input::all();
+
+		if ($response->getStatusCode() === 200) {
+			$response = json_decode($response->getContent());
+
+			$response->user_id = Auth::getProvider()->retrieveByCredentials([
+				'username' => $input['username']
+			])->id;
+
+			$response = Response::json($response);
+		}
+
+		return $response;
 	});
 
 });

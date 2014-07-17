@@ -86,7 +86,43 @@ class EpisodeController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		// Get needed data
+		$episode = Episode::find($id);
+		$inputs = Input::get('episode');
+
+		// Update episode fields
+		$episode->episode_name = $inputs['episode_name'];
+		$episode->episode_multiple = $inputs['episode_multiple'];
+		$episode->episode_number = $inputs['episode_number'];
+		$episode->episode_number_other = $inputs['episode_number_other'];
+		$episode->episode_title = $inputs['episode_title'];
+		$episode->episode_air_date = $inputs['episode_air_date'];
+		$episode->episode_already_aired = $inputs['episode_already_aired'];
+		$episode->episode_version = serialize($inputs['episode_version']);
+
+		$episode->save();
+
+		// Call show
+		$episode = Episode::find($id);
+		$videos = $episode->videos;
+
+		$episode = $episode->toArray();
+
+		$episode['episode_version'] = unserialize($episode['episode_version']);
+
+		// Encode videos into episodes the way Ember.js likes it
+		$episode['videos'] = array();
+
+		foreach($videos as $video) {
+			$episode['videos'][] = $video['id'];
+		}
+
+		return Response::json(array(
+			'episode' => $episode
+			),
+			200
+		);		
+
 	}
 
 
