@@ -1,6 +1,6 @@
 ## phanime
 
-Watch and track anime online.
+Get the best recommendations around!
 
 ## Testing
 

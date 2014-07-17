@@ -54,12 +54,12 @@ set a.user_id = u.id;
 
 FOR anime_id, genre_id with their new IDS
 
-UPDATE animes_genres e
+UPDATE anime_genres e
 JOIN anime a ON
     a.post_id = e.anime_id
 set e.anime_id = a.id;
 
-UPDATE animes_genres e
+UPDATE anime_genres e
 JOIN genres g ON
     g.term_id = e.genre_id
 set e.genre_id = g.id;
