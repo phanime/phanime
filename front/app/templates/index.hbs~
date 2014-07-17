@@ -10,7 +10,7 @@
 <div class="container">
 	{{current_season}}
 	{{#each}}
-		<div>{{anime_title}}</div>
+		<div>{{#link-to 'anime' this}}{{anime_title}}{{/link-to}}</div>
 	{{/each}}
 </div>
 

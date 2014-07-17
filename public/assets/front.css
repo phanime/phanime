@@ -68,8 +68,6 @@ textarea {
 	height: 350px;
 	width: 100%;
 	color: #fff;
-	text-align: center;
-	padding-top: 100px;
 	-webkit-animation: resize-height 0.75s; /* Safari 4+ */
 	-moz-animation: resize-height 0.75s; /* Fx 5+ */
 	-o-animation: resize-height 0.75s; /* Opera 12+ */
@@ -77,6 +75,7 @@ textarea {
 }
 
 .fancy-heading .container {
+	height: 100%;
 	position: relative;
 	z-index: 2;
 	text-shadow: 0 0 3px rgba(0,0,0,.8);
@@ -140,6 +139,36 @@ textarea {
 /*-----------------------------*/
 /*---------- ANIME ------------*/
 /*-----------------------------*/
+
+.fancy-heading .container .anime-important {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 20px;
+}
+
+.genreList {
+	margin: 10px 0;
+}
+
+	.genreList a {
+		display: inline-block;
+		border: 1px solid rgba(255,255,255,.5);
+		color: #fff;
+		padding: 3px 5px;
+		margin: 5px 3px;
+		text-shadow: 0 0 3px rgba(0,0,0,0.8);
+		-webkit-transition: all 0.3s ease-in-out;
+		-moz-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;			
+	}
+
+	.genreList a:hover {
+		text-shadow: none;
+		border: 1px solid #fff;
+		box-shadow: 0 0 10px rgba(255, 255, 255, 0.80);
+	}
 
 .anime-info {
 	margin: 10px 0;

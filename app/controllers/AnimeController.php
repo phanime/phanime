@@ -13,21 +13,30 @@ class AnimeController extends \BaseController {
 		$animes = Anime::all();
 
 		if (array_key_exists('featured', $inputs) && $inputs['featured'] == true) {
-			$animes = Anime::where('anime_featured', '=', 1)->get();
-			$animes = $animes->toArray();
-		} else if (array_key_exists('anime_slug', $inputs)) {
-
-			$animes_before = Anime::with('episodes')->where('anime_slug', '=', $inputs['anime_slug'])->take(1)->get();
+			$animes_before = Anime::with('genres', 'episodes')->where('anime_featured', '=', 1)->get();
 			$animes = [];
 
 			foreach($animes_before as $animeb) {
 				$anime = $animeb->toArray();
 				$anime['episodes'] = $animeb->episodes->lists('id');
+				$anime['genres'] = $animeb->genres->lists('id');
+				$animes[] = $anime;
+			}
+
+		} else if (array_key_exists('anime_slug', $inputs)) {
+
+			$animes_before = Anime::with('genres', 'episodes')->where('anime_slug', '=', $inputs['anime_slug'])->take(1)->get();
+			$animes = [];
+
+			foreach($animes_before as $animeb) {
+				$anime = $animeb->toArray();
+				$anime['episodes'] = $animeb->episodes->lists('id');
+				$anime['genres'] = $animeb->genres->lists('id');
 				$animes[] = $anime;
 			}
 
 		} else {
-			$animes = Anime::all();
+			$animes = Anime::orderby('anime_title', 'asc')->get();
 			$animes = $animes->toArray();
 		}
 
@@ -65,6 +74,7 @@ class AnimeController extends \BaseController {
 	{
 		$anime = Anime::find($id);
 		$episodes = $anime->episodes;
+		$genres = $anime->genres;
 		$anime = $anime->toArray();
 
 
@@ -72,11 +82,18 @@ class AnimeController extends \BaseController {
 		$anime['anime_version'] = unserialize($anime['anime_version']);
 
 		$episodes = $episodes->toArray();
+		$genres = $genres->toArray();
 
 		// Encode the episodes into anime array how Ember.js likes it
 		$anime['episodes'] = array();
 		foreach($episodes as $episode) {
 			$anime['episodes'][] = $episode['id'];
+		}
+
+		// Encode the genres into anime array how ember.js likes it 
+		$anime['genres'] = array();
+		foreach($genres as $genre) {
+			$anime['genres'][] = $genre['id'];
 		}
 
 		return Response::json(array(

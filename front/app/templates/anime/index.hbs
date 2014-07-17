@@ -1,7 +1,9 @@
 <div class="container">
 	<div class="row main-content">
-		<div class="col-sm-9">
-			<h2 class="thin-text">{{anime_title}}</h2>
+		<div class="col-md-3">
+			<div class="thin-text">{{anime_description}}</div>
+		</div>
+		<div class="col-md-9">
 			<div class="row anime-info">
 				<div class="col-sm-12" style="padding:0">
 				{{anime_type}} |
@@ -17,7 +19,6 @@
 			</div>
 
 			{{#if session.isAuthenticated}}
-				{{session.currentUser.email}}
 				{{#if isEditing}}
 					<div class="well">
 						<div class="row">
@@ -174,29 +175,20 @@
 							<td>#</td>
 							<td>Episode Title</td>
 							<td>Air Date</td>
-							<td>Subbed</td>
-							<td>Dubbed</td>
 						</tr>
 					<thead>
 
 					<tbody>
 						{{#each episodes}}
 							<tr class="thin-text">
-								<td>{{#link-to 'episode' this}}{{episode_number}}{{/link-to}}</td>
+								<td>{{episode_number}}</td>
 								<td>{{#if episode_name}} {{episode_title}} {{else}} -- {{/if}}</td>
 								<td>{{#if episode_air_date}} {{format-date-default episode_air_date}} {{else}} -- {{/if}}</td>
-								<td> -- </td>
-								<td> -- </td>
 							<tr>
 						{{/each}}
 					</tbody>
 				</table>
 			</div>
-
-		</div>
-
-		<div class="col-sm-3">
-			<div class="thin-text">{{anime_description}}</div>
 		</div>
 	</div>
 </div>
