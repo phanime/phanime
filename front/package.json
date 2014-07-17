@@ -29,6 +29,7 @@
     "broccoli-asset-rev": "0.0.11",
     "ember-cli-simple-auth": "~0.6.3",
     "ember-cli-simple-auth-oauth2": "~0.6.3",
-    "ember-cli-document-title": "0.0.1"
+    "ember-cli-document-title": "0.0.1",
+    "ember-notify": "~0.3.1"
   }
 }

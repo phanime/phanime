@@ -22,6 +22,28 @@
 }
 
 
+@-webkit-keyframes resize-height-short {
+	0%   { height: 0; }
+	75%  { height: 200px;}
+	100% { height: 150px; }
+}
+@-moz-keyframes resize-height-short {
+	0%   { height: 0; }
+	75%  { height: 200px;}
+	100% { height: 150px; }
+}
+@-o-keyframes resize-height-short {
+	0%   { height: 0; }
+	75%  { height: 200px;}
+	100% { height: 150px; }
+}
+@keyframes resize-height-short {
+	0%   { height: 0; }
+	75%  { height: 200px;}
+	100% { height: 150px; }
+}
+
+
 html, body {
   margin: 0px;
   font-family: 'Lato', sans-serif;
@@ -43,7 +65,7 @@ textarea {
 	background-position: center top;
 	background-color: rgba(0, 0, 0, 0);
 	box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.66);
-	height: 0px;
+	height: 350px;
 	width: 100%;
 	color: #fff;
 	text-align: center;
@@ -59,6 +81,32 @@ textarea {
 	z-index: 2;
 	text-shadow: 0 0 3px rgba(0,0,0,.8);
 }
+
+	.fancy-heading a {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	.fancy-heading a:hover {
+		color: #fff;
+		text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+		text-shadow: none;
+	}
+
+	.animeCover {
+		height: 350px;
+		padding-top: 100px;
+	}
+
+	.episodeCover {
+		height: 150px;
+		padding-top: 20px;
+		background-position: center center;
+		-webkit-animation: resize-height-short 0.75s; /* Safari 4+ */
+		-moz-animation: resize-height-short 0.75s; /* Fx 5+ */
+		-o-animation: resize-height-short 0.75s; /* Opera 12+ */
+		animation: resize-height-short 0.75s; /* IE 10+ */
+	}
 
 .banner-gradient {
 	background: -moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
@@ -129,9 +177,27 @@ textarea {
 	width: 100%;
 }
 
+/*--- TEMP Ember-Notify styling ----*/
+
+.ember-notify {
+	background-color: #F5F5F5;
+	padding: 20px 10px;
+}
+	.ember-notify.success {
+		background-color: #D3FFCD;
+	}
+
+	.ember-notify.warning {
+		background-color: #FFCDCD;
+	}
 
 /*--- BOOTSTRAP FIXES ---*/
 .navbar-default .navbar-nav > li > a.active {
 	color: #555;
 	background-color: #e7e7e7;
+}
+
+.btn-beside {
+	float: right;
+	margin: 0 5px;
 }

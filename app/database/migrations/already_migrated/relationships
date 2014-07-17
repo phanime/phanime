@@ -1,0 +1,23 @@
+
+ANIME
+
+	-> has many characters 
+	-> has many people -> of different type
+	-> has many producers
+
+Characters
+
+	-> has many Anime
+	-> has many Manga
+	-> has many Voice Actors (depending on language)
+
+Person
+
+	-> has many Characters roles
+	-> has many staff positions
+	-> has many published manga
+
+Producers
+	-> has many Anime
+
+	
