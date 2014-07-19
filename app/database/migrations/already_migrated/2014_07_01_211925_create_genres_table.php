@@ -15,9 +15,9 @@ class CreateGenresTable extends Migration {
 		Schema::create('genres', function(Blueprint $table)
 		{
 			$table->Increments('id');
-			$table->string('genre_name');
-			$table->string('genre_slug');
-			$table->string('genre_description')->nullable();
+			$table->string('name');
+			$table->string('slug');
+			$table->string('description')->nullable();
 			$table->integer('anime_count')->unsigned();
 			$table->integer('term_id')->unsigned();
 		});

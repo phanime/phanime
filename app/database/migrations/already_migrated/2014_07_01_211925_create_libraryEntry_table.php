@@ -16,15 +16,18 @@ class CreatelibraryEntryTable extends Migration {
 		{
 			$table->bigIncrements('id');
 			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users');
 			$table->integer('anime_id')->unsigned();
-			$table->string('library_entry_anime_name');
-			$table->integer('library_entry_episodes_seen')->unsigned()->nullable();
-			$table->string('library_entry_status')->nullable();
-			$table->string('library_entry_private')->nullable();
-			$table->string('library_entry_watch_priority')->nullable();
-			$table->integer('library_entry_score')->unsigned()->nullable();
-			$table->string('library_entry_comments')->nullable();
-			$table->integer('library_entry_rewatched_count')->unsigned();
+			//$table->foreign('anime_id')->references('id')->on('anime');
+			$table->string('anime_name');
+			$table->integer('episodes_seen')->unsigned()->nullable();
+			$table->string('status')->nullable();
+			$table->boolean('private')->nullable();
+			$table->string('watch_priority')->nullable();
+			$table->integer('score')->unsigned()->nullable();
+			$table->string('comments')->nullable();
+			$table->integer('rewatched_count')->unsigned();
+			$table->boolean('rewatching');
 			$table->timestamps();
 			$table->integer('post_id')->unsigned();
 		});

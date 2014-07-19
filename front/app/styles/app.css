@@ -57,6 +57,33 @@ textarea {
 	font-weight: 300;
 }
 
+.box {
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.05);
+	box-shadow: 0 1px 3px rgba(0,0,0,.05);	
+}
+
+.box-teal {
+	border-color: #ccc;
+}
+	.box-heading {
+		padding: 10px 15px;
+		border-bottom: 1px solid;
+	}
+	
+	.box-teal > .box-heading {
+		color: #fff;
+		background-color: #009688;
+	}
+
+	.box-body {
+		padding: 15px;
+	}
+
+
 .fancy-heading {
 	position: relative;
 	background-image: url('http://www.wallpaperhd.co/Anime-HD-Wallpapers-2/images/Anime%20HD%20Wallpaper%2022.jpg');
@@ -73,6 +100,7 @@ textarea {
 	-o-animation: resize-height 0.75s; /* Opera 12+ */
 	animation: resize-height 0.75s; /* IE 10+ */
 }
+
 
 .fancy-heading .container {
 	height: 100%;

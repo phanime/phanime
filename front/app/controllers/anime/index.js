@@ -5,11 +5,11 @@ export default Ember.ObjectController.extend({
 	isEditing: false,
 	isAdding: false,
 	titleChanged: function() {
-		var slug = this.get('model.anime_title').replace(/\s+/g, '-').toLowerCase();
+		var slug = this.get('model.title').replace(/\s+/g, '-').toLowerCase();
 		// Set the the anime slug
-		this.set('model.anime_slug', slug);
+		this.set('model.slug', slug);
 
-	}.observes('model.anime_title'),
+	}.observes('model.title'),
 
 	actions: {
 		edit: function() {
@@ -28,13 +28,13 @@ export default Ember.ObjectController.extend({
 			Notify.useBootstrap();
 
 			var onSuccess = function(anime) {
-				var msg = anime.get('anime_title') + " was successfully saved.";
+				var msg = anime.get('title') + " was successfully saved.";
 				console.log(msg);
 				Notify.success(msg);
 			};
 
 			var onFailure = function(anime) {
-				var msg = "Something went wrong, " + anime.get('anime_title') + " was not saved.";
+				var msg = "Something went wrong, " + anime.get('title') + " was not saved.";
 				console.log(msg);
 				Notify.warning(msg);
 			};
@@ -59,20 +59,20 @@ export default Ember.ObjectController.extend({
 	c_episode_name: function() {
 		var anime_title, anime_type, episode_number;
 
-		if (this.get('model.anime_type') === 'TV') {
+		if (this.get('model.type') === 'TV') {
 			anime_type = 'Episode';
 		} else {
-			anime_type = this.get('model.anime_type');
+			anime_type = this.get('model.type');
 		}
 
-		anime_title = this.get('model.anime_title');
+		anime_title = this.get('model.title');
 		episode_number = this.get('c_episode_number');
 
 		var episode_name = anime_title + " Online " + anime_type + " " + episode_number;
 		console.log(episode_name);
 		return episode_name;
 
-	}.property('c_episode_number', 'model.anime_title', 'model.anime_type'),
+	}.property('c_episode_number', 'model.title', 'model.type'),
 	c_episode_multiple: false,
 	c_episode_number: null, // Is a number
 	c_episode_number_other: null,

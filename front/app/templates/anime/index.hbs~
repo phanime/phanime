@@ -1,11 +1,13 @@
 <div class="container">
 	<div class="row main-content">
-		<div class="col-sm-9">
-			<h2 class="thin-text">{{anime_title}}</h2>
+		<div class="col-md-3">
+			<div class="thin-text">{{description}}</div>
+		</div>
+		<div class="col-md-9">
 			<div class="row anime-info">
 				<div class="col-sm-12" style="padding:0">
-				{{anime_type}} |
-				{{anime_episode_duration}} |
+				{{type}} |
+				{{episode_duration}} |
 				{{age_rating}}
 
 				{{#if session.isAuthenticated}}
@@ -17,7 +19,6 @@
 			</div>
 
 			{{#if session.isAuthenticated}}
-				{{session.currentUser.username}}
 				{{#if isEditing}}
 					<div class="well">
 						<div class="row">
@@ -29,29 +30,29 @@
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Anime Title</label>
-												{{input type="text" value=anime_title class="form-control"}}
+												{{input type="text" value=title class="form-control"}}
 											</div>
 
 											<div class="form-group">
 												<label>Anime Type</label>
-												{{view Ember.Select content=anime_types value=anime_type class="form-control"}}
+												{{view Ember.Select content=anime_types value=type class="form-control"}}
 											</div>
 
 											<div class="form-group">
 												<label>Avg. Episode Duration</label>
-												{{input type="number" value=anime_episode_duration class="form-control"}}
+												{{input type="number" value=episode_duration class="form-control"}}
 											</div>	
 
 											<div class="form-group">
 												<label>Start Date</label>
-												{{input type="text" value=anime_start_date class="form-control"}}
+												{{input type="text" value=start_date class="form-control"}}
 											</div>
 										</div>
 
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Anime Status</label>
-												{{view Ember.Select content=anime_statuses value=anime_status class="form-control"}}
+												{{view Ember.Select content=anime_statuses value=status class="form-control"}}
 											</div>
 											<div class="form-group">
 												<label>Age Rating</label>
@@ -60,12 +61,12 @@
 
 											<div class="form-group">
 												<label>Anime Total Episodes</label>
-												{{input type="number" value=anime_total_episodes class="form-control"}}
+												{{input type="number" value=total_episodes class="form-control"}}
 											</div>	
 
 											<div class="form-group">
 												<label>End Date</label>
-												{{input type="text" value=anime_end_date class="form-control"}}
+												{{input type="text" value=end_date class="form-control"}}
 											</div>											
 										</div>
 									</div>
@@ -76,7 +77,7 @@
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label>Description</label>
-												{{textarea value=anime_description class="form-control" rows="10"}}
+												{{textarea value=description class="form-control" rows="10"}}
 											</div>
 										</div>
 									</div>
@@ -87,23 +88,23 @@
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Main Alternative Title</label>
-												{{input type="text" value=anime_main_alternative_title class="form-control"}}
+												{{input type="text" value=main_alternative_title class="form-control"}}
 											</div>
 
 											<div class="form-group">
 												<label>Anime Version</label>
-												{{view Ember.Select content=anime_versions selection=anime_version multiple="true" class="form-control"}}
+												{{view Ember.Select content=anime_versions selection=version multiple="true" class="form-control"}}
 											</div>
 										</div>
 
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Season Number</label>
-												{{input type="number" value=anime_season_number class="form-control"}}
+												{{input type="number" value=season_number class="form-control"}}
 											</div>
 											<div class="form-group">
 												<label>Alternative Titles</label>
-												{{textarea value=anime_alternative_titles class="form-control" rows="4"}}
+												{{textarea value=alternative_titles class="form-control" rows="4"}}
 											</div>
 										</div>
 
@@ -174,29 +175,20 @@
 							<td>#</td>
 							<td>Episode Title</td>
 							<td>Air Date</td>
-							<td>Subbed</td>
-							<td>Dubbed</td>
 						</tr>
 					<thead>
 
 					<tbody>
 						{{#each episodes}}
 							<tr class="thin-text">
-								<td>{{#link-to 'episode' this}}{{episode_number}}{{/link-to}}</td>
+								<td>{{episode_number}}</td>
 								<td>{{#if episode_name}} {{episode_title}} {{else}} -- {{/if}}</td>
 								<td>{{#if episode_air_date}} {{format-date-default episode_air_date}} {{else}} -- {{/if}}</td>
-								<td> -- </td>
-								<td> -- </td>
 							<tr>
 						{{/each}}
 					</tbody>
 				</table>
 			</div>
-
-		</div>
-
-		<div class="col-sm-3">
-			<div class="thin-text">{{anime_description}}</div>
 		</div>
 	</div>
 </div>

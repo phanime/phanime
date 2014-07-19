@@ -7,7 +7,7 @@ export default Ember.ObjectController.extend({
 
 	changeEpName: function() {
 		var episodeNumber = this.get('model.episode_number');
-		var name = this.get('model.episode_name');
+		var name = this.get('model.name');
 		name = name.substring(0, name.length - 1) + episodeNumber;
 		console.log(name);
 		//this.set('model.episode_name', name);
@@ -21,7 +21,7 @@ export default Ember.ObjectController.extend({
 		save_changes: function(episode) {
 
 			var onSuccess = function(episode) {
-				var msg = episode.get('episode_name') + " was successfully saved.";
+				var msg = episode.get('name') + " was successfully saved.";
 				console.log(msg);
 				Notify.success(msg);
 			};

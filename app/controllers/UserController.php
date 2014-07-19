@@ -9,7 +9,13 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::all();
+		$username = Input::get('username');
+
+		if ($username) {
+			$users = User::where('username', '=', $username)->take(1)->get(); // This should always return 1 but take 1 is just there to show that it's suppose to return one
+		} else {
+			$users = User::all();
+		}
 
 		return Response::json(array(
 			'users' => $users),
