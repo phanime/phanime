@@ -5,4 +5,5 @@ export default Ember.Object.extend({
 	urlSeparator: " | ",
 	siteSlogan: 'phor anime fans',
 	siteWallpapers: '/images/site/wallpapers/',
+	siteGeneral: '/images/site/',
 });

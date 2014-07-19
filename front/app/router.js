@@ -23,7 +23,7 @@ Router.map(function() {
 
 	// Producer related routes
 	this.resource('producers', function() {
-		this.resource('producer', { path: ':producer_id/:producer_name' });
+		this.resource('producer', { path: ':producer_id/:producer_slug' });
 		this.route('add');
 	});
 
@@ -40,6 +40,8 @@ Router.map(function() {
 	this.resource('user', { path: 'users/:username' });
 
 	this.route('login');
+
+	this.route('fourOhFour', {path: "*path"});
 });
 
 Router.reopen({

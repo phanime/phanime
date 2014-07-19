@@ -3,18 +3,36 @@
 		<div class="box box-teal">
 			<div class="box-heading">Add Producer</div>
 			<div class="box-body">
-				<form role="form" class="form-horizontal">
+				<form role="form">
 					<div class="row">
 						<div class="col-sm-6">
-
-							<input type="text" class="form-control">
+							<div class="form-group">
+								<label>Name</label>
+								{{input type="text" value=name placeholder="Producer's Name" class="form-control"}}
+							</div>
 
 						</div>
 
 						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Slug</label>
+								<h4>{{slug}}</h4>
+							</div>
+						</div>
+					</div>
 
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label>Description</label>
+								{{textarea value=description class="form-control" rows="10" placeholder="Description of Producer"}}
+							</div>
+						</div>
+					</div>
 
-
+					<div class="row">
+						<div class="col-sm-12">
+							<button class="btn btn-primary btn-beside" {{action 'add_producer'}}>Add Producer</button>
 						</div>
 					</div>
 				</form>

@@ -31,7 +31,25 @@ class ProducerController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$inputs = Input::get('producer');
+
+		$producer = new Producer;
+
+		$producer->name = $inputs['name'];
+		$producer->slug = $inputs['slug'];
+		$producer->description = $inputs['description'];
+		$producer->producer_logo = $inputs['producer_logo'];
+
+		$producer->save();
+		
+		$producer_new = Producer::find($producer->id);
+
+		return Response::json(array(
+			'producer' => $producer_new
+			),
+			200
+		);
+
 	}
 
 

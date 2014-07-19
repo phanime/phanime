@@ -5,9 +5,13 @@ export default Ember.ObjectController.extend({
 	isEditing: false,
 	isAdding: false,
 	titleChanged: function() {
-		var slug = this.get('model.title').replace(/\s+/g, '-').toLowerCase();
+		var slug = this.get('model.title').replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()?+']/g,"").toLowerCase();
+		slug = slug.replace(/\s+/g, '-');
+
 		// Set the the anime slug
 		this.set('model.slug', slug);
+
+		console.log(slug);
 
 	}.observes('model.title'),
 

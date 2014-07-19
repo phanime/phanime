@@ -26,6 +26,7 @@ class CreatePeopleTable extends Migration {
 			$table->string('birth_place');
 			$table->string('blood_type');
 			$table->text('other_info');
+			$table->timestamps();
 		});
 	}
 

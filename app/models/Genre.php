@@ -9,6 +9,7 @@ class Genre extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'genres';
+	public $timestamps = false;
 
 	// Relationships
 
