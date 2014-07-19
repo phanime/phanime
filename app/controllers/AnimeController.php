@@ -13,7 +13,7 @@ class AnimeController extends \BaseController {
 		$animes = Anime::all();
 
 		if (array_key_exists('featured', $inputs) && $inputs['featured'] == true) {
-			$animes_before = Anime::with('genres', 'episodes')->where('anime_featured', '=', 1)->get();
+			$animes_before = Anime::with('genres', 'episodes')->where('featured', '=', 1)->get();
 			$animes = [];
 
 			foreach($animes_before as $animeb) {
@@ -23,9 +23,9 @@ class AnimeController extends \BaseController {
 				$animes[] = $anime;
 			}
 
-		} else if (array_key_exists('anime_slug', $inputs)) {
+		} else if (array_key_exists('slug', $inputs)) {
 
-			$animes_before = Anime::with('genres', 'episodes')->where('anime_slug', '=', $inputs['anime_slug'])->take(1)->get();
+			$animes_before = Anime::with('genres', 'episodes')->where('slug', '=', $inputs['slug'])->take(1)->get();
 			$animes = [];
 
 			foreach($animes_before as $animeb) {
@@ -36,14 +36,14 @@ class AnimeController extends \BaseController {
 			}
 
 		} else {
-			$animes = Anime::orderby('anime_title', 'asc')->get();
+			$animes = Anime::orderby('title', 'asc')->get();
 			$animes = $animes->toArray();
 		}
 
 
 		// Unserialize any strings
 		for ($i = 0; $i < sizeof($animes); $i++) {
-			$animes[$i]['anime_version'] = unserialize($animes[$i]['anime_version']);
+			$animes[$i]['version'] = unserialize($animes[$i]['version']);
 		}
 
 		return Response::json(array(
@@ -79,7 +79,7 @@ class AnimeController extends \BaseController {
 
 
 		// Unserialize any strings
-		$anime['anime_version'] = unserialize($anime['anime_version']);
+		$anime['version'] = unserialize($anime['version']);
 
 		$episodes = $episodes->toArray();
 		$genres = $genres->toArray();
@@ -121,22 +121,22 @@ class AnimeController extends \BaseController {
 
 
 		// Assume trusted member is doing an update, and let them update any property on the anime model
-		$anime->anime_title = $inputs['anime_title'];
-		$anime->anime_slug = $inputs['anime_slug'];
-		$anime->anime_cover_image = $inputs['anime_cover_image'];
-		$anime->anime_type = $inputs['anime_type'];
-		$anime->anime_status = $inputs['anime_status'];
-		$anime->anime_start_date = $inputs['anime_start_date'];
-		$anime->anime_end_date = $inputs['anime_end_date'];
-		$anime->anime_version = serialize($inputs['anime_version']); // This is the stupidest thing i'll do so far, promise
-		$anime->age_rating = $inputs['age_rating'];
-		$anime->anime_description = $inputs['anime_description'];
-		$anime->anime_season_number = $inputs['anime_season_number'];
-		$anime->anime_total_episodes = $inputs['anime_total_episodes'];
-		$anime->anime_episode_duration = $inputs['anime_episode_duration'];
-		$anime->anime_main_alternative_title = $inputs['anime_main_alternative_title'];
-		$anime->anime_alternative_titles = $inputs['anime_alternative_titles'];
-		$anime->anime_featured = $inputs['anime_featured'];
+		$anime->title = $inputs['title'];
+		$anime->slug = $inputs['slug'];
+		$anime->cover_image = $inputs['cover_image'];
+		$anime->type = $inputs['type'];
+		$anime->status = $inputs['status'];
+		$anime->start_date = $inputs['start_date'];
+		$anime->end_date = $inputs['end_date'];
+		$anime->version = serialize($inputs['version']); // This is the stupidest thing i'll do so far, promise
+		$anime->age_rating = $inputs['rating'];
+		$anime->description = $inputs['description'];
+		$anime->season_number = $inputs['season_number'];
+		$anime->total_episodes = $inputs['total_episodes'];
+		$anime->episode_duration = $inputs['episode_duration'];
+		$anime->main_alternative_title = $inputs['main_alternative_title'];
+		$anime->alternative_titles = $inputs['alternative_titles'];
+		$anime->featured = $inputs['featured'];
 
 		// TODO
 		// Run anime rating algorithm here.
@@ -149,7 +149,7 @@ class AnimeController extends \BaseController {
 		$anime = $anime->toArray();
 
 		// Unserialize array 
-		$anime['anime_version'] = unserialize($anime['anime_version']);
+		$anime['version'] = unserialize($anime['version']);
 
 		// Encode the episodes into anime array how Ember.js likes it
 		$anime['episodes'] = array();

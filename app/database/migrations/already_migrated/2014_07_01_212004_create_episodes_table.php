@@ -16,14 +16,16 @@ class CreateEpisodesTable extends Migration {
 		{
 			$table->bigIncrements('id');
 			$table->integer('user_id')->unsigned()->nullable();
-			$table->integer('anime_id')->unsigned()->nullable();
-			$table->string('episode_name');
-			$table->string('episode_multiple')->nullable();
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->integer('anime_id')->unsigned();
+			//$table->foreign('anime_id')->references('id')->on('anime');
+			$table->string('name');
+			$table->boolean('episode_multiple')->nullable();
 			$table->integer('episode_number')->nullable();
 			$table->integer('episode_number_other')->nullable();
 			$table->string('episode_title')->nullable();
-			$table->date('episode_air_date')->nullable();
-			$table->string('episode_already_aired')->nullable();
+			$table->date('air_date')->nullable();
+			$table->boolean('already_aired')->nullable();
 			$table->string('episode_version')->nullable();
 			$table->timestamps();
 			$table->integer('post_id')->unsigned();

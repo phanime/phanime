@@ -14,23 +14,14 @@ class EpisodeController extends \BaseController {
 		$episode_number = Input::get('episode_number');
 
 		if ($ids) {
-			$episodes = Episode::with('videos')->whereIn('id', $ids)->get();
+			$episodes = Episode::whereIn('id', $ids)->get();
 		} else if ($anime_id && $episode_number) {
-			$episodes = Episode::with('videos')->where('anime_id', '=', $anime_id)->where('episode_number', '=', $episode_number)->get();
+			$episodes = Episode::where('anime_id', '=', $anime_id)->where('episode_number', '=', $episode_number)->get();
 		}
 
-
-		$outputEpisodes = [];
-
-		foreach ($episodes as $episode) {
-			$outputEpisode = $episode->toArray();
-			$outputEpisode['episode_version'] = unserialize($outputEpisode['episode_version']);
-			$outputEpisode['videos'] = $episode->videos->lists('id');
-			$outputEpisodes[] = $outputEpisode;
-		}
 
 		return Response::json(array(
-			'episodes' => $outputEpisodes),
+			'episodes' => $episodes),
 			200
 		);
 
@@ -57,18 +48,16 @@ class EpisodeController extends \BaseController {
 	public function show($id)
 	{
 		$episode = Episode::find($id);
-		$videos = $episode->videos;
-
 		$episode = $episode->toArray();
 
 		$episode['episode_version'] = unserialize($episode['episode_version']);
 
-		// Encode videos into episodes the way Ember.js likes it
-		$episode['videos'] = array();
+		// // Encode videos into episodes the way Ember.js likes it
+		// $episode['videos'] = array();
 
-		foreach($videos as $video) {
-			$episode['videos'][] = $video['id'];
-		}
+		// foreach($videos as $video) {
+		// 	$episode['videos'][] = $video['id'];
+		// }
 
 		return Response::json(array(
 			'episode' => $episode
@@ -91,31 +80,23 @@ class EpisodeController extends \BaseController {
 		$inputs = Input::get('episode');
 
 		// Update episode fields
-		$episode->episode_name = $inputs['episode_name'];
+		$episode->episode_name = $inputs['name'];
 		$episode->episode_multiple = $inputs['episode_multiple'];
 		$episode->episode_number = $inputs['episode_number'];
 		$episode->episode_number_other = $inputs['episode_number_other'];
 		$episode->episode_title = $inputs['episode_title'];
-		$episode->episode_air_date = $inputs['episode_air_date'];
-		$episode->episode_already_aired = $inputs['episode_already_aired'];
+		$episode->episode_air_date = $inputs['air_date'];
+		$episode->episode_already_aired = $inputs['already_aired'];
 		$episode->episode_version = serialize($inputs['episode_version']);
 
 		$episode->save();
 
 		// Call show
 		$episode = Episode::find($id);
-		$videos = $episode->videos;
 
 		$episode = $episode->toArray();
 
 		$episode['episode_version'] = unserialize($episode['episode_version']);
-
-		// Encode videos into episodes the way Ember.js likes it
-		$episode['videos'] = array();
-
-		foreach($videos as $video) {
-			$episode['videos'][] = $video['id'];
-		}
 
 		return Response::json(array(
 			'episode' => $episode

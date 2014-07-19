@@ -15,7 +15,9 @@ class CreateAnimeGenresTable extends Migration {
 		Schema::create('anime_genres', function(Blueprint $table)
 		{
 			$table->integer('anime_id')->unsigned();
+			//$table->foreign('anime_id')->references('id')->on('anime');
 			$table->integer('genre_id')->unsigned();
+			//$table->foreign('genre_id')->references('id')->on('genres');
 		});
 	}
 

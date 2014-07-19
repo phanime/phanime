@@ -18,6 +18,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
 	Route::resource('episodes', 'EpisodeController');
 	Route::resource('videos', 'VideoController');
 	Route::resource('genres', 'GenreController');
+	Route::resource('characters', 'CharacterController');
+	Route::resource('producers', 'ProducerController');
+	Route::resource('people', 'PersonController');	
 	Route::resource('libraryEntries', 'LibraryEntryController');
 	Route::post('session', 'UserController@authenticateUser');
 
