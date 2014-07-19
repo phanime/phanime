@@ -9,7 +9,7 @@ class Person extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'people';
-
+	
 	// Relationships
 
 	public function animes()

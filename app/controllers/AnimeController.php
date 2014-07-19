@@ -129,7 +129,7 @@ class AnimeController extends \BaseController {
 		$anime->start_date = $inputs['start_date'];
 		$anime->end_date = $inputs['end_date'];
 		$anime->version = serialize($inputs['version']); // This is the stupidest thing i'll do so far, promise
-		$anime->age_rating = $inputs['rating'];
+		$anime->age_rating = $inputs['age_rating'];
 		$anime->description = $inputs['description'];
 		$anime->season_number = $inputs['season_number'];
 		$anime->total_episodes = $inputs['total_episodes'];

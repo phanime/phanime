@@ -19,5 +19,6 @@ var app = new EmberApp();
 app.import('vendor/bootstrap/dist/js/bootstrap.js');
 app.import('vendor/bootstrap/dist/css/bootstrap.css');
 app.import('vendor/moment/moment.js');
+app.import('vendor/fontawesome/css/font-awesome.css');
 
 module.exports = app.toTree();

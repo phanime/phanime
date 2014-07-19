@@ -22,6 +22,7 @@ class CreateCharactersTable extends Migration {
 			$table->string('alternate_name');
 			$table->string('gender');
 			$table->text('biography');
+			$table->timestamps();
 		});
 	}
 
