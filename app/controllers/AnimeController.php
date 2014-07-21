@@ -35,6 +35,10 @@ class AnimeController extends \BaseController {
 				$animes[] = $anime;
 			}
 
+		} else if (array_key_exists('search', $inputs)) {
+
+			$animes = Anime::where('title', 'like', '%' . $inputs['search'] . '%')->get();
+
 		} else {
 			$animes = Anime::orderby('title', 'asc')->get();
 			$animes = $animes->toArray();

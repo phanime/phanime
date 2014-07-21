@@ -2,109 +2,75 @@ import Ember from 'ember';
 import Notify from 'ember-notify';
 
 export default Ember.ObjectController.extend({
-	isEditing: false,
-	isAdding: false,
-	titleChanged: function() {
-		var slug = this.get('model.title').replace(/\s+/g, '-').toLowerCase();
-		// Set the the anime slug
-		this.set('model.slug', slug);
-
-	}.observes('model.title'),
-
+	cover_photo: null,
+	first_name: null,
+	last_name: null,
+	japanese_name: null,
+	alternate_name: null,
+	gender: null,
+	biography: null,
 	actions: {
-		edit: function() {
-			this.toggleProperty('isEditing');
-			// Set the other property to false
-			console.log(this.get('session.currentUser.data'));
-			this.set('isAdding', false);
-		},
-		toggle_ep_add: function() {
-			this.toggleProperty('isAdding');
-			// Set the other property to false 
-			this.set('isEditing', false);
-		},
-		save_changes: function(anime) {
+		add_character: function() {
 
-			Notify.useBootstrap();
+			var store = this.store;
+			var self = this;
 
-			var onSuccess = function(anime) {
-				var msg = anime.get('title') + " was successfully saved.";
+			var character = store.createRecord('character', {
+				cover_photo: '',
+				first_name: this.get('first_name'),
+				last_name: this.get('last_name'),
+				japanese_name: this.get('japanese_name'),
+				alternate_name: this.get('alternate_name'),
+				gender: this.get('gender'),
+				bigraphy: this.get('biography')
+			});
+
+
+			var onSuccess = function(character) {
+
+				var msg = character.get('first_name') + " " + character.get('last_name') + " was successfully added.";
 				console.log(msg);
 				Notify.success(msg);
+				//self.transitionTo('character', character);
 			};
 
-			var onFailure = function(anime) {
-				var msg = "Something went wrong, " + anime.get('title') + " was not saved.";
+			var onFailure = function(character) {
+				var msg = "Something went wrong, " + character.get('first_name') + " " + character.get('last_name') + " was not added.";
 				console.log(msg);
 				Notify.warning(msg);
 			};
 
-			anime.save().then(onSuccess, onFailure);
+
+			character.save().then(onSuccess, onFailure);
+
 		},
-		add_episode: function() {
-			//var store = this.store;
+		trigger_search_anime: function() {
+			var store = this.store;
 
-			// store.createRecord('episode', {
-			// 	anime_id: this.get('model.id');
-			// 	user_id: this.get('')
-			// 	episode_name
+			var search_results = store.filter('anime', { search: this.get('search_text_anime') }, function(anime) {
+				return 1;
+				// return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
+			});		
 
-			// });
+			this.set('anime_results', search_results);
 
-			console.log(this.get('c_episode_name'));
+			return false;
 		},
-	},
+		select_anime: function(anime) {
+			var prev_selected = this.get('selectedAnime');
+			
+			if (!prev_selected.contains(anime)) {
+				prev_selected.pushObject(anime);
+			}
 
-	// Episode properties (to hold when creating episode) Prefix with c to not have any conflicts with other variables (c = create)
-	c_episode_name: function() {
-		var anime_title, anime_type, episode_number;
-
-		if (this.get('model.type') === 'TV') {
-			anime_type = 'Episode';
-		} else {
-			anime_type = this.get('model.type');
+			this.set('selectedAnime', prev_selected);
 		}
-
-		anime_title = this.get('model.title');
-		episode_number = this.get('c_episode_number');
-
-		var episode_name = anime_title + " Online " + anime_type + " " + episode_number;
-		console.log(episode_name);
-		return episode_name;
-
-	}.property('c_episode_number', 'model.title', 'model.type'),
-	c_episode_multiple: false,
-	c_episode_number: null, // Is a number
-	c_episode_number_other: null,
-	c_episode_title: null,
-	c_episode_air_date: null,
-	c_episode_already_aired: false,
-	c_episode_version: [], 
-
-	// Select required properties 
-	// TODO: put these in the database preferably
-	anime_types: [
-		"TV",
-		"OVA",
-		"Movie",
-		"Special",
-		"ONA",
-	],
-	anime_statuses: [
-		"On-going",
-		"Complete",
-		"Not Yet Aired"
-	],
-	anime_versions: [
-		"Subbed",
-		"Dubbed"
-	],
-	age_ratings: [
-		"NR - Not Rated",
-		"G - All Ages",
-		"PG - Children",
-		"PG-13 - Teens 13 or older",
-		"R - 17+ (violence & profanity)",
-		"R+ - Mild Nudity",
-	],
+	},
+	// Search anime
+	search_text_anime: '',
+	anime_results: '',
+	selectedAnime: [],
+	init_selected_anime: function() {
+		this.set('selectedAnime', []);
+	}.on('init'),
 });

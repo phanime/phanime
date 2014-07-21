@@ -8,7 +8,12 @@ export default Ember.ObjectController.extend({
 	producer_logo: null,
 	actions: {
 		add_producer: function() {
+
+
+
 			var store = this.store;
+			var self = this;
+
 			var producer = store.createRecord('producer', {
 				producer_logo: '',
 				name: this.get('name'),
@@ -16,10 +21,9 @@ export default Ember.ObjectController.extend({
 				description: this.get('description'),
 			});
 
-			var self = this;
 
 			var onSuccess = function(producer) {
-				console.log('did it get called?');
+
 				var msg = producer.get('name') + " was successfully added.";
 				console.log(msg);
 				Notify.success(msg);
@@ -33,9 +37,33 @@ export default Ember.ObjectController.extend({
 				Notify.warning(msg);
 			};
 
+			producer.get('anime').then(function(anime) {
+				anime.pushObjects(self.get('selectedAnime'));
+				producer.save().then(onSuccess, onFailure);
+			});
 
-			producer.save().then(onSuccess, onFailure);
 
+		},
+		trigger_search_anime: function() {
+			var store = this.store;
+
+			var search_results = store.filter('anime', { search: this.get('search_text_anime') }, function(anime) {
+				return 1;
+				// return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
+			});		
+
+			this.set('anime_results', search_results);
+
+			return false;
+		},
+		select_anime: function(anime) {
+			var prev_selected = this.get('selectedAnime');
+
+			if (!prev_selected.contains(anime)) {
+				prev_selected.pushObject(anime);
+			}
+
+			this.set('selectedAnime', prev_selected);
 		}
 	},
 	nameChanged: function() {
@@ -48,4 +76,12 @@ export default Ember.ObjectController.extend({
 		console.log(slug);
 
 	}.observes('name'),
+
+	// Search anime
+	search_text_anime: '',
+	anime_results: '',
+	selectedAnime: [],
+	init_selected_anime: function() {
+		this.set('selectedAnime', []);
+	}.on('init'),
 });

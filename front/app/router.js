@@ -39,7 +39,16 @@ Router.map(function() {
 	// Users related routes
 	this.resource('user', { path: 'users/:username' });
 
+	// Search
+
+	this.route('search', {path: 'search/:query'});
+
+	// Login
+
 	this.route('login');
+
+
+	// 404 not found routes
 
 	this.route('fourOhFour', {path: "*path"});
 });
