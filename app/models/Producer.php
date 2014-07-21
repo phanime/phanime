@@ -12,7 +12,7 @@ class Producer extends Eloquent {
 
 	// Relationships
 
-	public function animes()
+	public function anime()
 	{
 		return $this->belongsToMany('Anime', 'anime_producers', 'producer_id', 'anime_id');
 	}	

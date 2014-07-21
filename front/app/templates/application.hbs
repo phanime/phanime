@@ -16,6 +16,17 @@
 				<li>{{#link-to 'anime-list'}}Anime{{/link-to}}</li>
 			</ul>
 
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<div class="input-group">
+						{{input type="text" value=search_query class="form-control"}}
+						<span class="input-group-btn">
+							<button {{action 'trigger_search'}} class="btn btn-default" type="button">Search</button>
+						</span>
+					</div>
+				</div>
+			</form>
+
 			<ul class="nav navbar-nav navbar-right">
 				{{#if session.isAuthenticated}}
 					<li><a {{ action 'invalidateSession' }}>Logout</a></li>

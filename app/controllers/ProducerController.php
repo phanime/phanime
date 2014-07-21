@@ -44,6 +44,8 @@ class ProducerController extends \BaseController {
 		
 		$producer_new = Producer::find($producer->id);
 
+		$producer_new->anime()->sync($inputs['anime']);
+
 		return Response::json(array(
 			'producer' => $producer_new
 			),
