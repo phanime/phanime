@@ -16,5 +16,5 @@ export default DS.Model.extend({
 	blood_type: attr(),
 	other_info: attr(),
 	anime: hasMany('anime', {async: true}), // Only Staff, voice actors are not directly related to anime
-	characters: hasMany('character', {async: true}),
+	castings: hasMany('casting', {async: true}),
 });
