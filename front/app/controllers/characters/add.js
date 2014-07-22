@@ -13,7 +13,7 @@ export default Ember.ObjectController.extend({
 		add_character: function() {
 
 			var store = this.store;
-			var self = this;
+			//var self = this;
 
 			var character = store.createRecord('character', {
 				cover_photo: '',
@@ -22,7 +22,7 @@ export default Ember.ObjectController.extend({
 				japanese_name: this.get('japanese_name'),
 				alternate_name: this.get('alternate_name'),
 				gender: this.get('gender'),
-				bigraphy: this.get('biography')
+				biography: this.get('biography'),
 			});
 
 
@@ -40,37 +40,14 @@ export default Ember.ObjectController.extend({
 				Notify.warning(msg);
 			};
 
-
 			character.save().then(onSuccess, onFailure);
 
-		},
-		trigger_search_anime: function() {
-			var store = this.store;
-
-			var search_results = store.filter('anime', { search: this.get('search_text_anime') }, function(anime) {
-				return 1;
-				// return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
-			});		
-
-			this.set('anime_results', search_results);
-
-			return false;
-		},
-		select_anime: function(anime) {
-			var prev_selected = this.get('selectedAnime');
-			
-			if (!prev_selected.contains(anime)) {
-				prev_selected.pushObject(anime);
-			}
-
-			this.set('selectedAnime', prev_selected);
 		}
 	},
-	// Search anime
-	search_text_anime: '',
-	anime_results: '',
-	selectedAnime: [],
-	init_selected_anime: function() {
-		this.set('selectedAnime', []);
-	}.on('init'),
+	// Genders
+	genders: [
+		"",
+		"Male",
+		"Female",
+	]
 });

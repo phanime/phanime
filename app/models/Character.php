@@ -17,5 +17,9 @@ class Character extends Eloquent {
 		return $this->belongsToMany('Anime', 'anime_characters', 'character_id', 'anime_id');
 	}	
 
+	public function castings()
+	{
+		return $this->hasMany('Casting', 'character_id', 'id');
+	}
 
 }

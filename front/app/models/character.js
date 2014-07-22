@@ -11,6 +11,4 @@ export default DS.Model.extend({
 	alternate_name: attr(),
 	gender: attr(),
 	biography: attr(),
-	anime: hasMany('anime', {async: true}),
-	people: hasMany('person', {async: true}),
 });
