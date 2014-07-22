@@ -4,9 +4,7 @@ var attr = DS.attr,
 	belongsTo = DS.belongsTo;
 
 export default DS.Model.extend({
-	language: attr(),
-	role: attr(),
+	anime_id: belongsTo('anime'),
 	person_id: belongsTo('person'),
-	character_id: belongsTo('character'),
-	anime_id: belongsTo('anime')
+	staff_position: attr(),
 });
