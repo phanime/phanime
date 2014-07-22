@@ -33,48 +33,23 @@
 						<div class="col-sm-12">
 							<div class="form-group">
 								<label>Biography</label>
-								{{textarea value=description class="form-control" rows="10" placeholder="Biography of character"}}
+								{{textarea value=biography class="form-control" rows="10" placeholder="Biography of character"}}
 							</div>
 						</div>
 					</div>
 
 
 					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label>Related Anime</label>
-								<div class="input-group">
-									{{input type="text" value=search_text_anime class="form-control" placeholder="Search Anime"}}
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button" {{action 'trigger_search_anime'}}>Search</button>
-									</span>
-								</div>
-							</div>					
-						</div>
-
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Gender</label>
 								{{view Ember.Select content=genders value=gender class="form-control"}}
 							</div>
 						</div>
-					</div>
 
-
-					<div class="row">
-						<div class="col-sm-12">
-							<div style="max-height: 200px; overflow-y: auto">
-								{{#each anime_results}}
-									<div><a {{action 'select_anime' this }}>{{title}}</a></div>
-								{{/each}}
-							</div>
-
-							<div class="form-group">
-								<label>Selected Anime</label>
-								{{#each selectedAnime}}
-									<div>{{title}}</div>
-								{{/each}}
-							</div>
+						<div class="col-sm-6">
+							Image upload coming soon!
+						</div>
 					</div>
 
 					<div class="row">
@@ -82,6 +57,7 @@
 							<button class="btn btn-primary btn-beside" {{action 'add_character'}}>Add Character</button>
 						</div>
 					</div>
+
 				</form>
 			</div>
 		</div>

@@ -31,7 +31,27 @@ class CharacterController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$inputs = Input::get('character');
+
+		$character = new Character;
+
+		$character->first_name = $inputs['first_name'];
+		$character->last_name = $inputs['last_name'];
+		$character->biography = $inputs['biography'];
+		$character->alternate_name = $inputs['alternate_name'];
+		$character->japanese_name = $inputs['japanese_name'];
+		$character->cover_photo = $inputs['cover_photo'];
+
+		$character->save();
+
+		$character_new = Character::find($character->id);
+
+		return Response::json(array(
+			'character' => $character_new
+			),
+			200
+		);
+
 	}
 
 
