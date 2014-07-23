@@ -58,7 +58,7 @@ export default Ember.ObjectController.extend({
 		"Male",
 		"Female",
 	],
-	blood_groups: [
+	blood_types: [
 		"",
 		"A",
 		"B",
