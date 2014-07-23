@@ -19,7 +19,7 @@ export default Ember.ObjectController.extend({
 			var store = this.store;
 			//var self = this;
 
-			var character = store.createRecord('character', {
+			var person = store.createRecord('person', {
 				cover_photo: '',
 				first_name: this.get('first_name'),
 				last_name: this.get('last_name'),
@@ -34,21 +34,21 @@ export default Ember.ObjectController.extend({
 			});
 
 
-			var onSuccess = function(character) {
+			var onSuccess = function(person) {
 
-				var msg = character.get('first_name') + " " + character.get('last_name') + " was successfully added.";
+				var msg = person.get('first_name') + " " + person.get('last_name') + " was successfully added.";
 				console.log(msg);
 				Notify.success(msg);
-				//self.transitionTo('character', character);
+				//self.transitionTo('person', person);
 			};
 
-			var onFailure = function(character) {
-				var msg = "Something went wrong, " + character.get('first_name') + " " + character.get('last_name') + " was not added.";
+			var onFailure = function(person) {
+				var msg = "Something went wrong, " + person.get('first_name') + " " + person.get('last_name') + " was not added.";
 				console.log(msg);
 				Notify.warning(msg);
 			};
 
-			character.save().then(onSuccess, onFailure);
+			person.save().then(onSuccess, onFailure);
 
 		}
 	},
@@ -57,5 +57,12 @@ export default Ember.ObjectController.extend({
 		"",
 		"Male",
 		"Female",
+	],
+	blood_groups: [
+		"",
+		"A",
+		"B",
+		"AB",
+		"O",
 	]
 });
