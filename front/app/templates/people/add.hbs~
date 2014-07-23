@@ -1,194 +1,91 @@
-<div class="container">
-	<div class="row main-content">
-		<div class="col-md-3">
-			<div class="thin-text">{{description}}</div>
-		</div>
-		<div class="col-md-9">
-			<div class="row anime-info">
-				<div class="col-sm-12" style="padding:0">
-				{{type}} |
-				{{episode_duration}} |
-				{{age_rating}}
-
-				{{#if session.isAuthenticated}}
-					{{session.account.username}}
-					<button class="btn btn-success btn-sm btn-beside" {{action 'toggle_ep_add'}}>+</button>
-					<button class="btn btn-primary btn-sm btn-beside" {{action 'edit'}}>Edit</button>
-				{{/if}}
-				</div>
-			</div>
-
-			{{#if session.isAuthenticated}}
-				{{#if isEditing}}
-					<div class="well">
-						<div class="row">
-							<div class="col-sm-12">
-								<form role="form">
-									<div class="row">
-
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Anime Title</label>
-												{{input type="text" value=title class="form-control"}}
-											</div>
-
-											<div class="form-group">
-												<label>Anime Type</label>
-												{{view Ember.Select content=anime_types value=type class="form-control"}}
-											</div>
-
-											<div class="form-group">
-												<label>Avg. Episode Duration</label>
-												{{input type="number" value=episode_duration class="form-control"}}
-											</div>	
-
-											<div class="form-group">
-												<label>Start Date</label>
-												{{input type="text" value=start_date class="form-control"}}
-											</div>
-										</div>
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Anime Status</label>
-												{{view Ember.Select content=anime_statuses value=status class="form-control"}}
-											</div>
-											<div class="form-group">
-												<label>Age Rating</label>
-												{{view Ember.Select content=age_ratings value=age_rating class="form-control"}}
-											</div>
-
-											<div class="form-group">
-												<label>Anime Total Episodes</label>
-												{{input type="number" value=total_episodes class="form-control"}}
-											</div>	
-
-											<div class="form-group">
-												<label>End Date</label>
-												{{input type="text" value=end_date class="form-control"}}
-											</div>											
-										</div>
-									</div>
-
-									<hr>
-
-									<div class="row">
-										<div class="col-sm-12">
-											<div class="form-group">
-												<label>Description</label>
-												{{textarea value=description class="form-control" rows="10"}}
-											</div>
-										</div>
-									</div>
-
-									<hr>
-
-									<div class="row">
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Main Alternative Title</label>
-												{{input type="text" value=main_alternative_title class="form-control"}}
-											</div>
-
-											<div class="form-group">
-												<label>Anime Version</label>
-												{{view Ember.Select content=anime_versions selection=version multiple="true" class="form-control"}}
-											</div>
-										</div>
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Season Number</label>
-												{{input type="number" value=season_number class="form-control"}}
-											</div>
-											<div class="form-group">
-												<label>Alternative Titles</label>
-												{{textarea value=alternative_titles class="form-control" rows="4"}}
-											</div>
-										</div>
-
-									</div>
-
-									<div class="row">
-										<div class="col-sm-12">
-											<button style="float: right" class="btn btn-primary" {{action 'save_changes' this}}>Save Changes</button>
-										</div>
-									</div>
-
-								</form>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="box box-teal">
+			<div class="box-heading">Add Person</div>
+			<div class="box-body">
+				<form role="form">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>First Name</label>
+								{{input type="text" value=first_name placeholder="First Name" class="form-control"}}
 							</div>
-						</div>
-					</div>
-				{{/if}}
-			{{/if}}
-
-			{{#if session.isAuthenticated}}
-				{{#if isAdding}}
-					<div class="well">
-						<div class="row">
-							<div class="col-sm-12">
-								<form role="form">
-									<div class="row">
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Episode Number</label>
-												{{input type="number" value=c_episode_number class="form-control" placeholder="Episode Number in series (No duplicates)"}}
-											</div>
-											<div class="form-group">
-												<label>Air Date</label>
-												{{input type="text" value=c_episode_air_date class="form-control" placeholder="The day the episode aired"}}
-											</div>
-										</div>
-
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Episode Title</label>
-												{{input type="text" value=c_episode_title class="form-control" placeholder="Episode Title"}}
-											</div>
-										</div>
-
-									</div>
-
-									<div class="row">
-										<div class="col-sm-12">
-											<button class="btn btn-primary btn-sm btn-beside" {{action 'add_episode'}}>Add Episode</button>	
-										</div>
-									</div>
-
-								</form>
-
+							<div class="form-group">
+								<label>Given Name</label>
+								{{input type="text" value=given_name placeholder="Given Name" class="form-control"}}
 							</div>
 
 						</div>
 
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Last Name</label>
+								{{input type="text" value=last_name placeholder="Last Name" class="form-control"}}
+							</div>
+							<div class="form-group">
+								<label>Family Name</label>
+								{{input type="text" value=family_name placeholder="Family Name" class="form-control"}}
+							</div>
+						</div>
 					</div>
 
-				{{/if}}
-			{{/if}}
+					<hr>
 
-			<div class="table-responsive">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<td>#</td>
-							<td>Episode Title</td>
-							<td>Air Date</td>
-						</tr>
-					<thead>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Gender</label>
+								{{view Ember.Select content=genders value=gender class="form-control"}}
+							</div>
+							<div class="form-group">
+								<label>Blood Type</label>
+								{{view Ember.Select content=blood_types value=blood_type class="form-control"}}
+							</div>
 
-					<tbody>
-						{{#each episodes}}
-							<tr class="thin-text">
-								<td>{{episode_number}}</td>
-								<td>{{#if episode_title}} {{episode_title}} {{else}} -- {{/if}}</td>
-								<td>{{#if air_date}} {{format-date-default air_date}} {{else}} -- {{/if}}</td>
-							<tr>
-						{{/each}}
-					</tbody>
-				</table>
+							<div class="form-group">
+								<label>Website</label>
+								{{input type="text" value=website placeholder="Person's official website" class="form-control"}}
+							</div>
+
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Birth Date</label>
+								{{input type="text" value=birth_date placeholder="Birth Date" class="form-control"}}
+							</div>
+							<div class="form-group">
+								<label>Birth Place</label>
+								{{input type="text" value=birth_place placeholder="Birth Place" class="form-control"}}
+							</div>
+
+							<div class="form-group">
+								<label>Cover Photo</label>
+								{{input type="text" value=cover_photo placeholder="This field is just a placeholder" class="form-control"}}
+							</div>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label>Other Info</label>
+								{{textarea value=other_info class="form-control" rows="10" placeholder="Any additional information about the person: height, weight, personal life, awards, etc"}}
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<button class="btn btn-primary btn-beside" {{action 'add_person'}}>Add Person</button>
+						</div>
+					</div>
+
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
+
