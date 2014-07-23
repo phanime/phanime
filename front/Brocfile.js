@@ -21,4 +21,8 @@ app.import('vendor/bootstrap/dist/css/bootstrap.css');
 app.import('vendor/moment/moment.js');
 app.import('vendor/fontawesome/css/font-awesome.css');
 
+// Ember-pikaday
+app.import('vendor/pikaday/css/pikaday.css');
+app.import('vendor/pikaday/pikaday.js');
+
 module.exports = app.toTree();
