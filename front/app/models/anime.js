@@ -9,7 +9,18 @@ export default DS.Model.extend({
 	title: attr(),
 	slug: attr(),
 	cover_image: attr(),
+	
+	// Get full url of anime cover image
+	cover_image_url: function() {
+		return "http://cdn.phanime.com/images/anime/cover/" + this.get('cover_image');
+	}.property('cover_image'),
+
 	banner_image: attr(),
+
+	banner_image_url: function() {
+		return "http://cdn.phanime.com/images/anime/banner." + this.get('banner_image');
+	}.property('banner_image_url'),
+
 	type: attr(),
 	status: attr(),
 	start_date: attr(),
@@ -31,4 +42,6 @@ export default DS.Model.extend({
 	characters: hasMany('character', {async: true}),
 	people: hasMany('person', {async: true}), // Staff only, not voice actors
 	producers: hasMany('producer', {async: true}),
+
+
 });
