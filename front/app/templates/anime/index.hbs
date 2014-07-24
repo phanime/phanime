@@ -52,7 +52,7 @@
 
 											<div class="form-group">
 												<label>Start Date</label>
-												{{input type="text" value=start_date class="form-control"}}
+												{{view "datePicker" valueBinding="start_date" class="form-control" placeholder="Start Date"}}
 											</div>
 										</div>
 
@@ -73,7 +73,7 @@
 
 											<div class="form-group">
 												<label>End Date</label>
-												{{input type="text" value=end_date class="form-control"}}
+												{{view "datePicker" valueBinding="end_date" class="form-control" placeholder="End Date"}}
 											</div>											
 										</div>
 									</div>
@@ -145,7 +145,7 @@
 											</div>
 											<div class="form-group">
 												<label>Air Date</label>
-												{{input type="text" value=c_episode_air_date class="form-control" placeholder="The day the episode aired"}}
+												{{view "datePicker" valueBinding="c_episode_air_date" class="form-control" placeholder="he day the episode aired"}}
 											</div>
 										</div>
 
