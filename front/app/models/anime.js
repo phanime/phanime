@@ -6,7 +6,14 @@ var attr = DS.attr,
 
 export default DS.Model.extend({
 	user_id: belongsTo('user', {async: true}),
-	title: attr(),
+	
+	// We can change the title depending on the user selection
+	title: function() {
+		return this.get('romaji_title');
+	}.property('romaji_title', 'english_title', 'japanese_title'),
+	romaji_title: attr(),
+	english_title: attr(),
+	japanese_title: attr(),
 	slug: attr(),
 	cover_image: attr(),
 	
@@ -31,8 +38,7 @@ export default DS.Model.extend({
 	season_number: attr(),
 	total_episodes: attr(),
 	episode_duration: attr(),
-	main_alternative_title: attr(),
-	alternative_titles: attr(),
+	title_synonyms: attr(),
 	featured: attr(),
 	rating: attr(),
 	rating_count: attr(),

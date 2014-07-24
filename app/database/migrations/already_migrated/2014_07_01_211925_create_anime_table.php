@@ -17,8 +17,10 @@ class CreateAnimeTable extends Migration {
 			$table->bigIncrements('id');
 			$table->integer('user_id')->unsigned()->nullable();
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->string('title');
-			$table->string('slug');
+			$table->string('romaji_title')->unique();
+			$table->string('english_title');
+			$table->string('japanese_title');
+			$table->string('slug')->unique();
 			$table->string('cover_image')->nullable();
 			$table->string('banner_image')->nullable();
 			$table->string('type')->nullable();
@@ -31,8 +33,7 @@ class CreateAnimeTable extends Migration {
 			$table->integer('season_number')->unsigned()->nullable();
 			$table->integer('total_episodes')->unsigned()->nullable();
 			$table->integer('episode_duration')->unsigned()->nullable();
-			$table->string('main_alternative_title')->nullable();
-			$table->string('alternative_titles')->nullable();
+			$table->string('title_synonyms')->nullable();
 			$table->boolean('featured')->nullable();
 			$table->decimal('rating', 6, 4)->nullable();
 			$table->integer('rating_count')->nullable();
