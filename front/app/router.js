@@ -33,7 +33,15 @@ Router.map(function() {
 		this.route('add');
 	});
 
+	// Casting related routes
+	this.resource('castings', function() {
+		this.route('add');
+	});
 
+	// Staff related routes
+	this.resource('staff', function() {
+		this.route('add');
+	});
 
 
 	// Users related routes

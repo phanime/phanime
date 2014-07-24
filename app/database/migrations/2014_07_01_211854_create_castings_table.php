@@ -14,6 +14,7 @@ class CreateCastingsTable extends Migration {
 	{
 		Schema::create('castings', function(Blueprint $table)
 		{
+			$table->increments('id');
 			$table->integer('person_id')->unsigned();
 			//$table->foreign('person_id')->references('id')->on('people');
 			$table->integer('character_id')->unsigned();
