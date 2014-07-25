@@ -35,7 +35,9 @@ module.exports = function(environment) {
 	}
 
 	if (environment === 'production') {
-
+		ENV['simple-auth-oauth2'] = {
+			serverTokenEndpoint: '/api/v1/oauth/token'
+		}
 	}
 
 	return ENV;

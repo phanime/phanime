@@ -5,7 +5,7 @@ export default Ember.ObjectController.extend({
 	isEditing: false,
 	isAdding: false,
 	titleChanged: function() {
-		var slug = this.get('model.title').replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()?+']/g,"").toLowerCase();
+		var slug = this.get('model.romaji_title').replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()?+']/g,"").toLowerCase();
 		slug = slug.replace(/\s+/g, '-');
 
 		// Set the the anime slug
@@ -13,7 +13,7 @@ export default Ember.ObjectController.extend({
 
 		console.log(slug);
 
-	}.observes('model.title'),
+	}.observes('model.romaji_title'),
 
 	actions: {
 		edit: function() {
