@@ -6,5 +6,5 @@ var attr = DS.attr,
 export default DS.Model.extend({
 	anime_id: belongsTo('anime'),
 	person_id: belongsTo('person'),
-	staff_position: attr(),
+	staff_position: attr('string'),
 });

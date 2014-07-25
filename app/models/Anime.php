@@ -25,10 +25,10 @@ class Anime extends Eloquent {
 		return $this->belongsTo('User', 'user_id', 'id');
 	}	
 
-	public function videos()
-	{
-		return $this->hasManyThrough('Video', 'Episode', 'anime_id', 'episode_id');
-	}
+	// public function videos()
+	// {
+	// 	return $this->hasManyThrough('Video', 'Episode', 'anime_id', 'episode_id');
+	// }
 
 	public function genres()
 	{
