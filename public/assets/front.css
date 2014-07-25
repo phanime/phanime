@@ -156,6 +156,69 @@ textarea {
 }
 
 /*-----------------------------*/
+/*------- Landing Page --------*/
+/*-----------------------------*/
+
+.landing-page-wrapper {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	min-width: 100%;
+	min-height: 100%;
+	z-index: 1;
+	background-color: #000;
+}
+
+.landing-page {
+	position: fixed;
+	z-index: 2;
+	opacity: 0.5;
+	min-width: 100%;
+	min-height: 100%;
+	height: 100%;
+	width: 100%;
+	background: url('http://25.media.tumblr.com/6f70d7604b667b5b03700457ebe57df3/tumblr_mhi5buozb81qf8isso1_500.gif');
+	background-size: cover;
+	background-position: center center;
+	-webkit-filter: blur(9px);
+	-moz-filter: blur(9px);
+	-o-filter: blur(9px);
+	-ms-filter: blur(9px);
+	filter: blur(9px);
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+}
+
+.invite-block {
+	text-align: center;
+	position: relative;
+	z-index: 10;
+	max-width: 350px;
+	margin: 0 auto;
+	padding-top: 250px;
+	color: #fff;
+}
+	.invite-block a {
+		color: #fff;
+	}
+
+	.invite-block .btn-fancy {
+		background-color: #8bc34a;
+		color: #fff;
+		-webkit-transition: all 0.3s ease-in-out;
+		-moz-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;		
+	}
+
+		.invite-block .btn-fancy:hover {
+			background-color: #558b2f;
+			color: #fff;
+		}
+
+/*-----------------------------*/
 /*---------- NAVBAR -----------*/
 /*-----------------------------*/
 
