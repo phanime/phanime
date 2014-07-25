@@ -37,10 +37,10 @@ class AnimeController extends \BaseController {
 
 		} else if (array_key_exists('search', $inputs)) {
 
-			$animes = Anime::where('title', 'like', '%' . $inputs['search'] . '%')->get();
+			$animes = Anime::where('romaji_title', 'like', '%' . $inputs['search'] . '%')->get();
 
 		} else {
-			$animes = Anime::orderby('title', 'asc')->get();
+			$animes = Anime::orderby('romaji_title', 'asc')->get();
 			$animes = $animes->toArray();
 		}
 
@@ -125,7 +125,9 @@ class AnimeController extends \BaseController {
 
 
 		// Assume trusted member is doing an update, and let them update any property on the anime model
-		$anime->title = $inputs['title'];
+		$anime->romaji_title = $inputs['romaji_title'];
+		$anime->english_title = $inputs['english_title'];
+		$anime->japanese_title = $inputs['japanese_title'];
 		$anime->slug = $inputs['slug'];
 		$anime->cover_image = $inputs['cover_image'];
 		$anime->type = $inputs['type'];
@@ -138,8 +140,7 @@ class AnimeController extends \BaseController {
 		$anime->season_number = $inputs['season_number'];
 		$anime->total_episodes = $inputs['total_episodes'];
 		$anime->episode_duration = $inputs['episode_duration'];
-		$anime->main_alternative_title = $inputs['main_alternative_title'];
-		$anime->alternative_titles = $inputs['alternative_titles'];
+		$anime->title_synonyms = $inputs['title_synonyms'];
 		$anime->featured = $inputs['featured'];
 
 		// TODO
