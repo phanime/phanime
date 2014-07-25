@@ -1,3 +1,6 @@
+{{#if isLandingPage}}
+	{{partial 'home/landing'}}
+{{else}}
 <nav class="navbar navbar-default navbar-fixed-top navbar-phan" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
@@ -14,6 +17,22 @@
 			<ul class="nav navbar-nav">
 				<li>{{#link-to 'index'}}Home{{/link-to}}</li>
 				<li>{{#link-to 'anime-list'}}Anime{{/link-to}}</li>
+
+				{{#if session.isAuthenticated}}
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Add<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li>{{#link-to 'characters.add'}}Character{{/link-to}}</li>
+						<li>{{#link-to 'people.add'}}Person{{/link-to}}</li>
+						<li>{{#link-to 'producers.add'}}Producer{{/link-to}}</li>
+						<li class="divider"></li>
+						<li class="dropdown-header">Anime Related</li>
+						<li>{{#link-to 'staffMembers.add'}}Staff Member{{/link-to}}</li>
+						<li>{{#link-to 'castings.add'}}Casting{{/link-to}}</li>						
+					</ul>
+				</li>
+				{{/if}}
+
 			</ul>
 
 			<form class="navbar-form navbar-left" role="search">
@@ -43,3 +62,4 @@
 </div>
 
 <div style="margin-bottom: 100px"></div>
+{{/if}}
