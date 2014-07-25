@@ -17,7 +17,7 @@ Router.map(function() {
 
 	// Character related routes
 	this.resource('characters', function() {
-		this.resource('character', { path: ':character_id/:first_name-:last_name' });
+		this.resource('character', { path: ':character_id/:character_slug' });
 		this.route('add');
 	});
 
@@ -29,7 +29,7 @@ Router.map(function() {
 
 	// Person related routes
 	this.resource('people', function() {
-		this.resource('person', { path: ':person_id/:first_name-:last_name' });
+		this.resource('person', { path: ':person_id/:person_slug' });
 		this.route('add');
 	});
 
@@ -38,8 +38,8 @@ Router.map(function() {
 		this.route('add');
 	});
 
-	// Staff related routes
-	this.resource('staff', function() {
+	// staffMember related routes
+	this.resource('staffMembers', function() {
 		this.route('add');
 	});
 
@@ -56,13 +56,14 @@ Router.map(function() {
 	this.route('login');
 
 
-	// 404 not found routes
+	// 404 not found route
 
 	this.route('fourOhFour', {path: "*path"});
 });
 
 Router.reopen({
 	location: 'history',
+
 });
 
 export default Router;

@@ -13,7 +13,7 @@ export default Ember.ObjectController.extend({
 		add_character: function() {
 
 			var store = this.store;
-			var self = this;
+			//var self = this;
 
 			var character = store.createRecord('character', {
 				cover_photo: '',
@@ -31,11 +31,11 @@ export default Ember.ObjectController.extend({
 				var msg = character.get('first_name') + " " + character.get('last_name') + " was successfully added.";
 				console.log(msg);
 				Notify.success(msg);
-				self.transitionToRoute('character', character);
+				//self.transitionTo('character', character);
 			};
 
-			var onFailure = function() {
-				var msg = "Something went wrong, character was not added.";
+			var onFailure = function(character) {
+				var msg = "Something went wrong, " + character.get('first_name') + " " + character.get('last_name') + " was not added.";
 				console.log(msg);
 				Notify.warning(msg);
 			};

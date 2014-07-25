@@ -17,7 +17,7 @@ export default Ember.ObjectController.extend({
 		add_person: function() {
 
 			var store = this.store;
-			//var self = this;
+			var self = this;
 
 			var person = store.createRecord('person', {
 				cover_photo: '',
@@ -39,11 +39,11 @@ export default Ember.ObjectController.extend({
 				var msg = person.get('first_name') + " " + person.get('last_name') + " was successfully added.";
 				console.log(msg);
 				Notify.success(msg);
-				//self.transitionTo('person', person);
+				self.transitionTo('person', person);
 			};
 
-			var onFailure = function(person) {
-				var msg = "Something went wrong, " + person.get('first_name') + " " + person.get('last_name') + " was not added.";
+			var onFailure = function() {
+				var msg = "Something went wrong, person was not added.";
 				console.log(msg);
 				Notify.warning(msg);
 			};

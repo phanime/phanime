@@ -51,7 +51,7 @@ class PersonController extends \BaseController {
 		$person_new = Person::find($person->id);
 
 		return Response::json(array(
-			'character' => $person_new
+			'person' => $person_new
 			), 200
 		);
 
