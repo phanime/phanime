@@ -39,7 +39,7 @@ Router.map(function() {
 	});
 
 	// staffMember related routes
-	this.resource('staffMembers', function() {
+	this.resource('staffMembers', {path: 'staff-members'}, function() {
 		this.route('add');
 	});
 
