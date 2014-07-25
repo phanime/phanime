@@ -1,0 +1,61 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-phan" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>					
+			{{#link-to 'index' class="navbar-brand"}}phanime{{/link-to}}
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li>{{#link-to 'index'}}Home{{/link-to}}</li>
+				<li>{{#link-to 'anime-list'}}Anime{{/link-to}}</li>
+
+				{{#if session.isAuthenticated}}
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Add<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li>{{#link-to 'characters.add'}}Character{{/link-to}}</li>
+						<li>{{#link-to 'people.add'}}Person{{/link-to}}</li>
+						<li>{{#link-to 'producers.add'}}Producer{{/link-to}}</li>
+						<li class="divider"></li>
+						<li class="dropdown-header">Anime Related</li>
+						<li>{{#link-to 'staffMembers.add'}}Staff Member{{/link-to}}</li>
+						<li>{{#link-to 'castings.add'}}Casting{{/link-to}}</li>						
+					</ul>
+				</li>
+				{{/if}}
+
+			</ul>
+
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<div class="input-group">
+						{{input type="text" value=search_query class="form-control"}}
+						<span class="input-group-btn">
+							<button {{action 'trigger_search'}} class="btn btn-default" type="button">Search</button>
+						</span>
+					</div>
+				</div>
+			</form>
+
+			<ul class="nav navbar-nav navbar-right">
+				{{#if session.isAuthenticated}}
+					<li><a {{ action 'invalidateSession' }}>Logout</a></li>
+				{{else}}
+					<li>{{#link-to 'login'}}Login{{/link-to}}</li>
+				{{/if}}
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div style="margin-top: 50px">
+	{{outlet}}
+</div>
+
+<div style="margin-bottom: 100px"></div>
