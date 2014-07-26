@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"rtablada/package-installer": "dev-master",
-		"lucadegasperi/oauth2-server-laravel": "1.*"
+		"lucadegasperi/oauth2-server-laravel": "1.*",
+		"guzzlehttp/guzzle": "~4.0"
 	},
 	"autoload": {
 		"classmap": [

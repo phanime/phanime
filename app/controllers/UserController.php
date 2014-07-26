@@ -79,18 +79,34 @@ class UserController extends \BaseController {
 
 
 
-	public function authenticateUser() {
-		$username = Input::get('username');
-		$password = Input::get('password');
-		if (Auth::attempt(array('username' => $username, 'password' => $password))) {
-			return Response::JSON(array(
-					"session" => array(
-						"authToken" => Auth::user()->password,
-						"user_id" => Auth::id(),
-					)
-			), 200);	
-		}
+	public function requestInvite() {
+		$email = Input::get('email');
+		$pass = $this->generateRandomPassword(10);
+		$tagline = "Discover Anime like Never Before";
+
+
+		$data = array(
+			'email' => $email,
+			'password' => $pass,
+			'tagline' => $tagline,
+		);
+
+		Mail::send('emails.requestInvite', $data, function($message)
+		{
+			$email = Input::get('email');
+			$message->to($email)->subject('Your Invite to Phanime');
+		});		
 	}
 
+	public function generateRandomPassword($length) {
+		$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+		$pass = array(); 
+		$alphaLength = strlen($alphabet) - 1;
+		for ($i = 0; $i < $length; $i++) {
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return implode($pass); //turn the array into a string
+	}
 
 }
