@@ -10,11 +10,12 @@ class PersonController extends \BaseController {
 	public function index()
 	{
 		$ids = Input::get('ids');
+		$query = Input::get('query');
 
 		if ($ids) {
 			$people = Person::whereIn('id', $ids)->get();
-		} else {
-			$people = Person::all();
+		} else if ($query) {
+			$people = Person::where('first_name', 'like', '%'.$query.'%')->get();
 		}
 
 		return Response::json(array(

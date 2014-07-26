@@ -47,7 +47,7 @@ export default Ember.ObjectController.extend({
 		trigger_search_anime: function() {
 			var store = this.store;
 
-			var search_results = store.filter('anime', { search: this.get('search_text_anime') }, function(anime) {
+			var search_results = store.filter('anime', { query: this.get('search_text_anime') }, function(anime) {
 				return 1;
 				// return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
 			});		
