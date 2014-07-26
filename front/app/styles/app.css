@@ -193,11 +193,15 @@ textarea {
 
 .invite-block {
 	text-align: center;
-	position: relative;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
 	z-index: 10;
-	max-width: 400px;
-	margin: 0 auto;
-	padding-top: 250px;
+	max-width: 550px;
+	margin: auto;
+	max-height: 250px;
 	color: #fff;
 }
 	.invite-block input, .invite-block button, .invite-block button:hover {
@@ -328,7 +332,12 @@ textarea {
 		background-color: #FFCDCD;
 	}
 
-/*--- BOOTSTRAP FIXES ---*/
+
+
+/*-----------------------------------*/
+/*----- Bootstrap Theme changes -----*/
+/*-----------------------------------*/
+
 .navbar-default .navbar-nav > li > a.active {
 	color: #555;
 	background-color: #e7e7e7;
@@ -338,3 +347,35 @@ textarea {
 	float: right;
 	margin: 0 5px;
 }
+
+/*--- Button ---*/
+.btn {
+	border-radius: 0px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;		
+}
+	.btn-primary {
+		background-color: #8bc34a;
+		color: #fff;	
+		border-color: #689f38;
+	}
+
+		.btn-primary:hover, .btn-primary:active {
+			background-color: #689f38;
+			border-color: #33691e;
+		}
+
+/*--- Inputs ---*/
+
+input.form-control {
+	border-radius: 0;
+}
+
+	input.form-control:focus {
+		border-color: rgba(139, 195, 74, 0.6);
+		outline: 0;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 195, 74, 0.6);
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 195, 74, 0.6);
+	}

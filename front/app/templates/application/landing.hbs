@@ -2,11 +2,11 @@
 		<div class="landing-page" style="background-image: url('{{unbound landingImage}}');"></div>
 	</div>
 	<div class="invite-block">
-		<h1>Explore the Anime World</h1>
-		<div class="input-group input-lg">
-			{{input type="email" placeholder="Enter your email" class="form-control"}}
+		<h1>Discover Anime like Never Before</h1>
+		<div class="input-group input-lg" style="margin: 0 50px;">
+			{{input type="email" value=email placeholder="Enter your email" class="form-control"}}
 			<span class="input-group-btn">
-				<button class="btn btn-default btn-fancy" type="button">Request Invite</button>
+				<button {{action 'requestInvite'}} class="btn btn-default btn-fancy" type="button">Request Invite</button>
 			</span>
 		</div>
 		<h6>or {{#link-to 'login'}}login{{/link-to}}</h6>
