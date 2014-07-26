@@ -35,9 +35,9 @@ class AnimeController extends \BaseController {
 				$animes[] = $anime;
 			}
 
-		} else if (array_key_exists('search', $inputs)) {
+		} else if (array_key_exists('query', $inputs)) {
 
-			$animes = Anime::where('romaji_title', 'like', '%' . $inputs['search'] . '%')->get();
+			$animes = Anime::where('romaji_title', 'like', '%' . $inputs['query'] . '%')->get();
 
 		} else {
 			$animes = Anime::orderby('romaji_title', 'asc')->get();
