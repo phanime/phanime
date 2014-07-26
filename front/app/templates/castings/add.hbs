@@ -1,60 +1,102 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="box box-teal">
-			<div class="box-heading">Add Character</div>
+			<div class="box-heading">Add Staff Member</div>
 			<div class="box-body">
 				<form role="form">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-md-4">
 							<div class="form-group">
-								<label>First Name</label>
-								{{input type="text" value=first_name placeholder="First Name" class="form-control"}}
+								<label>Person</label>
+								<div class="input-group">
+									{{input type="text" value=searchTextPerson class="form-control" placeholder="Search Person (first name only)"}}
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" {{action 'searchPerson'}}>Search</button>
+									</span>
+								</div>
 							</div>
-							<div class="form-group">
-								<label>Japanese Name</label>
-								{{input type="text" value=japanese_name placeholder="Japanese Name" class="form-control"}}
+							<div style="max-height: 200px; overflow-y: auto">
+								{{#each personResults}}
+									<div><a style="cursor: pointer" {{action 'selectPerson' this }}>{{full_name}}</a></div>
+								{{/each}}
 							</div>
-
 						</div>
 
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Character</label>
+								<div class="input-group">
+									{{input type="text" value=searchTextCharacter class="form-control" placeholder="Search Character (first name only)"}}
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" {{action 'searchCharacter'}}>Search</button>
+									</span>
+								</div>
+							</div>
+							<div style="max-height: 200px; overflow-y: auto">
+								{{#each characterResults}}
+									<div><a style="cursor: pointer" {{action 'selectCharacter' this }}>{{full_name}}</a></div>
+								{{/each}}
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Anime</label>
+								<div class="input-group">
+									{{input type="text" value=searchTextAnime class="form-control" placeholder="Search Anime"}}
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" {{action 'searchAnime'}}>Search</button>
+									</span>
+								</div>
+							</div>
+							<div style="max-height: 200px; overflow-y: auto">
+								{{#each animeResults}}
+									<div><a style="cursor: pointer" {{action 'selectAnime' this }}>{{title}}</a></div>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+
+					<hr>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Selected Person: </label>
+								{{selectedPerson.full_name}}
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Selected Character: </label>
+								{{selectedCharacter.full_name}}
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Selected Anime: </label>
+								{{selectedAnime.title}}
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label>Last Name</label>
-								{{input type="text" value=last_name placeholder="Last Name" class="form-control"}}
+								<label>Role</label>
+								{{view Ember.Select content=roles value=role class="form-control"}}
 							</div>
+						</div>
+						<div class="col-sm-6">
 							<div class="form-group">
-								<label>Alternate Name</label>
-								{{input type="text" value=alternate_name placeholder="Alternate Name" class="form-control"}}
+								<label>Language</label>
+								{{view Ember.Select content=languages value=language class="form-control"}}
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="form-group">
-								<label>Biography</label>
-								{{textarea value=biography class="form-control" rows="10" placeholder="Biography of character"}}
-							</div>
-						</div>
-					</div>
-
-
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label>Gender</label>
-								{{view Ember.Select content=genders value=gender class="form-control"}}
-							</div>
-						</div>
-
-						<div class="col-sm-6">
-							Image upload coming soon!
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-12">
-							<button class="btn btn-primary btn-beside" {{action 'add_character'}}>Add Character</button>
+							<button class="btn btn-primary btn-beside" {{action 'addCasting'}}>Add Casting</button>
 						</div>
 					</div>
 
