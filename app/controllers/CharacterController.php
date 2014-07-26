@@ -10,9 +10,12 @@ class CharacterController extends \BaseController {
 	public function index()
 	{
 		$ids = Input::get('ids');
+		$query = Input::get('query');
 
 		if ($ids) {
 			$characters = Character::whereIn('id', $ids)->get();
+		} else if ($query) {
+			$characters = Character::where('first_name', 'like', '%'.$query.'%')->get();
 		} else {
 			$characters = Character::all();
 		}
