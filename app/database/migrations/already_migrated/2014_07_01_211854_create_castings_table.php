@@ -21,7 +21,7 @@ class CreateCastingsTable extends Migration {
 			//$table->foreign('character_id')->references('id')->on('characters');
 			$table->integer('anime_id')->unsigned();
 			//$table->foreign('anime_id')->references('id')->on('anime');
-			$table->string('voice_acting_language');
+			$table->string('language');
 			$table->string('role');
 			$table->timestamps();
 		});
