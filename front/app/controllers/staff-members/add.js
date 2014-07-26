@@ -7,7 +7,7 @@ export default Ember.ObjectController.extend({
 		add_staffMember: function() {
 
 			var store = this.store;
-			//var self = this;
+			var self = this;
 
 			var staffMember = store.createRecord('staffMember', {
 				person_id: this.get('selectedPerson'),
@@ -20,6 +20,17 @@ export default Ember.ObjectController.extend({
 				var msg = "Staff member with staff position: " + staffMember.get('staff_position') + " was successfully added.";
 				console.log(msg);
 				Notify.success(msg);
+
+				// Transition to the attached anime page
+				// staffMember.get('anime_id').then(function(anime) {
+				// 	self.transitionToRoute('anime', anime);
+				// });
+
+				// Reset all the fields 
+				self.set('selectedAnime', null);
+				self.set('selectedPerson', null);
+				self.set('staff_position', null);
+
 			};
 
 			var onFailure = function() {
@@ -31,10 +42,10 @@ export default Ember.ObjectController.extend({
 			staffMember.save().then(onSuccess, onFailure);
 
 		},
-		trigger_search_anime: function() {
+		searchAnime: function() {
 			var store = this.store;
 
-			var search_results = store.filter('anime', { search: this.get('searchTextAnime') }, function(anime) {
+			var search_results = store.filter('anime', { query: this.get('searchTextAnime') }, function(anime) {
 				return 1;
 				// return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
 			});		
@@ -43,11 +54,23 @@ export default Ember.ObjectController.extend({
 
 			return false;
 		},
-		select_anime: function(anime) {
+		searchPerson: function() {
+			var store = this.store;
+
+			var search_results = store.filter('person', { query: this.get('searchTextPerson') }, function(person) {
+				return 1;
+				// return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
+			});		
+
+			this.set('personResults', search_results);
+
+			return false;
+		},
+		selectAnime: function(anime) {
 			this.set('selectedAnime', anime);
 		},
 
-		select_person: function(person) {
+		selectPerson: function(person) {
 			this.set('selectedPerson', person);
 		},
 	},
@@ -61,11 +84,4 @@ export default Ember.ObjectController.extend({
 	searchTextPerson: '',
 	personResults: '',
 	selectedPerson: null,
-
-	// Genders
-	genders: [
-		"",
-		"Male",
-		"Female",
-	]
 });

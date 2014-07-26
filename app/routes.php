@@ -21,6 +21,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 	Route::resource('characters', 'CharacterController');
 	Route::resource('producers', 'ProducerController');
 	Route::resource('people', 'PersonController');	
+	Route::resource('staffMembers', 'StaffMemberController');
+	Route::resource('castings', 'CastingController');	
 	Route::resource('libraryEntries', 'LibraryEntryController');
 	Route::post('session', 'UserController@authenticateUser');
 
