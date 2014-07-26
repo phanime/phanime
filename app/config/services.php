@@ -15,8 +15,8 @@ return array(
 	*/
 
 	'mailgun' => array(
-		'domain' => '',
-		'secret' => '',
+		'domain' => 'phanime.com',
+		'secret' => 'key-0c75650e940449fb9b24c871e6bd4aa1',
 	),
 
 	'mandrill' => array(

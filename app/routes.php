@@ -24,7 +24,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 	Route::resource('staffMembers', 'StaffMemberController');
 	Route::resource('castings', 'CastingController');	
 	Route::resource('libraryEntries', 'LibraryEntryController');
-	Route::post('session', 'UserController@authenticateUser');
+	Route::post('requestInvite', 'UserController@requestInvite');
 
 	Route::post('oauth/token', function()
 	{
