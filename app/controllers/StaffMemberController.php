@@ -77,7 +77,23 @@ class StaffMemberController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$inputs = Input::get('staffMember');
+
+		$staffMember = StaffMember::find($id);
+
+		$staffMember->anime_id = $inputs['anime_id'];
+		$staffMember->person_id = $inputs['person_id'];
+		$staffMember->staff_position = $inputs['staff_position'];
+
+		$staffMember->save();
+
+		$staffMember_new = StaffMember::find($id);
+
+		return Response::json(array(
+			'staffMember' => $staffMember_new
+			),
+			200
+		);
 	}
 
 
