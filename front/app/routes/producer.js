@@ -11,6 +11,9 @@ export default Ember.Route.extend({
 		return this.store.find('producer', params.producer_id);
 	},
 	serialize: function(producer) {
-		//return { character_id: character.get('id') };
+		return {
+			producer_id: producer.get('id'),
+			producer_slug: producer.get('slug'),
+		};
 	},	
 });

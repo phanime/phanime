@@ -1,5 +1,14 @@
 <div class="container" style="padding-top: 30px">
-	{{#each}}
-		<div>{{#link-to 'anime' this}}{{title}}{{/link-to}}</div>
-	{{/each}}
+
+	<div class="row">
+		{{#each}}
+			<div class="col-sm-3">
+				<div class="anime-card" style="background-image: url('{{unbound cover_image_url}}');">
+					<div class="title">
+						{{#link-to 'anime' this}}{{title}}{{/link-to}}
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
 </div>

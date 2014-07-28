@@ -1,0 +1,117 @@
+<div class="container main-content">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="box box-teal">
+				<div class="box-heading">Add Anime</div>
+
+				<div class="box-body">
+					<form role="form">
+						<div class="row">
+
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label>Romaji Title</label>
+									{{input type="text" value=romaji_title class="form-control"}}
+								</div>
+
+								<div class="form-group">
+									<label>Japanese Title</label>
+									{{input type="text" value=japanese_title class="form-control"}}
+								</div>
+
+								<div class="form-group">
+									<label>Anime Type</label>
+									{{view Ember.Select content=anime_types value=type class="form-control"}}
+								</div>
+
+								<div class="form-group">
+									<label>Avg. Episode Duration</label>
+									{{input type="number" value=episode_duration class="form-control"}}
+								</div>
+
+								<div class="form-group">
+									<label>Season Number</label>
+									{{input type="number" value=season_number class="form-control"}}
+								</div>	
+
+								<div class="form-group">
+									<label>Start Date</label>
+									{{view "datePicker" valueBinding="start_date" class="form-control" placeholder="Start Date"}}
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+
+								<div class="form-group">
+									<label>Anime Slug</label>
+									{{input type="text" value=slug class="form-control" readonly="readonly"}}
+								</div>
+
+								<div class="form-group">
+									<label>English Title</label>
+									{{input type="text" value=english_title class="form-control"}}
+								</div>
+
+								<div class="form-group">
+									<label>Anime Status</label>
+									{{view Ember.Select content=anime_statuses value=status class="form-control"}}
+								</div>
+								<div class="form-group">
+									<label>Age Rating</label>
+									{{view Ember.Select content=age_ratings value=age_rating class="form-control"}}
+								</div>
+
+								<div class="form-group">
+									<label>Anime Total Episodes</label>
+									{{input type="number" value=total_episodes class="form-control"}}
+								</div>	
+
+								<div class="form-group">
+									<label>End Date</label>
+									{{view "datePicker" valueBinding="end_date" class="form-control" placeholder="End Date"}}
+								</div>											
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label>Description</label>
+									{{textarea value=description class="form-control" rows="10"}}
+								</div>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label>Anime Version</label>
+									{{view Ember.Select content=anime_versions selection=version multiple="true" class="form-control"}}
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label>Title Synonyms</label>
+									{{textarea value=title_synonyms class="form-control" rows="4" placeholder="Any other titles / synonyms, one per line"}}
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<button class="btn btn-primary btn-beside" {{action 'addAnime' this}}>Add Anime</button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

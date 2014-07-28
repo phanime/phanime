@@ -17,6 +17,7 @@
     "ember-notify": "~0.3.1",
     "fontawesome": "~4.1.0",
     "t17-ember-upload": "~0.3.4",
-    "ember-pikaday": "~0.1.2"
+    "ember-pikaday": "~0.1.2",
+    "ember-uploader": "~0.2.8"
   }
 }

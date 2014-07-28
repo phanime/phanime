@@ -204,6 +204,23 @@ textarea {
 	max-height: 250px;
 	color: #fff;
 }
+	.invite-block .col-sm-4 {
+		padding: 0;
+	}
+
+	.invite-block .input-group {
+		margin: 0 auto;
+	}
+		.invite-block .input-group span {
+			display: block;
+			width: 100%;
+		}
+
+	.invite-block button {
+		display: block;
+		width: 100%;
+	}
+
 	.invite-block input, .invite-block button, .invite-block button:hover {
 		border-radius: 0;
 		border-color: transparent;
@@ -289,6 +306,26 @@ textarea {
 }
 
 
+.anime-card {
+	border-radius: 2px;
+	border-bottom: 1px solid #8bc34a;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+	height: 250px;
+	margin-bottom: 25px;
+	background-size: cover;
+	background-position: center center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+	.anime-card a {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		padding: 10px;
+		white-space: nowrap;
+		background-color: rgba(0, 0, 0.7);
+	}
+
 /*-----------------------------*/
 /*---------- VIDEO ------------*/
 /*-----------------------------*/
@@ -369,11 +406,11 @@ textarea {
 
 /*--- Inputs ---*/
 
-input.form-control {
-	border-radius: 0;
+input.form-control, select.form-control, textarea.form-control {
+	border-radius: 2px;
 }
 
-	input.form-control:focus {
+	input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
 		border-color: rgba(139, 195, 74, 0.6);
 		outline: 0;
 		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 195, 74, 0.6);

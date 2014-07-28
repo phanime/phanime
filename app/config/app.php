@@ -123,7 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Rtablada\PackageInstaller\PackageInstallerServiceProvider',
 		'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
-
+		'Aws\Laravel\AwsServiceProvider'
 	),
 
 	/*
@@ -192,7 +192,7 @@ return array(
 		'View' => 'Illuminate\Support\Facades\View',
 		'AuthorizationServer' => 'LucaDegasperi\OAuth2Server\Facades\AuthorizationServerFacade',
 		'ResourceServer' => 'LucaDegasperi\OAuth2Server\Facades\ResourceServerFacade',
-
+		'AWS' => 'Aws\Laravel\AwsFacade',
 	),
 
 );

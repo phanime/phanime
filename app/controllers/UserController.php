@@ -81,12 +81,37 @@ class UserController extends \BaseController {
 
 	public function requestInvite() {
 		$email = Input::get('email');
+		$username = Input::get('username');
 		$pass = $this->generateRandomPassword(10);
 		$tagline = "Discover Anime like Never Before";
+
+		$validator = Validator::make(
+			array(
+				'username' => $username,
+				'email' => $email
+			),
+			array(
+				'username' => 'required|unique:users',
+				'email' => 'required|email|unique:users'
+			)
+
+		);
+
+		if ($validator->fails()) {
+			$messages = $validator->messages();
+			return Response::json($messages);
+		}
+
+		// We can only get here if the validator passed
+
+		// We should create an account for the user here
+		// Since we're testing stuff mainly at the moment
+		// we'll keep it to just sending out an email
 
 
 		$data = array(
 			'email' => $email,
+			'username' => $username,
 			'password' => $pass,
 			'tagline' => $tagline,
 		);
@@ -95,7 +120,8 @@ class UserController extends \BaseController {
 		{
 			$email = Input::get('email');
 			$message->to($email)->subject('Your Invite to Phanime');
-		});		
+		});	
+
 	}
 
 	public function generateRandomPassword($length) {
