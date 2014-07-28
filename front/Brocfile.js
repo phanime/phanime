@@ -25,4 +25,7 @@ app.import('vendor/fontawesome/css/font-awesome.css');
 app.import('vendor/pikaday/css/pikaday.css');
 app.import('vendor/pikaday/pikaday.js');
 
+// Ember Uploader
+app.import('vendor/ember-uploader/dist/ember-uploader.js');
+
 module.exports = app.toTree();

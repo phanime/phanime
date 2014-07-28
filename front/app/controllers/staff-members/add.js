@@ -46,8 +46,9 @@ export default Ember.ObjectController.extend({
 			var store = this.store;
 
 			var search_results = store.filter('anime', { query: this.get('searchTextAnime') }, function(anime) {
+				console.log(anime);
 				return 1;
-				// return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
+				//return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
 			});		
 
 			this.set('animeResults', search_results);
@@ -58,6 +59,7 @@ export default Ember.ObjectController.extend({
 			var store = this.store;
 
 			var search_results = store.filter('person', { query: this.get('searchTextPerson') }, function(person) {
+				console.log(person);
 				return 1;
 				// return (anime.get('title').toLowerCase().indexOf(this.get('search_text_anime').toLowerCase()) > -1);
 			});		

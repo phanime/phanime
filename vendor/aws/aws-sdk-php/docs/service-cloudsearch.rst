@@ -1,0 +1,3 @@
+.. service:: CloudSearch
+
+.. apiref:: CloudSearch

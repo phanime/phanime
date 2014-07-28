@@ -30,6 +30,7 @@
     "ember-cli-simple-auth": "~0.6.3",
     "ember-cli-simple-auth-oauth2": "~0.6.3",
     "ember-cli-document-title": "0.0.1",
-    "ember-notify": "~0.3.1"
+    "ember-notify": "~0.3.1",
+    "ember-droplet": "~0.5.2"
   }
 }

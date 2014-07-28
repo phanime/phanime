@@ -64,7 +64,47 @@ class AnimeController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$inputs = Input::get('anime');
+
+		$anime = new Anime;
+
+
+		// Assume trusted member is doing an update, and let them update any property on the anime model
+		$anime->user_id = $inputs['user_id'];
+		$anime->romaji_title = $inputs['romaji_title'];
+		$anime->english_title = $inputs['english_title'];
+		$anime->japanese_title = $inputs['japanese_title'];
+		$anime->slug = $inputs['slug'];
+		$anime->cover_image = $inputs['cover_image'];
+		$anime->type = $inputs['type'];
+		$anime->status = $inputs['status'];
+		$anime->start_date = $inputs['start_date'];
+		$anime->end_date = $inputs['end_date'];
+		$anime->version = serialize($inputs['version']); // This is the stupidest thing i'll do so far, promise
+		$anime->age_rating = $inputs['age_rating'];
+		$anime->description = $inputs['description'];
+		$anime->season_number = $inputs['season_number'];
+		$anime->total_episodes = $inputs['total_episodes'];
+		$anime->episode_duration = $inputs['episode_duration'];
+		$anime->title_synonyms = $inputs['title_synonyms'];
+
+
+		$anime->save();
+
+		$id = $anime->id;
+
+		// Get the updated anime 
+		$anime = Anime::find($id);
+		$anime = $anime->toArray();
+
+		// Unserialize array 
+		$anime['version'] = unserialize($anime['version']);	
+
+		return Response::json(array(
+			'anime' => $anime
+			),
+			200
+		);		
 	}
 
 

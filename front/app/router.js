@@ -9,10 +9,13 @@ Router.map(function() {
 	// Anime related routes
 	this.route('anime-list', {path: '/anime'});
 
+	this.route('anime-add', {path: '/anime/add'});
+
 	this.resource('anime', {path: 'anime/:slug'}, function() {
-		this.resource('episode', {path: '/episode/:episode_number'}, function() {
-			this.resource('video', { path: ':video_id' });
-		});
+		// this.resource('episode', {path: '/episode/:episode_number'}, function() {
+		// 	this.resource('video', { path: ':video_id' });
+		// });
+		this.route('add');
 	});
 
 	// Character related routes

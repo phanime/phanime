@@ -4,6 +4,7 @@ import Notify from 'ember-notify';
 export default Ember.ObjectController.extend({
 	// Request invite email
 	email: null,
+	username: null,
 	// Hide the nav bar / footer and other things if user is on the index page and isn't logged in
 	isLandingPage: function() {
 		if ( !this.get('session.isAuthenticated') && this.get('currentRouteName') === 'index') {
@@ -47,18 +48,29 @@ export default Ember.ObjectController.extend({
 		},
 		requestInvite: function() {
 			var email = this.get('email');
+			var username = this.get('username');
 
-			if (email != '' && email != null) {
-				$.post('/api/v1/requestInvite', {email: email}, function(data) {
+			if (email !== '' && email !== null && username !== '' && username !== null) {
+				$.post('/api/v1/requestInvite', {email: email, username: username}, function(data) {
+					
+					if (data.username) {
+						Notify.warning(data.username);
+					}
 
-				}).done(function() {
-					Notify.success('Invite request received.');
+					if (data.email) {
+						Notify.warning(data.email);
+					}
+					
+					if ( data === undefined || data === '' ) {
+						Notify.success('Invite request received.');
+					}
+
+
 				}).fail(function() {
 					Notify.warning('Something went wrong, invite request was not received.');
 				});
 
 
-				console.log(email);
 			}
 		},
 	}
