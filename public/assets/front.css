@@ -155,6 +155,10 @@ textarea {
 	padding-top: 30px;
 }
 
+.description {
+	white-space: pre-line;
+}
+
 /*-----------------------------*/
 /*------- Landing Page --------*/
 /*-----------------------------*/

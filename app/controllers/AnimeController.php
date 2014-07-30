@@ -70,7 +70,6 @@ class AnimeController extends \BaseController {
 
 
 		// Assume trusted member is doing an update, and let them update any property on the anime model
-		$anime->user_id = $inputs['user_id'];
 		$anime->romaji_title = $inputs['romaji_title'];
 		$anime->english_title = $inputs['english_title'];
 		$anime->japanese_title = $inputs['japanese_title'];
