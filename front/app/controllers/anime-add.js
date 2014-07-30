@@ -25,7 +25,6 @@ export default Ember.ObjectController.extend({
 			var self = this;
 			console.log(this.get('session.currentUser.data'));
 			var anime = store.createRecord('anime', {
-				user_id: this.get('session.currentUser.data'),
 				cover_image: this.get('session.currentUser'),
 				romaji_title: this.get('romaji_title'),
 				japanese_title: this.get('japanese_title'),
