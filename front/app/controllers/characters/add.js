@@ -51,7 +51,7 @@ export default Ember.ObjectController.extend({
 	},
 
 	cover_photo_url: function() {
-		return "http://cdn.phanime.com/images/" + this.get('cover_photo');
+		return "http://cdn.phanime.com/images/characters/cover/" + this.get('cover_photo');
 	}.property('cover_photo'),
 	// Genders
 	genders: [

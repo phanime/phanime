@@ -9,4 +9,8 @@ export default DS.Model.extend({
 	slug: attr(),
 	description: attr(),
 	anime: hasMany('anime', {async: true}),
+
+	producer_logo_url: function() {
+		return "http://cdn.phanime.com/images/producer/cover/" + this.get('producer_logo');
+	}.property('producer_logo'),
 });

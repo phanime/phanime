@@ -25,7 +25,7 @@ export default DS.Model.extend({
 	banner_image: attr(),
 
 	banner_image_url: function() {
-		return "http://cdn.phanime.com/images/anime/banner." + this.get('banner_image');
+		return "http://cdn.phanime.com/images/anime/banner/" + this.get('banner_image');
 	}.property('banner_image_url'),
 
 	type: attr(),

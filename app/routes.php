@@ -44,7 +44,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
 		return $response;
 	});
 
-	Route::get('upload', 'UploadController@sign');
+	Route::get('upload/{directory}', 'UploadController@sign');
 	Route::post('upload', 'UploadController@upload');
 
 });

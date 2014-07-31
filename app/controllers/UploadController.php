@@ -6,7 +6,7 @@ class UploadController extends \BaseController {
 	protected $awsAccessKeyId = 'AKIAJQHYOKA5YCOWQSAQ';
 	protected $bucket = 'phanime';
 
-	public function sign()
+	public function sign($directory)
 	{
 		$inputs = Input::all();
 
@@ -16,17 +16,19 @@ class UploadController extends \BaseController {
 		$s3->addCondition('', 'bucket', $s3->getBucket());
 		$s3->addCondition('', 'acl', 'public-read');
 		$s3->addCondition('', 'success_action_status', '201');
-		$s3->addCondition('starts-with', '$key', 'images/');
-		//$s3->addCondition('starts-with', '$content-type', $inputs['type']);
+		$s3->addCondition('starts-with', '$key', 'images/' . $directory . "/cover/");
+		$s3->addCondition('starts-with', '$content-type', '');
 
 		return Response::json(array(
 			"acl" => "public-read",
 			"awsaccesskeyid" => $s3->getAwsAccessKeyId(),
 			"bucket" => $s3->getBucket(),
-			"key" => "images/" . $inputs['name'],
+
+			"key" => "images/" . $directory . "/cover/" . $inputs['name'],
 			"policy" => $s3->getPolicy(true),
 			"signature" => $s3->getSignedPolicy(),
-			"success_action_status" => "201"
+			"success_action_status" => "201",
+			'Content-Type' => $inputs['type'],
 		), 200);
 	}
 
