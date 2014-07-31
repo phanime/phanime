@@ -57456,7 +57456,7 @@ define("ember/resolver",
    *     output. The loader's _moduleEntries is consulted so that classes can be
    *     resolved directly via the module loader, without needing a manual
    *     `import`.
-   *  2) is able provide injections to classes that implement `extend`
+   *  2) is able to provide injections to classes that implement `extend`
    *     (as is typical with Ember).
    */
 
@@ -57470,6 +57470,17 @@ define("ember/resolver",
         }
       }
     };
+  }
+
+  if (!Object.create && !Object.create(null).hasOwnProperty) {
+    throw new Error("This browser does not support Object.create(null), please polyfil with es5-sham: http://git.io/yBU2rg");
+  }
+
+  function makeDictionary() {
+    var cache = Object.create(null);
+    cache['_dict'] = null;
+    delete cache['_dict'];
+    return cache;
   }
 
   var underscore = Ember.String.underscore;
@@ -57565,7 +57576,14 @@ define("ember/resolver",
     shouldWrapInClassFactory: function(module, parsedName){
       return false;
     },
+    init: function() {
+      this._super();
+      this._normalizeCache = makeDictionary();
+    },
     normalize: function(fullName) {
+      return this._normalizeCache[fullName] || (this._normalizeCache[fullName] = this._normalize(fullName));
+    },
+    _normalize: function(fullName) {
       // replace `.` with `/` in order to make nested controllers work in the following cases
       // 1. `needs: ['posts/post']`
       // 2. `{{render "posts/post"}}`
@@ -57578,10 +57596,29 @@ define("ember/resolver",
       }
     },
 
+    podBasedLookupWithPrefix: function(podPrefix, parsedName) {
+      var fullNameWithoutType = parsedName.fullNameWithoutType;
+
+      if (parsedName.type === 'template') {
+        fullNameWithoutType = fullNameWithoutType.replace(/^components\//, '');
+      }
+
+        return podPrefix + '/' + fullNameWithoutType + '/' + parsedName.type;
+    },
+
     podBasedModuleName: function(parsedName) {
       var podPrefix = this.namespace.podModulePrefix || this.namespace.modulePrefix;
 
-      return podPrefix + '/' + parsedName.fullNameWithoutType + '/' + parsedName.type;
+      return this.podBasedLookupWithPrefix(podPrefix, parsedName);
+    },
+
+    podBasedComponentsInSubdir: function(parsedName) {
+      var podPrefix = this.namespace.podModulePrefix || this.namespace.modulePrefix;
+      podPrefix = podPrefix + '/components';
+
+      if (parsedName.type === 'component' || parsedName.fullNameWithoutType.match(/^components/)) {
+        return this.podBasedLookupWithPrefix(podPrefix, parsedName);
+      }
     },
 
     mainModuleName: function(parsedName) {
@@ -57619,6 +57656,7 @@ define("ember/resolver",
     moduleNameLookupPatterns: Ember.computed(function(){
       return Ember.A([
         this.podBasedModuleName,
+        this.podBasedComponentsInSubdir,
         this.mainModuleName,
         this.defaultModuleName
       ]);
