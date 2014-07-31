@@ -52,7 +52,7 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Birth Date</label>
-								{{input type="text" value=birth_date placeholder="Birth Date" class="form-control"}}
+								{{view "datePicker" valueBinding="birth_date" class="form-control" placeholder="Birth Date"}}
 							</div>
 							<div class="form-group">
 								<label>Birth Place</label>
@@ -61,7 +61,7 @@
 
 							<div class="form-group">
 								<label>Cover Photo</label>
-								{{input type="text" value=cover_photo placeholder="This field is just a placeholder" class="form-control"}}
+								{{file-upload url="/api/v1/uploadPerson"}}
 							</div>
 						</div>
 					</div>

@@ -61,8 +61,18 @@
 
 							<div class="form-group">
 								<label>Cover Photo</label>
-								{{file-upload url="/api/v1/uploadPerson"}}
+								{{file-upload url="/api/v1/upload/people"  action="filesUploaded"}}
 							</div>
+
+							<div class="form-group">
+								<label>Image Preview</label>
+								{{#if cover_photo}}
+									<img {{bind-attr src=cover_photo_url}} class="img">
+								{{else}}
+									Uploading...
+								{{/if}}
+							</div>
+
 						</div>
 					</div>
 

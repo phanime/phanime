@@ -16,8 +16,18 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Producer Image</label>
-								{{file-upload url="/api/v1/uploadProducer"}}
+								{{file-upload url="/api/v1/upload/producers"  action="filesUploaded"}}
 							</div>
+
+							<div class="form-group">
+								<label>Image Preview</label>
+								{{#if cover_photo}}
+									<img {{bind-attr src=producer_logo_url}} class="img">
+								{{else}}
+									Uploading...
+								{{/if}}
+							</div>
+
 						</div>
 					</div>
 
