@@ -14,10 +14,11 @@ export default Ember.FileField.extend({
 		uploader.on('progress', function(e) {
 			console.log(e.percent);
 		});	
-
+		var self = this;
 		uploader.on('didUpload', function(response) {
 			var uploadedUrl = $(response).find('Location')[0].textContent;
 			uploadedUrl = unescape(uploadedUrl);
+			self.sendAction('action', {name: files, url: uploadedUrl});
 		});	
 
 		var promise = uploader.upload(files);
@@ -29,7 +30,11 @@ export default Ember.FileField.extend({
 		});
 
 		if (!Ember.isEmpty(files)) {
-			uploader.upload(files[0]);
+
+
+			uploader.upload(files[0], {
+				directory: "stuff"
+			});
 		}
 
 
