@@ -24,6 +24,7 @@ export default Ember.ObjectController.extend({
 	description: null,
 	version: null,
 	title_synonyms: null,
+	selectedGenres: null,
 
 	actions: {
 		addAnime: function() {
@@ -33,6 +34,7 @@ export default Ember.ObjectController.extend({
 
 			// Some shitty validation for now 
 			if (!this.get('romaji_title')) {
+				Notify.warning('Please enter in an anime title');
 				return; 
 			}
 
@@ -55,7 +57,6 @@ export default Ember.ObjectController.extend({
 				title_synonyms: this.get('title_synonyms'),
 			});
 
-
 			var onSuccess = function(anime) {
 
 				var msg = anime.get('title') + " was successfully added.";
@@ -70,14 +71,20 @@ export default Ember.ObjectController.extend({
 				Notify.warning(msg);
 			};
 
-			anime.save().then(onSuccess, onFailure);			
+			anime.get('genres').then(function(genres) {
+				console.log(self.get('selectedGenres'));
+				genres.pushObjects(self.get('selectedGenres'));
+				anime.save().then(onSuccess, onFailure);
+			});
+
+			
 		},
 		filesUploaded: function(data) {
 			this.set('cover_image', data.name[0].name);
 			console.log(this.get('cover_image_url'));
 			console.log(data.name[0].name);
 			console.log(this.get('cover_image'));
-		}
+		},
 	},
 
 
@@ -95,6 +102,9 @@ export default Ember.ObjectController.extend({
 
 	// Select required properties 
 	// TODO: put these in the database preferably
+	all_genres: function() {
+		return this.store.find('genre');
+	}.property(),
 	anime_types: [
 		"TV",
 		"OVA",

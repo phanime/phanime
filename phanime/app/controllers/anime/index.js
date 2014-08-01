@@ -87,6 +87,7 @@ export default Ember.ObjectController.extend({
 
 	// Select required properties 
 	// TODO: put these in the database preferably
+
 	anime_types: [
 		"TV",
 		"OVA",

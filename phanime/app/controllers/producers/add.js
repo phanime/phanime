@@ -19,6 +19,7 @@ export default Ember.ObjectController.extend({
 
 			// Some shitty validation, real validation on the server
 			if (!this.get('name')) {
+				Notify.warning('Please ensure the name of the producer is filled out.');
 				return;
 			}
 
