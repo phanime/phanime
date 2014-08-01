@@ -3,6 +3,12 @@ import Notify from 'ember-notify';
 
 export default Ember.ObjectController.extend({
 
+	cover_image: null,
+
+	cover_image_url: function() {
+		return "http://cdn.phanime.com/images/anime/cover/" + this.get('cover_image');
+	}.property('cover_image'),
+
 	romaji_title: null,
 	japanese_title: null,
 	type: null,
@@ -24,8 +30,14 @@ export default Ember.ObjectController.extend({
 			var store = this.store;
 			var self = this;
 			console.log(this.get('session.currentUser.data'));
+
+			// Some shitty validation for now 
+			if (!this.get('romaji_title')) {
+				return; 
+			}
+
 			var anime = store.createRecord('anime', {
-				cover_image: this.get('session.currentUser'),
+				cover_image: this.get('cover_image'),
 				romaji_title: this.get('romaji_title'),
 				japanese_title: this.get('japanese_title'),
 				type: this.get('type'),
@@ -59,6 +71,12 @@ export default Ember.ObjectController.extend({
 			};
 
 			anime.save().then(onSuccess, onFailure);			
+		},
+		filesUploaded: function(data) {
+			this.set('cover_image', data.name[0].name);
+			console.log(this.get('cover_image_url'));
+			console.log(data.name[0].name);
+			console.log(this.get('cover_image'));
 		}
 	},
 
