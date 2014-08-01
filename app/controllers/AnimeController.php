@@ -90,6 +90,8 @@ class AnimeController extends \BaseController {
 
 		$anime->save();
 
+		$anime->genres()->sync($inputs['genres']);
+
 		$id = $anime->id;
 
 		// Get the updated anime 
@@ -186,6 +188,8 @@ class AnimeController extends \BaseController {
 		// Run anime rating algorithm here.
 
 		$anime->save();
+
+		$anime->genres()->sync($inputs['genres']);
 
 		// Get the updated anime 
 		$anime = Anime::find($id);

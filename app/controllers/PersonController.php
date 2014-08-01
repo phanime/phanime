@@ -36,6 +36,7 @@ class PersonController extends \BaseController {
 
 		$person = new Person;
 
+		$person->cover_photo = $inputs['cover_photo'];
 		$person->first_name = $inputs['first_name'];
 		$person->last_name = $inputs['last_name'];
 		$person->given_name = $inputs['given_name'];

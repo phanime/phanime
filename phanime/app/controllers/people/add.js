@@ -26,7 +26,8 @@ export default Ember.ObjectController.extend({
 			var self = this;
 
 			// Some shitty validation for now (more validation on the server side)
-			if (!this.get('first_name') || !this.get('last_name')) {
+			if (!this.get('first_name') || !this.get('last_name') || !this.get('gender')) {
+				Notify.warning('Please ensure that first name, last name and gender is filled out.');
 				return;
 			}
 
@@ -65,13 +66,12 @@ export default Ember.ObjectController.extend({
 		filesUploaded: function(data) {
 			this.set('cover_photo', data.name[0].name);
 			console.log(this.get('cover_photo_url'));
-			console.log(data.name[0].name);
+			//console.log(data.name[0].name);
 			console.log(this.get('cover_photo'));
 		}
 	},
 	// Genders
 	genders: [
-		"",
 		"Male",
 		"Female",
 	],

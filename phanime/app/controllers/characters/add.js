@@ -22,6 +22,7 @@ export default Ember.ObjectController.extend({
 
 			// Some shitty validation for now (more validation on the server side)
 			if (!this.get('first_name') || !this.get('last_name')) {
+				Notify.warning('Please ensure that the first and last name is filled out.');
 				return;
 			}
 
