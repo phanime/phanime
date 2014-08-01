@@ -14,13 +14,16 @@ export default Ember.ObjectController.extend({
 	actions: {
 		add_producer: function() {
 
-
-
 			var store = this.store;
 			var self = this;
 
+			// Some shitty validation, real validation on the server
+			if (!this.get('name')) {
+				return;
+			}
+
 			var producer = store.createRecord('producer', {
-				producer_logo: '',
+				producer_logo: this.get('producer_logo'),
 				name: this.get('name'),
 				slug: this.get('slug'),
 				description: this.get('description'),
