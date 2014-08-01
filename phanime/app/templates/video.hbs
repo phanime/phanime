@@ -1,0 +1,48 @@
+<div class="player-wrapper">
+	{{get-video video_id video_host}}
+</div>
+<button {{action 'edit'}} class="btn btn-primary btn-sm btn-beside" style="margin-top: 10px;">Edit Video</button>
+
+{{#if isEditing}}
+
+	<div class="well" style="margin-top: 50px;">
+		<div class="row">
+			<div class="col-sm-12">
+				<form role="form">
+					<div class="row">
+						<div class="col-sm-6">
+
+							<div class="form-group">
+								<label>Video ID</label>
+								{{input type="text" value=video_id  placeholder="No video id found" class="form-control"}}
+							</div>
+							<div class="form-group">
+								<label>Video Version</label>
+								{{view Ember.Select content=video_versions value=video_version class="form-control"}}
+							</div>							
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Video Host</label>
+								{{view Ember.Select content=video_hosts value=video_host class="form-control"}}
+							</div>
+
+							<div class="form-group">
+								<label>Video Quality</label>
+								{{view Ember.Select content=video_qualities value=video_quality class="form-control"}}
+							</div>
+
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<button {{action 'save_changes' this}} class="btn btn-primary btn-beside">Save Changes</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{{/if}}

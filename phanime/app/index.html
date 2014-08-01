@@ -7,14 +7,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <base href="/" />
+    {{BASE_TAG}}
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/phanime.css">
   </head>
   <body>
     <script>
-      window.PhanimeENV = {"environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"LOG_ACTIVE_GENERATION":true,"LOG_VIEW_LOOKUPS":true},"simple-auth-oauth2":{"serverTokenEndpoint":"/api/v1/oauth/token"}};
+      window.PhanimeENV = {{ENV}};
       window.EmberENV = window.PhanimeENV.EmberENV;
     </script>
     <script src="assets/vendor.js"></script>

@@ -1,0 +1,80 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="box box-teal">
+			<div class="box-heading">Add Staff Member</div>
+			<div class="box-body">
+				<form role="form">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Person</label>
+								<div class="input-group">
+									{{input type="text" value=searchTextPerson class="form-control" placeholder="Search Person (first name only)"}}
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" {{action 'searchPerson'}}>Search</button>
+									</span>
+								</div>
+							</div>
+							<div style="max-height: 200px; overflow-y: auto">
+								{{#each personResults}}
+									<div><a style="cursor: pointer" {{action 'selectPerson' this }}>{{full_name}}</a></div>
+								{{/each}}
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Anime</label>
+								<div class="input-group">
+									{{input type="text" value=searchTextAnime class="form-control" placeholder="Search Anime"}}
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" {{action 'searchAnime'}}>Search</button>
+									</span>
+								</div>
+							</div>
+							<div style="max-height: 200px; overflow-y: auto">
+								{{#each animeResults}}
+									<div><a style="cursor: pointer" {{action 'selectAnime' this }}>{{title}}</a></div>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+
+					<hr>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Selected Person: </label>
+								{{selectedPerson.full_name}}
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Selected Anime: </label>
+								{{selectedAnime.title}}
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label>Staff Position</label>
+								{{input type="text" value=staff_position placeholder="Staff Position of person in anime" class="form-control"}}
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<button class="btn btn-primary btn-beside" {{action 'add_staffMember'}}>Add Staff Member</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
