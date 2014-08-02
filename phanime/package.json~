@@ -1,5 +1,5 @@
 {
-  "name": "front",
+  "name": "phanime",
   "version": "0.0.0",
   "private": true,
   "directories": {
@@ -27,8 +27,9 @@
     "express": "^4.1.1",
     "glob": "^3.2.9",
     "originate": "0.1.5",
-    "ember-cli-simple-auth": "~0.6.4-1",
     "ember-cli-simple-auth-oauth2": "~0.6.4-1",
-    "ember-notify": "~1.1.2"
+    "ember-notify": "~1.1.2",
+    "ember-cli-simple-auth": "~0.6.4-1",
+    "ember-cli-document-title": "0.0.1"
   }
 }
