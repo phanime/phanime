@@ -43,6 +43,7 @@ class CharacterController extends \BaseController {
 		$character->biography = $inputs['biography'];
 		$character->alternate_name = $inputs['alternate_name'];
 		$character->japanese_name = $inputs['japanese_name'];
+		$character->gender = $inputs['gender'];
 		$character->cover_photo = $inputs['cover_photo'];
 
 		$character->save();
@@ -85,7 +86,27 @@ class CharacterController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$inputs = Input::get('character');
+
+		$character = Character::find($id);
+
+		$character->first_name = $inputs['first_name'];
+		$character->last_name = $inputs['last_name'];
+		$character->biography = $inputs['biography'];
+		$character->alternate_name = $inputs['alternate_name'];
+		$character->japanese_name = $inputs['japanese_name'];
+		$character->gender = $inputs['gender'];
+		$character->cover_photo = $inputs['cover_photo'];
+
+		$character->save();
+
+		$character = Character::find($id);
+
+		return Response::json(array(
+			'character' => $character
+			),
+			200
+		);
 	}
 
 
