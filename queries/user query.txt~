@@ -1,7 +1,0 @@
-username,email,gender,custom_title,user_state,primary_role_id,register_date,last_activity,user_id_old
-
-
-SELECT username, email, gender, custom_title, user_state, user_group_id, register_date, last_activity, user_id
-FROM  `xf_user` 
-WHERE last_activity >1396645815
-OR message_count >0

@@ -87,7 +87,30 @@ class PersonController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$inputs = Input::get('person');
+
+		$person = Person::find($id);
+
+		$person->cover_photo = $inputs['cover_photo'];
+		$person->first_name = $inputs['first_name'];
+		$person->last_name = $inputs['last_name'];
+		$person->given_name = $inputs['given_name'];
+		$person->family_name = $inputs['family_name'];
+		$person->gender = $inputs['gender'];
+		$person->birth_date = $inputs['birth_date'];
+		$person->website = $inputs['website'];
+		$person->birth_place = $inputs['birth_place'];
+		$person->blood_type = $inputs['blood_type'];
+		$person->other_info = $inputs['other_info'];
+
+		$person->save();
+
+		$person = Person::find($id);
+
+		return Response::json(array(
+			'person' => $person
+			), 200
+		);
 	}
 
 
