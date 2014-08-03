@@ -54,11 +54,12 @@ export default Ember.ObjectController.extend({
 				$.post('/api/v1/requestInvite', {email: email, username: username}, function(data) {
 					
 					if (data.username) {
-						Notify.warning(data.username);
+						console.log(data.username[0]);
+						Notify.warning(data.username[0]);
 					}
 
 					if (data.email) {
-						Notify.warning(data.email);
+						Notify.warning(data.email[0]);
 					}
 					
 					if ( data === undefined || data === '' ) {
