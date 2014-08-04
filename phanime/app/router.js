@@ -47,6 +47,10 @@ Router.map(function() {
 	});
 
 
+	this.resource('account', function() {
+		this.route('security');
+	});
+
 	// Users related routes
 	this.resource('user', { path: 'users/:username' });
 
