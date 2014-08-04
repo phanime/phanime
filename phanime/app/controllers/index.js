@@ -30,4 +30,9 @@ export default Ember.ArrayController.extend({
 		}
 	}.property(),
 
+	current_year: function() {
+		var current_year = moment().format('YYYY');
+		return current_year;
+	}.property(),
+
 });
