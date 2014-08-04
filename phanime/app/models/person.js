@@ -28,4 +28,6 @@ export default DS.Model.extend({
 	other_info: attr(),
 	anime: hasMany('anime', {async: true}), // Only Staff, voice actors are not directly related to anime
 	castings: hasMany('casting', {async: true}),
+	created_at: attr(),
+	updated_at: attr(),
 });

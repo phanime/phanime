@@ -23,4 +23,6 @@ export default DS.Model.extend({
 	gender: attr(),
 	biography: attr(),
 	casting: hasMany('casting', {async:true}),
+	created_at: attr(),
+	updated_at: attr(),
 });

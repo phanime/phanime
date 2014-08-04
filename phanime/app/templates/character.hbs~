@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-sm-3">
+		<img class="img" {{bind-attr src=cover_photo_url}}>
+	</div>
+
+	<div class="col-sm-9">
+
+		<div class="row" style="margin-bottom: 10px;">
+			<div class="col-sm-12">
+				{{#if session.isAuthenticated}}
+					<button type="button" class="btn btn-primary btn-beside" {{action 'toggleEditing'}} >Edit</button>
+				{{/if}}
+			</div>
+		</div>
+
+		{{#if session.isAuthenticated}}
+			{{#if isEditing}}
+				{{partial 'characters/inline-edit'}}
+			{{/if}}
+		{{/if}}
+
+		<h2 style="margin-top: 0" class="thin-text">{{full_name}}</h2>
+		<div class="description thin-text">{{biography}}</div>
+	</div>
+</div>
