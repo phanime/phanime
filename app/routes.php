@@ -12,7 +12,7 @@
 */
 
 
-Route::group(array('prefix' => 'api/v1'), function() {
+Route::group(array('prefix' => 'api/v1'/*, 'before' => 'oauth'*/), function() {
 	Route::resource('animes', 'AnimeController');
 	Route::resource('users', 'UserController');
 	Route::resource('episodes', 'EpisodeController');
@@ -46,6 +46,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
 
 	Route::get('upload/{directory}', 'UploadController@sign');
 	Route::post('upload', 'UploadController@upload');
+
+	Route::post('changePassword/{user_id}', 'UserController@changePassword');	
 
 });
 

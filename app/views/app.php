@@ -14,7 +14,7 @@
   </head>
   <body>
     <script>
-      window.PhanimeENV = {"environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"LOG_ACTIVE_GENERATION":true,"LOG_VIEW_LOOKUPS":true},"simple-auth-oauth2":{"serverTokenEndpoint":"/api/v1/oauth/token"}};
+      window.PhanimeENV = {"environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"LOG_ACTIVE_GENERATION":true,"LOG_VIEW_LOOKUPS":true},"simple-auth-oauth2":{"serverTokenEndpoint":"/api/v1/oauth/token"},"simple-auth":{"authorizer":"simple-auth-authorizer:oauth2-bearer"}};
       window.EmberENV = window.PhanimeENV.EmberENV;
     </script>
     <script src="assets/vendor.js"></script>
