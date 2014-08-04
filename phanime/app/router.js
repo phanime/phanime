@@ -48,7 +48,9 @@ Router.map(function() {
 
 
 	this.resource('account', function() {
+		this.route('personalDetails', {path :'personal-details'});
 		this.route('security');
+		this.route('preferences');
 	});
 
 	// Users related routes
