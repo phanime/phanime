@@ -135,4 +135,30 @@ class UserController extends \BaseController {
 		return implode($pass); //turn the array into a string
 	}
 
+	public function changePassword($id) {
+		$user = User::find($id);
+		$inputs = Input::all();
+
+		if (Hash::check($inputs['existingPassword'], $user->password)) {
+			// If the existingPassword provided matches with what we have in the database
+			// Then we'll use the new password provided and update the user.
+			if ($inputs['newPassword'] != NULL && $inputs['newPassword'] != '') {
+				$user->password = Hash::make($inputs['newPassword']);
+
+				$user->save();
+
+				return Response::json(array(
+					'user' => $user), 200
+				);
+			}
+					 
+		} else {
+			
+			return Response::json(array(
+				'existingPassword' => 'Existing password did not match'), 200
+			);
+
+		}
+	}
+
 }

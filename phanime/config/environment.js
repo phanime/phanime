@@ -21,7 +21,10 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ENV['simple-auth-oauth2'] = {
       serverTokenEndpoint: '/api/v1/oauth/token'
-    }
+    };
+    ENV['simple-auth'] = {
+      authorizer: 'simple-auth-authorizer:oauth2-bearer'
+    };
     // ENV.APP.LOG_RESOLVER = true;
     ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -36,7 +39,10 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV['simple-auth-oauth2'] = {
       serverTokenEndpoint: '/api/v1/oauth/token'
-    }
+    };
+    ENV['simple-auth'] = {
+      authorizer: 'simple-auth-authorizer:oauth2-bearer'
+    };
   }
 
   return ENV;
