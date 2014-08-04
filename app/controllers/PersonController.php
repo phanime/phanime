@@ -16,6 +16,8 @@ class PersonController extends \BaseController {
 			$people = Person::whereIn('id', $ids)->get();
 		} else if ($query) {
 			$people = Person::where('first_name', 'like', '%'.$query.'%')->get();
+		} else {
+			$people = Person::orderBy('created_at', 'desc')->get();
 		}
 
 		return Response::json(array(

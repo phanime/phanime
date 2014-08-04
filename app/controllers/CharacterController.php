@@ -17,7 +17,7 @@ class CharacterController extends \BaseController {
 		} else if ($query) {
 			$characters = Character::where('first_name', 'like', '%'.$query.'%')->get();
 		} else {
-			$characters = Character::all();
+			$characters = Character::orderBy('created_at', 'desc')->get();
 		}
 
 		return Response::json(array(

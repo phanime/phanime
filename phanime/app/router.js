@@ -20,21 +20,25 @@ Router.map(function() {
 
 	// Character related routes
 	this.resource('characters', function() {
-		this.resource('character', { path: ':character_id/:character_slug' });
 		this.route('add');
 	});
+
+	this.resource('character', { path: 'characters/:character_id/:character_slug' });
 
 	// Producer related routes
 	this.resource('producers', function() {
-		this.resource('producer', { path: ':producer_id/:producer_slug' });
 		this.route('add');
 	});
 
+	this.resource('producer', { path: 'producers/:producer_id/:producer_slug' });
+
 	// Person related routes
 	this.resource('people', function() {
-		this.resource('person', { path: ':person_id/:person_slug' });
 		this.route('add');
 	});
+
+	this.resource('person', { path: 'people/:person_id/:person_slug' });
+	
 
 	// Casting related routes
 	this.resource('castings', function() {
