@@ -162,6 +162,11 @@ textarea {
 	white-space: pre-line;
 }
 
+.footer {
+	text-align: center;
+	font-style: italic;
+}
+
 	/*---------------------------------*/
 	/*---------- IMG Sizes ------------*/
 	/*---------------------------------*/

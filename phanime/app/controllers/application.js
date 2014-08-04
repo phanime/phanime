@@ -41,6 +41,11 @@ export default Ember.ObjectController.extend({
 	}.property(),
 
 
+	// Version Number of phanime
+	phanime_version_number: "v0.1.1 alpha",
+
+
+
 	search_query: null,
 	actions: {
 		trigger_search: function() {
