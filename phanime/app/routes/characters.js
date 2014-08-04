@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	title: function(tokens) {
+	title: function() {
 		return "Characters " + this.get('settings.urlSeparator') + this.get('settings.siteName');
 	},
-	model: function(params) {
+	model: function() {
 		return this.store.find('character');
 	}
 });

@@ -14,6 +14,8 @@
 			<ul class="nav navbar-nav">
 				<li>{{#link-to 'index'}}Home{{/link-to}}</li>
 				<li>{{#link-to 'anime-list'}}Anime{{/link-to}}</li>
+				<li>{{#link-to 'characters'}}Characters{{/link-to}}</li>
+				<li>{{#link-to 'people'}}People{{/link-to}}</li>
 
 				{{#if session.isAuthenticated}}
 				<li class="dropdown">
@@ -38,7 +40,7 @@
 					<div class="input-group">
 						{{input type="text" value=search_query class="form-control"}}
 						<span class="input-group-btn">
-							<button {{action 'trigger_search'}} class="btn btn-default" type="submit">Search</button>
+							<button {{action 'trigger_search'}} class="btn btn-default" type="button">Search</button>
 						</span>
 					</div>
 				</div>
