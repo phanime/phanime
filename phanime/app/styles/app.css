@@ -1,5 +1,24 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400);
 
+@-webkit-keyframes resize-width {
+	0%   { width: 0; }
+	100% { width: 300px; }
+}
+@-moz-keyframes resize-width {
+	0%   { width: 0; }
+	100% { width: 300px; }
+}
+@-o-keyframes resize-width {
+	0%   { width: 0; }
+	100% { width: 300px; }
+}
+@keyframes resize-width {
+	0%   { width: 0; }
+	100% { width: 300px; }
+}
+
+
+
 @-webkit-keyframes resize-height {
 	0%   { height: 0; }
 	75%  { height: 400px;}
@@ -186,6 +205,59 @@ textarea {
 	.img.img-lg {
 
 	}
+
+
+/*-----------------------------*/
+/*------- General APP  --------*/
+/*-----------------------------*/
+
+.global-add-entry-handler {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	height: 50px;
+	width: 50px;
+	border-radius: 100px;
+	color: #fff;
+	font-size: 40px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #8bc34a;
+	margin: 20px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+	border: 3px solid #fff;
+	cursor: pointer;
+	line-height: 45px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;	
+}
+
+	.global-add-entry-handler:hover {
+		box-shadow: 0px 0px 15px #8bc34a;
+	}
+
+.global-add-wrapper {
+	position: fixed;
+	bottom: 0;
+	right: 25px;
+	margin: 20px;
+	width: 300px;
+	height: 50px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	border: 3px solid #fff;
+	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	background-color: #F7F7F7;
+	padding: 10px 15px;
+	-webkit-animation: resize-width 0.75s; /* Safari 4+ */
+	-moz-animation: resize-width 0.75s; /* Fx 5+ */
+	-o-animation: resize-width 0.75s; /* Opera 12+ */
+	animation: resize-width 0.75s; /* IE 10+ */
+}
 
 
 /*-----------------------------*/
