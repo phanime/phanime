@@ -40,6 +40,10 @@ export default Ember.ObjectController.extend({
 
 	}.property(),
 
+	// REAL APPLICATION STUFFS
+
+	isAddingGlobal: false,
+
 
 	// Version Number of phanime
 	phanime_version_number: "v0.1.2 alpha",
@@ -79,5 +83,8 @@ export default Ember.ObjectController.extend({
 
 			}
 		},
+		triggerAddingGlobal: function() {
+			this.toggleProperty('isAddingGlobal');
+		}
 	}
 });

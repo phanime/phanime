@@ -1,0 +1,22 @@
+	<div class="landing-page-wrapper">
+		<div class="landing-page" style="background-image: url('{{unbound landingImage}}');"></div>
+	</div>
+	<div class="invite-block">
+		<h1>Discover Anime like Never Before</h1>
+		<div class="input-group input-lg row">
+			<div class="col-sm-4">
+			{{input type="email" value=email placeholder="Enter your email" class="form-control"}}
+			</div>
+
+			<div class="col-sm-4">
+			{{input type="email" value=username placeholder="Desired username" class="form-control"}}
+			</div>
+
+			<div class="col-sm-4">
+			<span class="input-group-btn">
+				<button {{action 'requestInvite'}} class="btn btn-default btn-fancy" type="button">Request Invite</button>
+			</span>
+			</div>
+		</div>
+		<h6>or {{#link-to 'login'}}login{{/link-to}}</h6>
+	</div>
