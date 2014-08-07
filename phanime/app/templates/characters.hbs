@@ -1,15 +1,3 @@
 <div class="container main-content">
-	{{#each}}
-		<div class="row">
-
-			<div class="col-sm-9">
-				{{#link-to 'character' this}}{{full_name}}{{/link-to}}
-			</div>
-
-			<div class="col-sm-3">
-				{{format-date-from-now created_at}}
-			</div>
-
-		</div>
-	{{/each}}
+	{{outlet}}
 </div>
