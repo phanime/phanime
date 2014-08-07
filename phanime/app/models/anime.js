@@ -9,8 +9,9 @@ export default DS.Model.extend({
 	
 	// We can change the title depending on the user selection
 	title: function() {
-		return this.get('romaji_title');
-	}.property('romaji_title', 'english_title', 'japanese_title'),
+		return this.get('canonical_title');
+	}.property('romaji_title', 'english_title', 'japanese_title', 'canonical_title'),
+	canonical_title: attr(),
 	romaji_title: attr(),
 	english_title: attr(),
 	japanese_title: attr(),
