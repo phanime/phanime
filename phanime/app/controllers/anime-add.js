@@ -8,7 +8,7 @@ export default Ember.ObjectController.extend({
 	cover_image_url: function() {
 		return "http://cdn.phanime.com/images/anime/cover/" + this.get('cover_image');
 	}.property('cover_image'),
-
+	canonical_title: null,
 	romaji_title: null,
 	japanese_title: null,
 	type: null,
@@ -33,13 +33,14 @@ export default Ember.ObjectController.extend({
 			console.log(this.get('session.currentUser.data'));
 
 			// Some shitty validation for now 
-			if (!this.get('romaji_title')) {
+			if (!this.get('canonical_title')) {
 				Notify.warning('Please enter in an anime title');
 				return; 
 			}
 
 			var anime = store.createRecord('anime', {
 				cover_image: this.get('cover_image'),
+				canonical_title: this.get('canonical_title'),
 				romaji_title: this.get('romaji_title'),
 				japanese_title: this.get('japanese_title'),
 				type: this.get('type'),
@@ -89,7 +90,7 @@ export default Ember.ObjectController.extend({
 
 
 	titleChanged: function() {
-		var slug = this.get('romaji_title').replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()?+']/g,"").toLowerCase();
+		var slug = this.get('canonical_title').replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()?+']/g,"").toLowerCase();
 		slug = slug.replace(/\s+/g, '-');
 
 		// Set the the anime slug
@@ -97,7 +98,7 @@ export default Ember.ObjectController.extend({
 
 		console.log(slug);
 
-	}.observes('romaji_title'),
+	}.observes('canonical_title'),
 
 
 	// Select required properties 
