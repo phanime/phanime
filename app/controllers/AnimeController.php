@@ -64,48 +64,49 @@ class AnimeController extends \BaseController {
 	 */
 	public function store()
 	{
-		$inputs = Input::get('anime');
+		// $inputs = Input::get('anime');
 
-		$anime = new Anime;
-
-
-		// Assume trusted member is doing an update, and let them update any property on the anime model
-		$anime->romaji_title = $inputs['romaji_title'];
-		$anime->english_title = $inputs['english_title'];
-		$anime->japanese_title = $inputs['japanese_title'];
-		$anime->slug = $inputs['slug'];
-		$anime->cover_image = $inputs['cover_image'];
-		$anime->type = $inputs['type'];
-		$anime->status = $inputs['status'];
-		$anime->start_date = $inputs['start_date'];
-		$anime->end_date = $inputs['end_date'];
-		$anime->version = serialize($inputs['version']); // This is the stupidest thing i'll do so far, promise
-		$anime->age_rating = $inputs['age_rating'];
-		$anime->description = $inputs['description'];
-		$anime->season_number = $inputs['season_number'];
-		$anime->total_episodes = $inputs['total_episodes'];
-		$anime->episode_duration = $inputs['episode_duration'];
-		$anime->title_synonyms = $inputs['title_synonyms'];
+		// $anime = new Anime;
 
 
-		$anime->save();
+		// // Assume trusted member is doing an update, and let them update any property on the anime model
+		// $anime->canonical_title = $inputs['canonical_title'];
+		// $anime->romaji_title = $inputs['romaji_title'];
+		// $anime->english_title = $inputs['english_title'];
+		// $anime->japanese_title = $inputs['japanese_title'];
+		// $anime->slug = $inputs['slug'];
+		// $anime->cover_image = $inputs['cover_image'];
+		// $anime->type = $inputs['type'];
+		// $anime->status = $inputs['status'];
+		// $anime->start_date = $inputs['start_date'];
+		// $anime->end_date = $inputs['end_date'];
+		// $anime->version = serialize($inputs['version']); // This is the stupidest thing i'll do so far, promise
+		// $anime->age_rating = $inputs['age_rating'];
+		// $anime->description = $inputs['description'];
+		// $anime->season_number = $inputs['season_number'];
+		// $anime->total_episodes = $inputs['total_episodes'];
+		// $anime->episode_duration = $inputs['episode_duration'];
+		// $anime->title_synonyms = $inputs['title_synonyms'];
 
-		$anime->genres()->sync($inputs['genres']);
 
-		$id = $anime->id;
+		// $anime->save();
 
-		// Get the updated anime 
-		$anime = Anime::find($id);
-		$anime = $anime->toArray();
+		// $anime->genres()->sync($inputs['genres']);
 
-		// Unserialize array 
-		$anime['version'] = unserialize($anime['version']);	
+		// $id = $anime->id;
 
-		return Response::json(array(
-			'anime' => $anime
-			),
-			200
-		);		
+		// // Get the updated anime 
+		// $anime = Anime::find($id);
+		// $anime = $anime->toArray();
+
+		// // Unserialize array 
+		// $anime['version'] = unserialize($anime['version']);	
+
+		// return Response::json(array(
+		// 	'anime' => $anime
+		// 	),
+		// 	200
+		// );		
 	}
 
 
@@ -158,59 +159,60 @@ class AnimeController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		// Get all necessary data
-		$anime = Anime::find($id);
-		$inputs = Input::get('anime');
+		// // Get all necessary data
+		// $anime = Anime::find($id);
+		// $inputs = Input::get('anime');
 
-		//Log::info(print_r($inputs, true));
-
-
-		// Assume trusted member is doing an update, and let them update any property on the anime model
-		$anime->romaji_title = $inputs['romaji_title'];
-		$anime->english_title = $inputs['english_title'];
-		$anime->japanese_title = $inputs['japanese_title'];
-		$anime->slug = $inputs['slug'];
-		$anime->cover_image = $inputs['cover_image'];
-		$anime->type = $inputs['type'];
-		$anime->status = $inputs['status'];
-		$anime->start_date = $inputs['start_date'];
-		$anime->end_date = $inputs['end_date'];
-		$anime->version = serialize($inputs['version']); // This is the stupidest thing i'll do so far, promise
-		$anime->age_rating = $inputs['age_rating'];
-		$anime->description = $inputs['description'];
-		$anime->season_number = $inputs['season_number'];
-		$anime->total_episodes = $inputs['total_episodes'];
-		$anime->episode_duration = $inputs['episode_duration'];
-		$anime->title_synonyms = $inputs['title_synonyms'];
-		$anime->featured = $inputs['featured'];
-
-		// TODO
-		// Run anime rating algorithm here.
-
-		$anime->save();
-
-		$anime->genres()->sync($inputs['genres']);
-
-		// Get the updated anime 
-		$anime = Anime::find($id);
-		$episodes = $anime->episodes;
-		$anime = $anime->toArray();
-
-		// Unserialize array 
-		$anime['version'] = unserialize($anime['version']);
-
-		// Encode the episodes into anime array how Ember.js likes it
-		$anime['episodes'] = array();
-		foreach($episodes as $episode) {
-			$anime['episodes'][] = $episode['id'];
-		}		
+		// //Log::info(print_r($inputs, true));
 
 
-		return Response::json(array(
-			'anime' => $anime
-			),
-			200
-		);		
+		// // Assume trusted member is doing an update, and let them update any property on the anime model
+		// $anime->canonical_title = $inputs['canonical_title'];
+		// $anime->romaji_title = $inputs['romaji_title'];
+		// $anime->english_title = $inputs['english_title'];
+		// $anime->japanese_title = $inputs['japanese_title'];
+		// $anime->slug = $inputs['slug'];
+		// $anime->cover_image = $inputs['cover_image'];
+		// $anime->type = $inputs['type'];
+		// $anime->status = $inputs['status'];
+		// $anime->start_date = $inputs['start_date'];
+		// $anime->end_date = $inputs['end_date'];
+		// $anime->version = serialize($inputs['version']); // This is the stupidest thing i'll do so far, promise
+		// $anime->age_rating = $inputs['age_rating'];
+		// $anime->description = $inputs['description'];
+		// $anime->season_number = $inputs['season_number'];
+		// $anime->total_episodes = $inputs['total_episodes'];
+		// $anime->episode_duration = $inputs['episode_duration'];
+		// $anime->title_synonyms = $inputs['title_synonyms'];
+		// $anime->featured = $inputs['featured'];
+
+		// // TODO
+		// // Run anime rating algorithm here.
+
+		// $anime->save();
+
+		// $anime->genres()->sync($inputs['genres']);
+
+		// // Get the updated anime 
+		// $anime = Anime::find($id);
+		// $episodes = $anime->episodes;
+		// $anime = $anime->toArray();
+
+		// // Unserialize array 
+		// $anime['version'] = unserialize($anime['version']);
+
+		// // Encode the episodes into anime array how Ember.js likes it
+		// $anime['episodes'] = array();
+		// foreach($episodes as $episode) {
+		// 	$anime['episodes'][] = $episode['id'];
+		// }		
+
+
+		// return Response::json(array(
+		// 	'anime' => $anime
+		// 	),
+		// 	200
+		// );		
 
 	}
 
