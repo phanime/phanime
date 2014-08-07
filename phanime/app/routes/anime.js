@@ -18,7 +18,7 @@ export default Ember.Route.extend({
 	setupController:function(controller, anime) {
 		controller.set('model', anime);
 
-		if(Ember.isNone(anime.get('episodes.data'))){
+		if(Ember.isNone(anime.get('episodes.data')) || Ember.isNone(anime.get('castings.data')) || Ember.isNone(anime.get('genres.data')) || Ember.isNone(anime.get('staff_members.data'))){
 			anime.reload();
 		}
 	

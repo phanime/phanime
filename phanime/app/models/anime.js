@@ -46,8 +46,8 @@ export default DS.Model.extend({
 	rating_updated_at: attr(),
 	episodes: hasMany('episode', {async: true}),
 	genres: hasMany('genre', {async: true}),
-	characters: hasMany('character', {async: true}),
-	people: hasMany('person', {async: true}), // Staff only, not voice actors
+	castings: hasMany('casting', {async: true}),
+	staff_members: hasMany('staff_member', {async: true}),
 	producers: hasMany('producer', {async: true}),
 
 
