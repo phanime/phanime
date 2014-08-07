@@ -29,7 +29,7 @@ export default Ember.ObjectController.extend({
 		},
 		save_changes: function(anime) {
 
-			Notify.useBootstrap();
+			//Notify.useBootstrap();
 
 			var onSuccess = function(anime) {
 				var msg = anime.get('title') + " was successfully saved.";
@@ -37,8 +37,8 @@ export default Ember.ObjectController.extend({
 				Notify.success(msg);
 			};
 
-			var onFailure = function(anime) {
-				var msg = "Something went wrong, " + anime.get('title') + " was not saved.";
+			var onFailure = function() {
+				var msg = "Something went wrong, anime was not saved.";
 				console.log(msg);
 				Notify.warning(msg);
 			};
