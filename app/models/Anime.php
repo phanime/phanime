@@ -33,6 +33,16 @@ class Anime extends Eloquent {
 	public function genres()
 	{
 		return $this->belongsToMany('Genre', 'anime_genres', 'anime_id', 'genre_id');
+	}
+
+	public function castings()
+	{
+		return $this->hasMany('Casting', 'anime_id', 'id');
 	}	
+
+	public function staffMembers()
+	{
+		return $this->hasMany('StaffMember', 'anime_id', 'id');
+	}
 
 }
