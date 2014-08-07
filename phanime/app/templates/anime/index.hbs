@@ -52,6 +52,39 @@
 					</tbody>
 				</table>
 			</div>
+
+			<h3 class="thin-text">Casting</h3>
+
+			{{#each castings}}
+				<div class="row">
+					<div class="col-sm-6">
+						{{#link-to 'character' character}} {{character.full_name}} {{/link-to}}: {{role}}
+					</div>
+
+					<div class="col-sm-6">
+						{{#link-to 'person' person}} {{person.full_name}} {{/link-to}}: {{language}}
+					</div>
+				</div>
+			{{else}}
+				No castings found for this anime.
+			{{/each}}
+
+			<h3 class="thin-text">Staff Member</h3>
+
+			{{#each staff_members}}
+				<div class="row">
+					<div class="col-sm-6">
+						{{#link-to 'person' person}} {{person.full_name}} {{/link-to}}
+					</div>
+
+					<div class="col-sm-6">
+						{{staff_position}}
+					</div>
+				</div>
+			{{else}}
+				No staff members found for this anime.
+			{{/each}}
+
 		</div>
 	</div>
 </div>
