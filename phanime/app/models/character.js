@@ -11,10 +11,22 @@ export default DS.Model.extend({
 	}.property('cover_photo'),	
 
 	full_name: function() {
-		return this.get('first_name') + " " + this.get('last_name');
+
+		if (this.get('last_name')) {
+			return this.get('first_name') + " " + this.get('last_name');
+		} else {
+			return this.get('first_name');
+		}
+
 	}.property('first_name', 'last_name'),
 	full_name_slug: function() {
-		return this.get('first_name') + "-" + this.get('last_name');
+
+		if (this.get('last_name')) {
+			return this.get('first_name').toLowerCase() + "-" + this.get('last_name').toLowerCase();
+		} else {
+			return this.get('first_name').toLowerCase();
+		}
+
 	}.property('first_name', 'last_name'),
 	first_name: attr(),
 	last_name: attr(),
