@@ -1,7 +1,9 @@
 <div class="well">
 	<form role="form" class="form-horizontal">
 		<div class="row">
-			{{file-upload url="/api/v1/upload/users" action="filesUploaded"}}
+			<div class="col-sm-12">
+			{{file-upload url="/api/v1/upload/users" extraParams=extraParams action="filesUploaded"}}
+			</div>
 			<div class="col-sm-12">
 				<button type="button" {{action 'changePassword'}} class="btn btn-primary btn-beside">Change Password</button>
 			</div>
