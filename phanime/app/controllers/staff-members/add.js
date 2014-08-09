@@ -12,7 +12,7 @@ export default Ember.ObjectController.extend({
 			var staffMember = store.createRecord('staffMember', {
 				person_id: this.get('selectedPerson'),
 				anime_id: this.get('selectedAnime'),
-				staff_position: this.get('staff_position'),
+				staff_position: this.get('staff_position').trim(),
 			});
 
 

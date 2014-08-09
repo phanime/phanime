@@ -22,7 +22,7 @@ class Request extends SymfonyRequest {
 	/**
 	 * Return the Request instance.
 	 *
-	 * @return \Illuminate\Http\Request
+	 * @return $this
 	 */
 	public function instance()
 	{
@@ -214,7 +214,7 @@ class Request extends SymfonyRequest {
 	 */
 	public function all()
 	{
-		return array_merge_recursive($this->input(), $this->files->all());
+		return array_replace_recursive($this->input(), $this->files->all());
 	}
 
 	/**

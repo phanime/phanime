@@ -12,8 +12,8 @@ export default Ember.ObjectController.extend({
 			//var self = this;
 
 			var casting = store.createRecord('casting', {
-				language: this.get('language'),
-				role: this.get('role'),
+				language: this.get('language').trim(),
+				role: this.get('role').trim(),
 				person_id: this.get('selectedPerson'),
 				character_id: this.get('selectedCharacter'),
 				anime_id: this.get('selectedAnime'),
