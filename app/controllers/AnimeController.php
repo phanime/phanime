@@ -77,7 +77,7 @@ class AnimeController extends \BaseController {
 			return Response::json($validation);
 		}
 
-
+		// Validation passed if control reaches here
 
 		$anime = new Anime;
 
@@ -217,7 +217,7 @@ class AnimeController extends \BaseController {
 			array(
 				'canonical_title' => $inputs['canonical_title']
 			),
-			array('canonical_title' => 'unique:anime')
+			array('canonical_title' => 'required|unique:anime')
 		);
 
 		if ($validator->fails()) {

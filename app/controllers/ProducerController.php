@@ -33,6 +33,16 @@ class ProducerController extends \BaseController {
 	{
 		$inputs = Input::get('producer');
 
+		// Validate producer
+		$validation = $this->validateProducer($inputs);
+
+		if ($validation !== true) {
+			return Response::json($validation);
+		}
+
+		// Validation passed if control reaches here
+
+
 		$producer = new Producer;
 
 		$producer->name = $inputs['name'];
@@ -97,5 +107,20 @@ class ProducerController extends \BaseController {
 		//
 	}
 
+
+	protected function validateProducer($inputs) {
+		$validator = Validator::make(
+			array(
+				'name' => $inputs['name']
+			),
+			array('name' => 'required|unique:producers')
+		);
+
+		if ($validator->fails()) {
+			return $validator->messages();
+		} else {
+			return true;
+		}
+	}
 
 }
