@@ -36,6 +36,15 @@ class PersonController extends \BaseController {
 	{
 		$inputs = Input::get('person');
 
+		// Validate person
+		$validation = $this->validatePerson($inputs);
+
+		if ($validation !== true) {
+			return Response::json($validation);
+		}
+
+		// Validation passed if control reaches here
+
 		$person = new Person;
 
 		$person->cover_photo = $inputs['cover_photo'];
@@ -127,5 +136,23 @@ class PersonController extends \BaseController {
 		//
 	}
 
+	protected function validatePerson($inputs) {
+		$validator = Validator::make(
+			array(
+				'first_name' => $inputs['first_name'],
+				'last_name' => $inputs['last_name']
+			),
+			array(
+				'first_name' => 'required|unique_with:people,last_name',
+				'last_name' => 'required',
+			)
+		);
+
+		if ($validator->fails()) {
+			return $validator->messages();
+		} else {
+			return true;
+		}		
+	}
 
 }

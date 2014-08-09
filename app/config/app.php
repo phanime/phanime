@@ -123,7 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Rtablada\PackageInstaller\PackageInstallerServiceProvider',
 		'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
-		'Aws\Laravel\AwsServiceProvider'
+		'Aws\Laravel\AwsServiceProvider',
+		'Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider'
 	),
 
 	/*

@@ -36,6 +36,17 @@ class CharacterController extends \BaseController {
 	{
 		$inputs = Input::get('character');
 
+
+		// Validate character
+		$validation = $this->validateCharacter($inputs);
+
+		if ($validation !== true) {
+			return Response::json($validation);
+		}
+
+		// Validation passed if control reaches here
+
+
 		$character = new Character;
 
 		$character->first_name = $inputs['first_name'];
@@ -119,6 +130,40 @@ class CharacterController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	protected function validateCharacter($inputs) {
+
+		// If last name is null / empty then we should only check first name
+		// for uniqueness, else we should do a combination.
+
+		if ($inputs['last_name']) {
+			$validator = Validator::make(
+				array(
+					'first_name' => $inputs['first_name'],
+					'last_name' => $inputs['last_name']
+				),
+				array(
+					'first_name' => 'required|unique_with:characters,last_name',
+					'last_name' => 'required',
+				)
+			);
+		} else {
+			$validator = Validator::make(
+				array(
+					'first_name' => $inputs['first_name']
+				),
+				array(
+					'first_name' => 'required|unique:characters',
+				)
+			);			
+		}
+
+		if ($validator->fails()) {
+			return $validator->messages();
+		} else {
+			return true;
+		}
 	}
 
 
