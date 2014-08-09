@@ -10,13 +10,29 @@ class UploadController extends \BaseController {
 	{
 		$inputs = Input::all();
 
-		//$s3 = new Aws_S3_PostPolicy('asd', 'asd', 'asd', 86400);
+
 		$s3 = new Aws_S3_PostPolicy($this->awsAccessKeyId, $this->awsSecretAccessKey, $this->bucket, 86400);
+
+		// If image category exists use it,
+		// else make cover as the default category
+		if (array_key_exists('imageCategory', $inputs)) {
+			$imageCategory = $inputs['imageCategory'];
+		} else {
+			$imageCategory = 'cover';
+		}
+
+		// If namePref is given as an input, use it instead
+		if (array_key_exists('namePref', $inputs)) {
+			$imageName = $inputs['namePref'] . $s3->getFileExt($inputs['type']);
+		} else {
+			$imageName = $inputs['name'];
+		}
+
 
 		$s3->addCondition('', 'bucket', $s3->getBucket());
 		$s3->addCondition('', 'acl', 'public-read');
 		$s3->addCondition('', 'success_action_status', '201');
-		$s3->addCondition('starts-with', '$key', 'images/' . $directory . "/cover/");
+		$s3->addCondition('starts-with', '$key', 'images/' . $directory . "/" .  $imageCategory ."/");
 		$s3->addCondition('starts-with', '$content-type', '');
 
 		return Response::json(array(
@@ -24,7 +40,7 @@ class UploadController extends \BaseController {
 			"awsaccesskeyid" => $s3->getAwsAccessKeyId(),
 			"bucket" => $s3->getBucket(),
 
-			"key" => "images/" . $directory . "/cover/" . $inputs['name'],
+			"key" => "images/" . $directory . "/" .  $imageCategory ."/" . $imageName,
 			"policy" => $s3->getPolicy(true),
 			"signature" => $s3->getSignedPolicy(),
 			"success_action_status" => "201",
@@ -369,5 +385,29 @@ class Aws_S3_PostPolicy {
 			$encoded);		
 	}
 
+
+	public function getFileExt($contentType) {
+		$map = array(
+			'application/pdf'   => '.pdf',
+			'application/zip'   => '.zip',
+			'image/gif'         => '.gif',
+			'image/jpeg'        => '.jpg',
+			'image/png'         => '.png',
+			'text/css'          => '.css',
+			'text/html'         => '.html',
+			'text/javascript'   => '.js',
+			'text/plain'        => '.txt',
+			'text/xml'          => '.xml',
+		);
+		if (isset($map[$contentType]))
+		{
+			return $map[$contentType];
+		}
+
+		// Just incase the content type was not found
+		// in the map
+		$pieces = explode('/', $contentType);
+		return '.' . array_pop($pieces);		
+	}
 
 }
