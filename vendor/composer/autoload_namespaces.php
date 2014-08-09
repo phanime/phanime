@@ -39,6 +39,7 @@ return array(
     'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     'File' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
+    'Felixkiss\\UniqueWithValidator' => array($vendorDir . '/felixkiss/uniquewith-validator/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'ClassPreloader' => array($vendorDir . '/classpreloader/classpreloader/src'),

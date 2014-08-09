@@ -25,7 +25,7 @@ export default Ember.ObjectController.extend({
 
 			var producer = store.createRecord('producer', {
 				producer_logo: this.get('producer_logo'),
-				name: this.get('name'),
+				name: this.get('name').trim(),
 				slug: this.get('slug'),
 				description: this.get('description'),
 			});

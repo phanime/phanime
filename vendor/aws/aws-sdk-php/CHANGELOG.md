@@ -1,6 +1,25 @@
 CHANGELOG
 =========
 
+2.6.13 (2014-07-31)
+-------------------
+
+* Added support for configurable idle timeouts to the Elastic Load Balancing
+  client.
+* Added support for Lifecycle Hooks, Detach Instances, and Standby to the
+  AutoScaling client.
+* Added support for creating Amazon ElastiCache for Memcached clusters with
+  nodes in multiple availability zones.
+* Added minor fixes to the Amazon EC2 model for ImportVolume,
+  DescribeNetworkInterfaceAttribute, and DeleteVpcPeeringConnection
+* Added support for getGeoLocation and listGeoLocations to the
+  Amazon Route 53 client.
+* Added support for Amazon Route 53 Domains.
+* Fixed an issue with deleting nested folders in the Amazon S3 stream wrapper.
+* Fixed an issue with the Amazon S3 sync abstraction to ensure that S3->S3
+  communication works correctly.
+* Added stricter validation to the Amazon SNS MessageValidator.
+
 2.6.12 (2014-07-16)
 -------------------
 

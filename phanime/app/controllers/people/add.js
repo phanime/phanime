@@ -33,15 +33,15 @@ export default Ember.ObjectController.extend({
 
 			var person = store.createRecord('person', {
 				cover_photo: this.get('cover_photo'),
-				first_name: this.get('first_name'),
-				last_name: this.get('last_name'),
-				given_name: this.get('given_name'),
-				family_name: this.get('family_name'),
-				gender: this.get('gender'),
-				birth_date: this.get('birth_date'),
-				website: this.get('website'),
-				birth_place: this.get('birth_place'),
-				blood_type: this.get('blood_type'),
+				first_name: this.get('first_name').trim(),
+				last_name: this.get('last_name').trim(),
+				given_name: this.get('given_name').trim(),
+				family_name: this.get('family_name').trim(),
+				gender: this.get('gender').trim(),
+				birth_date: this.get('birth_date').trim(),
+				website: this.get('website').trim(),
+				birth_place: this.get('birth_place').trim(),
+				blood_type: this.get('blood_type').trim(),
 				other_info: this.get('other_info'),
 			});
 

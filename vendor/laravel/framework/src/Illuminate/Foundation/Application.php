@@ -27,7 +27,7 @@ class Application extends Container implements HttpKernelInterface, TerminableIn
 	 *
 	 * @var string
 	 */
-	const VERSION = '4.2.7';
+	const VERSION = '4.2.8';
 
 	/**
 	 * Indicates if the application has "booted".
@@ -698,7 +698,7 @@ class Application extends Container implements HttpKernelInterface, TerminableIn
 	 *
 	 * @param  string  $class
 	 * @param  array  $parameters
-	 * @return \Illuminate\Foundation\Application
+	 * @return $this
 	 */
 	public function middleware($class, array $parameters = array())
 	{
