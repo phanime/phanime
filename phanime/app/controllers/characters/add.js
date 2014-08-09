@@ -21,18 +21,18 @@ export default Ember.ObjectController.extend({
 			var self = this;
 
 			// Some shitty validation for now (more validation on the server side)
-			if (!this.get('first_name') || !this.get('last_name')) {
-				Notify.warning('Please ensure that the first and last name is filled out.');
+			if (!this.get('first_name')) {
+				Notify.warning('Please ensure that the first name is filled out.');
 				return;
 			}
 
 			var character = store.createRecord('character', {
 				cover_photo: this.get('cover_photo'),
-				first_name: this.get('first_name'),
-				last_name: this.get('last_name'),
-				japanese_name: this.get('japanese_name'),
-				alternate_name: this.get('alternate_name'),
-				gender: this.get('gender'),
+				first_name: this.get('first_name').trim(),
+				last_name: this.get('last_name').trim(),
+				japanese_name: this.get('japanese_name').trim(),
+				alternate_name: this.get('alternate_name').trim(),
+				gender: this.get('gender').trim(),
 				biography: this.get('biography'),
 			});
 
