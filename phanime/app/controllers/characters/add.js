@@ -26,13 +26,18 @@ export default Ember.ObjectController.extend({
 				return;
 			}
 
+			// Trim last name if it exists
+			if (this.get('last_name')) {
+				this.set('last_name', this.get('last_name').trim());
+			}
+
 			var character = store.createRecord('character', {
 				cover_photo: this.get('cover_photo'),
 				first_name: this.get('first_name').trim(),
-				last_name: this.get('last_name').trim(),
-				japanese_name: this.get('japanese_name').trim(),
-				alternate_name: this.get('alternate_name').trim(),
-				gender: this.get('gender').trim(),
+				last_name: this.get('last_name'),
+				japanese_name: this.get('japanese_name'),
+				alternate_name: this.get('alternate_name'),
+				gender: this.get('gender'),
 				biography: this.get('biography'),
 			});
 
@@ -45,8 +50,16 @@ export default Ember.ObjectController.extend({
 				self.transitionToRoute('character', character);
 			};
 
-			var onFailure = function() {
-				var msg = "Something went wrong, character was not added.";
+			var onFailure = function(response) {
+
+				var msg;
+
+				if (response.message) {
+					msg = response.message;
+				} else {
+					msg = "Something went wrong, character was not added.";
+				}
+
 				console.log(msg);
 				Notify.warning(msg);
 			};
@@ -64,7 +77,7 @@ export default Ember.ObjectController.extend({
 
 	// Genders
 	genders: [
-		"",
+		null,
 		"Male",
 		"Female",
 	]
