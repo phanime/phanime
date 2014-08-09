@@ -66,7 +66,18 @@ class AnimeController extends \BaseController {
 	 */
 	public function store()
 	{
+
+
 		$inputs = Input::get('anime');
+
+		// Validate anime
+		$validation = $this->validateAnime($inputs);
+
+		if ($validation !== true) {
+			return Response::json($validation);
+		}
+
+
 
 		$anime = new Anime;
 
@@ -149,7 +160,13 @@ class AnimeController extends \BaseController {
 		$anime = Anime::find($id);
 		$inputs = Input::get('anime');
 
-		//Log::info(print_r($inputs, true));
+		// // Validate anime
+		// $validation = $this->validateAnime($inputs);
+
+		// if ($validation !== true) {
+		// 	return Response::json($validation);
+		// }
+
 
 
 		// Assume trusted member is doing an update, and let them update any property on the anime model
@@ -195,5 +212,19 @@ class AnimeController extends \BaseController {
 		//
 	}
 
+	protected function validateAnime($inputs) {
+		$validator = Validator::make(
+			array(
+				'canonical_title' => $inputs['canonical_title']
+			),
+			array('canonical_title' => 'unique:anime')
+		);
+
+		if ($validator->fails()) {
+			return $validator->messages();
+		} else {
+			return true;
+		}
+	}
 
 }
