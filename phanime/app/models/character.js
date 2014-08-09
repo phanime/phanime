@@ -22,9 +22,9 @@ export default DS.Model.extend({
 	full_name_slug: function() {
 
 		if (this.get('last_name')) {
-			return this.get('first_name').toLowerCase() + "-" + this.get('last_name').toLowerCase();
+			return this.get('first_name') + "-" + this.get('last_name');
 		} else {
-			return this.get('first_name').toLowerCase();
+			return this.get('first_name');
 		}
 
 	}.property('first_name', 'last_name'),

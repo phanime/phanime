@@ -38,24 +38,37 @@ export default Ember.ObjectController.extend({
 				return; 
 			}
 
+			// Temporary way to trim / handle nulls for titles
+			if (this.get('romaji_title')) {
+				this.set('romaji_title', this.get('romaji_title').trim());
+			}
+			if (this.get('japanese_title')) {
+				this.set('japanese_title', this.get('japanese_title').trim());
+			}
+			if (this.get('english_title')) {
+				this.set('english_title', this.get('english_title').trim());
+			}
+			// We don't have to worry about canonical title and slug because they can never be null
+
+
 			var anime = store.createRecord('anime', {
 				cover_image: this.get('cover_image'),
-				canonical_title: this.get('canonical_title').trim(),
-				romaji_title: this.get('romaji_title').trim(),
-				japanese_title: this.get('japanese_title').trim(),
-				type: this.get('type').trim(),
-				episode_duration: this.get('episode_duration').trim(),
-				season_number: this.get('season_number').trim(),
-				start_date: this.get('start_date').trim(),
 				slug: this.get('slug').trim(),
-				english_title: this.get('english_title').trim(),
-				status: this.get('status').trim(),
-				age_rating: this.get('age_rating').trim(),
-				total_episodes: this.get('total_episodes').trim(),
-				end_date: this.get('end_date').trim(),
+				canonical_title: this.get('canonical_title').trim(),
+				romaji_title: this.get('romaji_title'),
+				japanese_title: this.get('japanese_title'),
+				english_title: this.get('english_title'),
+				type: this.get('type'),
+				episode_duration: this.get('episode_duration'),
+				season_number: this.get('season_number'),
+				start_date: this.get('start_date'),
+				status: this.get('status'),
+				age_rating: this.get('age_rating'),
+				total_episodes: this.get('total_episodes'),
+				end_date: this.get('end_date'),
 				description: this.get('description'),
-				version: this.get('version').trim(),
-				title_synonyms: this.get('title_synonyms').trim(),
+				version: this.get('version'),
+				title_synonyms: this.get('title_synonyms')
 			});
 
 			var onSuccess = function(anime) {

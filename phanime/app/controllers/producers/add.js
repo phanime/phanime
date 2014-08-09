@@ -23,6 +23,11 @@ export default Ember.ObjectController.extend({
 				return;
 			}
 
+			// Temporary way to convert empty string into null
+			if (!this.get('description')) {
+				this.set('description', null);
+			}
+
 			var producer = store.createRecord('producer', {
 				producer_logo: this.get('producer_logo'),
 				name: this.get('name').trim(),
@@ -39,9 +44,16 @@ export default Ember.ObjectController.extend({
 				//self.transitionTo('producer', producer);
 			};
 
-			var onFailure = function(producer) {
-				console.log('Failed');
-				var msg = "Something went wrong, " + producer.get('name') + " was not added.";
+			var onFailure = function(response) {
+
+				var msg;
+				
+				if (response.message) {
+					msg = response.message;
+				} else {
+					msg = "Something went wrong, producer was not added.";
+				}
+
 				console.log(msg);
 				Notify.warning(msg);
 			};
