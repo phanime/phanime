@@ -66,8 +66,17 @@ export default Ember.ObjectController.extend({
 				self.transitionToRoute('anime', anime);
 			};
 
-			var onFailure = function() {
-				var msg = "Something went wrong, anime was not added.";
+			var onFailure = function(response) {
+				var msg;
+
+				if (response.message) {
+					msg = response.message;
+				} else {
+
+					msg = "Something went wrong, anime was not added.";
+
+				}
+
 				console.log(msg);
 				Notify.warning(msg);
 			};
@@ -96,7 +105,7 @@ export default Ember.ObjectController.extend({
 		// Set the the anime slug
 		this.set('slug', slug);
 
-		console.log(slug);
+		//console.log(slug);
 
 	}.observes('canonical_title'),
 
