@@ -7,13 +7,13 @@ export default Ember.ArrayController.extend({
 
 
 		if (current_season === 'Spring') {
-			return this.get('settings.siteWallpapers') + "spring.jpg";
+			return this.get('settings.siteGeneral') + "spring.jpg";
 		} else if (current_season === 'Summer') {
-			return this.get('settings.siteWallpapers') + "summer.jpg";
+			return this.get('settings.siteGeneral') + "summer.jpg";
 		} else if (current_season === 'Fall') {
-			return this.get('settings.siteWallpapers') + "fall.jpg";
+			return this.get('settings.siteGeneral') + "fall.jpg";
 		} else {
-			return this.get('settings.siteWallpapers') + "winter.jpg";
+			return this.get('settings.siteGeneral') + "winter.jpg";
 		}
 	}.property('current_season'),
 	
