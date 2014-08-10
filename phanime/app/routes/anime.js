@@ -23,6 +23,8 @@ export default Ember.Route.extend({
 		}
 	
 		this._super();
+
+		this.controllerFor('application').set('currentAnime', anime);
 	},
 
 	// TODO Move these into controller if updates properly

@@ -10,8 +10,11 @@ class LibraryEntryController extends \BaseController {
 	public function index()
 	{
 		$ids = Input::get('ids');
+		$userId = Input::get('userId');
 
-		if ($ids) {
+		if ($userId) {
+			$libraryEntries = LibraryEntry::where('user_id', '=', $userId)->get();
+		} else if ($ids) {
 			$libraryEntries = LibraryEntry::whereIn('id', $ids)->get();
 		} else {
 			$libraryEntries = LibraryEntry::all();
@@ -31,7 +34,27 @@ class LibraryEntryController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$inputs = Input::get('libraryEntry');
+		$libraryEntry = new LibraryEntry;
+
+		$libraryEntry->status = $inputs['status'];
+		$libraryEntry->anime_id = $inputs['anime_id'];
+		$libraryEntry->user_id = $inputs['user_id'];
+
+		// Defaults
+		$libraryEntry->rewatched_count = 0;
+		$libraryEntry->rewatching = 0; // false
+
+		// TODO
+		// Determine episodes seen
+		// if status is completed and anime is on-going
+		
+
+		$libraryEntry->save();
+		$id = $libraryEntry->id;
+
+		return $this->show($id);
+
 	}
 
 

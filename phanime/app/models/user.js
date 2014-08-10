@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 
-var attr = DS.attr;
+var attr = DS.attr,
+	hasMany = DS.hasMany;
 
 export default DS.Model.extend({
 	avatar: attr(),
@@ -30,5 +31,7 @@ export default DS.Model.extend({
 
 	profileBannerUrl: function() {
 		return "http://cdn.phanime.com/images/users/profileBanner/" + this.get('profileBanner');
-	}.property('profileBanner')
+	}.property('profileBanner'),
+
+	libraryEntries: hasMany('libraryEntry', {async:true})
 });

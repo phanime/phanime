@@ -88,6 +88,37 @@ export default Ember.ObjectController.extend({
 		},
 		changeWatchStatus: function(status) {
 			this.set('currentWatchStatus', status);
+			var anime = this.get('currentAnime');
+
+			// We should create or update the entry
+			// depending on if the entry already exists
+			// or not
+			var store = this.store;
+			var self = this;
+
+			this.get('session.currentUser').then(function(user) {
+				var libraryEntry = store.createRecord('libraryEntry', {
+					status: self.get('currentWatchStatus'),
+					anime_id: anime,
+					user_id: user
+				});
+
+
+				var onSuccess = function() {
+					var msg = "Saved to your library";
+					console.log(msg);
+					Notify.success(msg);
+				};
+
+				var onFailure = function() {
+					var msg = "Something went wrong, entry was not saved";
+					console.log(msg);
+					Notify.success(msg);
+				};
+
+
+				libraryEntry.save().then(onSuccess, onFailure);
+			});
 		}
 	},
 
@@ -98,6 +129,8 @@ export default Ember.ObjectController.extend({
 		return this.get('currentRouteName') === 'anime.index';
 	}.property('currentRouteName'),
 
+	
+	currentAnime: null,
 	currentWatchStatus: 'Add to Library',
 
 	watchStatuses: [

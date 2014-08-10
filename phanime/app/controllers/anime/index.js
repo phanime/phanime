@@ -112,4 +112,6 @@ export default Ember.ObjectController.extend({
 		"R - 17+ (violence & profanity)",
 		"R+ - Mild Nudity",
 	],
+
+
 });
