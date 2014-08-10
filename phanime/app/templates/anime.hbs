@@ -7,7 +7,9 @@
 					<a>{{name}}</a>
 				{{/each}}
 
-				{{partial 'anime/add-library-entry'}}
+				{{#if session.isAuthenticated}}
+					{{partial 'anime/add-library-entry'}}
+				{{/if}}
 			</div>
 		</div>
 	</div>

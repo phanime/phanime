@@ -409,6 +409,21 @@ textarea {
 		box-shadow: 0 0 10px rgba(255, 255, 255, 0.80);
 	}
 
+	.genreList .add-library-button {
+		padding: 4px 10px;
+		top: -1px;
+		border: none;
+		color: #FFF;
+		background-color: #8bc34a;
+		border-radius: 2px;
+		box-shadow: 0 0 2px rgba(0,0,0,0.5);
+	}
+
+	.genreList .dropdown-menu > li > a {
+		text-shadow: none;
+		cursor: pointer;
+	}
+
 .anime-info {
 	margin: 10px 0;
 	color: #7E7E7E;

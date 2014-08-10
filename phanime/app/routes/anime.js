@@ -28,8 +28,17 @@ export default Ember.Route.extend({
 	},
 
 	// TODO Move these into controller if updates properly
-	coverClass: "animeCover",
-	coverTitle: "",
-	coversubTitle: "",
+	// coverClass: "animeCover",
+	// coverTitle: "",
+	// coversubTitle: "",
+
+	actions: {
+		// willTransition: function() {
+
+		// 	// Resetting library related display on the anime page
+		// 	this.controller.set('currentEntry', null);
+		// 	this.controller.set('currentWatchStatus', 'Add to Library');
+		// }
+	}
 
 });
