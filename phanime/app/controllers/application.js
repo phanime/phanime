@@ -85,8 +85,55 @@ export default Ember.ObjectController.extend({
 		},
 		triggerAddingGlobal: function() {
 			this.toggleProperty('isAddingGlobal');
+
+			console.log('stuff');
+			if (this.get('isAddingGlobal') === true) {
+
+				if (this.get('isAnime') === true) {
+
+
+
+					var anime = this.get('currentAnime');	
+					var self = this;
+
+					this.get('session.currentUser').then(function(user) {
+						user.get('library_entries').then(function(entries) {
+
+							console.log(entries);
+							console.log(entries.findBy('user_id', '1'));
+
+							var entry = entries.find(function(item) {
+								console.log(item);
+								console.log(anime);
+
+								item.get('anime_id').then(function(entryAnime) {
+
+									self.set('entryCondition', entryAnime.get('id') === anime.get('id'));
+
+									if(entryAnime.get('id') === anime.get('id')) {
+										self.set('currentEntry', item);
+										self.set('currentWatchStatus', item.get('status'));
+									}
+
+								});
+
+								return self.get('entryCondition');
+							});
+
+							self.set('currentEntry', entry);
+
+						});	
+					});
+
+
+
+				}				
+			}
 		},
 		changeWatchStatus: function(status) {
+			var currentEntry = this.get('currentEntry');
+			var libraryEntry;
+
 			this.set('currentWatchStatus', status);
 			var anime = this.get('currentAnime');
 
@@ -95,34 +142,81 @@ export default Ember.ObjectController.extend({
 			// or not
 			var store = this.store;
 			var self = this;
+ 			
+ 			if (currentEntry) {
 
-			this.get('session.currentUser').then(function(user) {
-				var libraryEntry = store.createRecord('libraryEntry', {
-					status: self.get('currentWatchStatus'),
-					anime_id: anime,
-					user_id: user
-				});
+				libraryEntry = currentEntry;
 
+				// Update the status
+				libraryEntry.set('status', status);
 
 				var onSuccess = function() {
-					var msg = "Saved to your library";
+					var msg = "Updated status";
 					console.log(msg);
 					Notify.success(msg);
 				};
 
 				var onFailure = function() {
-					var msg = "Something went wrong, entry was not saved";
+					var msg = "Something went wrong, entry was not updated";
 					console.log(msg);
 					Notify.success(msg);
 				};
 
-
 				libraryEntry.save().then(onSuccess, onFailure);
-			});
+
+			} else {
+
+				this.get('session.currentUser').then(function(user) {
+					
+					libraryEntry = store.createRecord('libraryEntry', {
+						status: self.get('currentWatchStatus'),
+						anime_id: anime,
+						user_id: user
+					});
+
+
+					var onSuccess = function() {
+						var msg = "Saved to your library";
+						console.log(msg);
+						Notify.success(msg);
+					};
+
+					var onFailure = function() {
+						var msg = "Something went wrong, entry was not saved";
+						console.log(msg);
+						Notify.success(msg);
+					};
+
+
+					libraryEntry.save().then(onSuccess, onFailure);
+				});
+
+			}
 		}
 	},
 
+	// isEntryAddedCompute: function() {
+	// 	if (this.get('isAnime')) {
+	// 		var anime = this.get('currentAnime');	
+	// 		var self = this;
 
+	// 		this.get('session.currentUser').then(function(user) {
+	// 			user.get('library_entries').then(function(entries) {
+	// 				for(var i = 0; i < entries.length; i++) {
+	// 					if(anime.get('id') === entries[i].get('id')) {
+	// 						console.log('Exists');
+	// 						self.set('isEntryAdded', true);
+	// 						self.set('currentEntry', entries[i]);
+	// 					}
+	// 				}
+	// 			});	
+	// 		});
+	// 	}	
+
+	// }.observes('session.currentUser').on('init'),
+
+	currentEntry: null,
+	entryCondition: false,
 
 	// GLOBAL ADD anime library entry (for now)
 	isAnime: function() {
