@@ -85,6 +85,26 @@ export default Ember.ObjectController.extend({
 		},
 		triggerAddingGlobal: function() {
 			this.toggleProperty('isAddingGlobal');
+		},
+		changeWatchStatus: function(status) {
+			this.set('currentWatchStatus', status);
 		}
-	}
+	},
+
+
+
+	// GLOBAL ADD anime library entry (for now)
+	isAnime: function() {
+		return this.get('currentRouteName') === 'anime.index';
+	}.property('currentRouteName'),
+
+	currentWatchStatus: 'Add to Library',
+
+	watchStatuses: [
+		"Watching",
+		"Completed",
+		"Plan to watch",
+		"On hold",
+		"Dropped",
+	],
 });

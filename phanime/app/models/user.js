@@ -22,7 +22,9 @@ export default DS.Model.extend({
 			return "http://cdn.phanime.com/images/users/avatar/" + this.get('avatar');
 
 		} else {
+
 			return this.get('settings.naImage');
+
 		}
 	}.property('avatar'),
 
