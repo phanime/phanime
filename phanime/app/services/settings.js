@@ -5,4 +5,5 @@ export default Ember.Object.extend({
 	urlSeparator: " | ",
 	siteSlogan: 'phor anime fans',
 	siteGeneral: 'http://cdn.phanime.com/images/site/',
+	naImage: 'http://cdn.phanime.com/images/site/na.gif',
 });

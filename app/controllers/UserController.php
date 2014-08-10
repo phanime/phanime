@@ -62,7 +62,16 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user = User::find($id);
+		$inputs = Input::get('user');
+
+		$user->avatar = $inputs['avatar'];
+		$user->profileBanner = $inputs['profileBanner'];
+		$user->gender = $inputs['gender'];
+
+		$user->save();
+
+		return $this->show($id);
 	}
 
 

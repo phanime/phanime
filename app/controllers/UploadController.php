@@ -23,7 +23,15 @@ class UploadController extends \BaseController {
 
 		// If namePref is given as an input, use it instead
 		if (array_key_exists('namePref', $inputs)) {
-			$imageName = $inputs['namePref'] . $s3->getFileExt($inputs['type']);
+
+			// For user related things we don't want the extensions
+			if ($directory === 'users') {
+				$imageName = $inputs['namePref'];
+			} else {
+				$imageName = $inputs['namePref'] . $s3->getFileExt($inputs['type']);
+			}
+
+			
 		} else {
 			$imageName = $inputs['name'];
 		}

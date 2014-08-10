@@ -480,6 +480,36 @@ textarea {
 
 
 
+/*-----------------------------*/
+/*---------- USER  ------------*/
+/*-----------------------------*/
+.fancy-heading .container .user-important {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 20px;	
+}
+
+	.user-important .user-avatar {
+		position: absolute;
+		bottom: -20px;
+		border: 5px solid #fff;
+		box-shadow: 0 0 3px rgba(0,0,0,0.5);
+		background-size: cover;
+		background-position: center center;
+		height: 190px;
+		width: 190px;
+	}
+
+	.user-important .username {
+		padding-left: 210px;
+	}
+
+
+
+
+
+
 /*-----------------------------------*/
 /*----- Bootstrap Theme changes -----*/
 /*-----------------------------------*/
