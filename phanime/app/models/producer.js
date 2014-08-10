@@ -11,6 +11,10 @@ export default DS.Model.extend({
 	anime: hasMany('anime', {async: true}),
 
 	producer_logo_url: function() {
-		return "http://cdn.phanime.com/images/producer/cover/" + this.get('producer_logo');
+		if (this.get('producer_logo')) {
+			return "http://cdn.phanime.com/images/producer/cover/" + this.get('producer_logo');
+		} else {
+			return this.get('settings.naImage');
+		}
 	}.property('producer_logo'),
 });

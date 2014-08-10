@@ -7,7 +7,13 @@ export default DS.Model.extend({
 	cover_photo: attr(),
 
 	cover_photo_url: function() {
-		return "http://cdn.phanime.com/images/characters/cover/" + this.get('cover_photo');
+
+		if (this.get('cover_photo')) {
+			return "http://cdn.phanime.com/images/characters/cover/" + this.get('cover_photo');
+		} else {
+			return this.get('settings.naImage');
+		}
+		
 	}.property('cover_photo'),	
 
 	full_name: function() {
