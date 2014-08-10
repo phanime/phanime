@@ -5,12 +5,18 @@
 			<div class="description thin-text">{{description}}</div>
 		</div>
 		<div class="col-md-9">
-			<div class="row anime-info">
-				<div class="col-sm-12" style="padding:0">
-				{{type}} |
-				{{episode_duration}} |
-				{{age_rating}}
+			<div class="row">
+				<div class="col-sm-9" style="padding:0">
+					<ul class="anime-info">
+						<li>{{type}}</li> 
+						<li>{{episode_duration}} mins.</li>
+						<li>{{age_rating}}</li>
+						<li>{{total_episodes}}</li>
+						<li>Airing from {{format-date-default start_date}} to {{#if end_date}}{{end_date}}{{else}} - {{/if}}</li>
+					</ul>
+				</div>
 
+				<div class="col-sm-3">
 				{{#if session.isAuthenticated}}
 					{{session.account.username}}
 					<button class="btn btn-success btn-sm btn-beside" {{action 'toggle_ep_add'}}>+</button>
@@ -31,6 +37,9 @@
 				{{/if}}
 			{{/if}}
 
+			<h3 class="thin-text">Episodes</h3>
+
+			{{#if episodes}}
 			<div class="table-responsive">
 				<table class="table table-hover">
 					<thead>
@@ -52,6 +61,9 @@
 					</tbody>
 				</table>
 			</div>
+			{{else}}
+				No episodes found for this anime.
+			{{/if}}
 
 			<h3 class="thin-text">Casting</h3>
 
