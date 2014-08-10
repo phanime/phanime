@@ -20,14 +20,22 @@ export default DS.Model.extend({
 	
 	// Get full url of anime cover image
 	cover_image_url: function() {
-		return "http://cdn.phanime.com/images/anime/cover/" + this.get('cover_image');
+		if (this.get('cover_image')) {
+			return "http://cdn.phanime.com/images/anime/cover/" + this.get('cover_image');
+		} else {
+			return this.get('settings.naImage');
+		} 
 	}.property('cover_image'),
 
 	banner_image: attr(),
 
 	banner_image_url: function() {
-		return "http://cdn.phanime.com/images/anime/banner/" + this.get('banner_image');
-	}.property('banner_image_url'),
+		if (this.get('banner_image')) {
+			return "http://cdn.phanime.com/images/anime/banner/" + this.get('banner_image');
+		} else {
+			return this.get('settings.naImage');
+		} 
+	}.property('banner_image'),
 
 	type: attr(),
 	status: attr(),
