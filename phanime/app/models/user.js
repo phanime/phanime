@@ -15,4 +15,18 @@ export default DS.Model.extend({
 	last_activity: attr(),
 	anime_library_watched_minutes: attr(),
 	anime_library_count: attr(),
+
+	avatarUrl: function() {
+		if (this.get('avatar')) {
+
+			return "http://cdn.phanime.com/images/users/avatar/" + this.get('avatar');
+
+		} else {
+			return this.get('settings.naImage');
+		}
+	}.property('avatar'),
+
+	profileBannerUrl: function() {
+		return "http://cdn.phanime.com/images/users/profileBanner/" + this.get('profileBanner');
+	}.property('profileBanner')
 });

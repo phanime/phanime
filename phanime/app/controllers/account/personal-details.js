@@ -12,4 +12,25 @@ export default Ember.ObjectController.extend({
 		});
 	}.observes('extraParams').on('init'),
 	extraParams: null,
+	actions: {
+		filesUploaded: function() {
+			this.get('session.currentUser').then(function(user) {
+				user.set('avatar', user.get('id'));
+
+				var onSuccess = function() {
+					var msg = "Avatar updated";
+					console.log(msg);
+					Notify.success(msg);
+				};
+
+				var onFailure = function() {
+					var msg = "Something went wrong, avatar was not updated";
+					console.log(msg);
+					Notify.warning(msg);
+				};
+
+				user.save().then(onSuccess, onFailure);		
+			});			
+		}
+	}
 });
