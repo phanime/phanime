@@ -84,7 +84,14 @@ class LibraryEntryController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$inputs = Input::get('libraryEntry');
+		$libraryEntry = LibraryEntry::find($id);
+
+		$libraryEntry->status = $inputs['status'];
+
+		$libraryEntry->save();
+
+		return $this->show($id);
 	}
 
 

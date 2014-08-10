@@ -33,5 +33,5 @@ export default DS.Model.extend({
 		return "http://cdn.phanime.com/images/users/profileBanner/" + this.get('profileBanner');
 	}.property('profileBanner'),
 
-	libraryEntries: hasMany('libraryEntry', {async:true})
+	library_entries: hasMany('libraryEntry', {async:true})
 });
