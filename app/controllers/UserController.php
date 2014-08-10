@@ -43,10 +43,18 @@ class UserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id);
+		$userbs = User::with('libraryEntries')->where('id', '=', $id)->take(1)->get();
+
+
+		// It's only going to loop once, so we do a break right at the end (Although probably unncessary)
+		foreach($userbs as $userb) {
+			$user = $userb->toArray();
+			$user['library_entries'] = $userb->libraryEntries->lists('id');
+			break;
+		}
 
 		return Response::json(array(
-			'users' => $user->toArray()),
+			'users' => $user),
 			200
 		);
 	}
