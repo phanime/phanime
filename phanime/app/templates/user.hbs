@@ -1,7 +1,7 @@
 <div class="fancy-heading">
 	<div class="container">
 		<div class="user-important">
-			<div class="user-avatar" style="background-image: url('{{unbound avatarUrl}}')"></div>
+			{{#link-to 'account.personalDetails'}}<div class="user-avatar" style="background-image: url('{{unbound avatarUrl}}')"></div>{{/link-to}}
 			
 			<h1 class="username">{{username}}</h1>
 		</div>
@@ -9,4 +9,6 @@
 	<div class="banner-gradient"></div>
 </div>
 
-{{outlet}}
+<div class="container main-content">
+	{{outlet}}
+</div>

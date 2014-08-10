@@ -58,7 +58,9 @@ Router.map(function() {
 	});
 
 	// Users related routes
-	this.resource('user', { path: 'users/:username' });
+	this.resource('user', { path: 'users/:username' }, function() {
+		this.route('library');
+	});
 
 	// Search
 

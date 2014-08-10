@@ -252,12 +252,17 @@ textarea {
 	border: 3px solid #fff;
 	box-shadow: 0 0 15px rgba(0,0,0,0.2);
 	background-color: #F7F7F7;
-	padding: 10px 15px;
+	padding: 5px;
 	-webkit-animation: resize-width 0.75s; /* Safari 4+ */
 	-moz-animation: resize-width 0.75s; /* Fx 5+ */
 	-o-animation: resize-width 0.75s; /* Opera 12+ */
 	animation: resize-width 0.75s; /* IE 10+ */
 }
+
+	.global-add-wrapper .add-library-button {
+		border-radius: 2px;
+		border-color: none;
+	}
 
 
 /*-----------------------------*/

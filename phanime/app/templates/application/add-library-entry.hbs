@@ -1,6 +1,21 @@
 {{#if isAddingGlobal}}
 	<div class="global-add-wrapper">		
-		Stuff
+		{{#if isAnime}}
+			<div class="dropup">
+				<button class="btn btn-default dropdown-toggle add-library-button" type="button" id="dropdownMenu1" data-toggle="dropdown">
+					{{currentWatchStatus}}
+					<span class="caret"></span>
+				</button>
+
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+					{{#each watchStatuses}}
+						<li role="presentation"><a href="#" role="menuitem" {{action 'changeWatchStatus' this}} >{{this}}</a>
+					{{/each}}
+				</ul>
+			</div>
+		{{else}}
+			<h4>Visit an anime page</h4>
+		{{/if}}
 	</div>
 {{/if}}
 
