@@ -52,6 +52,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{session.currentUser.username}}<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li>{{#link-to 'user' session.currentUser}}Profile{{/link-to}}</li>
+							<li>{{#link-to 'user.library' session.currentUser}}Library{{/link-to}}</li>
 							<li class="divider"></li>
 							<li class="dropdown-header">Account Settings</li>
 							<li>{{#link-to 'account.security'}}Security{{/link-to}}</li>
