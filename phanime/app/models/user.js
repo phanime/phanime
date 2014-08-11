@@ -20,7 +20,7 @@ export default DS.Model.extend({
 	avatarUrl: function() {
 		if (this.get('avatar')) {
 
-			return "http://cdn.phanime.com/images/users/avatar/" + this.get('avatar');
+			return "http://phanime.s3.amazonaws.com/images/users/avatar/" + this.get('avatar');
 
 		} else {
 

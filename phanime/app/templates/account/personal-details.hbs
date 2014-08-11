@@ -1,11 +1,15 @@
 <div class="well">
-	<form role="form" class="form-horizontal">
-		<div class="row">
-			<div class="col-sm-12">
-			{{file-upload url="/api/v1/upload/users" extraParams=extraParams action="filesUploaded"}}
-			</div>
-			<div class="col-sm-12">
-				<button type="button" {{action 'changePassword'}} class="btn btn-primary btn-beside">Change Password</button>
+	<form role="form">
+		<div class="form-group">
+			<label>Avatar</label>
+			<div class="row">
+				<div class="col-sm-6">
+					{{file-upload url="/api/v1/upload/users" extraParams=extraParams action="filesUploaded"}}
+				</div>
+
+				<div class="col-sm-6">
+					<img class="img img-lg" {{bind-attr src=session.currentUser.avatarUrl}}>
+				</div>
 			</div>
 		</div>
 	</form>
