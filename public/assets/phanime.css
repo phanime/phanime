@@ -184,6 +184,9 @@ textarea {
 .footer {
 	text-align: center;
 	font-style: italic;
+	background-color: #83BD40;
+	color: #fff;
+	padding: 20px;
 }
 
 	/*---------------------------------*/
@@ -195,15 +198,15 @@ textarea {
 	}
 
 	.img.img-sm {
-
+		width: 50px;
 	}
 
 	.img.img-md {
-
+		width: 100px;
 	}
 
 	.img.img-lg {
-
+		width: 190px;
 	}
 
 

@@ -198,15 +198,15 @@ textarea {
 	}
 
 	.img.img-sm {
-
+		width: 50px;
 	}
 
 	.img.img-md {
-
+		width: 100px;
 	}
 
 	.img.img-lg {
-
+		width: 190px;
 	}
 
 
