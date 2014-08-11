@@ -40,6 +40,7 @@ class LibraryEntryController extends \BaseController {
 		$libraryEntry->status = $inputs['status'];
 		$libraryEntry->anime_id = $inputs['anime_id'];
 		$libraryEntry->user_id = $inputs['user_id'];
+		$libraryEntry->episodes_seen = $inputs['episodes_seen'];
 
 		// Defaults
 		$libraryEntry->rewatched_count = 0;

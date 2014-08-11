@@ -79,6 +79,13 @@ export default Ember.ObjectController.extend({
  			
  			if (currentEntry) {
 
+ 				// Check if status actually changed
+ 				if(currentEntry.get('status') === status) {
+ 					return; 
+ 				}
+
+ 				// If control reaches here, the statuses are different
+
 				libraryEntry = currentEntry;
 
 				// Update the status
@@ -101,12 +108,19 @@ export default Ember.ObjectController.extend({
 			} else {
 
 				this.get('session.currentUser').then(function(user) {
-					
+					var episodes_seen;
+
+					if (status === 'Completed') {
+						episodes_seen = anime.get('total_episodes');
+					} else {
+						episodes_seen = null;
+					}
+
 					libraryEntry = store.createRecord('libraryEntry', {
 						status: self.get('currentWatchStatus'),
 						anime_id: anime,
 						user_id: user,
-						episodes_seen: anime.get('total_episodes'),
+						episodes_seen: episodes_seen,
 					});
 
 
