@@ -184,6 +184,9 @@ textarea {
 .footer {
 	text-align: center;
 	font-style: italic;
+	background-color: #83BD40;
+	color: #fff;
+	padding: 20px;
 }
 
 	/*---------------------------------*/
