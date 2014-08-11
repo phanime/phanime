@@ -46,7 +46,7 @@ export default Ember.ObjectController.extend({
 
 
 	// Version Number of phanime
-	phanime_version_number: "v0.1.5 alpha",
+	phanime_version_number: "v0.2.0 alpha",
 
 
 
@@ -86,113 +86,113 @@ export default Ember.ObjectController.extend({
 		triggerAddingGlobal: function() {
 			this.toggleProperty('isAddingGlobal');
 
-			console.log('stuff');
-			if (this.get('isAddingGlobal') === true) {
+			// console.log('stuff');
+			// if (this.get('isAddingGlobal') === true) {
 
-				if (this.get('isAnime') === true) {
-
-
-
-					var anime = this.get('currentAnime');	
-					var self = this;
-
-					this.get('session.currentUser').then(function(user) {
-						user.get('library_entries').then(function(entries) {
-
-							console.log(entries);
-							console.log(entries.findBy('user_id', '1'));
-
-							var entry = entries.find(function(item) {
-								console.log(item);
-								console.log(anime);
-
-								item.get('anime_id').then(function(entryAnime) {
-
-									self.set('entryCondition', entryAnime.get('id') === anime.get('id'));
-
-									if(entryAnime.get('id') === anime.get('id')) {
-										self.set('currentEntry', item);
-										self.set('currentWatchStatus', item.get('status'));
-									}
-
-								});
-
-								return self.get('entryCondition');
-							});
-
-							self.set('currentEntry', entry);
-
-						});	
-					});
+			// 	if (this.get('isAnime') === true) {
 
 
 
-				}				
-			}
+			// 		var anime = this.get('currentAnime');	
+			// 		var self = this;
+
+			// 		this.get('session.currentUser').then(function(user) {
+			// 			user.get('library_entries').then(function(entries) {
+
+			// 				console.log(entries);
+			// 				console.log(entries.findBy('user_id', '1'));
+
+			// 				var entry = entries.find(function(item) {
+			// 					console.log(item);
+			// 					console.log(anime);
+
+			// 					item.get('anime_id').then(function(entryAnime) {
+
+			// 						self.set('entryCondition', entryAnime.get('id') === anime.get('id'));
+
+			// 						if(entryAnime.get('id') === anime.get('id')) {
+			// 							self.set('currentEntry', item);
+			// 							self.set('currentWatchStatus', item.get('status'));
+			// 						}
+
+			// 					});
+
+			// 					return self.get('entryCondition');
+			// 				});
+
+			// 				self.set('currentEntry', entry);
+
+			// 			});	
+			// 		});
+
+
+
+			// 	}				
+			// }
 		},
-		changeWatchStatus: function(status) {
-			var currentEntry = this.get('currentEntry');
-			var libraryEntry;
+		// changeWatchStatus: function(status) {
+		// 	var currentEntry = this.get('currentEntry');
+		// 	var libraryEntry;
 
-			this.set('currentWatchStatus', status);
-			var anime = this.get('currentAnime');
+		// 	this.set('currentWatchStatus', status);
+		// 	var anime = this.get('currentAnime');
 
-			// We should create or update the entry
-			// depending on if the entry already exists
-			// or not
-			var store = this.store;
-			var self = this;
+		// 	// We should create or update the entry
+		// 	// depending on if the entry already exists
+		// 	// or not
+		// 	var store = this.store;
+		// 	var self = this;
  			
- 			if (currentEntry) {
+ 	// 		if (currentEntry) {
 
-				libraryEntry = currentEntry;
+		// 		libraryEntry = currentEntry;
 
-				// Update the status
-				libraryEntry.set('status', status);
+		// 		// Update the status
+		// 		libraryEntry.set('status', status);
 
-				var onSuccess = function() {
-					var msg = "Updated status";
-					console.log(msg);
-					Notify.success(msg);
-				};
+		// 		var onSuccess = function() {
+		// 			var msg = "Updated status";
+		// 			console.log(msg);
+		// 			Notify.success(msg);
+		// 		};
 
-				var onFailure = function() {
-					var msg = "Something went wrong, entry was not updated";
-					console.log(msg);
-					Notify.success(msg);
-				};
+		// 		var onFailure = function() {
+		// 			var msg = "Something went wrong, entry was not updated";
+		// 			console.log(msg);
+		// 			Notify.success(msg);
+		// 		};
 
-				libraryEntry.save().then(onSuccess, onFailure);
+		// 		libraryEntry.save().then(onSuccess, onFailure);
 
-			} else {
+		// 	} else {
 
-				this.get('session.currentUser').then(function(user) {
+		// 		this.get('session.currentUser').then(function(user) {
 					
-					libraryEntry = store.createRecord('libraryEntry', {
-						status: self.get('currentWatchStatus'),
-						anime_id: anime,
-						user_id: user
-					});
+		// 			libraryEntry = store.createRecord('libraryEntry', {
+		// 				status: self.get('currentWatchStatus'),
+		// 				anime_id: anime,
+		// 				user_id: user
+		// 			});
 
 
-					var onSuccess = function() {
-						var msg = "Saved to your library";
-						console.log(msg);
-						Notify.success(msg);
-					};
+		// 			var onSuccess = function() {
+		// 				var msg = "Saved to your library";
+		// 				console.log(msg);
+		// 				Notify.success(msg);
+		// 			};
 
-					var onFailure = function() {
-						var msg = "Something went wrong, entry was not saved";
-						console.log(msg);
-						Notify.success(msg);
-					};
+		// 			var onFailure = function() {
+		// 				var msg = "Something went wrong, entry was not saved";
+		// 				console.log(msg);
+		// 				Notify.success(msg);
+		// 			};
 
 
-					libraryEntry.save().then(onSuccess, onFailure);
-				});
+		// 			libraryEntry.save().then(onSuccess, onFailure);
+		// 		});
 
-			}
-		}
+		// 	}
+		// }
 	},
 
 	// isEntryAddedCompute: function() {
@@ -215,23 +215,23 @@ export default Ember.ObjectController.extend({
 
 	// }.observes('session.currentUser').on('init'),
 
-	currentEntry: null,
-	entryCondition: false,
+	// currentEntry: null,
+	// entryCondition: false,
 
-	// GLOBAL ADD anime library entry (for now)
-	isAnime: function() {
-		return this.get('currentRouteName') === 'anime.index';
-	}.property('currentRouteName'),
+	// // GLOBAL ADD anime library entry (for now)
+	// isAnime: function() {
+	// 	return this.get('currentRouteName') === 'anime.index';
+	// }.property('currentRouteName'),
 
 	
-	currentAnime: null,
-	currentWatchStatus: 'Add to Library',
+	// currentAnime: null,
+	// currentWatchStatus: 'Add to Library',
 
-	watchStatuses: [
-		"Watching",
-		"Completed",
-		"Plan to watch",
-		"On hold",
-		"Dropped",
-	],
+	// watchStatuses: [
+	// 	"Watching",
+	// 	"Completed",
+	// 	"Plan to watch",
+	// 	"On hold",
+	// 	"Dropped",
+	// ],
 });
