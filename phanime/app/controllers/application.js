@@ -46,7 +46,7 @@ export default Ember.ObjectController.extend({
 
 
 	// Version Number of phanime
-	phanime_version_number: "v0.2.0 alpha",
+	phanime_version_number: "v0.2.1 alpha",
 
 
 
