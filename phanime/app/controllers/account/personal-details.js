@@ -10,7 +10,7 @@ export default Ember.ObjectController.extend({
 			self.set('avatarParams', "&imageCategory=avatar&contentID=" + user.get('id') + "&imageFor=users");
 			self.set('profileBannerParams', "&imageCategory=profileBanner&contentID=" + user.get('id') + "&imageFor=users");
 		});
-	}.observes('extraParams').on('init'),
+	}.observes('avatarParams', 'profileBannerParams').on('init'),
 	avatarParams: null,
 	profileBannerParams: null,
 	actions: {

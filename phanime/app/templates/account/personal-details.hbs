@@ -17,15 +17,18 @@
 
 		<div class="form-group">
 			<label>Profile Banner</label>
-			<div class="row">
-				<div class="col-sm-6">
+			<div class="row" style="margin-bottom: 20px">
+				<div class="col-sm-12">
 					{{file-upload url="/api/v1/upload/users" extraParams=profileBannerParams action="profileBannerUploaded"}}
 				</div>
+			</div>
 
-				<div class="col-sm-6">
-					<img class="img img-lg" {{bind-attr src=session.currentUser.avatarUrl}}>
+			<div class="row">
+				<div class="col-sm-12">
+					<img style="height: 200px" {{bind-attr src=session.currentUser.profileBannerUrl}}>
 				</div>
 			</div>
+
 		</div>
 
 	</form>
