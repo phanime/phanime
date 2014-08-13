@@ -53,7 +53,6 @@ class UploadController extends \BaseController {
 			"acl" => "public-read",
 			"awsaccesskeyid" => $s3->getAwsAccessKeyId(),
 			"bucket" => $s3->getBucket(),
-
 			"key" => "images/" . $directory . "/" .  $imageContentDirectory ."/" . $imageName,
 			"policy" => $s3->getPolicy(true),
 			"signature" => $s3->getSignedPolicy(),
