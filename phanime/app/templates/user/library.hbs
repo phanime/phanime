@@ -1,3 +1,26 @@
+<div class="row">
+
+	{{#each model.library_entries}}
+		<div class="col-sm-3">
+
+			<div class="libraryEntryCard img-lg" {{bind-attr style=anime.cover_image_url_style}}>
+				
+				<div class="important">
+					{{anime.title}}
+				</div>
+
+				<div class="banner-gradient"></div>
+				
+				<div class="progress" style="width: {{unbound get-percentage anime.total_episodes episodes_seen}}"></div>
+			</div>
+
+		</div>
+	{{/each}}
+
+
+</div>
+
+
 <table class="table">
 	<thead style="border-bottom: 3px solid #ccc">
 		<tr>

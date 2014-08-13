@@ -27,6 +27,10 @@ export default DS.Model.extend({
 		} 
 	}.property('cover_image'),
 
+	cover_image_url_style: function() {
+		return "background-image: url('" + this.get('cover_image_url') + "')";
+	}.property('cover_image_url'),
+
 	banner_image: attr(),
 
 	banner_image_url: function() {
