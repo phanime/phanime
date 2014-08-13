@@ -20,18 +20,18 @@ export default DS.Model.extend({
 	avatarUrl: function() {
 		if (this.get('avatar')) {
 
-			return "http://phanime.s3.amazonaws.com/images/users/avatar/" + this.get('avatar');
+			return "http://phanime.s3.amazonaws.com/images/users/avatar/" + this.get('id') + "/" + this.get('avatar');
 
 		} else {
 
 			return this.get('settings.naImage');
 
 		}
-	}.property('avatar'),
+	}.property('avatar', 'id'),
 
 	profileBannerUrl: function() {
-		return "http://cdn.phanime.com/images/users/profileBanner/" + this.get('profileBanner');
-	}.property('profileBanner'),
+		return "http://cdn.phanime.com/images/users/profileBanner/" + this.get('id') + "/" + this.get('profileBanner');
+	}.property('profileBanner', 'id'),
 
 	library_entries: hasMany('libraryEntry', {async:true})
 });

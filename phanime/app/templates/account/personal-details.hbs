@@ -4,7 +4,7 @@
 			<label>Avatar</label>
 			<div class="row">
 				<div class="col-sm-6">
-					{{file-upload url="/api/v1/upload/users" extraParams=extraParams action="filesUploaded"}}
+					{{file-upload url="/api/v1/upload/users" extraParams=avatarParams action="filesUploaded"}}
 				</div>
 
 				<div class="col-sm-6">
@@ -12,5 +12,21 @@
 				</div>
 			</div>
 		</div>
+
+		<hr>
+
+		<div class="form-group">
+			<label>Profile Banner</label>
+			<div class="row">
+				<div class="col-sm-6">
+					{{file-upload url="/api/v1/upload/users" extraParams=profileBannerParams action="profileBannerUploaded"}}
+				</div>
+
+				<div class="col-sm-6">
+					<img class="img img-lg" {{bind-attr src=session.currentUser.avatarUrl}}>
+				</div>
+			</div>
+		</div>
+
 	</form>
 </div>
