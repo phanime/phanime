@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.RESTAdapter.extend({
-	namespace: 'api/v1'
+	namespace: 'api/v1',
+	coalesceFindRequests: true,
 });
