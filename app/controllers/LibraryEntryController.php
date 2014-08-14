@@ -13,11 +13,11 @@ class LibraryEntryController extends \BaseController {
 		$userId = Input::get('userId');
 
 		if ($userId) {
-			$libraryEntries = LibraryEntry::where('user_id', '=', $userId)->get();
+			$libraryEntries = LibraryEntry::with('anime')->where('user_id', '=', $userId)->get();
 		} else if ($ids) {
-			$libraryEntries = LibraryEntry::whereIn('id', $ids)->get();
+			$libraryEntries = LibraryEntry::with('anime')->whereIn('id', $ids)->get();
 		} else {
-			$libraryEntries = LibraryEntry::all();
+			$libraryEntries = LibraryEntry::with('anime')->get();
 		}
 
 		return Response::json(array(
@@ -67,10 +67,11 @@ class LibraryEntryController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$libraryEntries = LibraryEntry::find($id);
+		//$libraryEntries = LibraryEntry::find($id);
+		$libraryEntries = LibraryEntry::with('anime')->where('id', '=', $id)->take(1)->get();
 
 		return Response::json(array(
-			'libraryEntry' => $libraryEntries
+			'libraryEntry' => $libraryEntries[0]
 			),
 			200
 		);
