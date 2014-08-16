@@ -1,6 +1,0 @@
-SELECT a.id, c.term_id
-FROM wp_posts a
-JOIN wp_term_relationships b ON a.id = b.object_id
-JOIN wp_term_taxonomy c ON c.term_id = b.term_taxonomy_id
-WHERE a.post_type =  'anime'
-AND c.taxonomy =  'genre'
