@@ -1,0 +1,9 @@
+<template name="animeExplore">
+
+	<div class="container" style="padding-top: 30px">
+		{{#each this}}
+			<div><a href="{{pathFor 'anime'}}">{{canonicalTitle}}</a></div>
+		{{/each}}
+	</div>
+
+</template>
