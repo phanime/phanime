@@ -1,0 +1,15 @@
+<template name="characters">
+	{{#each this}}
+		<div class="row">
+
+			<div class="col-sm-9">
+				<a href="{{pathFor 'character'}}">{{fullName}}</a>
+			</div>
+
+			<div class="col-sm-3">
+				{{createdAt}}
+			</div>
+
+		</div>
+	{{/each}}
+</template>
