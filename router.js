@@ -9,6 +9,19 @@ Router.map(function () {
 
 	this.route('anime', {path: '/anime/:slug', layoutTemplate: 'defaultLayout'});
 
+
+	// Character related routes
+
+	this.route('characters', {layoutTemplate: 'defaultLayout'});
+	this.route('character', {layoutTemplate: 'defaultLayout'});
+
+
+	// People related routes
+
+	this.route('people', {layoutTemplate: 'defaultLayout'});
+	this.route('person', {layoutTemplate: 'defaultLayout'});
+
+
 	// Search
 
 	this.route('search', {path: 'search/:query'});

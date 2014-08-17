@@ -7,6 +7,8 @@ Characters = new Meteor.Collection("characters", {
 			doc.coverImageUrl = 'na.gif';
 		}
 
+		doc.fullName = doc.firstName + " " + doc.lastName;
+
 		return doc;
 	}
 });
