@@ -23,7 +23,7 @@ Meteor.publish("animeBySlug", function(animeSlug) {
 	return [
 		Anime.find({slug: animeSlug}),
 		Episodes.find({animeId: anime._id}),
-		Castings.find({animeId: anime._id})
-		LibraryEntries.findOne({animeId: anime._id, userId: this.userId})
+		Castings.find({animeId: anime._id}),
+		LibraryEntries.find({animeId: anime._id, userId: this.userId})
 	];
 });

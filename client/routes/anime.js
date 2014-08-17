@@ -20,6 +20,7 @@ AnimeController = RouteController.extend({
 		if (this.ready()) {
 			anime.episodes = Episodes.find({animeId: anime._id});
 			anime.castings = Castings.find({animeId: anime._id});
+			anime.libraryEntry = LibraryEntries.findOne({animeId: anime._id});
 		}
 
 
