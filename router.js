@@ -22,6 +22,10 @@ Router.map(function () {
 	this.route('person', {path: '/people/:_id/:fullNameSlug', layoutTemplate: 'defaultLayout'});
 
 
+	// User related routes
+	this.route('user', {path: '/users/:username', layoutTemplate: 'defaultLayout'});
+	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'defaultLayout'})
+
 	// Search
 
 	this.route('search', {path: 'search/:query'});

@@ -28,7 +28,7 @@ Template.addLibraryEntry.events({
 			if (status !== currentEntry.status) {
 				LibraryEntries.update({_id: currentEntry._id}, {$set: {status: status}});
 			} else {
-				console.log('Statuses same');
+				console.log('Statuses same, don\'t update');
 			}
 
 		} else {
