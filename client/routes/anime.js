@@ -17,9 +17,10 @@ AnimeController = RouteController.extend({
 
 
 		// Add episodes once the subscription is ready
-		// if (this.ready()) {
-		// 	anime.episodes = Episodes.find({animeId: this.params.Id});
-		// }
+		if (this.ready()) {
+			anime.episodes = Episodes.find({animeId: anime._id});
+			anime.castings = Castings.find({animeId: anime._id});
+		}
 
 
 		return anime;
