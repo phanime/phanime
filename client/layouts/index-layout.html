@@ -1,0 +1,10 @@
+<template name="indexLayout">
+
+	{{#if currentUser}}
+		{{> defaultLayout}}
+	{{else}}
+		{{> yield}}
+	{{/if}}
+
+
+</template>

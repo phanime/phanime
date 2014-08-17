@@ -21,7 +21,6 @@ handlebars@1.0.0
 html-tools@1.0.0
 htmljs@1.0.0
 id-map@1.0.0
-insecure@1.0.0
 iron:core@0.3.2
 iron:dynamic-template@0.3.0
 iron:layout@0.3.0

@@ -1,6 +1,6 @@
 Router.map(function () {
 
-	this.route('index', {path: '/', template: 'index', layoutTemplate: 'defaultLayout'});
+	this.route('index', {path: '/', template: 'index', layoutTemplate: 'indexLayout'});
 
 	// Anime related routes
 	this.route('animeExplore', {path: '/anime/explore', layoutTemplate: 'defaultLayout'});
@@ -34,11 +34,19 @@ var routerBeforeHooks = {
 			this.render('login');
 			pause();
 		}
+	},
+	landingPage: function(pause) {
+		if (!(Meteor.loggingIn() || Meteor.user())) {
+			this.render('landing');
+			pause();
+		}		
 	}
 }
 
 // (Global) Before hooks for any route
+Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 Router.onBeforeAction(routerBeforeHooks.isLoggedIn);
+
 
 // // Before hooks for specific routes
 // // Must be equal to the route names of the Iron Router route map
