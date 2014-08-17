@@ -1,18 +1,18 @@
 <template name="addLibraryEntry">
 	<div class="btn-group dropup">
 
-		<button class="btn btn-default dropdown-toggle add-library-button" type="button" id="dropdownMenu1" data-toggle="dropdown">
-			{{#if status}}
-				{{status}}
+		<button class="btn btn-default dropdown-toggle add-library-button" type="button" id="watchStatus" data-toggle="dropdown">
+			{{#if libraryEntry.status}}
+				{{libraryEntry.status}}
 			{{else}}
 				Add to library
 			{{/if}}
 			<span class="caret"></span>
 		</button>
 
-		<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		<ul class="dropdown-menu" role="menu" aria-labelledby="watchStatus">
 			{{#each watchStatuses}}
-				<li role="presentation"><a role="menuitem" {{action 'changeWatchStatus' this}} >{{this}}</a></li>
+				<li><a class="status-item" data-status={{this}}>{{this}}</a></li>
 			{{/each}}
 		</ul>
 	</div>
