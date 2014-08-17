@@ -1,0 +1,19 @@
+<template name="addLibraryEntry">
+	<div class="btn-group dropup">
+
+		<button class="btn btn-default dropdown-toggle add-library-button" type="button" id="dropdownMenu1" data-toggle="dropdown">
+			{{#if status}}
+				{{status}}
+			{{else}}
+				Add to library
+			{{/if}}
+			<span class="caret"></span>
+		</button>
+
+		<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			{{#each watchStatuses}}
+				<li role="presentation"><a role="menuitem" {{action 'changeWatchStatus' this}} >{{this}}</a></li>
+			{{/each}}
+		</ul>
+	</div>
+</template>

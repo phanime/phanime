@@ -16,7 +16,7 @@ Meteor.publish("animeById", function(animeId) {
 
 Meteor.publish("animeBySlug", function(animeSlug) {
 	var anime = Anime.findOne({slug: animeSlug});
-	var castings = Castings.find({animeId: anime._id});
+	//var castings = Castings.find({animeId: anime._id});
 
 	// Get characters
 
@@ -24,5 +24,6 @@ Meteor.publish("animeBySlug", function(animeSlug) {
 		Anime.find({slug: animeSlug}),
 		Episodes.find({animeId: anime._id}),
 		Castings.find({animeId: anime._id})
-	]
+		LibraryEntries.findOne({animeId: anime._id, userId: this.userId})
+	];
 });
