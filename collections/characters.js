@@ -8,6 +8,7 @@ Characters = new Meteor.Collection("characters", {
 		}
 
 		doc.fullName = doc.firstName + " " + doc.lastName;
+		doc.fullNameSlug = doc.firstName.toLowerCase() + "-" + doc.lastName.toLowerCase();
 
 		return doc;
 	}

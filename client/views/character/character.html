@@ -1,0 +1,29 @@
+<template name="character">
+	<div class="container main-content">
+		<div class="row">
+			<div class="col-sm-3">
+				<img class="img" src={{coverImageUrl}}>
+			</div>
+
+			<div class="col-sm-9">
+
+				<div class="row" style="margin-bottom: 10px;">
+					<div class="col-sm-12">
+						{{#if currentUser}}
+							<button type="button" class="btn btn-primary btn-beside">Edit</button>
+						{{/if}}
+					</div>
+				</div>
+
+				{{#if currentUser}}
+					{{#if isEditing}}
+						{{partial 'characters/inline-edit'}}
+					{{/if}}
+				{{/if}}
+
+				<h2 style="margin-top: 0" class="thin-text">{{fullName}}</h2>
+				<div class="description thin-text">{{biography}}</div>
+			</div>
+		</div>
+	</div>
+</template>

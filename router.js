@@ -13,13 +13,13 @@ Router.map(function () {
 	// Character related routes
 
 	this.route('characters', {layoutTemplate: 'defaultLayout'});
-	this.route('character', {layoutTemplate: 'defaultLayout'});
+	this.route('character', {path: 'characters/:_id/:fullNameSlug', layoutTemplate: 'defaultLayout'});
 
 
 	// People related routes
 
 	this.route('people', {layoutTemplate: 'defaultLayout'});
-	this.route('person', {layoutTemplate: 'defaultLayout'});
+	this.route('person', {path: '/people/:_id/:fullNameSlug', layoutTemplate: 'defaultLayout'});
 
 
 	// Search
