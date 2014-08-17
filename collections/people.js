@@ -7,6 +7,9 @@ People = new Meteor.Collection("people", {
 			doc.coverImageUrl = 'na.gif';
 		}
 
+		doc.fullName = doc.firstName + " " + doc.lastName;
+		doc.fullNameSlug = doc.firstName.toLowerCase() + "-" + doc.lastName.toLowerCase();
+
 		return doc;
 	}
 });
