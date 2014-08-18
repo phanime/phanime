@@ -1,1 +1,6 @@
 MONGO_URL=mongodb://localhost:27017/phanime_dev meteor
+
+
+sudo mkdir /var/run/mongodb
+sudo chmod -R 777 /var/run/mongodb
+

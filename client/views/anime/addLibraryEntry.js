@@ -27,6 +27,7 @@ Template.addLibraryEntry.events({
 			// But make sure the status is different
 			if (status !== currentEntry.status) {
 				LibraryEntries.update({_id: currentEntry._id}, {$set: {status: status}});
+				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated to ' + status);
 			} else {
 				console.log('Statuses same, don\'t update');
 			}
