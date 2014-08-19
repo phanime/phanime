@@ -13,3 +13,34 @@ Characters = new Meteor.Collection("characters", {
 		return doc;
 	}
 });
+
+// Characters.attachSchema(new SimpleSchema({
+
+// 	coverImage: {
+// 		type: String,
+// 		label: "Cover Image",
+// 	},
+// 	firstName: {
+// 		type: String,
+// 		label: "First Name"
+// 	},
+// 	lastName: {
+// 		type: String,
+// 		label: "Last Name"
+// 	},
+// 	japaneseName: {
+// 		type: String,
+// 		label: "Japanese Name"
+// 	},
+// 	alternateName: {
+// 		type: String,
+// 		label: "Alternate Name"
+// 	},
+// 	biography: {
+// 		type: String,
+// 		label: "Biography",
+// 		max: 10000
+// 	}
+
+
+// }));
