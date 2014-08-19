@@ -1,0 +1,12 @@
+<template name="userSummary">
+	<div class="fancy-heading" style="background-image: url('{{profileBannerImageUrl}}')">
+		<div class="container">
+			<div class="user-important">
+				<a href="{{pathFor 'account.personalDetails'}}"><div class="user-avatar" style="background-image: url('{{avatarImageUrl}}')"></div></a>
+				
+				<h1 class="username">{{username}}</h1>
+			</div>
+		</div>
+		<div class="banner-gradient"></div>
+	</div>
+</template>

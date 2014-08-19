@@ -23,8 +23,8 @@ Router.map(function () {
 
 
 	// User related routes
-	this.route('user', {path: '/users/:username', layoutTemplate: 'defaultLayout'});
-	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'defaultLayout'})
+	this.route('user', {path: '/users/:username', layoutTemplate: 'userProfileLayout'});
+	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'})
 
 	// Search
 
