@@ -24,7 +24,7 @@ Router.map(function () {
 
 	// User related routes
 	this.route('user', {path: '/users/:username', layoutTemplate: 'userProfileLayout'});
-	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'})
+	this.route('user.library', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'})
 
 	// Search
 

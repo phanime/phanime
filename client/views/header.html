@@ -17,9 +17,34 @@
 					<li><a href="{{pathFor 'animeExplore'}}">Anime</a></li>
 					<li><a href="{{pathFor 'characters'}}">Characters</a></li>
 					<li><a href="{{pathFor 'people'}}">People</a></li>
+		
+
+
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					{{#if currentUser}}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.username}}<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{pathFor 'user' currentUser}}">Profile</a></li>
+								<li><a href="{{pathFor 'user.library' currentUser}}">Library</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Account Settings</li>
+								<li><a href="{{pathFor 'account.personalDetails'}}">Personal Details</a></li>
+								<li><a href="{{pathFor 'account.security'}}">Security</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Logout</a></li>			
+							</ul>
+						</li>
+					{{else}}
+						<li><a href="{{pathFor 'login'}}">Login</a></li>
+					{{/if}}
 				</ul>
 			</div>
+
 		</div>
+
 	</nav>
 
 	<div style="margin-top: 50px"></div>
