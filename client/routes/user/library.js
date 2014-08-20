@@ -14,7 +14,23 @@ UserLibraryController = RouteController.extend({
 
 	data: function () {
 		var user = Meteor.users.findOne({username: this.params.username});
-		user.libraryEntries = LibraryEntries.find({userId: user._id});
+		
+		if (this.ready()) {
+			user.libraryEntries = LibraryEntries.find({userId: user._id}).fetch();
+
+			user.libraryEntries.forEach(function(libraryEntry) {
+				libraryEntry.anime = Anime.findOne({_id: libraryEntry.animeId});
+			});
+
+			// // Attach anime to a library entry
+
+			// user.libraryEntries.fetch().forEach(function(libraryEntry) {
+			// 	libraryEntry.anime = Anime.findOne({_id: libraryEntry.animeId});
+			// });
+
+			console.log(user.libraryEntries);
+
+		}
 
 		return user;
 	}
