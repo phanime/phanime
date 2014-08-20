@@ -7,6 +7,9 @@ Anime = new Meteor.Collection("anime", {
 			doc.coverImageUrl = 'na.gif';
 		}
 
+		// Temporarily we'll just make title the canonicalTitle
+		doc.title = doc.canonicalTitle;
+
 		return doc;
 	}
 });

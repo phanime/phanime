@@ -2,10 +2,20 @@
 
 	<div class="container main-content">
 		{{#each libraryEntries}}
-			{{status}}
-			
-				{{anime.canonicalTitle}}
-		
+			<div class="col-sm-3">
+
+				<div class="libraryEntryCard img-lg" style="background-image: url('{{anime.coverImageUrl}}')">
+					
+					<div class="important">
+						{{anime.title}}
+					</div>
+
+					<div class="banner-gradient"></div>
+					
+					<div class="progress" style="width: {{getPercentage anime.totalEpisodes episodesSeen}}"></div>
+				</div>
+
+			</div>		
 		{{/each}}
 	</div>
 
