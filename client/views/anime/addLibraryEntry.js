@@ -1,10 +1,22 @@
-Template.addLibraryEntry.watchStatuses = [
+Template.addLibraryEntry.watchStatuses = function() {
+	var watchStatuses = [
 		"Watching",
 		"Completed",
 		"Plan to watch",
 		"On hold",
 		"Dropped",
-];
+	];
+
+	var currentEntry = this.libraryEntry;
+
+	if (currentEntry) {
+		// if entry exists, then add remove option
+		watchStatuses.push("Remove");
+	}
+
+	return watchStatuses;
+
+};
 
 
 Template.addLibraryEntry.events({
@@ -25,9 +37,19 @@ Template.addLibraryEntry.events({
 		if (currentEntry) {
 			// libraryEntry exists for the current user
 
+			// If the user has selected remove as status
+			// then we should delete their library entry
+			if (status === 'Remove') {
+				LibraryEntries.remove({_id: currentEntry._id});
+			}
+
 			// But make sure the status is different
 			if (status !== currentEntry.status) {
-				LibraryEntries.update({_id: currentEntry._id}, {$set: {status: status}});
+
+				LibraryEntries.update({_id: currentEntry._id}, {$set: {
+					status: status, 
+					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null)
+				}});
 				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated to ' + status);
 			} else {
 				console.log('Statuses same, don\'t update');
