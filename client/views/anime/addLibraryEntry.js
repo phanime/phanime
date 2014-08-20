@@ -16,6 +16,7 @@ Template.addLibraryEntry.events({
 		// we'll do with the .join
 		var status = $(this).toArray().join('');
 		
+		console.log(Meteor.userId());
 
 		// Set the current library entry (could be undefined)
 		var currentEntry = template.data.libraryEntry;
@@ -33,10 +34,16 @@ Template.addLibraryEntry.events({
 			}
 
 		} else {
+
+			// If the status is complete then we can add 
+			// episodes seen and set it to total episodes 
+			// of the anime, if available
+
 			var currentEntry = {
 				userId: Meteor.userId(),
 				animeId: anime._id,
-				status: status
+				status: status,
+				episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null)
 			};
 
 			LibraryEntries.insert(currentEntry, function(error, result) {
