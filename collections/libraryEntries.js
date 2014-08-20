@@ -11,6 +11,12 @@ LibraryEntries.allow({
 		// can only change your own library entries
 		return doc.userId === userId;
 
+	},
+	remove: function(userId, doc) {
+
+		// can only remove entries that you own
+		return doc.userId === userId;
+
 	}
 
 
