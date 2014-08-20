@@ -7,6 +7,7 @@ LibraryEntries.allow({
 		return (userId && doc.userId === userId);
 	},
 	update: function(userId, doc, fields, modifier) {
+
 		// can only change your own library entries
 		return doc.userId === userId;
 
