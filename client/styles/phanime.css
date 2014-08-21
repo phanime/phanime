@@ -550,6 +550,7 @@ textarea {
 		width: 200px;
 		height: 275px;
 		background-size: cover;
+		cursor: pointer;
 		background-position: center;
 		margin: 10px auto;
 		border: 5px solid #FFF;
@@ -557,8 +558,6 @@ textarea {
 		padding: 5px;
 		color: #ccc;
 		text-align: center;
-		font-size: 15px;
-		text-shadow: 0 0 3px rgba(0,0,0,.8);
 		-webkit-transition: all 0.3s ease-in-out;
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
@@ -571,7 +570,7 @@ textarea {
 	}
 
 	.libraryEntryCard .banner-gradient {
-		opacity: 0;
+		opacity: 1;
 		-webkit-transition: all 0.3s ease-in-out;
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
@@ -579,7 +578,7 @@ textarea {
 	}
 
 	.libraryEntryCard .important {
-		opacity: 0;
+		opacity: 1;
 		-webkit-transition: all 0.33s ease-in-out;
 		-moz-transition: all 0.33s ease-in-out;
 		-o-transition: all 0.33s ease-in-out;
@@ -587,7 +586,9 @@ textarea {
 		position: absolute;
 		bottom: 0;
 		z-index: 2;
-		font-size: 20px;
+		font-size: 15px;
+		padding: 5px;
+		text-shadow: 0 0 3px rgba(0,0,0,.8);	
 	}
 
 	.libraryEntryCard .progress {
@@ -603,6 +604,23 @@ textarea {
 		height: 5px;
 	}
 
+		.libraryEntryCard:hover .libraryEntryForm {
+			display: block;
+		}
+
+		.libraryEntryForm {
+			position: absolute;
+			display: none;
+			width: 200px;
+			background-color: #FFF;
+			right: -200px;
+			z-index: 3;
+			border: 5px solid #FFF;
+			border-left: none;
+			top: -5px;
+			height: 275px;
+			box-shadow: 0 0 15px rgba(0,0,0,0.5);
+		}
 
 
 
