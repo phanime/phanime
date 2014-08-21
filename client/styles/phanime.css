@@ -176,6 +176,8 @@ textarea {
 
 .main-content {
 	padding-top: 30px;
+	background-color: #fff;
+	padding-bottom:20px;
 }
 
 .description {
@@ -604,6 +606,7 @@ textarea {
 		height: 5px;
 	}
 
+
 		.libraryEntryCard:hover .libraryEntryForm {
 			display: block;
 		}
@@ -616,12 +619,14 @@ textarea {
 			right: -200px;
 			z-index: 3;
 			border: 5px solid #FFF;
-			border-left: none;
 			top: -5px;
 			height: 275px;
 			box-shadow: 0 0 15px rgba(0,0,0,0.5);
 		}
 
+		.libraryEntryForm .change-entry-status-btn {
+			width: 100%;
+		}
 
 
 /*-----------------------------------*/

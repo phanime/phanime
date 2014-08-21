@@ -1,3 +1,6 @@
 <template name="charactersAdd">
-	{{> quickForm collection="Characters" id="insertCharacter" type="insert"}}
+	<div class="container main-content">
+		<h1>Add Character</h1>
+		{{> quickForm schema="CharactersSchema" id="insertCharacter" type="method" meteormethod="createCharacter"}}
+	</div>
 </template>

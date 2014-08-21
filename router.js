@@ -14,6 +14,7 @@ Router.map(function () {
 
 	this.route('characters', {layoutTemplate: 'defaultLayout'});
 	this.route('character', {path: 'characters/:_id/:fullNameSlug', layoutTemplate: 'defaultLayout'});
+	this.route('charactersAdd', {path: 'characters/add', layoutTemplate: 'defaultLayout'});
 
 
 	// People related routes

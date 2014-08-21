@@ -14,33 +14,37 @@ Characters = new Meteor.Collection("characters", {
 	}
 });
 
-// Characters.attachSchema(new SimpleSchema({
+CharactersSchema = new SimpleSchema({
 
-// 	coverImage: {
-// 		type: String,
-// 		label: "Cover Image",
-// 	},
-// 	firstName: {
-// 		type: String,
-// 		label: "First Name"
-// 	},
-// 	lastName: {
-// 		type: String,
-// 		label: "Last Name"
-// 	},
-// 	japaneseName: {
-// 		type: String,
-// 		label: "Japanese Name"
-// 	},
-// 	alternateName: {
-// 		type: String,
-// 		label: "Alternate Name"
-// 	},
-// 	biography: {
-// 		type: String,
-// 		label: "Biography",
-// 		max: 10000
-// 	}
+	coverImage: {
+		type: String,
+		label: "Cover Image",
+	},
+	firstName: {
+		type: String,
+		label: "First Name"
+	},
+	lastName: {
+		type: String,
+		label: "Last Name"
+	},
+	japaneseName: {
+		type: String,
+		label: "Japanese Name"
+	},
+	alternateName: {
+		type: String,
+		label: "Alternate Name"
+	},
+	biography: {
+		type: String,
+		label: "Biography",
+		max: 10000
+	},
+	tags: {
+		type: [String],
+		label: "Character Tags"
+	}
 
 
-// }));
+});
