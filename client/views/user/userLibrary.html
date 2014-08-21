@@ -4,6 +4,8 @@
 		{{#each libraryEntries}}
 			<div class="col-sm-3">
 
+				<input type="hidden" value={{_id}} class="libraryEntryId">
+
 				<div data-toggle="popover" class="libraryEntryCard img-lg" style="background-image: url('{{anime.coverImageUrl}}')">
 					
 					<div class="important">
@@ -17,17 +19,18 @@
 					<div class="libraryEntryForm">						
 						<div class="row">
 							<div class="col-sm-12">
-								SUP
-								<button class="btn btn-default dropdown-toggle add-library-button" type="button" id="watchStatus" data-toggle="dropdown">
-									{{status}}
-									<span class="caret"></span>
-								</button>
+								<div class="form-group">
+									<button class="btn btn-default dropdown-toggle change-entry-status-btn" type="button" id="watchStatus" data-toggle="dropdown">
+										{{status}}
+										<span class="caret"></span>
+									</button>
 
-								<ul class="dropdown-menu" role="menu" aria-labelledby="watchStatus">
-									{{#each watchStatuses}}
-										<li><a class="status-item" data-status={{this}}>{{this}}</a></li>
-									{{/each}}
-								</ul>							
+									<ul class="dropdown-menu" style="left:auto; width: 190px; margin-top: -10px" role="menu" aria-labelledby="watchStatus">
+										{{#each watchStatuses}}
+											<li><a class="status-item" data-status={{this}}>{{this}}</a></li>
+										{{/each}}
+									</ul>
+								</div>							
 							</div>
 
 						</div>
