@@ -21,11 +21,12 @@ Router.map(function () {
 
 	this.route('people', {layoutTemplate: 'defaultLayout'});
 	this.route('person', {path: '/people/:_id/:fullNameSlug', layoutTemplate: 'defaultLayout'});
+	this.route('peopleAdd', {path: 'people/add', layoutTemplate: 'defaultLayout'});
 
 
 	// User related routes
 	this.route('user', {path: '/users/:username', layoutTemplate: 'userProfileLayout'});
-	this.route('user.library', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'})
+	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'})
 
 	// Search
 
