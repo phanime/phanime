@@ -19,6 +19,7 @@ CharactersSchema = new SimpleSchema({
 	coverImage: {
 		type: String,
 		label: "Cover Image",
+		optional: true,
 	},
 	firstName: {
 		type: String,
@@ -26,24 +27,32 @@ CharactersSchema = new SimpleSchema({
 	},
 	lastName: {
 		type: String,
-		label: "Last Name"
+		label: "Last Name",
+		optional: true,
 	},
 	japaneseName: {
 		type: String,
-		label: "Japanese Name"
+		label: "Japanese Name",
+		optional: true,
 	},
 	alternateName: {
 		type: String,
-		label: "Alternate Name"
+		label: "Alternate Name",
+		optional: true,
 	},
 	biography: {
 		type: String,
 		label: "Biography",
-		max: 10000
+		max: 10000,
+		autoform: {
+			rows: 10
+		},
+		optional: true,
 	},
 	tags: {
 		type: [String],
-		label: "Character Tags"
+		label: "Character Tags",
+		optional: true,
 	}
 
 
