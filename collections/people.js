@@ -19,6 +19,7 @@ PeopleSchema = new SimpleSchema({
 	coverImage: {
 		type: String,
 		label: "Cover Image",
+		optional: true,
 	},
 	firstName: {
 		type: String,
@@ -26,39 +27,51 @@ PeopleSchema = new SimpleSchema({
 	},
 	lastName: {
 		type: String,
-		label: "Last Name"
+		label: "Last Name",
+		optional: true,
 	},
 	givenName: {
 		type: String,
-		label: "Given Name"
+		label: "Given Name",
+		optional: true,
 	},
 	familyName: {
 		type: String,
-		label: "Family Name"
+		label: "Family Name",
+		optional: true,
 	},
 	gender: {
 		type: String,
 		label: "Gender",
+		allowedValues: ["Male", "Female", ""],
 	},
 	birthDate: {
 		type: Date,
-		label: "Birthdate"
+		label: "Birthdate",
+		optional: true,
 	},
 	website: {
 		type: String,
 		label: "Website",
+		optional: true,
 	},
 	birthPlace: {
 		type: String,
-		label: "Birth Place"
+		label: "Birth Place",
+		optional: true,
 	},
 	bloodType: {
 		type: String,
-		label: "Blood Type"
+		label: "Blood Type",
+		allowedValues: ["A", "B", "AB", "O", ""]
 	},
 	otherInfo: {
 		type: String,
-		label: "Other Info"
+		label: "Other Info",
+		optional: true,
+		autoform: {
+			rows: 10
+		}
 	}
 
 
