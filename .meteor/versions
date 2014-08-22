@@ -31,7 +31,7 @@ iron:router@0.9.0
 jquery@1.0.0
 json@1.0.0
 less@1.0.4
-livedata@1.0.6
+livedata@1.0.7
 localstorage@1.0.0
 logging@1.0.2
 meteor@1.0.2
@@ -54,6 +54,7 @@ session@1.0.0
 sha@1.0.0
 spacebars-compiler@1.0.1
 spacebars@1.0.0
+spiderable@1.0.1
 srp@1.0.0
 standard-app-packages@1.0.0
 templating@1.0.4

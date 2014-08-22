@@ -4,3 +4,7 @@ MONGO_URL=mongodb://localhost:27017/phanime_dev meteor
 sudo mkdir /var/run/mongodb
 sudo chmod -R 777 /var/run/mongodb
 
+
+For production: 
+
+PORT=8080 ROOT_URL=http://alpha.phanime.com MONGO_URL=mongodb://localhost:27017/phanime_dev node main.js
