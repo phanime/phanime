@@ -2,31 +2,44 @@ Router.map(function () {
 
 	this.route('index', {path: '/', template: 'index', layoutTemplate: 'indexLayout'});
 
-	// Anime related routes
-	this.route('animeExplore', {path: '/anime/explore', layoutTemplate: 'defaultLayout'});
+	/////////////////////////////////////////////////
+	///////////////////// Anime /////////////////////
+	/////////////////////////////////////////////////
+
+	this.route('animeExplore', {path: '/anime/explore'});
 
 	this.route('animeAdd', {path: '/anime/add'});
 
-	this.route('anime', {path: '/anime/:slug', layoutTemplate: 'defaultLayout'});
+	this.route('anime', {path: '/anime/:slug'});
+
+	/////////////////////////////////////////////////
+	////////////////// Character ////////////////////
+	/////////////////////////////////////////////////
+
+	this.route('characters');
+	this.route('character', {path: 'characters/:_id/:fullNameSlug'});
+	this.route('charactersAdd', {path: 'characters/add'});
 
 
-	// Character related routes
-
-	this.route('characters', {layoutTemplate: 'defaultLayout'});
-	this.route('character', {path: 'characters/:_id/:fullNameSlug', layoutTemplate: 'defaultLayout'});
-	this.route('charactersAdd', {path: 'characters/add', layoutTemplate: 'defaultLayout'});
-
-
-	// People related routes
+	/////////////////////////////////////////////////
+	//////////////////// People /////////////////////
+	/////////////////////////////////////////////////
 
 	this.route('people', {layoutTemplate: 'defaultLayout'});
-	this.route('person', {path: '/people/:_id/:fullNameSlug', layoutTemplate: 'defaultLayout'});
-	this.route('peopleAdd', {path: 'people/add', layoutTemplate: 'defaultLayout'});
+	this.route('person', {path: '/people/:_id/:fullNameSlug'});
+	this.route('peopleAdd', {path: 'people/add'});
 
 
-	// User related routes
+	/////////////////////////////////////////////////
+	///////////////////// User //////////////////////
+	/////////////////////////////////////////////////
+
 	this.route('user', {path: '/users/:username', layoutTemplate: 'userProfileLayout'});
 	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'})
+
+	/////////////////////////////////////////////////
+	//////////////////// General ////////////////////
+	/////////////////////////////////////////////////
 
 	// Search
 
@@ -34,12 +47,12 @@ Router.map(function () {
 
 	// Login
 
-	this.route('login', {layoutTemplate: 'defaultLayout'});
+	this.route('login');
 
 
 	// 404 not found route
 
-	this.route('fourOhFour', {path: "*path"});
+	this.route('fourOhFour', {path: "*"});
 
 });
 
@@ -65,6 +78,10 @@ var routerBeforeHooks = {
 // (Global) Before hooks for any route
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 Router.onBeforeAction(routerBeforeHooks.isLoggedIn);
+
+Router.configure({
+	layoutTemplate: 'defaultLayout'
+});
 
 
 // // Before hooks for specific routes
