@@ -111,6 +111,9 @@ AnimeSchema = new SimpleSchema({
 	genres: {
 		type: [String]
 	},
+	studios: {
+		type: [String]
+	},
 	seasonNumber: {
 		type: Number,
 		optional: true,
