@@ -15,7 +15,7 @@ StudiosSchema = new SimpleSchema({
 		label: "Slug",
 		autoform: {
 			disabled: true,
-			value: 'Set automatically'
+			value: null
 		}
 	},
 	description: {
@@ -23,6 +23,7 @@ StudiosSchema = new SimpleSchema({
 		label: "Description",
 		autoform: {
 			rows: 10
-		}
+		},
+		optional: true
 	}
 });
