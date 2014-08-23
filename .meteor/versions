@@ -30,7 +30,7 @@ iron:layout@0.3.0
 iron:router@0.9.0
 jquery@1.0.0
 json@1.0.0
-less@1.0.4
+less@1.0.5
 livedata@1.0.7
 localstorage@1.0.0
 logging@1.0.2
