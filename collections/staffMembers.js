@@ -1,6 +1,12 @@
 StaffMembers = new Meteor.Collection("staffMembers");
 
 
+StaffMembers.helpers({
+	person: function() {
+		return People.findOne({_id: this.personId});
+	}
+});
+
 StaffMembersSchema = new SimpleSchema({
 
 	staffPosition: {
