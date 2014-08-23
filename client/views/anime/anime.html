@@ -80,7 +80,15 @@
 			<h3 class="thin-text">Casting</h3>
 			{{#if castings}}
 				{{#each castings}}
-					<div>{{language}}:{{role}}</div>
+					<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
+						<div class="col-sm-6">
+							<a href="{{pathFor 'character' character}}">{{character.fullName}}</a>: {{role}}
+						</div>
+
+						<div class="col-sm-6">
+							<a href="{{pathFor 'person' person}}"> {{person.fullName}}</a>: {{language}}
+						</div>
+					</div>
 				{{/each}}
 
 			{{else}}

@@ -1,5 +1,15 @@
 Castings = new Meteor.Collection("castings");
 
+Castings.helpers({
+	character: function() {
+		return Characters.findOne({_id: this.characterId});
+	},
+	person: function() {
+		return People.findOne({_id: this.personId});
+	}
+});
+
+
 CastingsSchema = new SimpleSchema({
 
 	language: {
