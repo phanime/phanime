@@ -108,6 +108,9 @@ AnimeSchema = new SimpleSchema({
 			firstOption: "Select Age Rating"
 		}
 	},
+	genres: {
+		type: [String]
+	},
 	seasonNumber: {
 		type: Number,
 		optional: true,
