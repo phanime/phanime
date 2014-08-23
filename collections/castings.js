@@ -50,7 +50,9 @@ CastingsSchema = new SimpleSchema({
 	characterId: {
 		type: String,
 		label: "Character",
-		// This is a select type
+		autoform: {
+			firstOption: "Select a Character"
+		}
 	},
 	createdAt: {
 		type: Date,
