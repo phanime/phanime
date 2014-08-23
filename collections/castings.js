@@ -59,7 +59,8 @@ CastingsSchema = new SimpleSchema({
 		autoform: {
 			disabled: true,
 			value: new Date(),
-		}
+		},
+		optional: true
 	}
 
 });

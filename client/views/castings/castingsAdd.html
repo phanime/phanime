@@ -2,6 +2,7 @@
 	<div class="container main-content">
 		<h1>Add Casting</h1>
 		{{#autoForm schema="CastingsSchema" id="insertCasting" type="method" meteormethod="createCasting"}}
+			<fieldset>
 			<div class="row">
 				<div class="col-sm-4">
 					{{> afQuickField name='animeId' options=animeAll}}
@@ -30,6 +31,7 @@
 				<button type="submit" class="btn btn-primary btn-beside">Add Casting</button>
 				<button type="reset" class="btn btn-danger btn-beside">Reset</button>
 			</div>
+			</fieldset>
 		{{/autoForm}}
 	</div>
 </template>
