@@ -3,15 +3,21 @@
 		<h1>Add Casting</h1>
 		{{#autoForm schema="CastingsSchema" id="insertCasting" type="method" meteormethod="createCasting"}}
 			<div class="row">
-				<div class="col-sm-6">
-					{{> afFieldInput name='animeId' options=animeAll}}
+				<div class="col-sm-4">
+					<div class="form-group">
+						{{> aFieldLabel name='animeId'}}
+						{{> afFieldInput name='animeId' options=animeAll}}
+						{{> afFieldMessage name='animeId'}}
+					</div>
 				</div>
 
 
-				<div class="col-sm-6">
+				<div class="col-sm-4">
+					{{> afFieldInput name='personId' options=peopleAll}}
+				</div>
 
-
-
+				<div class="col-sm-4">
+					{{> afFieldInput name='characterId' options=charactersAll}}
 				</div>
 			</div>
 		{{/autoForm}}
