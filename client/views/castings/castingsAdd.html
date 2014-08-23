@@ -4,23 +4,32 @@
 		{{#autoForm schema="CastingsSchema" id="insertCasting" type="method" meteormethod="createCasting"}}
 			<div class="row">
 				<div class="col-sm-4">
-					<div class="form-group">
-						{{> aFieldLabel name='animeId'}}
-						{{> afFieldInput name='animeId' options=animeAll}}
-						{{> afFieldMessage name='animeId'}}
-					</div>
-				</div>
-
-
-				<div class="col-sm-4">
-					{{> afFieldInput name='personId' options=peopleAll}}
+					{{> afQuickField name='animeId' options=animeAll}}
 				</div>
 
 				<div class="col-sm-4">
-					{{> afFieldInput name='characterId' options=charactersAll}}
+					{{> afQuickField name='personId' options=peopleAll}}
+				</div>
+
+				<div class="col-sm-4">
+					{{> afQuickField name='characterId' options=charactersAll}}
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					{{> afQuickField name='role' options="allowed"}}
+				</div>
+
+				<div class="col-sm-6">
+					{{> afQuickField name='language' options="allowed"}}
+				</div>
+			</div>
+
+			<div>
+				<button type="submit" class="btn btn-primary btn-beside">Add Casting</button>
+				<button type="reset" class="btn btn-danger btn-beside">Reset</button>
+			</div>
 		{{/autoForm}}
-		{{> quickForm schema="CastingsSchema" id="insertCasting" type="method" meteormethod="createCasting"}}
 	</div>
 </template>
