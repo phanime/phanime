@@ -1,3 +1,6 @@
 <template name="animeAdd">
-stuff
+	<div class="container main-content">
+		<h1>Add Studio</h1>
+		{{> quickForm schema="AnimeSchema" id="insertAnime" type="method" meteormethod="createAnime"}}
+	</div>
 </template>
