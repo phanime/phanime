@@ -1,0 +1,20 @@
+<template name="castingsAdd">
+	<div class="container main-content">
+		<h1>Add Casting</h1>
+		{{#autoForm schema="CastingsSchema" id="insertCasting" type="method" meteormethod="createCasting"}}
+			<div class="row">
+				<div class="col-sm-6">
+					{{> afFieldInput name='animeId' options=animeAll}}
+				</div>
+
+
+				<div class="col-sm-6">
+
+
+
+				</div>
+			</div>
+		{{/autoForm}}
+		{{> quickForm schema="CastingsSchema" id="insertCasting" type="method" meteormethod="createCasting"}}
+	</div>
+</template>

@@ -35,17 +35,23 @@ CastingsSchema = new SimpleSchema({
 		type: String,
 		label: "Anime",
 		// This is a select type
+		autoform: {
+			firstOption: "Select an Anime"
+		}
 	},
 	personId: {
 		type: String,
 		label: "Person",
 		// This is a select type
+		autoform: {
+			firstOption: "Select a Person"
+		}
 	},
 	characterId: {
 		type: String,
 		label: "Character",
 		// This is a select type
-	}
+	},
 	createdAt: {
 		type: Date,
 		autoform: {
