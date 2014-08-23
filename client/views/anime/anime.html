@@ -97,7 +97,17 @@
 
 			<h3 class="thin-text">Staff Members</h3>
 			{{#if staffMembers}}
+				{{#each staffMembers}}
+					<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
+						<div class="col-sm-6">
+							<a href="{{pathFor 'character' character}}">{{person.fullName}}</a>
+						</div>
 
+						<div class="col-sm-6">
+							{{staffPosition}}
+						</div>
+					</div>
+				{{/each}}
 			{{else}}
 				No staff members found for this anime.
 			{{/if}}
