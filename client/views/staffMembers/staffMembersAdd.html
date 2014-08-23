@@ -1,6 +1,29 @@
 <template name="staffMembersAdd">
 	<div class="container main-content">
 		<h1>Add Staff Member</h1>
-		{{> quickForm schema="StaffMembersSchema" id="insertStaffMember" type="method" meteormethod="createStaffMember"}}
+		{{#autoForm schema="StaffMembersSchema" id="insertStaffMember" type="method" meteormethod="createStaffMember"}}
+			<fieldset>
+			<div class="row">
+				<div class="col-sm-6">
+					{{> afQuickField name='animeId' options=animeAll}}
+				</div>
+
+				<div class="col-sm-6">
+					{{> afQuickField name='personId' options=peopleAll}}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					{{> afQuickField name='staffPosition'}}
+				</div>
+			</div>
+
+			<div>
+				<button type="submit" class="btn btn-primary btn-beside">Add Staff Member</button>
+				<button type="reset" class="btn btn-danger btn-beside">Reset</button>
+			</div>
+			</fieldset>
+		{{/autoForm}}
 	</div>
 </template>

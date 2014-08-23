@@ -10,12 +10,16 @@ StaffMembersSchema = new SimpleSchema({
 	animeId: {
 		type: String,
 		label: "Anime",
-		// This is a select type
+		autoform: {
+			firstOption: "Select an Anime"
+		}
 	},
 	personId: {
 		type: String,
 		label: "Person",
-		// This is a select type
+		autoform: {
+			firstOption: "Select a Person"
+		}
 	},
 	createdAt: {
 		type: Date,
