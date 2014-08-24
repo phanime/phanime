@@ -1,19 +1,22 @@
-Anime = new Meteor.Collection("anime", {
-	transform: function(doc) {
+Anime = new Meteor.Collection("anime");
 
+
+Anime.helpers({
+
+	coverImageUrl: function() {
 		if (doc.coverImage) {
-			doc.coverImageUrl = "http://cdn.phanime.com/images/anime/cover/" + doc.coverImage;
+			return "http://cdn.phanime.com/images/anime/cover/" + this.coverImage;
 		} else {
-			doc.coverImageUrl = 'na.gif';
-		}
-
-		// Temporarily we'll just make title the canonicalTitle
-		doc.title = doc.canonicalTitle;
-
-		return doc;
+			return "http://cdn.phanime.com/images/site/na.gif";
+		}		
+	},
+	title: function() {
+		// For the time being we just choose
+		// the standard title
+		return canonicalTitle;
 	}
-});
 
+});
 
 AnimeSchema = new SimpleSchema({
 	canonicalTitle: {

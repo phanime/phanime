@@ -4,9 +4,9 @@ Characters = new Meteor.Collection("characters");
 Characters.helpers({
 	coverImageUrl: function() {
 		if (this.coverImage){
-			"http://cdn.phanime.com/images/characters/cover/" + this.coverImage;
+			return "http://cdn.phanime.com/images/characters/cover/" + this.coverImage;
 		} else {
-			"http://cdn.phanime.com/images/site/na.gif";
+			return "http://cdn.phanime.com/images/site/na.gif";
 		}
 	},
 	fullName: function() {
