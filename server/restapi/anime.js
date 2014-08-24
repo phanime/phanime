@@ -6,6 +6,7 @@ HTTP.methods({
 			var test = [];
 			anime.forEach(function(anime) {
 
+				// Anime.update({_id: anime._id}, {$unset: {coverImageUrl: ""}});
 
 				test.push(anime);
 

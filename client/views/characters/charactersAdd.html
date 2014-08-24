@@ -1,6 +1,18 @@
 <template name="charactersAdd">
 	<div class="container main-content">
 		<h1>Add Character</h1>
-		{{> quickForm schema="CharactersSchema" id="insertCharacter" type="method" meteormethod="createCharacter"}}
+		<input type="file" id="uploadCharacterCover">
+		<img id="test" src="">
+		{{#autoForm schema="CharactersSchema" id="insertCharacter" type="method" meteormethod="createCharacter"}}
+			{{> afQuickField name='coverImage' value=fileUrl}}
+			{{> afQuickField name='firstName'}}
+			{{> afQuickField name='lastName'}}
+			{{> afQuickField name='japaneseName'}}
+			{{> afQuickField name='alternateName'}}
+			{{> afQuickField name='gender' options="allowed"}}
+			{{> afQuickField name='biography'}}
+			{{> afQuickField name='tags'}}
+
+		{{/autoForm}}
 	</div>
 </template>
