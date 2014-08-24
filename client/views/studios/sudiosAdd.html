@@ -1,6 +1,16 @@
 <template name="studiosAdd">
 	<div class="container main-content">
 		<h1>Add Studio</h1>
-		{{> quickForm schema="StudiosSchema" id="insertStudio" type="method" meteormethod="createStudio"}}
+		<input type="file" id="uploadCharacterCover">
+		<img class="imagePreview">
+		{{#autoForm schema="StudiosSchema" id="insertStudio" type="method" meteormethod="createStudio"}}
+			{{> afQuickField name='producerLogo' value=fileUrl}}
+			{{> afQuickField name='name'}}
+			{{> afQuickField name='description'}}
+			<div>
+				<button type="submit" class="btn btn-primary btn-beside">Add Studio</button>
+				<button type="reset" class="btn btn-danger btn-beside">Reset</button>
+			</div>
+		{{/autoForm}}
 	</div>
 </template>
