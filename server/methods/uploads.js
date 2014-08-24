@@ -11,35 +11,43 @@ Meteor.methods({
 		var s3 = new AWS.S3();
 
 
+		if (image) {
+			s3.createBucket({Bucket: 'phanime'}, function() {
 
-		s3.createBucket({Bucket: 'phanime'}, function() {
+				var params = {
+					Bucket: 'phanime', 
+					Key: "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName, 
+					Body: new Buffer(image, 'binary'),
+					ACL: 'public-read',
+					ContentType: imageType
+				};
 
-			var params = {
-				Bucket: 'phanime', 
-				Key: "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName, 
-				Body: new Buffer(image, 'binary'),
-				ACL: 'public-read',
-				ContentType: imageType
-			};
+				s3.putObject(params, function(err, data) {
 
-			s3.putObject(params, function(err, data) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log('Successfully uploaded data to ' + params.Bucket + "/" + params.Key);
+					}
 
-				if (err) {
-					console.log(err);
-				} else {
-					console.log('Successfully uploaded data to ' + params.Bucket + "/" + params.Key);
-				}
+				});
+
 
 			});
+			
 
-
-		});
-		
-
-		return {
-			imageName: imageName,
-			imageUrl: "http://cdn.phanime.com/images/" + contentDirectory + "/" + typeDirectory + "/" + imageName,
+			return {
+				imageName: imageName,
+				imageUrl: "http://cdn.phanime.com/images/" + contentDirectory + "/" + typeDirectory + "/" + imageName,
+			}
 		}
+
+
+
+
+
+
+
 
 	}
 

@@ -1,12 +1,12 @@
-Template.charactersAdd.events({
+Template.peopleAdd.events({
 	'change #uploadCharacterCover' : function(event, template) {
 		var file = template.find('#uploadCharacterCover').files[0];
 		console.log(file);
 		
-		uploadImage(file, 'characters', 'cover');
+		uploadImage(file, 'people', 'cover');
 	}
 });
 
-Template.charactersAdd.fileUrl = function() {
+Template.peopleAdd.fileUrl = function() {
 	return Session.get('fileUrl');
 };
