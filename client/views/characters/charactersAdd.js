@@ -13,6 +13,11 @@ Template.charactersAdd.events({
 			Meteor.call('uploadImage', e.target.result, file.name, file.size, file.type, 'characters', 'cover', function(error, result) {
 				console.log(error);
 				console.log(result);
+				if (result) {
+					Session.set('fileUrl', result.imageName);
+					$('#test').attr('src', result.fileUrl);
+				}
+				
 			});
 
 		}

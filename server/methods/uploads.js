@@ -36,8 +36,10 @@ Meteor.methods({
 		});
 		
 
-		return "http://cdn.phanime.com/images/" + contentDirectory + "/" + typeDirectory + "/" + imageName;
-
+		return {
+			imageName: imageName,
+			imageUrl: "http://cdn.phanime.com/images/" + contentDirectory + "/" + typeDirectory + "/" + imageName,
+		}
 
 	}
 
