@@ -7,7 +7,7 @@ Meteor.methods({
 		// Get auto values
 		anime.slug = getSlug(anime.canonicalTitle);
 		anime.createdAt = new Date();
-		anime.updatedAt = new Date();
+
 
 		// Insert the document into the database
 		Anime.insert(anime, function(error, _id) {

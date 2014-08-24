@@ -6,6 +6,7 @@ Meteor.methods({
 
 
 		// Generate auto values
+		studio.slug = getSlug(studio.name);
 		studio.createdAt = new Data();
 
 		// Insert the document into the database
