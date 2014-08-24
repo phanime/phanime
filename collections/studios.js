@@ -4,9 +4,6 @@ StudiosSchema = new SimpleSchema({
 	producerLogo: {
 		type: String,
 		label: "Producer Logo",
-		autoform: {
-			disabled: true
-		},
 		optional: true,
 	},
 	name: {
