@@ -2,19 +2,24 @@ Template.charactersAdd.events({
 	'change #uploadCharacterCover' : function(event, template) {
 		var file = template.find('#uploadCharacterCover').files[0];
 		console.log(file);
-		//Meteor.call()
+		
 		var reader = new FileReader();
 		reader.onload = function(e) {
 
-			Session.set('fileUrl', "e.target.result");
-			$('#test').attr('src', e.target.result);
+			Session.set('fileUrl', "asdasd");
+			// $('#test').attr('src', e.target.result);
+
+
+			Meteor.call('uploadImage', e.target.result, file.name, file.size, file.type, 'characters', 'cover', function(error, result) {
+				console.log(error);
+				console.log(result);
+			});
 
 		}
-		reader.readAsDataURL(file);
+		reader.readAsBinaryString(file);
 	}
 });
 
 Template.charactersAdd.fileUrl = function() {
-	console.log(Session.get('fileUrl'));
 	return Session.get('fileUrl');
 };
