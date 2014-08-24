@@ -36,7 +36,7 @@ Meteor.methods({
 		});
 		
 
-		return " Stuff ";
+		return "http://cdn.phanime.com/images/" + contentDirectory + "/" + typeDirectory + "/" + imageName;
 
 
 	}
