@@ -1,9 +1,7 @@
 uploadImage = function(file, contentDirectory, typeDirectory) {
+	Session.set('fileUrl', '');
 	var reader = new FileReader();
 	reader.onload = function(e) {
-
-		Session.set('fileUrl', "asdasd");
-		// $('#test').attr('src', e.target.result);
 
 		Meteor.call('uploadImage', e.target.result, file.name, file.size, file.type, contentDirectory, typeDirectory, function(error, result) {
 			console.log(error);
