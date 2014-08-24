@@ -2,6 +2,7 @@
 	<div class="container main-content">
 		<h1>Add Character</h1>
 		{{#autoForm schema="CharactersSchema" id="insertCharacter" type="method" meteormethod="createCharacter"}}
+
 			<input type="file" id="uploadCharacterCover">
 			<img class="imagePreview">
 			{{> afQuickField name='coverImage' value=fileUrl}}
@@ -16,6 +17,7 @@
 				<button type="submit" class="btn btn-primary btn-beside">Add Character</button>
 				<button type="reset" class="btn btn-danger btn-beside">Reset</button>
 			</div>
+			
 		{{/autoForm}}
 	</div>
 </template>
