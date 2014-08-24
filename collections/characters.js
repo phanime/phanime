@@ -22,6 +22,9 @@ CharactersSchema = new SimpleSchema({
 	coverImage: {
 		type: String,
 		label: "Cover Image",
+		autoform: {
+			disabled: true
+		},
 		optional: true,
 	},
 	firstName: {
