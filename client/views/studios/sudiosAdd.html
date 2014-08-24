@@ -1,9 +1,10 @@
 <template name="studiosAdd">
 	<div class="container main-content">
 		<h1>Add Studio</h1>
-		<input type="file" id="uploadCharacterCover">
-		<img class="imagePreview">
 		{{#autoForm schema="StudiosSchema" id="insertStudio" type="method" meteormethod="createStudio"}}
+			<input type="file" id="uploadCharacterCover">
+			<img class="imagePreview">
+
 			{{> afQuickField name='producerLogo' value=fileUrl}}
 			{{> afQuickField name='name'}}
 			{{> afQuickField name='description'}}

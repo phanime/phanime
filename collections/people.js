@@ -48,10 +48,10 @@ PeopleSchema = new SimpleSchema({
 		type: String,
 		label: "Gender",
 		allowedValues: ["Male", "Female"],
-		optional: true,
 		autoform: {
 			firstOption: "Select Gender"
-		}
+		},
+		optional: true
 	},
 	birthDate: {
 		type: Date,
@@ -72,18 +72,18 @@ PeopleSchema = new SimpleSchema({
 		type: String,
 		label: "Blood Type",
 		allowedValues: ["A", "B", "AB", "O"],
-		optional: true,
 		autoform: {
 			firstOption: "Select Blood Type"
-		}
+		},
+		optional: true,
 	},
 	otherInfo: {
 		type: String,
 		label: "Other Info",
-		optional: true,
 		autoform: {
 			rows: 10
-		}
+		},
+		optional: true,
 	}
 
 
