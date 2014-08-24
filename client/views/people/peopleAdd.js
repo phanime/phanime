@@ -10,3 +10,8 @@ Template.peopleAdd.events({
 Template.peopleAdd.fileUrl = function() {
 	return Session.get('fileUrl');
 };
+
+Template.peopleAdd.destroyed = function() {
+	// Remove session fileUrl
+	Session.set('fileUrl', null);
+};

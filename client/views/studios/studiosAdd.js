@@ -10,3 +10,8 @@ Template.studiosAdd.events({
 Template.studiosAdd.fileUrl = function() {
 	return Session.get('fileUrl');
 };
+
+Template.studiosAdd.destroyed = function() {
+	// Remove session fileUrl
+	Session.set('fileUrl', null);
+};
