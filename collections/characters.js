@@ -40,6 +40,14 @@ CharactersSchema = new SimpleSchema({
 		label: "Alternate Name",
 		optional: true,
 	},
+	gender: {
+		type: String,
+		optional: true,
+		allowedValues: ["Male", "Female"],
+		autoform: {
+			firstOption: "Select Gender"
+		}
+	}
 	biography: {
 		type: String,
 		label: "Biography",
