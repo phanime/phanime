@@ -1,17 +1,21 @@
-People = new Meteor.Collection("people", {
-	transform: function(doc) {
+People = new Meteor.Collection("people");
 
-		if (doc.coverImage) {
-			doc.coverImageUrl = "http://cdn.phanime.com/images/people/cover/" + doc.coverImage;
+People.helpers({
+
+	coverImageUrl: function() {
+		if (this.coverImage) {
+			return "http://cdn.phanime.com/images/people/cover/" + this.coverImage;
 		} else {
-			doc.coverImageUrl = 'na.gif';
-		}
-
-		doc.fullName = doc.firstName + " " + doc.lastName;
-		doc.fullNameSlug = doc.firstName.toLowerCase() + ((doc.lastName) ? "-" + doc.lastName.toLowerCase() : '');
-
-		return doc;
+			return "http://cdn.phanime.com/images/site/na.gif";
+		}		
+	},
+	fullName: function() {
+		return this.firstName + " " + this.lastName;
+	},
+	fullNameSlug: function() {
+		return this.firstName.toLowerCase() + ((this.lastName) ? "-" + this.lastName.toLowerCase() : '');
 	}
+
 });
 
 PeopleSchema = new SimpleSchema({
