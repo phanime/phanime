@@ -16,4 +16,5 @@ alisalaah:moment-tz-data
 dburles:collection-helpers
 mrt:publish-composite
 spiderable
+mrt:aws-sdk
 

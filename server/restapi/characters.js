@@ -4,8 +4,11 @@ HTTP.methods({
 			this.setContentType('application/json');
 			var characters = Characters.find();
 			var test = [];
+
 			characters.forEach(function(character) {
 
+
+				//Characters.update({_id: character._id}, {$unset: {coverImageUrl: ""}});
 
 				test.push(character);
 

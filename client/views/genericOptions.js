@@ -10,7 +10,7 @@ UI.registerHelper('animeAll', function() {
 UI.registerHelper('peopleAll', function() {
 	return People.find().map(function(person) {
 		return {
-			label: person.fullName,
+			label: person.fullName(),
 			value: person._id
 		};
 	});
@@ -20,7 +20,7 @@ UI.registerHelper('peopleAll', function() {
 UI.registerHelper('charactersAll', function() {
 	return Characters.find().map(function(character) {
 		return {
-			label: character.fullName,
+			label: character.fullName(),
 			value: character._id
 		};
 	});
