@@ -4,7 +4,7 @@ Anime = new Meteor.Collection("anime");
 Anime.helpers({
 
 	coverImageUrl: function() {
-		if (doc.coverImage) {
+		if (this.coverImage) {
 			return "http://cdn.phanime.com/images/anime/cover/" + this.coverImage;
 		} else {
 			return "http://cdn.phanime.com/images/site/na.gif";
