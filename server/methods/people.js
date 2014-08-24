@@ -1,5 +1,18 @@
 Meteor.methods({
-	createPerson: function(doc) {
+	createPerson: function(person) {
+		
+		// Ensure integerity of data
+		check(person, PeopleSchema);
+
+
+		// Generate auto values
+		person.createdAt = new Data();
+
+		// Insert the document into the database
+		People.insert(person, function(error, _id) {
+			console.log(_id);
+		});
+
 		console.log(doc);
 	}
 });
