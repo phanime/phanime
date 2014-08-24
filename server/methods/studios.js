@@ -7,7 +7,7 @@ Meteor.methods({
 
 		// Generate auto values
 		studio.slug = getSlug(studio.name);
-		studio.createdAt = new Data();
+		studio.createdAt = new Date();
 
 		// Insert the document into the database
 		Studios.insert(studio, function(error, _id) {

@@ -1,9 +1,10 @@
 <template name="peopleAdd">
 	<div class="container main-content">
 		<h1>Add Person</h1>
-		<input type="file" id="uploadCharacterCover">
-		<img class="imagePreview">
 		{{#autoForm schema="PeopleSchema" id="insertPerson" type="method" meteormethod="createPerson"}}
+			<input type="file" id="uploadCharacterCover">
+			<img class="imagePreview">
+
 			{{> afQuickField name='coverImage' value=fileUrl}}
 			{{> afQuickField name='firstName'}}
 			{{> afQuickField name='lastName'}}

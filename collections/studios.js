@@ -16,7 +16,8 @@ StudiosSchema = new SimpleSchema({
 		autoform: {
 			disabled: true,
 			value: null
-		}
+		},
+		optional: true
 	},
 	description: {
 		type: String,
