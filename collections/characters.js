@@ -1,16 +1,19 @@
-Characters = new Meteor.Collection("characters", {
-	transform: function(doc) {
+Characters = new Meteor.Collection("characters");
 
-		if (doc.coverImage) {
-			doc.coverImageUrl = "http://cdn.phanime.com/images/characters/cover/" + doc.coverImage;
+
+Characters.helpers({
+	coverImageUrl: function() {
+		if (this.coverImage){
+			"http://cdn.phanime.com/images/characters/cover/" + this.coverImage;
 		} else {
-			doc.coverImageUrl = 'na.gif';
+			"http://cdn.phanime.com/images/site/na.gif";
 		}
-
-		doc.fullName = doc.firstName + " " + doc.lastName;
-		doc.fullNameSlug = doc.firstName.toLowerCase() + ((doc.lastName) ? "-" + doc.lastName.toLowerCase() : '');
-
-		return doc;
+	},
+	fullName: function() {
+		return this.firstName + " " + this.lastName;
+	},
+	fullNameSlug: function() {
+		return this.firstName.toLowerCase() + ((this.lastName) ? "-" + this.lastName.toLowerCase() : '');
 	}
 });
 
@@ -47,7 +50,7 @@ CharactersSchema = new SimpleSchema({
 		autoform: {
 			firstOption: "Select Gender"
 		}
-	}
+	},
 	biography: {
 		type: String,
 		label: "Biography",
