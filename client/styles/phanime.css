@@ -608,20 +608,24 @@ textarea {
 
 
 		.libraryEntryCard:hover .libraryEntryForm {
-			display: block;
+			opacity: 1;
 		}
 
 		.libraryEntryForm {
 			position: absolute;
-			display: none;
+			opacity: 0;
 			width: 200px;
 			background-color: #FFF;
-			right: -200px;
+			left: -5px;
 			z-index: 3;
-			border: 5px solid #FFF;
+			padding: 5px;
 			top: -5px;
 			height: 275px;
 			box-shadow: 0 0 15px rgba(0,0,0,0.5);
+			-webkit-transition: all 0.3s ease-in-out;
+			-moz-transition: all 0.2s ease-in-out;
+			-o-transition: all 0.2s ease-in-out;
+			transition: all 0.2s ease-in-out;
 		}
 
 		.libraryEntryForm .change-entry-status-btn {
