@@ -2,44 +2,48 @@
 
 	<div class="container main-content">
 		{{#each libraryEntries}}
-			<div class="col-sm-3">
-
-				<input type="hidden" value={{_id}} class="libraryEntryId">
-
-				<div data-toggle="popover" class="libraryEntryCard img-lg" style="background-image: url('{{anime.coverImageUrl}}')">
-					
-					<div class="important">
-						{{anime.title}}
-					</div>
-
-					<div class="banner-gradient"></div>
-					
-					<div class="progress" style="width: {{getPercentage anime.totalEpisodes episodesSeen}}"></div>
-
-					<div class="libraryEntryForm">						
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="form-group">
-									<button class="btn btn-default dropdown-toggle change-entry-status-btn" type="button" id="watchStatus" data-toggle="dropdown">
-										{{status}}
-										<span class="caret"></span>
-									</button>
-
-									<ul class="dropdown-menu" style="left:auto; width: 190px; margin-top: -10px" role="menu" aria-labelledby="watchStatus">
-										{{#each watchStatuses}}
-											<li><a class="status-item" data-status={{this}}>{{this}}</a></li>
-										{{/each}}
-									</ul>
-								</div>							
-							</div>
-
-						</div>
-
-					</div>
-				</div>
-
-			</div>		
+			{{> UI.dynamic template="libraryEntryCard" data=this}}		
 		{{/each}}
 	</div>
 
+</template>
+
+<template name="libraryEntryCard">
+	<div class="col-sm-3">
+
+		<input type="hidden" value={{_id}} class="libraryEntryId">
+
+		<div data-toggle="popover" class="libraryEntryCard img-lg" style="background-image: url('{{anime.coverImageUrl}}')">
+			
+			<div class="important">
+				{{anime.title}}
+			</div>
+
+			<div class="banner-gradient"></div>
+			
+			<div class="progress" style="width: {{getPercentage anime.totalEpisodes episodesSeen}}"></div>
+
+			<div class="libraryEntryForm">						
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<button class="btn btn-default dropdown-toggle change-entry-status-btn" type="button" id="watchStatus" data-toggle="dropdown">
+								{{status}}
+								<span class="caret"></span>
+							</button>
+
+							<ul class="dropdown-menu" style="left:auto; width: 190px; margin-top: -10px" role="menu" aria-labelledby="watchStatus">
+								{{#each watchStatuses}}
+									<li><a class="status-item" data-libraryEntryId="{{../_id}}" data-status="{{this}}">{{this}}</a></li>
+								{{/each}}
+							</ul>
+						</div>							
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
 </template>
