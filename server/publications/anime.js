@@ -43,6 +43,11 @@ Meteor.publish("animeById", function(animeId) {
 						}
 					}
 				] 
+			},
+			{
+				find: function(anime) {
+					return LibraryEntries.find({animeId: anime._id, userId: this.userId});
+				}
 			}
 
 		]
@@ -89,6 +94,11 @@ Meteor.publishComposite("animeBySlug", function(animeSlug) {
 						}
 					}
 				] 
+			},
+			{
+				find: function(anime) {
+					return LibraryEntries.find({animeId: anime._id, userId: this.userId});
+				}
 			}
 
 		]
