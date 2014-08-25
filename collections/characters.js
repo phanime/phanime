@@ -10,7 +10,11 @@ Characters.helpers({
 		}
 	},
 	fullName: function() {
-		return this.firstName + " " + this.lastName;
+		if (this.lastName) {
+			return this.firstName + " " + this.lastName;
+		} else {
+			return this.firstName;
+		}
 	},
 	fullNameSlug: function() {
 		return this.firstName.toLowerCase() + ((this.lastName) ? "-" + this.lastName.toLowerCase() : '');
