@@ -1,6 +1,36 @@
 <template name="animeAdd">
 	<div class="container main-content">
-		<h1>Add Studio</h1>
-		{{> quickForm schema="AnimeSchema" id="insertAnime" type="method" meteormethod="createAnime"}}
+		<h1>Add Anime</h1>
+		{{#autoForm schema="AnimeSchema" id="insertAnime" type="method" meteormethod="createAnime"}}
+
+			<input type="file" id="uploadCharacterCover">
+			<img class="imagePreview">
+
+			{{> afQuickField name='coverImage' value=fileUrl}}
+			{{> afQuickField name='canonicalTitle'}}
+			{{> afQuickField name='romajiTitle'}}
+			{{> afQuickField name='englishTitle'}}
+			{{> afQuickField name='japaneseTitle'}}
+			{{> afQuickField name='type' options="allowed"}}
+			{{> afQuickField name='status' options="allowed"}}
+			{{> afQuickField name='startDate'}}
+			{{> afQuickField name='endDate'}}
+			{{> afQuickField name='languageVersion' options="allowed"}}
+			{{> afQuickField name='ageRating' options="allowed"}}
+			{{> afQuickField name='genres'}}
+			{{> afQuickField name='studios'}}
+			{{> afQuickField name='seasonNumber'}}
+			{{> afQuickField name='totalEpisodes'}}
+			{{> afQuickField name='episodeDuration'}}
+			{{> afQuickField name='titleSynonyms'}}
+			{{> afQuickField name='description'}}
+
+			<div>
+				<button type="submit" class="btn btn-primary btn-beside">Add Anime</button>
+				<button type="reset" class="btn btn-danger btn-beside">Reset</button>
+			</div>
+
+
+		{{/autoForm}}
 	</div>
 </template>

@@ -13,7 +13,7 @@ Anime.helpers({
 	title: function() {
 		// For the time being we just choose
 		// the standard title
-		return canonicalTitle;
+		return this.canonicalTitle;
 	}
 
 });
@@ -41,17 +41,14 @@ AnimeSchema = new SimpleSchema({
 	slug: {
 		type: String,
 		label: "Slug",
-		optional: true,
 		autoform: {
 			disabled: true,
-			value: 'Set automatically'			
-		}
+			value: null			
+		},
+		optional: true,
 	},
 	coverImage: {
 		type: String,
-		autoform: {
-			disabled: true
-		},
 		optional: true,
 	},
 	bannerImage: {

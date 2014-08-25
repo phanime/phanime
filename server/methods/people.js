@@ -6,13 +6,13 @@ Meteor.methods({
 
 
 		// Generate auto values
-		person.createdAt = new Data();
+		person.createdAt = new Date();
 
 		// Insert the document into the database
 		People.insert(person, function(error, _id) {
 			console.log(_id);
 		});
 
-		console.log(doc);
+		console.log(person);
 	}
 });
