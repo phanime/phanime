@@ -13,7 +13,7 @@
 
 		<input type="hidden" value={{_id}} class="libraryEntryId">
 
-		<div data-toggle="popover" class="libraryEntryCard img-lg" style="background-image: url('{{anime.coverImageUrl}}')">
+		<div class="libraryEntryCard img-lg" style="background-image: url('{{anime.coverImageUrl}}')">
 			
 			<div class="important">
 				{{anime.title}}
@@ -21,7 +21,7 @@
 
 			<div class="banner-gradient"></div>
 			
-			<div class="progress" style="width: {{getPercentage anime.totalEpisodes episodesSeen}}"></div>
+			<div class="progress" style="width: {{getPercentage episodesSeen anime.totalEpisodes}}"></div>
 
 			{{#if isUserIdCurrentUser userId}}
 			<div class="libraryEntryForm">						
@@ -32,7 +32,7 @@
 						<span class="caret"></span>
 					</button>
 
-					<ul class="dropdown-menu" style="left:auto; width: 190px; margin-top: -10px" role="menu" aria-labelledby="watchStatus">
+					<ul class="dropdown-menu" style="left:auto; width: 190px; margin-top: -10px; top: 55px;" role="menu" aria-labelledby="watchStatus">
 						{{#each watchStatuses}}
 							<li><a class="status-item" data-status="{{this}}">{{this}}</a></li>
 						{{/each}}
@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="form-group">
-					<input type="number" class="form-control input-sm input-inline" placeholder="#" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
+					<input type="number" class="form-control input-sm input-inline entry-episodesSeen" placeholder="#" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
 					<div class="entry-total-episodes"> / {{anime.totalEpisodes}}</div>
 				</div>
 
@@ -54,7 +54,7 @@
 					<i class="fa fa-exclamation-circle"></i>
 				</div>
 
-				<textarea class="form-control" placeholder="Personal comments" value="{{comments}}" maxlength="140" rows="3"></textarea>
+				<textarea class="form-control entry-comments" placeholder="Personal comments" value="{{comments}}" maxlength="140" rows="3"></textarea>
 
 			</div>
 			{{/if}}
