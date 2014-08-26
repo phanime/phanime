@@ -23,7 +23,7 @@
 			
 			<div class="progress" style="width: {{getPercentage anime.totalEpisodes episodesSeen}}"></div>
 
-			{{#if userIdCurrentUser}}
+			{{#if isUserIdCurrentUser userId}}
 			<div class="libraryEntryForm">						
 				<div class="row">
 					<div class="col-sm-12">
@@ -40,7 +40,16 @@
 							</ul>
 						</div>							
 					</div>
+				</div>
 
+				<div class="entry-rating" id="rating_{{_id}}"></div>
+
+				<input type="number" class="form-control input-inline" placeholder="Episodes seen" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
+				<div class="entry-total-episodes">{{anime.totalEpisodes}}</div>
+
+				<div class="entry-icon-group">
+					<i class="fa {{entryPrivacyClass private}}"></i>
+					
 				</div>
 
 			</div>

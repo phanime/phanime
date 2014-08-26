@@ -679,6 +679,10 @@ input.form-control, select.form-control, textarea.form-control {
 		box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 195, 74, 0.6);
 	}
 
+input.form-control.input-inline {
+	width: auto;
+	display: inline;
+} 
 
 
 
