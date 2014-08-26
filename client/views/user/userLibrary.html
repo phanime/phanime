@@ -23,6 +23,7 @@
 			
 			<div class="progress" style="width: {{getPercentage anime.totalEpisodes episodesSeen}}"></div>
 
+			{{#if userIdCurrentUser}}
 			<div class="libraryEntryForm">						
 				<div class="row">
 					<div class="col-sm-12">
@@ -43,6 +44,8 @@
 				</div>
 
 			</div>
+			{{/if}}
+			
 		</div>
 
 	</div>
