@@ -82,11 +82,15 @@
 				{{#each castings}}
 					<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
 						<div class="col-sm-6">
-							<a href="{{pathFor 'character' character}}">{{character.fullName}}</a>: {{role}}
+							{{#with character}}
+							<a href="{{pathFor 'character'}}">{{fullName}}</a>: {{../role}}
+							{{/with}}
 						</div>
 
 						<div class="col-sm-6">
-							<a href="{{pathFor 'person' person}}"> {{person.fullName}}</a>: {{language}}
+							{{#with person}}
+							<a href="{{pathFor 'person'}}"> {{fullName}}</a>: {{../language}}
+							{{/with}}
 						</div>
 					</div>
 				{{/each}}
