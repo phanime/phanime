@@ -13,7 +13,7 @@ AnimeExploreController = RouteController.extend({
 	},
 
 	data: function () {
-		return Anime.find();
+		return Anime.find({}, {sort: {canonicalTitle: 1}});
 	}
 
 });

@@ -13,7 +13,7 @@ CharactersController = RouteController.extend({
 	},
 
 	data: function () {
-		return Characters.find();
+		return Characters.find({}, {sort: {createdAt: -1}});
 	}
 
 });

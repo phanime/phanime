@@ -13,7 +13,7 @@ PeopleController = RouteController.extend({
 	},
 
 	data: function () {
-		return People.find();
+		return People.find({}, {sort: {createdAt: -1}});
 	}
 
 });
