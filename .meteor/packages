@@ -10,7 +10,6 @@ aldeed:autoform
 accounts-base
 accounts-password
 less
-foldor:bootstrap-3
 gfk:notifications
 alisalaah:moment-tz-data
 dburles:collection-helpers
@@ -19,3 +18,5 @@ spiderable
 mrt:aws-sdk
 dandv:jquery-rateit
 chrismbeckett:fontawesome4
+mizzao:bootstrap-3
+
