@@ -83,5 +83,21 @@ Template.libraryEntryCard.events({
 		}
 	},
 
+	'blur .entry-episodesSeen' : function(event, template) {
+		var episodesSeen = $(event.target).val();
+		var libraryEntry = template.data;
+
+		// Let's make it an int (if things went wrong)
+		episodesSeen = parseInt(episodesSeen);
+
+		// Ensure episodesSeen was actually changed
+		if (episodesSeen !== libraryEntry.episodesSeen) {
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {episodesSeen: episodesSeen}});
+		} else {
+			console.log('Episodes seen was not changed');
+		}
+
+	}
+
 
 });
