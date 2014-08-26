@@ -19,6 +19,13 @@ Template.libraryEntryCard.watchStatuses = [
 ];
 
 
+Template.libraryEntryCard.rendered = function() {
+	$('.entry-rating').rateit({
+		max: 10,
+		step: 1
+	});
+}
+
 Template.libraryEntryCard.events({
 
 	'click .status-item' : function(event, template) {
@@ -46,11 +53,20 @@ Template.libraryEntryCard.events({
 					status: status, 
 					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null)
 				}});
-				Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated');
+
+				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated');
+
 			} else {
 				console.log('Statuses same, don\'t update');
 			}
 		}
+	},
+	'click .entry-rating' : function(event, template) {
+		//console.log($(event.target));
+
+		var libraryEntry = template.data;
+		var rating = $('rating_' + libraryEntry._id).rateit('value');
+		console.log(rating);
 	}
 
 });
