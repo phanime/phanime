@@ -25,32 +25,36 @@
 
 			{{#if isUserIdCurrentUser userId}}
 			<div class="libraryEntryForm">						
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<button class="btn btn-default dropdown-toggle change-entry-status-btn" type="button" id="watchStatus" data-toggle="dropdown">
-								{{status}}
-								<span class="caret"></span>
-							</button>
 
-							<ul class="dropdown-menu" style="left:auto; width: 190px; margin-top: -10px" role="menu" aria-labelledby="watchStatus">
-								{{#each watchStatuses}}
-									<li><a class="status-item" data-libraryEntryId="{{../_id}}" data-status="{{this}}">{{this}}</a></li>
-								{{/each}}
-							</ul>
-						</div>							
-					</div>
+				<div class="form-group">
+					<button class="btn btn-default dropdown-toggle change-entry-status-btn" type="button" id="watchStatus" data-toggle="dropdown">
+						{{status}}
+						<span class="caret"></span>
+					</button>
+
+					<ul class="dropdown-menu" style="left:auto; width: 190px; margin-top: -10px" role="menu" aria-labelledby="watchStatus">
+						{{#each watchStatuses}}
+							<li><a class="status-item" data-status="{{this}}">{{this}}</a></li>
+						{{/each}}
+					</ul>
+				</div>							
+
+				<div class="form-group">
+					<div class="entry-rating" id="rating_{{_id}}"></div>
 				</div>
 
-				<div class="entry-rating" id="rating_{{_id}}"></div>
+				<div class="form-group">
+					<input type="number" class="form-control input-sm input-inline" placeholder="#" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
+					<div class="entry-total-episodes"> / {{anime.totalEpisodes}}</div>
+				</div>
 
-				<input type="number" class="form-control input-inline" placeholder="Episodes seen" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
-				<div class="entry-total-episodes">{{anime.totalEpisodes}}</div>
-
-				<div class="entry-icon-group">
+				<div class="icon-group">
 					<i class="fa {{entryPrivacyClass private}}"></i>
-					
+					<i class="fa fa-eye"></i>
+					<i class="fa fa-exclamation-circle"></i>
 				</div>
+
+				<textarea class="form-control" placeholder="Personal comments" value="{{comments}}" maxlength="140" rows="3"></textarea>
 
 			</div>
 			{{/if}}

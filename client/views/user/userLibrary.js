@@ -65,8 +65,23 @@ Template.libraryEntryCard.events({
 		//console.log($(event.target));
 
 		var libraryEntry = template.data;
-		var rating = $('rating_' + libraryEntry._id).rateit('value');
-		console.log(rating);
-	}
+		var rating = $('#rating_' + libraryEntry._id).rateit('value');
+		
+		// Update library entry
+		
+		// Lets make sure the rating is different
+		if (rating !== libraryEntry.rating) {
+
+			// This means we should remove the rating (you can't give an anime a rating of 0)
+			if (rating === 0) {
+				LibraryEntries.update({_id: libraryEntry._id}, {$unset: {rating: ""}});
+			} else {
+				LibraryEntries.update({_id: libraryEntry._id}, {$set: {rating: rating}});
+			}
+		} else {
+			console.log('Ratings are the same, didn\'t update');
+		}
+	},
+
 
 });

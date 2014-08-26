@@ -552,7 +552,6 @@ textarea {
 		width: 200px;
 		height: 275px;
 		background-size: cover;
-		cursor: pointer;
 		background-position: center;
 		margin: 10px auto;
 		border: 5px solid #FFF;
@@ -621,8 +620,8 @@ textarea {
 			padding: 5px;
 			top: -5px;
 			height: 275px;
-			box-shadow: 0 0 15px rgba(0,0,0,0.5);
-			-webkit-transition: all 0.3s ease-in-out;
+			/*box-shadow: 0 0 15px rgba(0,0,0,0.5);*/
+			-webkit-transition: all 0.2s ease-in-out;
 			-moz-transition: all 0.2s ease-in-out;
 			-o-transition: all 0.2s ease-in-out;
 			transition: all 0.2s ease-in-out;
@@ -631,6 +630,21 @@ textarea {
 		.libraryEntryForm .change-entry-status-btn {
 			width: 100%;
 		}
+
+
+			.libraryEntryForm .entry-total-episodes {
+				display: inline;
+				font-size: 16px;
+			}
+
+			.libraryEntryForm .icon-group {
+				margin: 10px auto;
+			}
+
+			.libraryEntryForm .icon-group i {
+				font-size: 25px;
+				padding: 5px 10px;
+			}
 
 
 /*-----------------------------------*/
