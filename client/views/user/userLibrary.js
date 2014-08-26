@@ -97,6 +97,22 @@ Template.libraryEntryCard.events({
 			console.log('Episodes seen was not changed');
 		}
 
+	},
+
+	'blur .entry-comments' : function(event, template) {
+		var comments = $(event.target).val();
+		var libraryEntry = template.data;
+
+		// Some simple cleaning 
+		comments = comments.trim();
+
+		// Ensure comments are different from before
+		if (comments !== libraryEntry.comments) {
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {comments: comments}});
+		} else {
+			console.log('Comments were not changed');
+		}
+
 	}
 
 
