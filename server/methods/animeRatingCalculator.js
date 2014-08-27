@@ -4,8 +4,26 @@ Meteor.methods({
 		// Get all the library entries for an anime
 		// We only need the rating and episodes seen fields
 		var libraryEntries = LibraryEntries.find({animeId: animeId}, {fields: {status: 1, rating: 1, episodesSeen: 1}});
-		var ratingCounts = {};
-		var averageRating, totalRating, totalWeight;
+		var ratingCounts = {
+			1: 0,
+			2: 0,
+			3: 0,
+			4: 0,
+			5: 0, 
+			6: 0,
+			7: 0,
+			8: 0,
+			9: 0,
+			10: 0
+		};
+
+		var totalWeightedRatings = 0;
+		var totalWeight = 0;
+		var averageRating;
+
+		// We can let other methods be executed, this could take a while 
+		this.unblock();
+
 
 		libraryEntries.forEach(function(libraryEntry) {
 			var rating = libraryEntry.rating;
@@ -22,7 +40,7 @@ Meteor.methods({
 				// weighted average to work
 				if (rating > 0 && episodesSeen > 0) {
 					ratingCounts[rating] += 1;
-					totalRating = rating * episodesSeen;
+					totalWeightedRatings = rating * episodesSeen;
 					totalWeight += episodesSeen;
 				}
 
@@ -30,11 +48,19 @@ Meteor.methods({
 
 		});
 
-		// Calculate the weighted average
-		averageRating = totalRating/totalWeight;
 
-		// Update the anime with calculated ratings
-		Anime.update({_id: animeId}, {$set: {rating: averageRating, ratingCounts: ratingCounts, ratingUpdatedAt: new Date()}});
+		// We only want to calculate the rating 
+		// and update the anime if we have data
+
+		if (totalWeightedRatings > 0) {
+			// Calculate the weighted average
+			console.log(totalWeightedRatings);
+			console.log(totalWeight);
+			averageRating = totalWeightedRatings/totalWeight;
+
+			// Update the anime with calculated ratings
+			Anime.update({_id: animeId}, {$set: {rating: averageRating, ratingCounts: ratingCounts, ratingUpdatedAt: new Date()}});
+		}
 
 	}
 
