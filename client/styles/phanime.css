@@ -80,6 +80,26 @@ textarea {
 	font-weight: 300;
 }
 
+.block {
+	border: 1px solid #d8d8d8;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #fff;
+	border-bottom-width: 2px;
+	margin: 10px 0 20px 0;
+	padding: 20px 20px;	
+}
+
+.block.green {
+	border-top: 5px solid #8bc34a;
+}
+
+	.row .block {
+		margin: 10px 0 20px;
+	}
+
+
+
 .box {
 	margin-bottom: 20px;
 	background-color: #fff;
@@ -143,9 +163,11 @@ textarea {
 		text-shadow: none;
 	}
 
-	.animeCover {
-		height: 350px;
-		padding-top: 100px;
+	.anime-cover {
+		width: 275px;
+		height: 375px;
+		background-position: center center;
+		background-size: cover;
 	}
 
 	.episodeCover {
