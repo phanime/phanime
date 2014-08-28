@@ -164,8 +164,7 @@ textarea {
 	}
 
 	.anime-cover {
-		width: 275px;
-		height: 375px;
+		padding-bottom: 150%;
 		background-position: center center;
 		background-size: cover;
 	}
