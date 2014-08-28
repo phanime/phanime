@@ -46,6 +46,7 @@ mrt:publish-composite@1.0.6
 npm-bcrypt@0.7.7
 observe-sequence@1.0.1
 ordered-dict@1.0.0
+percolatestudio:synced-cron@0.1.1
 raix:http-methods@0.0.22
 random@1.0.0
 reactive-dict@1.0.0
