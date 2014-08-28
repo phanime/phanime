@@ -40,3 +40,6 @@ Template.index.currentYear = function() {
 	var current_year = moment().format('YYYY');
 	return current_year;
 };
+
+
+

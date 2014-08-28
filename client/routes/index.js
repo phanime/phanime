@@ -9,11 +9,11 @@ IndexController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('anime', this.params._id);
+		return Meteor.subscribe('libraryEntriesLatest');
 	},
 
 	data: function () {
-		//return anime.find();
+		return LibraryEntries.find({userId: Meteor.userId()}, {limit: 6});
 	}	
 
 });
