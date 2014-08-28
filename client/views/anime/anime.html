@@ -10,6 +10,11 @@
 				<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
 					<h1 style="margin-top:0">{{title}}</h1>
 					<div class="description thin-text">{{description}}</div>
+					<div class="genreList">
+						{{#if currentUser}}
+							{{> addLibraryEntry}}
+						{{/if}}
+					</div>
 				</div>
 			</div>
 
@@ -22,19 +27,19 @@
 		<div class="col-sm-6 col-md-4">
 			<div class="col-sm-12 block green">
 				<h2 class="thin-text">Rating Overview</h2>
+
 				{{#if rating}}
 					<div>{{rating}}</div>
-					<div>{{ratingCounts.[1]}}</div>
-					<div>{{ratingCounts.[2]}}</div>
-					<div>{{ratingCounts.[3]}}</div>
-					<div>{{ratingCounts.[4]}}</div>
-					<div>{{ratingCounts.[5]}}</div>
-					<div>{{ratingCounts.[6]}}</div>
-					<div>{{ratingCounts.[7]}}</div>
-					<div>{{ratingCounts.[8]}}</div>
-					<div>{{ratingCounts.[9]}}</div>
-					<div>{{ratingCounts.[10]}}</div>
-					<div>{{totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[1] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[2] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[3] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[4] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[5] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[6] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[7] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[8] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[9] totalRatings}}</div>
+					<div>{{getPercentage ratingCounts.[10] totalRatings}}</div>
 				{{else}}
 					No rating available
 				{{/if}}
