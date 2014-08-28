@@ -90,6 +90,12 @@ textarea {
 	padding: 20px 20px;	
 }
 
+	.block h1:first-of-type, 
+	.block h2:first-of-type,
+	.block h3:first-of-type {
+		margin-top: 0;
+	}
+
 .block.green {
 	border-top: 5px solid #8bc34a;
 }

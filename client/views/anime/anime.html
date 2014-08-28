@@ -20,7 +20,7 @@
 
 	<div class="row">
 		<div class="col-sm-6 col-md-4">
-			<div class="block green">
+			<div class="col-sm-12 block green">
 				<h1>Review</h1>
 
 				Other things here
@@ -29,16 +29,101 @@
 
 		<div class="col-sm-6 col-md-4">
 			<div class="block green">
-				<h1>Episodes</h1>
-				The episodes
+				<h2 class="thin-text">Casting</h2>
+				{{#if castings}}
+					{{#each castings}}
+						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
+							<div class="col-sm-6">
+								{{#with character}}
+								<a href="{{pathFor 'character'}}">{{fullName}}</a>: {{../role}}
+								{{/with}}
+							</div>
+
+							<div class="col-sm-6">
+								{{#with person}}
+								<a href="{{pathFor 'person'}}"> {{fullName}}</a>: {{../language}}
+								{{/with}}
+							</div>
+						</div>
+					{{/each}}
+
+				{{else}}
+					No castings found for this anime.
+				{{/if}}
 			</div>
 		</div>
 
 		<div class="col-sm-6 col-md-4">
-			<div class="block green">
-				<h1>Episodes</h1>
-				The episodes
+			<div class="col-sm-12 block green">
+				<h2 class="thin-text">Staff Members</h2>
+				{{#if staffMembers}}
+					{{#each staffMembers}}
+						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
+							<div class="col-sm-6">
+								<a href="{{pathFor 'character' character}}">{{person.fullName}}</a>
+							</div>
+
+							<div class="col-sm-6">
+								{{staffPosition}}
+							</div>
+						</div>
+					{{/each}}
+				{{else}}
+					No staff members found for this anime.
+				{{/if}}
 			</div>
+		</div>
+
+
+	</div>
+
+
+	<div class="row">
+
+		<div class="col-sm-5 col-md-4">
+			
+				<div class="block">
+					Review 1
+				</div>
+
+				<div class="block">
+					Review 2
+				</div>
+			
+		</div>
+
+		<div class="col-sm-7 col-md-8">
+			
+			<div class="block green">
+				<h2 class="thin-text">Episodes</h2>
+
+				{{#if episodes}}
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<td>#</td>
+								<td>Episode Title</td>
+								<td>Air Date</td>
+							</tr>
+						</thead>
+
+						<tbody>
+							{{#each episodes}}
+								<tr class="thin-text">
+									<td>{{episodeNumber}}</td>
+									<td>{{#if episodeTitle}} {{episodeTitle}} {{else}} -- {{/if}}</td>
+									<td>{{#if airDate}} {{formatDateDefault airDate}} {{else}} -- {{/if}}</td>
+								</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+				{{else}}
+					No episodes found for this anime
+				{{/if}}				
+			</div>
+			
 		</div>
 
 
