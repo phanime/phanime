@@ -720,7 +720,11 @@ input.form-control.input-inline {
 } 
 
 
-
+@media (min-width: 1200px) {
+	.container {
+		width: 1360px;
+	}
+}
 
 
 
