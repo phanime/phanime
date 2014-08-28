@@ -20,6 +20,7 @@ Meteor.methods({
 		var totalWeightedRatings = 0;
 		var totalWeight = 0;
 		var averageRating;
+		var totalRatings = 0;
 
 		// We can let other methods be executed, this could take a while 
 		this.unblock();
@@ -42,6 +43,7 @@ Meteor.methods({
 					ratingCounts[rating] += 1;
 					totalWeightedRatings = rating * episodesSeen;
 					totalWeight += episodesSeen;
+					totalRatings++;
 				}
 
 			}
@@ -59,7 +61,7 @@ Meteor.methods({
 			averageRating = totalWeightedRatings/totalWeight;
 
 			// Update the anime with calculated ratings
-			Anime.update({_id: animeId}, {$set: {rating: averageRating, ratingCounts: ratingCounts, ratingUpdatedAt: new Date()}});
+			Anime.update({_id: animeId}, {$set: {rating: averageRating, totalRatings: totalRatings, ratingCounts: ratingCounts, ratingUpdatedAt: new Date()}});
 		}
 
 	}
