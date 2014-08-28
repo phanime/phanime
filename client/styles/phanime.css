@@ -412,6 +412,38 @@ textarea {
 /*---------- ANIME ------------*/
 /*-----------------------------*/
 
+.anime-card {
+	position: relative;
+	width: 200px;
+	height: 275px;
+	background-size: cover;
+	background-position: center;
+	margin: 10px auto;
+	border: 5px solid #FFF;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5);
+	padding: 5px;
+	color: #ccc;
+	text-align: center;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+	.anime-card .important {
+		opacity: 1;
+		-webkit-transition: all 0.33s ease-in-out;
+		-moz-transition: all 0.33s ease-in-out;
+		-o-transition: all 0.33s ease-in-out;
+		transition: all 0.33s ease-in-out;
+		position: absolute;
+		bottom: 0;
+		z-index: 2;
+		font-size: 15px;
+		padding: 5px;
+		text-shadow: 0 0 3px rgba(0,0,0,.8);	
+	}
+
 .fancy-heading .container .anime-important {
 	position: absolute;
 	bottom: 0;
@@ -475,26 +507,6 @@ textarea {
 		font-size: 10px;
 	}
 
-
-.anime-card {
-	border-radius: 2px;
-	border-bottom: 1px solid #8bc34a;
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-	height: 250px;
-	margin-bottom: 25px;
-	background-size: cover;
-	background-position: center center;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-	.anime-card a {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		padding: 10px;
-		white-space: nowrap;
-		background-color: rgba(0, 0, 0.7);
-	}
 
 /*-----------------------------*/
 /*---------- VIDEO ------------*/
@@ -574,30 +586,12 @@ textarea {
 	/*--------- LIBRARY  ----------*/
 	/*-----------------------------*/
 
-	.libraryEntryCard {
-		position: relative;
-		width: 200px;
-		height: 275px;
-		background-size: cover;
-		background-position: center;
-		margin: 10px auto;
-		border: 5px solid #FFF;
-		box-shadow: 0 0 3px rgba(0,0,0,0.5);
-		padding: 5px;
-		color: #ccc;
-		text-align: center;
-		-webkit-transition: all 0.3s ease-in-out;
-		-moz-transition: all 0.3s ease-in-out;
-		-o-transition: all 0.3s ease-in-out;
-		transition: all 0.3s ease-in-out;
-	}
-
-	.libraryEntryCard:hover .banner-gradient,
-	.libraryEntryCard:hover .important {
+	.anime-card.library-entry:hover .banner-gradient,
+	.anime-card.library-entry:hover .important {
 		opacity: 1;
 	}
 
-	.libraryEntryCard .banner-gradient {
+	.anime-card .banner-gradient {
 		opacity: 1;
 		-webkit-transition: all 0.3s ease-in-out;
 		-moz-transition: all 0.3s ease-in-out;
@@ -605,21 +599,7 @@ textarea {
 		transition: all 0.3s ease-in-out;	
 	}
 
-	.libraryEntryCard .important {
-		opacity: 1;
-		-webkit-transition: all 0.33s ease-in-out;
-		-moz-transition: all 0.33s ease-in-out;
-		-o-transition: all 0.33s ease-in-out;
-		transition: all 0.33s ease-in-out;
-		position: absolute;
-		bottom: 0;
-		z-index: 2;
-		font-size: 15px;
-		padding: 5px;
-		text-shadow: 0 0 3px rgba(0,0,0,.8);	
-	}
-
-	.libraryEntryCard .progress {
+	.anime-card.library-entry .progress {
 		position: absolute;
 		z-index: 1;
 		top: 0;
@@ -633,7 +613,7 @@ textarea {
 	}
 
 
-		.libraryEntryCard:hover .libraryEntryForm {
+		.anime-card.library-entry:hover .libraryEntryForm {
 			opacity: 1;
 		}
 
