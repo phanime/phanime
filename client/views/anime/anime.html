@@ -22,8 +22,22 @@
 		<div class="col-sm-6 col-md-4">
 			<div class="col-sm-12 block green">
 				<h2 class="thin-text">Rating Overview</h2>
-
-				{{rating}}
+				{{#if rating}}
+					<div>{{rating}}</div>
+					<div>{{ratingCounts.[1]}}</div>
+					<div>{{ratingCounts.[2]}}</div>
+					<div>{{ratingCounts.[3]}}</div>
+					<div>{{ratingCounts.[4]}}</div>
+					<div>{{ratingCounts.[5]}}</div>
+					<div>{{ratingCounts.[6]}}</div>
+					<div>{{ratingCounts.[7]}}</div>
+					<div>{{ratingCounts.[8]}}</div>
+					<div>{{ratingCounts.[9]}}</div>
+					<div>{{ratingCounts.[10]}}</div>
+					<div>{{totalRatings}}</div>
+				{{else}}
+					No rating available
+				{{/if}}
 			</div>
 		</div>
 
@@ -46,7 +60,6 @@
 							</div>
 						</div>
 					{{/each}}
-
 				{{else}}
 					No castings found for this anime.
 				{{/if}}
