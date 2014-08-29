@@ -1,11 +1,11 @@
 IndexController = RouteController.extend({
 	
 	waitOn: function () {
-		return Meteor.subscribe('libraryEntriesLatest');
+		return Meteor.subscribe('libraryEntriesIndexLatest');
 	},
 
 	data: function () {
-		return LibraryEntries.find({userId: Meteor.userId()}, {sort: {updatedAt: -1}});
+		return LibraryEntries.find({userId: Meteor.userId(), $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {limit: 6, sort: {updatedAt: -1}});
 	}	
 
 });
