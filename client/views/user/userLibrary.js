@@ -51,7 +51,8 @@ Template.libraryEntryCard.events({
 
 				LibraryEntries.update({_id: libraryEntry._id}, {$set: {
 					status: status, 
-					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null)
+					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null),
+					updatedAt: new Date(),
 				}});
 
 				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated');
@@ -76,7 +77,7 @@ Template.libraryEntryCard.events({
 			if (rating === 0) {
 				LibraryEntries.update({_id: libraryEntry._id}, {$unset: {rating: ""}});
 			} else {
-				LibraryEntries.update({_id: libraryEntry._id}, {$set: {rating: rating}});
+				LibraryEntries.update({_id: libraryEntry._id}, {$set: {rating: rating, updatedAt: new Date()}});
 			}
 		} else {
 			console.log('Ratings are the same, didn\'t update');
@@ -92,7 +93,7 @@ Template.libraryEntryCard.events({
 
 		// Ensure episodesSeen was actually changed
 		if (episodesSeen !== libraryEntry.episodesSeen) {
-			LibraryEntries.update({_id: libraryEntry._id}, {$set: {episodesSeen: episodesSeen}});
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {episodesSeen: episodesSeen, updatedAt: new Date()}});
 		} else {
 			console.log('Episodes seen was not changed');
 		}
@@ -108,7 +109,7 @@ Template.libraryEntryCard.events({
 
 		// Ensure comments are different from before
 		if (comments !== libraryEntry.comments) {
-			LibraryEntries.update({_id: libraryEntry._id}, {$set: {comments: comments}});
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {comments: comments, updatedAt: new Date()}});
 		} else {
 			console.log('Comments were not changed');
 		}

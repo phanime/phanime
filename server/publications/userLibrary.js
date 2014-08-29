@@ -18,7 +18,3 @@ Meteor.publishComposite('libraryEntriesLatest', function() {
 		]
 	}; 
 });
-
-Meteor.publish('libraryEntriesLatest', function() {
-	return LibraryEntries.find({userId: this.userId}, {limit: 6});
-});

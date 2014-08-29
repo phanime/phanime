@@ -1,5 +1,12 @@
 LibraryEntries = new Meteor.Collection("libraryEntries");
 
+LibraryEntries.helpers({
+	anime: function() {
+		return Anime.findOne({_id: this.animeId});
+	}
+});
+
+
 LibraryEntries.allow({
 
 	insert: function(userId, doc) {
