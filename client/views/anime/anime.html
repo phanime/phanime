@@ -29,17 +29,23 @@
 				<h2 class="thin-text">Rating Overview</h2>
 
 				{{#if rating}}
-					<div>{{rating}}</div>
-					<div>{{getPercentage ratingCounts.[1] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[2] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[3] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[4] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[5] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[6] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[7] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[8] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[9] totalRatings}}</div>
-					<div>{{getPercentage ratingCounts.[10] totalRatings}}</div>
+					<div class="row">
+						<div class="col-xs-4 col-lg-4">
+							{{rating}}
+						</div>
+						<div class="col-xs-8 col-lg-8">
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[10] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[9] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[8] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[7] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[6] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[5] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[4] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[3] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[2] totalRatings}}"></div>
+							<div class="rating-bar" style="width: {{getPercentage ratingCounts.[1] totalRatings}}"></div>
+						</div>
+					</div>
 				{{else}}
 					No rating available
 				{{/if}}
