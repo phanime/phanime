@@ -13,7 +13,7 @@ IndexController = RouteController.extend({
 	},
 
 	data: function () {
-		return LibraryEntries.find({userId: Meteor.userId()}, {limit: 6});
+		return LibraryEntries.find({userId: Meteor.userId()}, {sort: {updatedAt: -1}});
 	}	
 
 });

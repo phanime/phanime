@@ -48,7 +48,8 @@ Template.addLibraryEntry.events({
 
 				LibraryEntries.update({_id: currentEntry._id}, {$set: {
 					status: status, 
-					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null)
+					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null),
+					updatedAt: new Date(),
 				}});
 				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated to ' + status);
 			} else {
@@ -65,7 +66,8 @@ Template.addLibraryEntry.events({
 				userId: Meteor.userId(),
 				animeId: anime._id,
 				status: status,
-				episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null)
+				episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null),
+				createdAt: new Date(),
 			};
 
 			LibraryEntries.insert(currentEntry, function(error, result) {
