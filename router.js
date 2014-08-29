@@ -88,12 +88,27 @@ var routerBeforeHooks = {
 			this.render('landing');
 			pause();
 		}		
+	},
+
+	loadingIndicator: function() {
+		this.render('loading');
+	},
+
+	// We want to ensure that when a new page loads
+	// we have it scrolled all the way to the top
+	scrollUp: function() {
+		$('body, html').scrollTop(0);
+	},
+
+	animateContentOut: function() {
+		$('#content').removeClass("animated fadeIn fadeInRight");
+		$('footer').addClass("hide");
 	}
 }
 
 // (Global) Before hooks for any route
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
-Router.onBeforeAction(routerBeforeHooks.isLoggedIn);
+Router.onBeforeAction(routerBeforeHooks.loadingIndicator,routerBeforeHooks.isLoggedIn, routerBeforeHooks.scrollUp);
 
 Router.configure({
 	layoutTemplate: 'defaultLayout'
