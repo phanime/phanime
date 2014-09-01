@@ -239,6 +239,14 @@ textarea {
 	}
 
 
+	.img.avatar {
+		height: 50px;
+		background-size: cover;
+		border-radius: 5px;
+		float: left;
+		margin-right: 10px;
+	}
+
 /*-----------------------------*/
 /*------- General APP  --------*/
 /*-----------------------------*/

@@ -1,7 +1,10 @@
 <template name="reviewCard">
 
 	<div class="block">
-		<h4 class="thin-text"> {{user.username}} - {{overallRating}}/10 </h4> 
+		<div class="img img-sm avatar" style="background-image: url('{{user.avatarImageUrl}}')"></div>
+
+		<h4 class="thin-text" style="margin:0">{{user.username}}</h4>
+		<h4 class="thin-text">{{overallRating}}</h4> 
 		{{summary}}
 	</div>
 
