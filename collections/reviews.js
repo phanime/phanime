@@ -1,5 +1,12 @@
 Reviews = new Meteor.Collection("reviews");
 
+Reviews.helpers({
+	user: function() {
+		return Meteor.users.findOne({_id: this.userId});
+	}
+});
+
+
 
 Reviews.allow({
 
