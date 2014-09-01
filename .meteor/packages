@@ -15,9 +15,9 @@ alisalaah:moment-tz-data
 dburles:collection-helpers
 mrt:publish-composite
 spiderable
-mrt:aws-sdk
 dandv:jquery-rateit
 chrismbeckett:fontawesome4
 mizzao:bootstrap-3
 percolatestudio:synced-cron
+rosh93:aws-sdk
 
