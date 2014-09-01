@@ -493,6 +493,7 @@ textarea {
 	color: #7E7E7E;
 	font-size: 15px;
 	font-weight: 300;
+	padding: 0;
 }
 	.anime-info li {
 		display: inline-block;
