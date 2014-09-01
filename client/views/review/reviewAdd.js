@@ -8,7 +8,26 @@ Template.reviewAdd.rendered = function() {
 Template.reviewAdd.events({
 
 	'click #reviewAddBtn' : function (event, template) {
-		console.log('clicked');
+
+		var reviewContent = $('#reviewContent').val().trim();
+		var reviewSummary = $('#reviewSummary').val().trim();
+
+		var storyRating = $('#storyRating').rateit('value');
+		var animationRating = $('#animationRating').rateit('value');
+		var characterRating = $('#characterRating').rateit('value');
+		var soundRating = $('#soundRating').rateit('value');
+		var enjoymentRating = $('#soundRating').rateit('value');
+		var overallRating = $('#overallRating').rateit('value');
+
+
+
+		console.log(reviewContent);
+		console.log(reviewSummary);
+		console.log(storyRating);
+
+
+
+
 		return false;
 	}
 
