@@ -18,11 +18,26 @@ Reviews.allow({
 
 		var ratingCondition = (doc.overallRating >= 1 && doc.overallRating <= 10);
 
-		console.log(userCondition);
-		console.log(contentCondition);
-		console.log(ratingCondition);
+
+		// We need to ensure that there is only one review per anime per user
+		var reviewCheck = Reviews.findOne({animeId: doc.animeId, userId: userId});
+		var uniqueCondition;
+
+		console.log(reviewCheck);
+
+		if (reviewCheck) {
+			uniqueCondition = false;
+		} else {
+			uniqueCondition = true;
+		}
+
+		// console.log(userCondition);
+		// console.log(contentCondition);
+		// console.log(ratingCondition);
+
+
 		
-		return userCondition && contentCondition && ratingCondition;
+		return userCondition && contentCondition && ratingCondition && uniqueCondition;
 
 	},
 	update: function(userId, doc, fields, modifier) {
