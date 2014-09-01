@@ -431,16 +431,17 @@ textarea {
 
 	.anime-card .important {
 		opacity: 1;
-		-webkit-transition: all 0.33s ease-in-out;
-		-moz-transition: all 0.33s ease-in-out;
-		-o-transition: all 0.33s ease-in-out;
-		transition: all 0.33s ease-in-out;
 		position: absolute;
 		bottom: 0;
 		z-index: 2;
 		font-size: 15px;
 		padding: 5px;
-		text-shadow: 0 0 3px rgba(0,0,0,.8);	
+		text-shadow: 0 0 3px rgba(0,0,0,.8);
+		text-align: left;
+		-webkit-transition: all 0.33s ease-in-out;
+		-moz-transition: all 0.33s ease-in-out;
+		-o-transition: all 0.33s ease-in-out;
+		transition: all 0.33s ease-in-out;	
 	}
 
 .fancy-heading .container .anime-important {
