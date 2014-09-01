@@ -123,13 +123,9 @@
 					<button class="btn btn-primary" data-toggle="modal" data-target="#reviewAddModal">Write Review</button>
 				</div>
 			
-				<div class="block">
-					Review 1
-				</div>
-
-				<div class="block">
-					Review 2
-				</div>
+				{{#each reviews}}
+					{{> UI.dynamic template="reviewCard" data=this}}
+				{{/each}}
 			
 		</div>
 
