@@ -40,7 +40,6 @@ minifiers@1.0.2
 minimongo@1.0.1
 mizzao:bootstrap-3@3.2.0
 mongo-livedata@1.0.3
-mrt:aws-sdk@0.2.0
 mrt:moment@2.6.0
 mrt:publish-composite@1.0.6
 npm-bcrypt@0.7.7
@@ -52,6 +51,7 @@ random@1.0.0
 reactive-dict@1.0.0
 reload@1.0.0
 retry@1.0.0
+rosh93:aws-sdk@0.0.1
 routepolicy@1.0.0
 service-configuration@1.0.0
 session@1.0.0
