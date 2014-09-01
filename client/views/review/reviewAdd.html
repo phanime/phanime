@@ -1,27 +1,62 @@
 <template name="reviewAdd">
 	<h2 class="thin-text">Reviewing as {{currentUser.username}}</h2>
 
-	<div class="row">
+	<form role="form">
+		<div class="row">
 
-		<div class="col-lg-9">
+			<div class="col-lg-9">
 
-			<div class="form-group">
-				<textarea id="reviewContent"></textarea>
+				<div class="form-group">
+					<label>Review</label>
+					<textarea class="form-control" id="reviewContent" rows="10" placeholder="Please properly indicate any spoilers in your review"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label>Summary</label>
+					<textarea class="form-control" id="reviewSummary" maxlength="140" rows="2" placeholder="Summarize this review in as little characters as possible. Maximum of 140"></textarea>
+				</div>
+
+				<button type="submit" id="reviewAddBtn" class="btn btn-primary btn-beside">Publish Review</button>
+				<button type="button" class="btn btn-default btn-beside" data-dismiss="modal">Close</button>
+
 			</div>
 
-			<div class="form-group">
-				<textarea id="reviewSummary" maxlength="140"></textarea>
+
+			<div class="col-lg-3">
+
+				<div class="form-group">
+					<label>Story</label>
+					<div class="rating"></div>
+				</div>
+
+				<div class="form-group">
+					<label>Animation</label>
+					<div class="rating"></div>
+				</div>
+
+				<div class="form-group">
+					<label>Character</label>
+					<div class="rating"></div>
+				</div>
+
+				<div class="form-group">
+					<label>Sound</label>
+					<div class="rating"></div>
+				</div>			
+
+				<div class="form-group">
+					<label>Enjoyment</label>
+					<div class="rating"></div>
+				</div>
+
+				<div class="form-group">
+					<label>Overall</label>
+					<div class="rating"></div>
+				</div>		
+
 			</div>
 
 		</div>
-
-
-		<div class="col-lg-3">
-
-			More stuff
-
-		</div>
-
-	</div>
+	</form>
 
 </template>
