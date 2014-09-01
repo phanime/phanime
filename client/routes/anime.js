@@ -22,8 +22,7 @@ AnimeController = RouteController.extend({
 			anime.castings = Castings.find({animeId: anime._id});
 			anime.staffMembers = StaffMembers.find({animeId: anime._id});
 			anime.libraryEntry = LibraryEntries.findOne({animeId: anime._id});
-
-
+			anime.reviews = Reviews.find({animeId: anime._id});
 		}
 
 
