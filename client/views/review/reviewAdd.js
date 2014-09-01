@@ -47,8 +47,13 @@ Template.reviewAdd.events({
 				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated to ' + status);
 			} else {
 				Notifications.success('Successfully Published Review', 'Your review should show up on the anime page in a few moments');
-			}
 
+				// This template doesn't necessaryily have access to the modal in every implementation
+				// I guess we can do this temporarily.
+
+				$('#reviewAddModal').modal('hide');
+
+			}
 
 		});
 
