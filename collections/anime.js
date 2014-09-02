@@ -1,5 +1,9 @@
 Anime = new Meteor.Collection("anime");
 
+AnimePages = new Meteor.Pagination(Anime, {
+	router: 'iron-router',
+	routerTemplate: 'animeExplore',
+});
 
 Anime.helpers({
 
