@@ -426,16 +426,16 @@ textarea {
 
 	.navbar-phan .navbar-nav > li > a:hover,
 	.navbar-phan .navbar-nav > li > a:focus {
-		color: #fff;
+		color: #ffffff;
 	}
 
 	.navbar-phan .navbar-brand {
-		color: #fff;
+		color: #ffffff;
 	}
 
 	.navbar-phan .navbar-brand:hover, 
 	.navbar-phan .navbar-brand:focus {
-		color: #fff;
+		color: #ffffff;
 	}
 
 
@@ -443,7 +443,7 @@ textarea {
 	.navbar-phan .navbar-nav > .open > a, 
 	.navbar-phan .navbar-nav > .open > a:hover, 
 	.navbar-phan .navbar-nav > .open > a:focus {
-		color: #fff;
+		color: #ffffff;
 		background-color: #8bc34a;
 		-webkit-transition: all 0.0s ease-in-out;
 		-moz-transition: all 0.0s ease-in-out;
@@ -453,6 +453,45 @@ textarea {
 
 	.navbar-phan .navbar-nav > li > .dropdown-menu {
 		border: none;
+	}
+
+	@media (max-width: 767px) {
+		.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+			color: #CCCCCC;
+		}
+	
+		.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, 
+		.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+			color: #ffffff;
+		}
+
+		.navbar-phan .dropdown-header {
+			color: #8D8D8D;
+		}
+
+		.navbar-phan .dropdown-menu .divider {
+			background-color: #686868;
+		}
+
+		.navbar-phan .navbar-collapse {
+			border: none;
+			box-shadow: inset 0px 0px 10px;
+		}
+
+		.navbar-phan .navbar-toggle {
+			border: none;
+			color: #fff;
+			text-shadow: 0 0 3px #000;
+			padding: 0;
+			font-size: 24px;
+		}
+
+		.navbar-phan .navbar-toggle:hover, 
+		.navbar-phan .navbar-toggle:focus {
+			background-color: transparent;
+			
+		}
+
 	}
 
 /*-----------------------------*/
