@@ -21,6 +21,16 @@ HTTP.methods({
 				
 			});
 
+			Email.send({
+				to: 'maazali40@gmail.com',
+				from: 'no-reply@phanime.com',
+				subject: 'Welcome to Phanime',
+				html: '<b>This is html</b> That should work',
+				text: 'or normal text I suppose?'
+			});
+
+			console.log('Email sent?');
+
 			return JSON.stringify(test);		
 		}
 	}
