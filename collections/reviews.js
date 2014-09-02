@@ -32,7 +32,7 @@ Reviews.allow({
 		}
 
 
-		console.log(uniqueCondition)
+		// console.log(uniqueCondition)
 		// console.log(userCondition);
 		// console.log(contentCondition);
 		// console.log(ratingCondition);

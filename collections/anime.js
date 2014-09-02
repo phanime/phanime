@@ -24,6 +24,45 @@ Anime.helpers({
 
 });
 
+Anime.allow({
+
+	insert: function(userId, doc) {
+		
+		// We need to ensure that there is only one anime per canonicalTitle 
+		var titleCheck = Anime.findOne({canonicalTitle: doc.canonicalTitle});
+		var slugCheck = Anime.findOne({slug: doc.slug});
+
+		var uniqueCondition;
+
+		console.log(titleCheck);
+		console.log(slugCheck);
+
+		if (titleCheck || slugCheck) {
+			uniqueCondition = false;
+		} else {
+			uniqueCondition = true;
+		}
+
+		return uniqueCondition;
+
+	},
+	// update: function(userId, doc, fields, modifier) {
+
+	// 	// can only change your own library entries
+	// 	return doc.userId === userId;
+
+	// },
+	// remove: function(userId, doc) {
+
+	// 	// can only remove entries that you own
+	// 	return doc.userId === userId;
+
+	// }
+
+
+});
+
+
 AnimeSchema = new SimpleSchema({
 	canonicalTitle: {
 		type: String,
