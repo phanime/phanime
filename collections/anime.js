@@ -34,8 +34,8 @@ Anime.allow({
 
 		var uniqueCondition;
 
-		console.log(titleCheck);
-		console.log(slugCheck);
+		// console.log(titleCheck);
+		// console.log(slugCheck);
 
 		if (titleCheck || slugCheck) {
 			uniqueCondition = false;
