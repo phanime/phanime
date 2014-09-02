@@ -412,8 +412,48 @@ textarea {
 
 .navbar-phan {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-	border-bottom: 4px solid #e7e7e7;
+	border-bottom: none;
+	background-color: #575757;
 }
+
+	.navbar-phan .navbar-nav > li > a {
+		color: #CCCCCC;
+		-webkit-transition: all 0.3s ease-in-out;
+		-moz-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;	
+	}
+
+	.navbar-phan .navbar-nav > li > a:hover,
+	.navbar-phan .navbar-nav > li > a:focus {
+		color: #fff;
+	}
+
+	.navbar-phan .navbar-brand {
+		color: #fff;
+	}
+
+	.navbar-phan .navbar-brand:hover, 
+	.navbar-phan .navbar-brand:focus {
+		color: #fff;
+	}
+
+
+	/* --- Dropdown related ---*/
+	.navbar-phan .navbar-nav > .open > a, 
+	.navbar-phan .navbar-nav > .open > a:hover, 
+	.navbar-phan .navbar-nav > .open > a:focus {
+		color: #fff;
+		background-color: #8bc34a;
+		-webkit-transition: all 0.0s ease-in-out;
+		-moz-transition: all 0.0s ease-in-out;
+		-o-transition: all 0.0s ease-in-out;
+		transition: all 0.0s ease-in-out;	
+	}
+
+	.navbar-phan .navbar-nav > li > .dropdown-menu {
+		border: none;
+	}
 
 /*-----------------------------*/
 /*---------- ANIME ------------*/

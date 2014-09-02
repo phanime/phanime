@@ -1,11 +1,22 @@
 UserLibraryController = RouteController.extend({
-	
-	onBeforeAction: function () {
-		console.log('Thing are going well');
-	},
 
 	onAfterAction: function () {
-		console.log('Everything worked');
+		if (this.ready()) {
+			var user = this.data();
+
+			SEO.set({
+				title: user.username + "'s Library | Phanime",
+				meta: {
+					'description' : user.about
+				},
+				og: {
+					'title' : user.username + "'s Library | Phanime" ,
+					'description' : user.about,
+					'type' : 'profile',
+					'image' : user.avatarImageUrl(),
+				}
+			});
+		}
 	},
 
 	waitOn: function () {
