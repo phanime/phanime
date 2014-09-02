@@ -51,11 +51,11 @@
 								<li><a href="{{pathFor 'accountPersonalDetails'}}">Personal Details</a></li>
 								<li><a href="{{pathFor 'accountSecurity'}}">Security</a></li>
 								<li class="divider"></li>
-								<li><a id="logout" href="#">Logout</a></li>			
+								<li><a href="{{pathFor 'entrySignOut'}}">Sign out</a></li>			
 							</ul>
 						</li>
 					{{else}}
-						<li><a href="{{pathFor 'login'}}">Login</a></li>
+						<li><a href="{{pathFor 'entrySignIn'}}">Sign in</a></li>
 					{{/if}}
 				</ul>
 			</div>
