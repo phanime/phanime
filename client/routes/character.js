@@ -1,11 +1,26 @@
 CharacterController = RouteController.extend({
 	
-	onBeforeAction: function () {
-		console.log('Thing are going well');
-	},
+	// onBeforeAction: function () {
+	// 	console.log('Thing are going well');
+	// },
 
 	onAfterAction: function () {
-		console.log('Everything worked');
+		if (this.ready()) {
+			var character = this.data();
+
+			SEO.set({
+				title: character.fullName() + " | phanime",
+				meta: {
+					'description' : character.biography
+				},
+				og: {
+					'title' : character.fullName() + " | phanime" ,
+					'description' : character.biography,
+					'type' : 'profile',
+					'image' : character.coverImageUrl(),
+				}
+			});
+		}
 	},
 
 	waitOn: function () {
