@@ -6,8 +6,11 @@ SyncedCron.add({
 	}, 
 	job: function() {
 		Anime.find().forEach(function(anime) {
-			Meteor.call('calculateAnimeRatingById', anime._id);
+			Meteor.call('calculateAnimeRatingById', anime._id, function(error, results) {
+				if (!error) {
+					return "Finished";
+				}
+			});
 		});
-		return "Finished";
 	}
 });
