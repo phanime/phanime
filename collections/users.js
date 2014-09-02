@@ -14,6 +14,9 @@ Meteor.users.helpers({
 			return "http://cdn.phanime.com/images/site/na.gif";	
 		}
 
+	},
+	isAdmin: function() {
+		return this.username === 'Maaz' || this.username === 'Lovabelle' || this.username === 'despisal';
 	}
 
 });
