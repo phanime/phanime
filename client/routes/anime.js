@@ -1,11 +1,28 @@
 AnimeController = RouteController.extend({
 	
-	onBeforeAction: function () {
-		console.log('Thing are going well');
-	},
-
+	// onBeforeAction: function () {
+	// 	console.log('Thing are going well');
+	// },
 	onAfterAction: function () {
-		console.log('Everything worked');
+	
+		if (this.ready()) {
+			var anime = this.data();
+			console.log(this.data());
+
+			SEO.set({
+				title: anime.canonicalTitle + " | phanime",
+				meta: {
+					'description' : anime.description
+				},
+				og: {
+					'title' : anime.canonicalTitle + " | phanime" ,
+					'description' : anime.description,
+					'type' : 'video.tv_show',
+					'image' : anime.coverImageUrl(),
+					'video:release_date' : anime.startDate
+				}
+			});
+		}
 	},
 
 	waitOn: function () {
