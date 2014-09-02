@@ -1,7 +1,7 @@
 sudo mkdir /var/run/mongodb
 sudo chmod -R 777 /var/run/mongodb
 sudo service mongod start
-MONGO_URL=mongodb://localhost:27017/phanime_dev meteor
+MAIL_URL=smtp://postmaster@phanime.com:NqA7k9avLuCRb4NwXQTaDAkQ@smtp.mailgun.org:465/ MONGO_URL=mongodb://localhost:27017/phanime_dev meteor
 
 
 For production: 
