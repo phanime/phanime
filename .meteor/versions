@@ -2,6 +2,7 @@ accounts-base@1.0.0
 accounts-password@1.0.0
 aldeed:autoform@0.16.1
 aldeed:simple-schema@0.6.0
+alethes:pages@v1.0.24
 alisalaah:moment-tz-data@1.0.0
 application-configuration@1.0.0
 autoupdate@1.0.5

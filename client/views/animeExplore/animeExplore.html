@@ -1,0 +1,11 @@
+<template name="animeExplore">
+
+<div class="container main-content">
+	<div class="row">
+		{{#each this}}
+			{{> UI.dynamic template="animeCard" data=this}}
+		{{/each}}
+	</div>
+</div>
+
+</template>
