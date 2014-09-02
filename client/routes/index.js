@@ -1,5 +1,14 @@
 IndexController = RouteController.extend({
-	
+
+	onBeforeAction: function () {
+		SEO.set({
+			title: "Phanime | Discover anime like never before",
+			meta: {
+				'description' : 'Phanime is a platform made specifically for anime fans'
+			}
+		});
+	},	
+
 	waitOn: function () {
 		return Meteor.subscribe('libraryEntriesIndexLatest');
 	},
