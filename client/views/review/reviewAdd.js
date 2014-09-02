@@ -3,7 +3,7 @@ Template.reviewAdd.rendered = function() {
 		max: 10,
 		step: 1
 	});
-}
+};
 
 Template.reviewAdd.events({
 

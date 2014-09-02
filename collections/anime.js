@@ -1,9 +1,11 @@
 Anime = new Meteor.Collection("anime");
 
-AnimePages = new Meteor.Pagination(Anime, {
-	router: 'iron-router',
-	routerTemplate: 'animeExplore',
-});
+// AnimePages = new Meteor.Pagination(Anime, {
+// 	router: 'iron-router',
+// 	routerTemplate: 'animeExplore',
+// 	route: '/anime-explore/page/',
+// 	perPage: 10
+// });
 
 Anime.helpers({
 
