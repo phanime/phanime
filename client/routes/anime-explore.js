@@ -1,12 +1,16 @@
 AnimeExploreController = RouteController.extend({
 	
 	onBeforeAction: function () {
-		console.log('Thing are going well');
+			SEO.set({
+				title: "Explore Anime | Phanime",
+				meta: {
+					'description' : 'Explore anime like never before on phanime'
+				}
+			});
 	},
 
-	onAfterAction: function () {
-		console.log('Everything worked');
-	},
+	// onAfterAction: function () {
+	// },
 
 	waitOn: function () {
 		return Meteor.subscribe('animes');

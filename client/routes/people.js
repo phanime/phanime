@@ -1,11 +1,12 @@
 PeopleController = RouteController.extend({
 	
 	onBeforeAction: function () {
-		console.log('Thing are going well');
-	},
-
-	onAfterAction: function () {
-		console.log('Everything worked');
+		SEO.set({
+			title: "People | Phanime",
+			meta: {
+				'description' : 'Explore the people related to anime shows on phanime'
+			}
+		});
 	},
 
 	waitOn: function () {

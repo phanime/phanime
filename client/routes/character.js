@@ -9,12 +9,12 @@ CharacterController = RouteController.extend({
 			var character = this.data();
 
 			SEO.set({
-				title: character.fullName() + " | phanime",
+				title: character.fullName() + " | Phanime",
 				meta: {
 					'description' : character.biography
 				},
 				og: {
-					'title' : character.fullName() + " | phanime" ,
+					'title' : character.fullName() + " | Phanime" ,
 					'description' : character.biography,
 					'type' : 'profile',
 					'image' : character.coverImageUrl(),
