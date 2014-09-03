@@ -109,3 +109,22 @@ Meteor.publishComposite("animeBySlug", function(animeSlug) {
 		]
 	};
 });
+
+
+// Publish multiple anime
+
+Meteor.publish('animes', function() {
+	return Anime.find();
+});
+
+
+
+// Anime Search
+
+Meteor.publish('animeSearch', function(query) {
+
+	return EasySearch.search('anime',  query, {
+		'limit' : 50 // override the 20, defined in createSearchIndex
+	});
+
+});

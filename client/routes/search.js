@@ -7,11 +7,14 @@ SearchController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('searchAnime', this.params.q);
+		return Meteor.subscribe('animeSearch', this.params.q);
 	},
 
-	data: function () {
-		return People.find({_id: this.params._id});
+	data: function() {
+
+		console.log(this.params.q);
+
+		console.log(Anime.find().fetch());
 	}
 
 });
