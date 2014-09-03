@@ -4,15 +4,15 @@
 		<h1 class="thin-text">Recently Added</h1>
 
 		<div class="row">
-			{{#each recentlyAdded}}
+			{{#each recentlyAdded.entries}}
 				{{> UI.dynamic template="libraryEntryCard" data=this}}		
 			{{/each}}
 		</div>
 
-		<h1 class="thin-text">Watching</h1>
+		<h1 class="thin-text">Watching ({{watching.count}})</h1>
 
 		<div class="row">
-			{{#each watching}}
+			{{#each watching.entries}}
 				{{> UI.dynamic template="libraryEntryCard" data=this}}
 			{{else}}
 				<div class="col-sm-12">
@@ -21,10 +21,10 @@
 			{{/each}}
 		</div>
 
-		<h1 class="thin-text">Completed</h1>
+		<h1 class="thin-text">Completed ({{completed.count}})</h1>
 
 		<div class="row">
-			{{#each completed}}
+			{{#each completed.entries}}
 				{{> UI.dynamic template="libraryEntryCard" data=this}}
 			{{else}}
 				<div class="col-sm-12">
@@ -33,10 +33,10 @@
 			{{/each}}
 		</div>
 
-		<h1 class="thin-text">Plan to watch</h1>
+		<h1 class="thin-text">Plan to watch ({{planToWatch.count}})</h1>
 
 		<div class="row">
-			{{#each planToWatch}}
+			{{#each planToWatch.entries}}
 				{{> UI.dynamic template="libraryEntryCard" data=this}}
 			{{else}}
 				<div class="col-sm-12">
@@ -46,10 +46,10 @@
 		</div>
 
 
-		<h1 class="thin-text">On hold</h1>
+		<h1 class="thin-text">On hold ({{onHold.count}})</h1>
 
 		<div class="row">
-			{{#each onHold}}
+			{{#each onHold.entries}}
 				{{> UI.dynamic template="libraryEntryCard" data=this}}
 			{{else}}
 				<div class="col-sm-12">
@@ -58,10 +58,10 @@
 			{{/each}}
 		</div>
 
-		<h1 class="thin-text">Dropped</h1>
+		<h1 class="thin-text">Dropped ({{dropped.count}})</h1>
 
 		<div class="row">
-			{{#each dropped}}
+			{{#each dropped.entries}}
 				{{> UI.dynamic template="libraryEntryCard" data=this}}
 			{{else}}
 				<div class="col-sm-12">

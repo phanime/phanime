@@ -1,35 +1,52 @@
 Template.userLibrary.recentlyAdded = function(template) {
 	if (this) {
-		return LibraryEntries.find({userId: this._id}, {sort: {createdAt: -1}, limit: 6});
+		return {
+			entries: LibraryEntries.find({userId: this._id}, {sort: {createdAt: -1}, limit: 6})
+		};
 	}
 };
 
 Template.userLibrary.watching = function(template) {
 	if (this) {
-		return LibraryEntries.find({userId: this._id, status: 'Watching'});
+		return {
+			entries: LibraryEntries.find({userId: this._id, status: 'Watching'}),
+			count: LibraryEntries.find({userId: this._id, status: 'Watching'}).count()
+		};
 	}
 };
 
 Template.userLibrary.completed = function() {
 	if (this) {
-		return LibraryEntries.find({userId: this._id, status: 'Completed'});
+		return {
+			entries: LibraryEntries.find({userId: this._id, status: 'Completed'}),
+			count: LibraryEntries.find({userId: this._id, status: 'Completed'}).count()
+		};
 	}	
 };
 
 Template.userLibrary.planToWatch = function() {
 	if (this) {
-		return LibraryEntries.find({userId: this._id, status: 'Plan to watch'});
+		return {
+			entries: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}),
+			count: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}).count()
+		};
 	}
 };
 
 Template.userLibrary.onHold = function() {
 	if (this) {
-		return LibraryEntries.find({userId: this._id, status: 'On hold'});
+		return {
+			entries: LibraryEntries.find({userId: this._id, status: 'On hold'}),
+			count: LibraryEntries.find({userId: this._id, status: 'On hold'}).count()
+		};
 	}	
 };
 
 Template.userLibrary.dropped = function() {
 	if (this) {
-		return LibraryEntries.find({userId: this._id, status: 'Dropped'});
+		return {
+			entries: LibraryEntries.find({userId: this._id, status: 'Dropped'}),
+			count: LibraryEntries.find({userId: this._id, status: 'Dropped'}).count()
+		};
 	}
 };
