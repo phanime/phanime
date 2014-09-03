@@ -43,7 +43,7 @@
 		<h1 class="thin-text">On hold</h1>
 
 		<div class="row">
-			{{#each planToWatch}}
+			{{#each onHold}}
 				{{> UI.dynamic template="libraryEntryCard" data=this}}
 			{{else}}
 				<div class="col-sm-12">{{../username}} hasn't put any anime on hold</div>
@@ -53,7 +53,7 @@
 		<h1 class="thin-text">Dropped</h1>
 
 		<div class="row">
-			{{#each planToWatch}}
+			{{#each dropped}}
 				{{> UI.dynamic template="libraryEntryCard" data=this}}
 			{{else}}
 				<div class="col-sm-12">{{../username}} hasn't dropped any anime</div>
