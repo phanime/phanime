@@ -1,5 +1,20 @@
 Anime = new Meteor.Collection("anime");
 
+// Enable auto complete / search
+// Anime.initEasySearch(['canonicalTitle', 'englishTitle', 'romajiTitle', 'titleSynonyms'], {
+//     'limit' : 20
+// });
+
+EasySearch.createSearchIndex('anime', {
+	'field' : ['canonicalTitle', 'englishTitle', 'romajiTitle', 'titleSynonyms'],
+	'collection' : Anime,
+	'limit' : 20,
+	'query' : function(searchString) {
+		var query = EasySearch.getSearcher('mongo-db').defaultQuery(this, searchString);
+		return query;
+	}
+});
+
 // AnimePages = new Meteor.Pagination(Anime, {
 // 	router: 'iron-router',
 // 	routerTemplate: 'animeExplore',
