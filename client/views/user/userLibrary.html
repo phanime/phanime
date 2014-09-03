@@ -1,9 +1,65 @@
 <template name="userLibrary">
 
 	<div class="container main-content">
-		{{#each libraryEntries}}
-			{{> UI.dynamic template="libraryEntryCard" data=this}}		
-		{{/each}}
+		<h1 class="thin-text">Recently Added</h1>
+
+		<div class="row">
+			{{#each recentlyAdded}}
+				{{> UI.dynamic template="libraryEntryCard" data=this}}		
+			{{/each}}
+		</div>
+
+		<h1 class="thin-text">Watching</h1>
+
+		<div class="row">
+			{{#each watching}}
+				{{> UI.dynamic template="libraryEntryCard" data=this}}
+			{{else}}
+				<div class="col-sm-12">{{../username}} is not watching any anime</div>
+			{{/each}}
+		</div>
+
+		<h1 class="thin-text">Completed</h1>
+
+		<div class="row">
+			{{#each completed}}
+				{{> UI.dynamic template="libraryEntryCard" data=this}}
+			{{else}}
+				<div class="col-sm-12">{{../username}} hasn't completed any anime</div>
+			{{/each}}
+		</div>
+
+		<h1 class="thin-text">Plan to watch</h1>
+
+		<div class="row">
+			{{#each planToWatch}}
+				{{> UI.dynamic template="libraryEntryCard" data=this}}
+			{{else}}
+				<div class="col-sm-12">{{../username}} has no plans to watch any anime</div>
+			{{/each}}
+		</div>
+
+
+		<h1 class="thin-text">On hold</h1>
+
+		<div class="row">
+			{{#each planToWatch}}
+				{{> UI.dynamic template="libraryEntryCard" data=this}}
+			{{else}}
+				<div class="col-sm-12">{{../username}} hasn't put any anime on hold</div>
+			{{/each}}
+		</div>
+
+		<h1 class="thin-text">Dropped</h1>
+
+		<div class="row">
+			{{#each planToWatch}}
+				{{> UI.dynamic template="libraryEntryCard" data=this}}
+			{{else}}
+				<div class="col-sm-12">{{../username}} hasn't dropped any anime</div>
+			{{/each}}
+		</div>
+
 	</div>
 
 </template>
