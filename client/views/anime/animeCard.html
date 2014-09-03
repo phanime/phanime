@@ -13,3 +13,20 @@
 		</div>
 	</a>
 </template>
+
+
+<template name="animeCardProxy">
+	<a href="{{pathFor 'anime'}}">
+		<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+
+			<div class="anime-card img-lg" style="background-image: url('http://cdn.phanime.com/images/anime/cover/{{coverImage}}')">
+				
+				<div class="important">
+					{{canonicalTitle}}
+				</div>
+
+				<div class="banner-gradient"></div>
+			</div>
+		</div>
+	</a>
+</template>

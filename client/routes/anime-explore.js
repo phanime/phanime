@@ -1,23 +1,23 @@
-AnimeExploreController = RouteController.extend({
+// AnimeExploreController = RouteController.extend({
 	
-	onBeforeAction: function () {
-			SEO.set({
-				title: "Explore Anime | Phanime",
-				meta: {
-					'description' : 'Explore anime like never before on phanime'
-				}
-			});
-	},
+// 	onBeforeAction: function () {
+// 			SEO.set({
+// 				title: "Explore Anime | Phanime",
+// 				meta: {
+// 					'description' : 'Explore anime like never before on phanime'
+// 				}
+// 			});
+// 	},
 
-	// onAfterAction: function () {
-	// },
+// 	// onAfterAction: function () {
+// 	// },
 
-	waitOn: function () {
-		return Meteor.subscribe('animes');
-	},
+// 	waitOn: function () {
+// 		return Meteor.subscribe('animes');
+// 	},
 
-	data: function () {
-		return Anime.find({}, {sort: {canonicalTitle: 1}});
-	}
+// 	data: function () {
+// 		return Anime.find({}, {sort: {canonicalTitle: 1}});
+// 	}
 
-});
+// });
