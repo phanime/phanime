@@ -83,6 +83,8 @@
 								{{/with}}
 							</div>
 						</div>
+					{{else}}
+						<h4 class="thin-text">No castings found</h4>
 					{{/each}}
 					</div>
 
@@ -103,6 +105,8 @@
 								{{staffPosition}}
 							</div>
 						</div>
+					{{else}}
+						<h4 class="thin-text">No staff members found</h4>
 					{{/each}}
 					</div>
 
@@ -153,6 +157,8 @@
 									<td>{{#if episodeTitle}} {{episodeTitle}} {{else}} -- {{/if}}</td>
 									<td>{{#if airDate}} {{formatDateDefault airDate}} {{else}} -- {{/if}}</td>
 								</tr>
+							{{else}}
+								<h4 class="thin-text">No episodes found</h4>
 							{{/each}}
 						</tbody>
 					</table>
