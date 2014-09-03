@@ -46,8 +46,10 @@ minimongo@1.0.1
 mizzao:bootstrap-3@3.2.0
 mongo-livedata@1.0.3
 mrt:accounts-t9n@0.0.13
+mrt:malihu-custom-scrollbar@0.1.1
 mrt:moment@2.6.0
 mrt:publish-composite@1.0.6
+mrt:tiny-scrollbar@0.0.1
 mrt:underscore-string-latest@2.3.3
 npm-bcrypt@0.7.7
 observe-sequence@1.0.1
