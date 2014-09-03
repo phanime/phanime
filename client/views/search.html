@@ -1,0 +1,26 @@
+<template name="search">
+
+	<div class="container main-content">
+
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				{{> esInput index="anime" classes="form-control input-lg" placeholder="Search..."}}
+			</div>
+		</div>
+
+		{{#ifEsIsSearching index="anime"}}
+			<h2 class="thin-text">Loading...</h2>
+		{{else}}
+			<div class="row">
+				{{#esEach index="anime"}}
+					{{> UI.dynamic template="animeCard" data=this}}
+				{{/esEach}}
+			</div>
+		{{/ifEsIsSearching}}
+
+		{{#ifEsHasNoResults index="anime"}}
+		   <h2 class="thin-text">No results found!</h2>
+		{{/ifEsHasNoResults}}
+	</div>
+
+</template>
