@@ -1,9 +1,22 @@
 <template name="index">
 
 	<div class="container main-content">
+		<div class="row">
 		{{#each this}}
 			{{> UI.dynamic template="libraryEntryCard" data=this}}		
 		{{/each}}
+		</div>
+
+		<div class="search-input">
+			{{> esInput index="anime" classes="form-control input-lg" placeholder="Search..." }}
+		</div>
+
+		<div class="row">
+		{{#esEach index="anime"}}
+			{{> UI.dynamic template="animeCard" data=this}}
+		{{/esEach}}
+		</div>
+
 	</div>
 
 </template>

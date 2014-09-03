@@ -4,6 +4,27 @@
 
 		<h1 class="thin-text">We currently have {{animeCount}} anime in our database</h1>
 
+
+		<div class="search-input">
+			{{> esInput index="anime" classes="form-control input-lg" placeholder="Search..." }}
+		</div>
+
+		{{#ifEsIsSearching index="anime"}}
+			<h2 class="thin-text">Loading...</h2>
+		{{else}}
+			<div class="row">
+				{{#esEach index="anime"}}
+					{{> UI.dynamic template="animeCard" data=this}}
+				{{/esEach}}
+			</div>
+		{{/ifEsIsSearching}}
+
+		{{#ifEsHasNoResults index="anime"}}
+		   <h2 class="thin-text">No results found!</h2>
+		{{/ifEsHasNoResults}}
+
+		<hr style="border-top: 2px solid #D5D5D5">
+
 		<div class="row">
 			{{#each this}}
 				{{> UI.dynamic template="animeCard" data=this}}
