@@ -1,4 +1,4 @@
-<template name="animeExplore">
+<template name="animeExploreBackup">
 
 	<div class="container main-content">
 
@@ -30,7 +30,29 @@
 				{{> UI.dynamic template="animeCard" data=this}}
 			{{/each}}
 		</div>
-
 	</div>
+
+</template>
+
+
+<template name="animeExplore">
+
+	{{> animeSpecificExplore}}
+
+</template>
+
+<template name="animeSpecificExplore">
+
+<div class="container main-content">
+
+	{{> pagesNav}}
+
+	<div class="row">
+		{{> pages}}
+	</div>
+
+	{{> pagesNav}}
+
+</div>
 
 </template>

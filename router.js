@@ -6,6 +6,7 @@ Router.map(function () {
 	///////////////////// Anime /////////////////////
 	/////////////////////////////////////////////////
 
+	// Defined for compatibilty with pages 
 	this.route('animeExplore', {path: '/anime/explore'});
 
 	this.route('animeAdd', {path: '/anime/add'});
