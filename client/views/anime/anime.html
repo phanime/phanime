@@ -65,9 +65,10 @@
 		</div>
 
 		<div class="col-sm-6 col-md-4">
-			<div class="block green">
+			<div id="test" class="block green scroll-ready">
 				<h2 class="thin-text">Casting</h2>
-				{{#if castings}}
+
+					<div class="blaze-wrapper">
 					{{#each castings}}
 						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
 							<div class="col-sm-6">
@@ -83,16 +84,15 @@
 							</div>
 						</div>
 					{{/each}}
-				{{else}}
-					No castings found for this anime.
-				{{/if}}
+					</div>
+
 			</div>
 		</div>
 
 		<div class="col-sm-6 col-md-4">
-			<div class="col-sm-12 block green">
+			<div class="col-sm-12 block green scroll-ready">
 				<h2 class="thin-text">Staff Members</h2>
-				{{#if staffMembers}}
+					<div class="blaze-wrapper">
 					{{#each staffMembers}}
 						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
 							<div class="col-sm-6">
@@ -104,9 +104,8 @@
 							</div>
 						</div>
 					{{/each}}
-				{{else}}
-					No staff members found for this anime.
-				{{/if}}
+					</div>
+
 			</div>
 		</div>
 
@@ -133,10 +132,10 @@
 
 		<div class="col-sm-7 col-md-8">
 			
-			<div class="block green">
+			<div class="block green scroll-ready">
 				<h2 class="thin-text">Episodes</h2>
 
-				{{#if episodes}}
+
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<thead>
@@ -158,9 +157,7 @@
 						</tbody>
 					</table>
 				</div>
-				{{else}}
-					No episodes found for this anime
-				{{/if}}				
+			
 			</div>
 			
 		</div>

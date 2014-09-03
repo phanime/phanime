@@ -104,7 +104,9 @@ textarea {
 		margin: 10px 0 20px;
 	}
 
-
+	.block.scroll-ready {
+		height: 300px;
+	}
 
 .box {
 	margin-bottom: 20px;
