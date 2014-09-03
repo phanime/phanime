@@ -1,3 +1,12 @@
+Template.landing.rendered = function() {
+	// $('.bg').blurjs({
+	// 	source: 'body',
+	// 	radius: 30,
+	// 	overlay: 'rgba(0,0,0,0.2)'
+	// });
+}
+
+
 Template.landing.landingImage = function() {
 
 		var gifs = [
@@ -22,3 +31,5 @@ Template.landing.landingImage = function() {
 
 		return randGif;
 }
+
+
