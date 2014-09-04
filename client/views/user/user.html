@@ -1,5 +1,26 @@
 <template name="user">
 	<div class="container main-content">
 		{{username}}
+			{{#each followers}}
+				{{this}}
+			{{/each}}
+
+			{{#if isCurrentUserAFollower followers}}
+				<button id="unfollow" type="button" class="btn btn-default">Unfollow</button>
+			{{else}}
+				<button id="follow" type="button" class="btn btn-default">Follow</button>
+			{{/if}}
+
+
+		{{#unless isUserIdCurrentUser _id}}
+
+			{{#if isCurrentUserAFollower followers}}
+				<button id="follow" type="button" class="btn btn-default">Follow</button>
+			{{else}}
+				<button id="unfollow" type="button" class="btn btn-default">Unfollow</button>
+			{{/if}}
+		{{/unless}}
+
 	</div>
+
 </template>

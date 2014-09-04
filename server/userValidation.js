@@ -18,7 +18,6 @@ Accounts.validateNewUser(function(user) {
 		isGood = true;
 	} else {
 		isGood = false;
-		console.log(user.email);
 		throw new Meteor.Error(403, "Please provide a valid email address");
 	}
 
