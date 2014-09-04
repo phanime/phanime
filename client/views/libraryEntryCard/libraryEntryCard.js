@@ -187,4 +187,4 @@ Template.libraryEntryCard.entryHighPriorityClass = function(highPriority) {
 	} else {
 		return "fa-circle-o";
 	}
-}
+};
