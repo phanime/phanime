@@ -1,0 +1,5 @@
+ul.notifications {
+	position: fixed;
+	bottom: 0;
+	top: auto;
+}
