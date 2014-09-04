@@ -165,9 +165,26 @@ Template.libraryEntryCard.events({
 Template.libraryEntryCard.entryPrivacyClass = function(privacy) {
 
 	if (privacy === true) {
-		return "fa-lock";
+		return "fa-eye-slash";
 	} else {
-		return "fa-unlock";
+		return "fa-eye";
 	}
 
 };
+
+Template.libraryEntryCard.entryRewatchingClass = function(rewatching) {
+	if (rewatching === true) {
+		return "fa-history";
+	} else {
+		return "fa-clock-o";
+	}
+};
+
+
+Template.libraryEntryCard.entryHighPriorityClass = function(highPriority) {
+	if (highPriority === true) {
+		return "fa-exclamation-circle";
+	} else {
+		return "fa-circle-o";
+	}
+}
