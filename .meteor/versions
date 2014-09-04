@@ -21,6 +21,7 @@ deps@1.0.1
 ejson@1.0.0
 email@1.0.2
 follower-livedata@1.0.0
+gadicohen:phantomjs@0.0.2
 geojson-utils@1.0.0
 gfk:notifications@v1.0.5
 handlebars@1.0.0
