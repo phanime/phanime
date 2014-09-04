@@ -17,6 +17,7 @@ Template.libraryEntryCard.rendered = function() {
 
 Template.libraryEntryCard.events({
 
+	// Change the status
 	'click .status-item' : function(event, template) {
 
 		var status = $(event.target).text();
@@ -51,6 +52,9 @@ Template.libraryEntryCard.events({
 			}
 		}
 	},
+
+	// Change the rating
+
 	'click .entry-rating' : function(event, template) {
 		//console.log($(event.target));
 
@@ -73,6 +77,8 @@ Template.libraryEntryCard.events({
 		}
 	},
 
+	// Change the episodes seen
+
 	'change .entry-episodesSeen' : function(event, template) {
 		var episodesSeen = $(event.target).val();
 		var libraryEntry = template.data;
@@ -88,6 +94,54 @@ Template.libraryEntryCard.events({
 		}
 
 	},
+
+	// Update privacy, rewatching, and priority
+
+	'click .fa' : function(event, template) {
+
+		var icon = $(event.target);
+		var libraryEntry = template.data;
+		var privacy;
+		var rewatching;
+		var highPriority;
+
+		// The privacy icon was clicked
+		if (icon.hasClass('entry-privacy')) {
+			
+			if (libraryEntry.privacy === true) {
+				privacy = false;
+			} else {
+				privacy = true;
+			}
+
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {privacy: privacy}});
+
+
+		} else if (icon.hasClass('entry-rewatching')) {
+
+			if (libraryEntry.rewatching === true) {
+				rewatching = false;
+			} else {
+				rewatching = true;
+			}
+
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {rewatching: rewatching}});
+
+
+		} else if (icon.hasClass('entry-highPriority')) {
+
+			if (libraryEntry.highPriority === true) {
+				highPriority = false;
+			} else {
+				highPriority = true;
+			}
+
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {highPriority: highPriority}});
+		}
+
+	},
+
+	// Change the comments
 
 	'blur .entry-comments' : function(event, template) {
 		var comments = $(event.target).val();
@@ -107,3 +161,13 @@ Template.libraryEntryCard.events({
 
 
 });
+
+Template.libraryEntryCard.entryPrivacyClass = function(privacy) {
+
+	if (privacy === true) {
+		return "fa-lock";
+	} else {
+		return "fa-unlock";
+	}
+
+};
