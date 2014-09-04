@@ -15,7 +15,7 @@ Template.signIn.events({
 				Notifications.error('Login Unsuccessful', 'Username or password is invalid');
 			} else {
 				// Redirect the user to index page if login successful only if they are on the login route
-				if (currentRouteName === "login") {
+				if (currentRouteName === "signIn") {
 					Router.go('index');
 				}
 
