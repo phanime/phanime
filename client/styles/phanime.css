@@ -210,6 +210,7 @@ textarea {
 
 .description {
 	white-space: pre-line;
+	text-rendering: optimizeLegibility;
 }
 
 .footer {
@@ -511,7 +512,7 @@ textarea {
 	border: 5px solid #FFF;
 	box-shadow: 0 0 3px rgba(0,0,0,0.5);
 	padding: 5px;
-	color: #ccc;
+	color: #EEE;
 	text-align: center;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
