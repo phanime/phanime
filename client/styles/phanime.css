@@ -744,11 +744,13 @@ textarea {
 
 			.libraryEntryForm .icon-group {
 				margin: 10px auto;
+				color: #888;
 			}
 
 			.libraryEntryForm .icon-group i {
 				font-size: 25px;
 				padding: 5px 10px;
+				cursor: pointer;
 			}
 
 
