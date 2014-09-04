@@ -640,23 +640,11 @@ textarea {
 	width: 100%;
 }
 
+
 /*---------------------------------*/
 /*---------- Character ------------*/
 /*---------------------------------*/
 
-/*--- TEMP Ember-Notify styling ----*/
-
-.ember-notify {
-	background-color: #F5F5F5;
-	padding: 20px 10px;
-}
-	.ember-notify.success {
-		background-color: #D3FFCD;
-	}
-
-	.ember-notify.warning {
-		background-color: #FFCDCD;
-	}
 
 
 
@@ -825,6 +813,10 @@ input.form-control.input-inline {
 
 
 
+/*--- TEMP Notifications plugin styling ----*/
+ul.notifications {
+	position: fixed;
+}
 
 
 

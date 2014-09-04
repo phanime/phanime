@@ -21,7 +21,11 @@ Template.signUp.events({
 			
 			if (error) {
 				Notifications.error("Registration unsuccessful", error.reason);
+			} else {
+				Router.go('index');
 			}
+
+
 		});
 
 		// Avoid reload / not do normal event stuff
