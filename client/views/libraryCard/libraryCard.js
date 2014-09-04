@@ -73,7 +73,7 @@ Template.libraryEntryCard.events({
 		}
 	},
 
-	'blur .entry-episodesSeen' : function(event, template) {
+	'change .entry-episodesSeen' : function(event, template) {
 		var episodesSeen = $(event.target).val();
 		var libraryEntry = template.data;
 
