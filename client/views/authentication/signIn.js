@@ -1,4 +1,4 @@
-Template.login.events({
+Template.signIn.events({
 	'click button': function(event) {
 		event.preventDefault();
 		// Get input

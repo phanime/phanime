@@ -32,8 +32,6 @@ iron:core@0.3.2
 iron:dynamic-template@0.3.0
 iron:layout@0.3.0
 iron:router@0.9.1
-joshowens:accounts-entry@0.9.0
-joshowens:simple-form@0.1.8
 jquery@1.0.0
 json@1.0.0
 less@1.0.6
@@ -48,10 +46,8 @@ minifiers@1.0.2
 minimongo@1.0.1
 mizzao:bootstrap-3@3.2.0
 mongo-livedata@1.0.3
-mrt:accounts-t9n@0.0.13
 mrt:moment@2.6.0
 mrt:publish-composite@1.0.6
-mrt:underscore-string-latest@2.3.3
 npm-bcrypt@0.7.7
 observe-sequence@1.0.1
 ordered-dict@1.0.0

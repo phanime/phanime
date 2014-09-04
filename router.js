@@ -67,9 +67,11 @@ Router.map(function () {
 
 	this.route('search', {path: 'search'});
 
-	// Login
+	// Related routes
 
-	this.route('login');
+	this.route('signIn', {path: 'sign-in'});
+	this.route('signOut', {path: 'sign-out'});
+	this.route('signUp', {path: 'sign-up'});
 
 
 	// 404 not found route

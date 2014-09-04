@@ -80,6 +80,10 @@ textarea {
 	font-weight: 300;
 }
 
+.centered-text {
+	text-align: center;
+}
+
 .block {
 	border: 1px solid #d8d8d8;
 	-webkit-border-radius: 3px;
@@ -769,6 +773,10 @@ textarea {
 	margin: 0 5px;
 }
 
+.btn-full-width {
+	width: 100%;
+}
+
 /*--- Button ---*/
 .btn {
 	border-radius: 0px;
@@ -885,33 +893,3 @@ input.form-control.input-inline {
     -webkit-transform: rotate(-360deg);
   }
 }
-
-
-
-/* This is our container*/
-.hero {
-  position: relative;
-  width: 100%;
-  padding: 2em 0;
-}
-  /* This is our canvas*/
-  .hero__background {
-    /* This stretches the canvas across the entire hero unit*/
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* This positions the canvas under the text*/
-    z-index: 1;
-  }
-  /* This is our title to go over the canvas*/
-  .hero__title {
-    /* This positions the text on top of the canvas*/
-    position: relative;
-    z-index: 2;
-    /* This is just stylistic*/
-    text-align: center;
-    font-size: 5em;
-    color: white;
-  }
