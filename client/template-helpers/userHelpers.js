@@ -9,3 +9,8 @@ UI.registerHelper('isCurrentUserAFollower', function(followers) {
 	else 
 		return false;
 });
+
+
+UI.registerHelper("getUser", function(userId) {
+	return Meteor.users.findOne({_id: userId});
+});

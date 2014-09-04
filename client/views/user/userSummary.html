@@ -3,8 +3,16 @@
 		<div class="container">
 			<div class="user-important">
 				<a href="{{pathFor 'account.personalDetails'}}"><div class="user-avatar" style="background-image: url('{{avatarImageUrl}}')"></div></a>
-				
 				<h1 class="username">{{username}}</h1>
+				{{#unless isUserIdCurrentUser _id}}
+
+					{{#if isCurrentUserAFollower followers}}
+						<button style="margin-left:210px" id="unfollow" type="button" class="btn btn-default follow-button unfollow">Unfollow</button>
+					{{else}}
+						<button style="margin-left:210px" id="follow" type="button" class="btn btn-default follow-button follow">Follow</button>
+					{{/if}}
+
+				{{/unless}}
 			</div>
 		</div>
 		<div class="banner-gradient"></div>
