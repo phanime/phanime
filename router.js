@@ -130,10 +130,12 @@ var routerBeforeHooks = {
 
 // (Global) Before hooks for any route
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
-Router.onBeforeAction(routerBeforeHooks.loadingIndicator,routerBeforeHooks.isLoggedIn, routerBeforeHooks.scrollUp);
+Router.onBeforeAction(routerBeforeHooks.loadingIndicator, routerBeforeHooks.isLoggedIn, routerBeforeHooks.scrollUp);
 
 Router.configure({
-	layoutTemplate: 'defaultLayout'
+	layoutTemplate: 'defaultLayout',
+	notFoundTemplate: 'fourOhFour',
+	loadingTemplate: 'loading'
 });
 
 
