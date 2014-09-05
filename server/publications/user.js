@@ -49,7 +49,9 @@ Meteor.publishComposite('userWithFollowers', function(username) {
 		children: [
 			{
 				find: function(user) {
-					return Meteor.users.find({_id: {$in: user.followers}});
+					if (user.followers) {
+						return Meteor.users.find({_id: {$in: user.followers}});
+					}
 				}
 			}
 
@@ -66,7 +68,9 @@ Meteor.publishComposite('userWithFollowing', function(username) {
 		children: [
 			{
 				find: function(user) {
-					return Meteor.users.find({_id: {$in: user.following}});
+					if (user.following) { 
+						return Meteor.users.find({_id: {$in: user.following}});
+					}
 				}
 			}
 
