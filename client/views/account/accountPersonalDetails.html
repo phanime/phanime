@@ -7,7 +7,7 @@
 				<label>Avatar</label>
 				<div class="row">
 					<div class="col-sm-6">
-						{{> uploadFile contentDirectory="users" typeDirectory="avatar"}}
+						{{> uploadFile contentDirectory="users" typeDirectory="avatar" contentId=currentUser._id}}
 					</div>
 
 				</div>
@@ -19,7 +19,7 @@
 				<label>Profile Banner</label>
 				<div class="row" style="margin-bottom: 20px">
 					<div class="col-sm-12">
-						{{> uploadFile contentDirectory="users" typeDirectory="profileBanner"}}
+						{{> uploadFile contentDirectory="users" typeDirectory="profileBanner" contentId=currentUser._id}}
 					</div>
 				</div>
 

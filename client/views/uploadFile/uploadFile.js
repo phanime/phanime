@@ -1,11 +1,12 @@
 Template.uploadFile.events({
 	'change .upload-file' : function(event, template) {
 		var file = template.find(event.target).files[0];
+		var data = template.data;
+		console.log(file);
+		console.log(template.data);
 
-		// console.log(file);
-		// console.log(template.data);
 
-		if (contentDirectory && typeDirectory)
-			uploadImage(file, contentDirectory, typeDirectory);
+		if (data.contentDirectory && data.typeDirectory)
+			uploadImage(file, data.contentDirectory, data.typeDirectory, data.contentId);
 	}
 })
