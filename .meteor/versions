@@ -48,6 +48,7 @@ mizzao:bootstrap-3@3.2.0
 mongo-livedata@1.0.3
 mrt:moment@2.6.0
 mrt:publish-composite@1.0.6
+natestrauser:animate-css@3.1.2
 npm-bcrypt@0.7.7
 observe-sequence@1.0.1
 ordered-dict@1.0.0

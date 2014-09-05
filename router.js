@@ -105,6 +105,14 @@ var routerBeforeHooks = {
 			pause();
 		}
 	},
+
+	isAdmin: function(pause) {
+		if (!(Meteor.loggingIn() || Meteor.user().isAdmin())) {
+			this.render('permissionDenied');
+			pause();
+		}
+	}, 
+
 	landingPage: function(pause) {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
 			this.render('landing');
@@ -113,7 +121,8 @@ var routerBeforeHooks = {
 	},
 
 	loadingIndicator: function() {
-		this.render('loading');
+		console.log('Loading');
+		// this.render('loading');
 	},
 
 	// We want to ensure that when a new page loads
@@ -121,21 +130,31 @@ var routerBeforeHooks = {
 	scrollUp: function() {
 		$('body, html').scrollTop(0);
 	},
-
-	animateContentOut: function() {
-		$('#content').removeClass("animated fadeIn fadeInRight");
-		$('footer').addClass("hide");
+	animateContentIn: function() {
+		$('.container.main-content').addClass("animated fadeIn fateInRight");
+		$('footer').removeClass("hide");
 	}
 }
 
-// (Global) Before hooks for any route
+
+// Render the landing page if the user isn't logged in on index
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
-Router.onBeforeAction(routerBeforeHooks.loadingIndicator, routerBeforeHooks.isLoggedIn, routerBeforeHooks.scrollUp);
+
+// These routes need admin permissions 
+Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'charactersAdd', 'peopleAdd', 'studiosAdd', 'staffMembersAdd', 'castingsAdd']});
+
+// Global hooks that every page needs
+// Router.onBeforeAction(routerBeforeHooks.loadingIndicator, routerBeforeHooks.isLoggedIn, routerBeforeHooks.scrollUp);
 
 Router.configure({
 	layoutTemplate: 'defaultLayout',
 	notFoundTemplate: 'fourOhFour',
-	loadingTemplate: 'loading'
+	onBeforeAction: function(pause) {
+		routerBeforeHooks.scrollUp();
+		routerBeforeHooks.isLoggedIn(pause);
+		// routerBeforeHooks.loadingIndicator();
+		// routerBeforeHooks.animateContentIn();
+	}
 });
 
 
