@@ -28,7 +28,8 @@ UserFollowingController = RouteController.extend({
 		
 		if (this.ready()) {
 			
-			user.followingFull = Meteor.users.find({_id: {$in: user.following}});
+			if (user.following)
+				user.followingFull = Meteor.users.find({_id: {$in: user.following}});
 
 		}
 
