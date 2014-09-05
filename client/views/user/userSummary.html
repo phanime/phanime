@@ -2,8 +2,17 @@
 	<div class="fancy-heading" style="background-image: url('{{profileBannerImageUrl}}')">
 		<div class="container">
 			<div class="user-important">
-				<a href="{{pathFor 'account.personalDetails'}}"><div class="user-avatar" style="background-image: url('{{avatarImageUrl}}')"></div></a>
+			
+				{{#if isUserIdCurrentUser _id}}
+					<a href="{{pathFor 'accountPersonalDetails'}}">
+						<div class="user-avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
+					</a>
+				{{else}}
+					<div class="user-avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
+				{{/if}}
+
 				<h1 class="username">{{username}}</h1>
+
 				{{#unless isUserIdCurrentUser _id}}
 
 					{{#if isCurrentUserAFollower followers}}
