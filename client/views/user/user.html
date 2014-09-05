@@ -1,13 +1,9 @@
 <template name="user">
 	<div class="container main-content">
 
-		{{#each followers}}
-			{{getUser this}}
-			{{#with getUser this}}
-				{{_id}}
-				{{username}}
-			{{/with}}
-		{{/each}}
+		<h1 class="thin-text">Followers <a href="{{pathFor 'userFollowers'}}">{{followerCount}}</a></h1>
+
+		<h1 class="thin-text">Following <a href="{{pathFor 'userFollowing'}}">{{followingCount}}</a></h1>
 
 	</div>
 

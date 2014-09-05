@@ -235,6 +235,7 @@ textarea {
 
 	.img.img-sm {
 		width: 50px;
+		height: 50px;
 	}
 
 	.img.img-md {
@@ -247,11 +248,17 @@ textarea {
 
 
 	.img.avatar {
-		height: 50px;
 		background-size: cover;
+		background-position: center center;
 		border-radius: 5px;
 		float: left;
 		margin-right: 10px;
+	}
+
+	.img-sm.avatar.bordered {
+		border: 2px solid #fff;
+		box-shadow: 0 0 3px rgba(0,0,0,0.5);
+		border-radius:0;
 	}
 
 /*-----------------------------*/
@@ -683,6 +690,19 @@ textarea {
 		background-color: transparent;
 		color: #fff;
 	}
+
+
+.user-card {
+	position: relative;
+	background-size: cover;
+	height: 100%;
+	margin: -10px;
+	padding: 10px;
+	background-position: center top;
+	color: #fff;
+	text-shadow: 0 0 3px rgba(0,0,0,.8);
+	z-index: 0;	
+}
 
 /*-----------------------------*/
 /*--------- LIBRARY  ----------*/

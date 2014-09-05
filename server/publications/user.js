@@ -39,3 +39,38 @@ Meteor.publishComposite('userWithLibraryEntries', function(username) {
 	};
 
 });
+
+
+Meteor.publishComposite('userWithFollowers', function(username) {
+	return {
+		find: function() {
+			return Meteor.users.find({username: username});
+		},
+		children: [
+			{
+				find: function(user) {
+					return Meteor.users.find({_id: {$in: user.followers}});
+				}
+			}
+
+		]
+	};
+
+});
+
+Meteor.publishComposite('userWithFollowing', function(username) {
+	return {
+		find: function() {
+			return Meteor.users.find({username: username});
+		},
+		children: [
+			{
+				find: function(user) {
+					return Meteor.users.find({_id: {$in: user.following}});
+				}
+			}
+
+		]
+	};
+
+});

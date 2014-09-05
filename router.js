@@ -57,7 +57,9 @@ Router.map(function () {
 	/////////////////////////////////////////////////
 
 	this.route('user', {path: '/users/:username', layoutTemplate: 'userProfileLayout'});
-	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'})
+	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'});
+	this.route('userFollowers', {path: '/users/:username/followers', layoutTemplate: 'userProfileLayout'});
+	this.route('userFollowing', {path: '/users/:username/following', layoutTemplate: 'userProfileLayout'});
 
 	/////////////////////////////////////////////////
 	//////////////////// General ////////////////////
