@@ -11,19 +11,19 @@ Meteor.methods({
 		var s3 = new AWS.S3();
 		var key;
 
+		// If content ID exists we should add that in
+		if (contentId) {
+			key = "images/" + contentDirectory + "/" + typeDirectory + "/" + contentId + "/" + imageName;
+		} else {
+			key = "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName;
+		}
+
 		if (image) {
 			s3.createBucket({Bucket: 'phanime'}, function() {
 
-				// If content ID exists we should add that in
-				if (contentId) {
-					key = "images/" + contentDirectory + "/" + typeDirectory + "/" + contentId + "/" + imageName;
-				} else {
-					key = "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName;
-				}
-
 				var params = {
 					Bucket: 'phanime', 
-					Key: "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName, 
+					Key: key, 
 					Body: new Buffer(image, 'binary'),
 					ACL: 'public-read',
 					ContentType: imageType
@@ -45,7 +45,7 @@ Meteor.methods({
 
 			return {
 				imageName: imageName,
-				imageUrl: "http://cdn.phanime.com/images/" + contentDirectory + "/" + typeDirectory + "/" + imageName,
+				imageUrl: "http://cdn.phanime.com/" + key,
 			}
 		}
 
