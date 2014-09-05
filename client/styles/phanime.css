@@ -150,10 +150,6 @@ textarea {
 	height: 350px;
 	width: 100%;
 	color: #fff;
-	-webkit-animation: resize-height 0.75s; /* Safari 4+ */
-	-moz-animation: resize-height 0.75s; /* Fx 5+ */
-	-o-animation: resize-height 0.75s; /* Opera 12+ */
-	animation: resize-height 0.75s; /* IE 10+ */
 }
 
 

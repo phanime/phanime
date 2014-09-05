@@ -45,6 +45,23 @@ Template.libraryEntryCard.events({
 					updatedAt: new Date(),
 				}});
 
+
+				var activity = {
+					createdAt: new Date(),
+					userId: Meteor.user()._id,
+					type: 'libraryEntry',
+					typeOfEntry: 'anime',
+					animeId: anime._id,
+					whatChanged: 'status',
+					newValue: status
+				};
+
+				// Generate an activity for this action
+				Meteor.call('createActivity', activity, function(error, result) {
+					// console.log(error);
+					// console.log(result);
+				});
+
 				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated');
 
 			} else {
@@ -82,6 +99,7 @@ Template.libraryEntryCard.events({
 	'change .entry-episodesSeen' : function(event, template) {
 		var episodesSeen = $(event.target).val();
 		var libraryEntry = template.data;
+		var anime = libraryEntry.anime;
 
 		// Let's make it an int (if things went wrong)
 		episodesSeen = parseInt(episodesSeen);
@@ -89,6 +107,24 @@ Template.libraryEntryCard.events({
 		// Ensure episodesSeen was actually changed
 		if (episodesSeen !== libraryEntry.episodesSeen) {
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {episodesSeen: episodesSeen, updatedAt: new Date()}});
+
+			var activity = {
+				createdAt: new Date(),
+				userId: Meteor.user()._id,
+				type: 'libraryEntry',
+				typeOfEntry: 'anime',
+				animeId: anime._id,
+				whatChanged: 'episodesSeen',
+				newValue: episodesSeen
+			};
+			
+			// Generate an activity for this action
+			Meteor.call('createActivity', activity, function(error, result) {
+				// console.log(error);
+				// console.log(result);
+			});
+
+
 		} else {
 			console.log('Episodes seen was not changed');
 		}
@@ -101,6 +137,7 @@ Template.libraryEntryCard.events({
 
 		var icon = $(event.target);
 		var libraryEntry = template.data;
+		var anime = libraryEntry.anime;
 		var privacy;
 		var rewatching;
 		var highPriority;
@@ -127,6 +164,22 @@ Template.libraryEntryCard.events({
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {rewatching: rewatching}});
 
+			var activity = {
+				createdAt: new Date(),
+				userId: Meteor.user()._id,
+				type: 'libraryEntry',
+				typeOfEntry: 'anime',
+				animeId: anime._id,
+				whatChanged: 'rewatching',
+				newValue: rewatching
+			};
+			
+			// Generate an activity for this action
+			Meteor.call('createActivity', activity, function(error, result) {
+				// console.log(error);
+				// console.log(result);
+			});
+
 
 		} else if (icon.hasClass('entry-highPriority')) {
 
@@ -137,6 +190,24 @@ Template.libraryEntryCard.events({
 			}
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {highPriority: highPriority}});
+
+
+			var activity = {
+				createdAt: new Date(),
+				userId: Meteor.user()._id,
+				type: 'libraryEntry',
+				typeOfEntry: 'anime',
+				animeId: anime._id,
+				whatChanged: 'highPriority',
+				newValue: highPriority
+			};
+			
+			// Generate an activity for this action
+			Meteor.call('createActivity', activity, function(error, result) {
+				// console.log(error);
+				// console.log(result);
+			});
+
 		}
 
 	},
