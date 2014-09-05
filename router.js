@@ -61,6 +61,18 @@ Router.map(function () {
 	this.route('userFollowers', {path: '/users/:username/followers', layoutTemplate: 'userProfileLayout'});
 	this.route('userFollowing', {path: '/users/:username/following', layoutTemplate: 'userProfileLayout'});
 
+
+	/////////////////////////////////////////////////
+	///////////////////// User //////////////////////
+	/////////////////////////////////////////////////
+
+	this.route('accountPersonalDetails', {path: '/account/personal-details', layoutTemplate: 'accountLayout'});
+	this.route('accountSecurity', {path: '/account/security', layoutTemplate: 'accountLayout'});
+	this.route('accountPreferences', {path: '/account/preferences', layoutTemplate: 'accountLayout'});
+
+
+
+
 	/////////////////////////////////////////////////
 	//////////////////// General ////////////////////
 	/////////////////////////////////////////////////

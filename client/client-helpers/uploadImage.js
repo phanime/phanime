@@ -1,9 +1,9 @@
-uploadImage = function(file, contentDirectory, typeDirectory) {
+uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 	Session.set('fileUrl', '');
 	var reader = new FileReader();
 	reader.onload = function(e) {
 
-		Meteor.call('uploadImage', e.target.result, file.name, file.size, file.type, contentDirectory, typeDirectory, function(error, result) {
+		Meteor.call('uploadImage', e.target.result, file.name, file.size, file.type, contentDirectory, typeDirectory, contentId, function(error, result) {
 			console.log(error);
 			console.log(result);
 			if (result) {

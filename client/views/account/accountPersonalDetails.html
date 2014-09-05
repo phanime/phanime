@@ -1,0 +1,33 @@
+<template name="accountPersonalDetails">
+
+	<div class="block">
+
+		<form role="form">
+			<div class="form-group">
+				<label>Avatar</label>
+				<div class="row">
+					<div class="col-sm-6">
+						{{> uploadFile contentDirectory="users" typeDirectory="avatar"}}
+					</div>
+
+				</div>
+			</div>
+
+			<hr>
+
+			<div class="form-group">
+				<label>Profile Banner</label>
+				<div class="row" style="margin-bottom: 20px">
+					<div class="col-sm-12">
+						{{> uploadFile contentDirectory="users" typeDirectory="profileBanner"}}
+					</div>
+				</div>
+
+
+			</div>
+
+		</form>		
+
+	</div>
+
+</template>

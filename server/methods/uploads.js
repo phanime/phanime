@@ -1,5 +1,5 @@
 Meteor.methods({
-	uploadImage: function(image, imageName, imageSize, imageType, contentDirectory, typeDirectory) {
+	uploadImage: function(image, imageName, imageSize, imageType, contentDirectory, typeDirectory, contentId) {
 		// Temporary, for testing purposes
 		// should move to environment variables
 		// after
@@ -9,10 +9,17 @@ Meteor.methods({
 		});
 
 		var s3 = new AWS.S3();
-
+		var key;
 
 		if (image) {
 			s3.createBucket({Bucket: 'phanime'}, function() {
+
+				// If content ID exists we should add that in
+				if (contentId) {
+					key = "images/" + contentDirectory + "/" + typeDirectory + "/" + contentId + "/" + imageName;
+				} else {
+					key = "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName;
+				}
 
 				var params = {
 					Bucket: 'phanime', 
