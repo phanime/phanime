@@ -21,11 +21,18 @@ UserController = RouteController.extend({
 
 
 	waitOn: function () {
-		return Meteor.subscribe('user', this.params.username);
+		return Meteor.subscribe('userWithActivity', this.params.username);
 	},
 
 	data: function () {
-		return Meteor.users.findOne({username: this.params.username});
+
+		var user = Meteor.users.findOne({username: this.params.username});
+		if (this.ready()) {
+			console.log(user);
+			user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}});
+		}
+
+		return user;
 	}
 
 });

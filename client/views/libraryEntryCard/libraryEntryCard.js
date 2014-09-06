@@ -25,8 +25,7 @@ Template.libraryEntryCard.events({
 
 		// Set the current library entry
 		var libraryEntry = template.data;
-		var anime = libraryEntry.anime;
-
+		var anime = libraryEntry.anime();
 		if (libraryEntry) {
 			// libraryEntry exists for the current user
 
@@ -45,19 +44,10 @@ Template.libraryEntryCard.events({
 					updatedAt: new Date(),
 				}});
 
-
-				var activity = {
-					createdAt: new Date(),
-					userId: Meteor.user()._id,
-					type: 'libraryEntry',
-					typeOfEntry: 'anime',
-					animeId: anime._id,
-					whatChanged: 'status',
-					newValue: status
-				};
+				var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'status', status);
 
 				// Generate an activity for this action
-				Meteor.call('createActivity', activity, function(error, result) {
+				Meteor.call('createActivity', 'libraryEntry', Meteor.user()._id, libraryEntryActivity, function(error, result) {
 					// console.log(error);
 					// console.log(result);
 				});
@@ -99,7 +89,7 @@ Template.libraryEntryCard.events({
 	'change .entry-episodesSeen' : function(event, template) {
 		var episodesSeen = $(event.target).val();
 		var libraryEntry = template.data;
-		var anime = libraryEntry.anime;
+		var anime = libraryEntry.anime();
 
 		// Let's make it an int (if things went wrong)
 		episodesSeen = parseInt(episodesSeen);
@@ -108,18 +98,11 @@ Template.libraryEntryCard.events({
 		if (episodesSeen !== libraryEntry.episodesSeen) {
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {episodesSeen: episodesSeen, updatedAt: new Date()}});
 
-			var activity = {
-				createdAt: new Date(),
-				userId: Meteor.user()._id,
-				type: 'libraryEntry',
-				typeOfEntry: 'anime',
-				animeId: anime._id,
-				whatChanged: 'episodesSeen',
-				newValue: episodesSeen
-			};
-			
+
+			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'episodesSeen', episodesSeen);
+
 			// Generate an activity for this action
-			Meteor.call('createActivity', activity, function(error, result) {
+			Meteor.call('createActivity', 'libraryEntry', Meteor.user()._id, libraryEntryActivity, function(error, result) {
 				// console.log(error);
 				// console.log(result);
 			});
@@ -137,7 +120,7 @@ Template.libraryEntryCard.events({
 
 		var icon = $(event.target);
 		var libraryEntry = template.data;
-		var anime = libraryEntry.anime;
+		var anime = libraryEntry.anime();
 		var privacy;
 		var rewatching;
 		var highPriority;
@@ -164,18 +147,10 @@ Template.libraryEntryCard.events({
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {rewatching: rewatching}});
 
-			var activity = {
-				createdAt: new Date(),
-				userId: Meteor.user()._id,
-				type: 'libraryEntry',
-				typeOfEntry: 'anime',
-				animeId: anime._id,
-				whatChanged: 'rewatching',
-				newValue: rewatching
-			};
-			
+			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'rewatching', rewatching);
+
 			// Generate an activity for this action
-			Meteor.call('createActivity', activity, function(error, result) {
+			Meteor.call('createActivity', 'libraryEntry', Meteor.user()._id, libraryEntryActivity, function(error, result) {
 				// console.log(error);
 				// console.log(result);
 			});
@@ -192,18 +167,10 @@ Template.libraryEntryCard.events({
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {highPriority: highPriority}});
 
 
-			var activity = {
-				createdAt: new Date(),
-				userId: Meteor.user()._id,
-				type: 'libraryEntry',
-				typeOfEntry: 'anime',
-				animeId: anime._id,
-				whatChanged: 'highPriority',
-				newValue: highPriority
-			};
-			
+			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'highPriority', highPriority);
+
 			// Generate an activity for this action
-			Meteor.call('createActivity', activity, function(error, result) {
+			Meteor.call('createActivity', 'libraryEntry', Meteor.user()._id, libraryEntryActivity, function(error, result) {
 				// console.log(error);
 				// console.log(result);
 			});
