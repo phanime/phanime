@@ -54,8 +54,6 @@ UserController = RouteController.extend({
 				this.render('fourOhFour');
 			}
 
-		} else {
-			this.render('loading');
 		}
 	}
 
