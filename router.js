@@ -107,6 +107,12 @@ var routerBeforeHooks = {
 		}
 	},
 
+	isAlreadyLoggedIn: function(pause) {
+		if (Meteor.loggingIn() || Meteor.user()) {
+			Router.go('index');
+		}
+	},
+
 	isAdmin: function(pause) {
 		if (!(Meteor.loggingIn() || Meteor.user().isAdmin())) {
 			this.render('permissionDenied');
@@ -135,7 +141,8 @@ var routerBeforeHooks = {
 
 // Run these global routes first
 Router.onBeforeAction('loading');
-Router.onBeforeAction(routerBeforeHooks.isLoggedIn);
+Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {except: ['signIn', 'signUp']});
+Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp']});
 
 // Render the landing page if the user isn't logged in on index
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
