@@ -102,7 +102,7 @@ var routerBeforeHooks = {
 
 	isLoggedIn: function(pause) {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
-			this.render('login');
+			this.render('signIn');
 			pause();
 		}
 	},
@@ -121,11 +121,6 @@ var routerBeforeHooks = {
 		}		
 	},
 
-	loadingIndicator: function() {
-		console.log('Loading');
-		// this.render('loading');
-	},
-
 	// We want to ensure that when a new page loads
 	// we have it scrolled all the way to the top
 	scrollUp: function() {
@@ -138,13 +133,16 @@ var routerBeforeHooks = {
 }
 
 
+// Run these global routes first
+Router.onBeforeAction('loading');
+Router.onBeforeAction(routerBeforeHooks.isLoggedIn);
+
 // Render the landing page if the user isn't logged in on index
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 
 // These routes need admin permissions 
 Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'charactersAdd', 'peopleAdd', 'studiosAdd', 'staffMembersAdd', 'castingsAdd']});
 
-Router.onBeforeAction('loading');
 // Router.onBeforeAction('dataNotFound');
 
 // Global hooks that every page needs
@@ -156,7 +154,7 @@ Router.configure({
 	loadingTemplate: 'loading',
 	onBeforeAction: function(pause) {
 		// routerBeforeHooks.scrollUp();
-		routerBeforeHooks.isLoggedIn(pause);
+		// routerBeforeHooks.isLoggedIn(pause);
 
 		// routerBeforeHooks.loadingIndicator();
 		// routerBeforeHooks.animateContentIn();
