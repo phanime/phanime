@@ -30,6 +30,7 @@ UserController = RouteController.extend({
 		if (this.ready()) {
 			user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
 
+
 			user.activity.forEach(function(activity) {
 				if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
 				
