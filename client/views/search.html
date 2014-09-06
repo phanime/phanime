@@ -14,8 +14,11 @@
 			<div class="row">
 				{{#esEach index="anime"}}
 					{{> UI.dynamic template="animeCard" data=this}}
+					test
 				{{/esEach}}
 			</div>
+
+
 		{{/ifEsIsSearching}}
 
 		{{#ifEsHasNoResults index="anime"}}

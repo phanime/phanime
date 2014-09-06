@@ -6,15 +6,15 @@ SearchController = RouteController.extend({
 		});
 	},
 
-	waitOn: function () {
-		return Meteor.subscribe('animeSearch', this.params.q);
-	},
+	// waitOn: function () {
+	// 	return Meteor.subscribe('animeSearch', this.params.q);
+	// },
 
-	data: function() {
+	// data: function() {
 
-		console.log(this.params.q);
+	// 	console.log(this.params.q);
 
-		console.log(Anime.find().fetch());
-	}
+	// 	console.log(Anime.find().fetch());
+	// }
 
 });
