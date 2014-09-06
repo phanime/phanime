@@ -64,6 +64,7 @@ Template.addLibraryEntry.events({
 
 			var currentEntry = {
 				userId: Meteor.userId(),
+				type: 'anime',
 				animeId: anime._id,
 				status: status,
 				episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null),
