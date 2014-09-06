@@ -150,7 +150,7 @@ Router.configure({
 	layoutTemplate: 'defaultLayout',
 	notFoundTemplate: 'fourOhFour',
 	onBeforeAction: function(pause) {
-		routerBeforeHooks.scrollUp();
+		// routerBeforeHooks.scrollUp();
 		routerBeforeHooks.isLoggedIn(pause);
 		// routerBeforeHooks.loadingIndicator();
 		// routerBeforeHooks.animateContentIn();

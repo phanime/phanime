@@ -1,0 +1,22 @@
+<template name="userCard">
+
+
+	<div class="block">
+
+		<div class="user-card" style="background-image: url('{{profileBannerImageUrl}}')">
+			<div class="row"> 
+				<div class="col-sm-12" style="position: relative; z-index: 2">
+					<a href="{{pathFor 'user'}}">
+						<div class="img img-sm avatar bordered" style="background-image: url('{{avatarImageUrl}}')"></div>
+					</a>
+					<h3>{{username}}</h3>
+				</div>
+			</div>
+
+			<div class="banner-gradient"></div>
+		</div>
+
+	</div>
+
+
+</template>
