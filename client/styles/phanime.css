@@ -704,6 +704,8 @@ textarea {
 	padding: 0;
 }
 	.create-post textarea {
+		position: relative;
+		z-index: 1;
 		resize: none;
 		border: none;
 		padding: 20px;
@@ -713,14 +715,39 @@ textarea {
 		box-shadow: none !important;
 	}
 
+	.create-post textarea:focus + .action-bar {
+		margin-top: 0;
+	}
+
 	.create-post:focus {
 		box-shadow: 1px 1px 1px #000;
 	}
 
-	.create-post button {
-		margin-bottom: 20px;
-		margin-right: 20px;
+	.create-post .action-bar {
+		background-color: #E6E6E6;
+		padding: 5px;
+		margin-top:-43px;
+		-webkit-transition: all 0.4s ease;
+		-moz-transition: all 0.4s ease;
+		-o-transition: all 0.4s ease;
+		transition: all 0.4s ease;	
 	}
+
+	.create-post .action-bar:before {
+		display: table;
+		content: " ";
+	}
+
+	.create-post .action-bar:after {
+		clear: both;
+	}
+
+	.create-post button {
+		margin: 0;
+		padding: 5px 20px;
+	}
+
+
 
 
 /*-----------------------------*/
