@@ -231,7 +231,6 @@ textarea {
 
 	.img.img-sm {
 		width: 50px;
-		height: 50px;
 	}
 
 	.img.img-md {
@@ -250,12 +249,27 @@ textarea {
 		float: left;
 		margin-right: 10px;
 	}
+		.avatar.img-sm {
+			height: 50px;
+		}
 
-	.img-sm.avatar.bordered {
-		border: 2px solid #fff;
-		box-shadow: 0 0 3px rgba(0,0,0,0.5);
-		border-radius:0;
+		.img-sm.avatar.bordered {
+			border: 2px solid #fff;
+			box-shadow: 0 0 3px rgba(0,0,0,0.5);
+			border-radius:0;
+		}
+
+	.img.cover {
+		background-size: cover;
+		background-position: center center;
+		border-radius: 5px;
+		float: left;
+		margin-right: 10px;		
 	}
+
+		.img.cover.img-md {
+			height: 150px;
+		}
 
 /*-----------------------------*/
 /*------- General APP  --------*/
@@ -731,15 +745,6 @@ textarea {
 		-moz-transition: all 0.4s ease;
 		-o-transition: all 0.4s ease;
 		transition: all 0.4s ease;	
-	}
-
-	.create-post .action-bar:before {
-		display: table;
-		content: " ";
-	}
-
-	.create-post .action-bar:after {
-		clear: both;
 	}
 
 	.create-post button {
