@@ -22,7 +22,13 @@ Meteor.methods({
 
 		});
 
-		console.log(recommendedAnime);
+		console.log(recommendedAnime.sort(function(a,b) {
+			return b-a;
+		}));
+
+		// recommendedAnime.sort().reverse();
+
+		// console.log(recommendedAnime);
 
 	}
 
