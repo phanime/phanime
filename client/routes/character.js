@@ -28,7 +28,20 @@ CharacterController = RouteController.extend({
 	},
 
 	data: function () {
-		return Characters.findOne({_id: this.params._id});
+		var character = Characters.findOne({_id: this.params._id});
+
+		if (this.ready()) {
+
+			if (character) {
+				return character;
+			} else {
+				this.render('fourOhFour');
+			}
+
+		} else {
+			this.render('loading');
+		}
+
 	}
 
 });
