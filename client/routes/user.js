@@ -28,8 +28,21 @@ UserController = RouteController.extend({
 
 		var user = Meteor.users.findOne({username: this.params.username});
 		if (this.ready()) {
-			console.log(user);
-			user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}});
+			user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
+
+			user.activity.forEach(function(activity) {
+				if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
+				
+					activity.libraryEntry.anime = Anime.findOne({_id: activity.libraryEntry.contentId});
+				
+				} else if (activity.type === 'post') {
+					
+					activity.post.poster = Meteor.users.findOne({_id: activity.post.posterId});
+				
+				}
+
+			});
+
 		}
 
 		return user;

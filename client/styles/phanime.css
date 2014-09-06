@@ -706,8 +706,7 @@ textarea {
 	.create-post textarea {
 		resize: none;
 		border: none;
-		padding-top: 10px;
-		padding-bottom: 10px;
+		padding: 20px;
 	}
 
 	.create-post textarea:focus {
@@ -719,8 +718,8 @@ textarea {
 	}
 
 	.create-post button {
-		margin-bottom: 10px;
-		margin-right: 10px;
+		margin-bottom: 20px;
+		margin-right: 20px;
 	}
 
 

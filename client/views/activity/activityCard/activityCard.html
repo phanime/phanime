@@ -17,7 +17,11 @@
 <template name="activityCardLibraryEntry">
 
 	<div class="block">
-		{{libraryEntry.whatChanged}}: {{libraryEntry.newValue}}
+		{{#with libraryEntry}}
+			<h3>{{#with anime}}<a href="{{pathFor 'anime'}}">{{title}}</a>{{/with}}</h3>
+			<h4 class="thin-text">{{whatChanged}}</h4> 
+			<h4>{{newValue}}</h4>
+		{{/with}}
 		{{formatDateFromNow createdAt}}
 	</div>	
 
@@ -27,8 +31,21 @@
 <template name="activityCardPost">
 
 	<div class="block">
-		{{post.content}}
-		{{formatDateFromNow createdAt}}
+		{{#with post}}
+			<div class="row">
+				<div class="col-sm-12">
+					{{#with poster}}
+						<a href="{{pathFor 'user'}}"><div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}');"></div></a>
+						<h4 style="margin:0">{{username}}</h4>
+					{{/with}}
+					<h6 class="thin-text" style="margin:0">{{formatDateFromNow ../createdAt}}</h6>
+				</div>
+			</div>
+			<div class="description">
+				{{content}}
+			</div>
+		{{/with}}
+
 	</div>	
 
 
