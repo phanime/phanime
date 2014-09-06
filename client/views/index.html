@@ -3,7 +3,11 @@
 	<div class="container main-content">
 		<div class="row">
 		{{#each this}}
-			{{> UI.dynamic template="libraryEntryCard" data=this}}		
+			{{> UI.dynamic template="libraryEntryCard" data=this}}
+		{{else}}
+			<div class="block">
+				<h3 class="thin-text">Seems like you aren't watching anything. Add some anime to your library that you are currently watching and watch them appear here on the fly!</h3>	
+			</div>	
 		{{/each}}
 		</div>
 	</div>
