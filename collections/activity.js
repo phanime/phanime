@@ -5,8 +5,8 @@ Activity = new Meteor.Collection('activity');
 Activity.libraryEntryFields = function(type, contentId, whatChanged, newValue) {
 	// Content ID can either be animeId or mangaId (no manga for now)
 	var libraryEntry = {
-		type: type,
-		contentId: contentId,
+		type: type, // can either be anime or manga
+		contentId: contentId, // will depend on the type
 		whatChanged: whatChanged,
 		newValue: newValue
 	};
@@ -15,9 +15,10 @@ Activity.libraryEntryFields = function(type, contentId, whatChanged, newValue) {
 
 };
 
-Activity.postFields = function(posterId, content) {
+Activity.postFields = function(type, posterId, content) {
 	var post = {
-		posterId: posterId,
+		type: type, // can either be profilePost or statusUpdate 
+		posterId: posterId, // if type is statusUpdate posterId would be equal to userId
 		content: content
 	};
 
