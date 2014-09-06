@@ -35,15 +35,20 @@ AnimeController = RouteController.extend({
 
 		// Add episodes once the subscription is ready
 		if (this.ready()) {
-			anime.episodes = Episodes.find({animeId: anime._id}, {sort: {episodeNumber: 1}});
-			anime.castings = Castings.find({animeId: anime._id});
-			anime.staffMembers = StaffMembers.find({animeId: anime._id});
-			anime.libraryEntry = LibraryEntries.findOne({animeId: anime._id});
-			anime.reviews = Reviews.find({animeId: anime._id});
+			if (anime) {
+				anime.episodes = Episodes.find({animeId: anime._id}, {sort: {episodeNumber: 1}});
+				anime.castings = Castings.find({animeId: anime._id});
+				anime.staffMembers = StaffMembers.find({animeId: anime._id});
+				anime.libraryEntry = LibraryEntries.findOne({animeId: anime._id});
+				anime.reviews = Reviews.find({animeId: anime._id});		
+				return anime;
+			} else {
+				this.render('fourOhFour');
+			}
+		} else {
+			this.render('loading');
 		}
 
-
-		return anime;
 	}
 
 });

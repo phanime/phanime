@@ -99,6 +99,7 @@ Router.map(function () {
 ////////////////
 // I use an object that contains all before hooks
 var routerBeforeHooks = {
+
 	isLoggedIn: function(pause) {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
 			this.render('login');
