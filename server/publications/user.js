@@ -32,7 +32,7 @@ Meteor.publishComposite('userWithActivity', function(username) {
 							if (activity.type === 'post') {
 
 								if (activity.post.type === 'profilePost') {
-									return Meteor.user.find({_id: activity.post.posterId});
+									return Meteor.users.find({_id: activity.post.posterId});
 								}
 
 							}
@@ -41,7 +41,6 @@ Meteor.publishComposite('userWithActivity', function(username) {
 
 				]
 			}
-
 		]
 	};
 
