@@ -1,4 +1,6 @@
 <template name="userSummary">
+
+{{#if this}}
 	<div class="fancy-heading" style="background-image: url('{{profileBannerImageUrl}}')">
 		<div class="container">
 			<div class="user-important">
@@ -26,4 +28,5 @@
 		</div>
 		<div class="banner-gradient"></div>
 	</div>
+{{/if}}
 </template>

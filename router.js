@@ -143,15 +143,20 @@ Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 // These routes need admin permissions 
 Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'charactersAdd', 'peopleAdd', 'studiosAdd', 'staffMembersAdd', 'castingsAdd']});
 
+
+// Router.onBeforeAction('dataNotFound');
+
 // Global hooks that every page needs
 // Router.onBeforeAction(routerBeforeHooks.loadingIndicator, routerBeforeHooks.isLoggedIn, routerBeforeHooks.scrollUp);
 
 Router.configure({
 	layoutTemplate: 'defaultLayout',
 	notFoundTemplate: 'fourOhFour',
+	loadingTemplate: 'loading',
 	onBeforeAction: function(pause) {
 		// routerBeforeHooks.scrollUp();
 		routerBeforeHooks.isLoggedIn(pause);
+
 		// routerBeforeHooks.loadingIndicator();
 		// routerBeforeHooks.animateContentIn();
 	}
