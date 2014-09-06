@@ -28,7 +28,19 @@ PersonController = RouteController.extend({
 	},
 
 	data: function () {
-		return People.findOne({_id: this.params._id});
+		var person = People.findOne({_id: this.params._id});
+
+		if (this.ready()) {
+
+			if (person) {
+				return person;
+			} else {
+				this.render('fourOhFour');
+			}
+
+		} else {
+			this.render('loading');
+		}
 	}
 
 });
