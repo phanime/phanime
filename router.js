@@ -144,7 +144,7 @@ Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 // These routes need admin permissions 
 Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'charactersAdd', 'peopleAdd', 'studiosAdd', 'staffMembersAdd', 'castingsAdd']});
 
-
+Router.onBeforeAction('loading');
 // Router.onBeforeAction('dataNotFound');
 
 // Global hooks that every page needs

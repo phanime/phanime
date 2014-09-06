@@ -45,8 +45,6 @@ AnimeController = RouteController.extend({
 			} else {
 				this.render('fourOhFour');
 			}
-		} else {
-			this.render('loading');
 		}
 
 	}
