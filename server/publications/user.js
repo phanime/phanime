@@ -14,7 +14,32 @@ Meteor.publishComposite('userWithActivity', function(username) {
 			{
 				find: function(user) {
 					return Activity.find({userId: user._id});
-				}
+				},
+				children: [
+					{
+						// Get library entry children
+						find: function(activity, user) {
+							if (activity.type === 'libraryEntry') {
+								// Grab content
+								if (activity.libraryEntry.type === 'anime') {
+									return Anime.find({_id: activity.libraryEntry.contentId});
+								}
+							}
+						}
+					},
+					{
+						find: function(activity, user) {
+							if (activity.type === 'post') {
+
+								if (activity.post.type === 'profilePost') {
+									return Meteor.user.find({_id: activity.post.posterId});
+								}
+
+							}
+						}
+					}
+
+				]
 			}
 
 		]
