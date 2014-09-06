@@ -1,5 +1,15 @@
 Meteor.methods({
-	createActivity: function(activity) {
+	createActivity: function(type, userId, extra) {
+
+		var activity = {
+			type: type,
+			userId: userId,
+			createdAt: new Date()
+		};
+
+		if (extra)
+			activity[type] = extra;
+
 
 		Activity.insert(activity, function(error, _id) {
 			console.log(_id);

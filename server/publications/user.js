@@ -5,6 +5,23 @@ Meteor.publish('user', function(username) {
 });
 
 
+Meteor.publishComposite('userWithActivity', function(username) {
+	return {
+		find: function() {
+			return Meteor.users.find({username: username});
+		},
+		children: [
+			{
+				find: function(user) {
+					return Activity.find({userId: user._id});
+				}
+			}
+
+		]
+	};
+
+});
+
 Meteor.publishComposite('userWithLibraryEntries', function(username) {
 	return {
 		find: function() {
@@ -50,6 +67,7 @@ Meteor.publishComposite('userWithFollowers', function(username) {
 	};
 
 });
+
 
 Meteor.publishComposite('userWithFollowing', function(username) {
 	return {
