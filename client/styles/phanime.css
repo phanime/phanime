@@ -700,6 +700,30 @@ textarea {
 	z-index: 0;	
 }
 
+.create-post {
+	padding: 0;
+}
+	.create-post textarea {
+		resize: none;
+		border: none;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.create-post textarea:focus {
+		box-shadow: none !important;
+	}
+
+	.create-post:focus {
+		box-shadow: 1px 1px 1px #000;
+	}
+
+	.create-post button {
+		margin-bottom: 10px;
+		margin-right: 10px;
+	}
+
+
 /*-----------------------------*/
 /*--------- LIBRARY  ----------*/
 /*-----------------------------*/

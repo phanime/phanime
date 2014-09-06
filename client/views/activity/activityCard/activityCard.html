@@ -1,0 +1,35 @@
+<template name="activityCard">
+
+	{{#if activityType "libraryEntry"}}
+		{{> activityCardLibraryEntry}}
+	{{/if}}
+
+	{{#if activityType "post"}}
+
+		{{> activityCardPost}}
+
+	{{/if}}
+
+
+</template>
+
+
+<template name="activityCardLibraryEntry">
+
+	<div class="block">
+		{{libraryEntry.whatChanged}}: {{libraryEntry.newValue}}
+		{{formatDateFromNow createdAt}}
+	</div>	
+
+</template>
+
+
+<template name="activityCardPost">
+
+	<div class="block">
+		{{post.content}}
+		{{formatDateFromNow createdAt}}
+	</div>	
+
+
+</template>
