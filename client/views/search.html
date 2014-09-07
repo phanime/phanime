@@ -9,9 +9,11 @@
 		</div>
 
 		{{#ifEsIsSearching index="anime"}}
-			<h2 class="thin-text">Loading...</h2>
+			<div class="row" style="margin: 50px auto;">
+				{{> loading}}
+			</div>
 		{{else}}
-			<div class="row">
+			<div class="row" style="margin: 50px auto;">
 				{{#esEach index="anime"}}
 					{{> UI.dynamic template="animeCardProxy" data=this}}
 				{{/esEach}}
@@ -19,7 +21,9 @@
 		{{/ifEsIsSearching}}
 
 		{{#ifEsHasNoResults index="anime"}}
-		   <h2 class="thin-text">No results found!</h2>
+			<div class="row">
+		  		<h2 class="thin-text" style="text-align: center;">No results found!</h2>
+		  	</div>
 		{{/ifEsHasNoResults}}
 	</div>
 
