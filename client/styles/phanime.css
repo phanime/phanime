@@ -677,7 +677,7 @@ textarea {
 
 	.user-important .user-avatar {
 		position: absolute;
-		bottom: -20px;
+		bottom: -70px;
 		border: 5px solid #fff;
 		box-shadow: 0 0 3px rgba(0,0,0,0.5);
 		background-size: cover;
@@ -700,6 +700,21 @@ textarea {
 		background-color: transparent;
 		color: #fff;
 	}
+
+
+.profile-nav-container {
+	background-color: #fff;
+	padding: 5px 0;
+}
+
+	.profile-nav {
+		margin-left: 200px !important;
+	}
+
+		.profile-nav .navbar-nav > li > a {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
 
 
 .user-card {

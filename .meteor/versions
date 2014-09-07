@@ -58,6 +58,7 @@ percolatestudio:synced-cron@0.1.1
 raix:http-methods@0.0.22
 random@1.0.0
 reactive-dict@1.0.0
+reactive-var@1.0.1
 reload@1.0.0
 retry@1.0.0
 rosh93:aws-sdk@0.0.1
@@ -71,6 +72,7 @@ spiderable@1.0.2
 srp@1.0.0
 standard-app-packages@1.0.0
 templating@1.0.4
+tracker@1.0.2-rc0
 ui@1.0.0
 underscore@1.0.0
 webapp@1.0.2
