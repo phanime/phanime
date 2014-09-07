@@ -141,7 +141,7 @@ var routerBeforeHooks = {
 
 // Run these global routes first
 Router.onBeforeAction('loading');
-Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {except: ['signIn', 'signUp']});
+Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {except: ['signIn', 'signUp', 'index']});
 Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp']});
 
 // Render the landing page if the user isn't logged in on index
@@ -157,7 +157,7 @@ Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'characters
 
 Router.configure({
 	layoutTemplate: 'defaultLayout',
-	notFoundTemplate: 'fourOhFour',
+	// notFoundTemplate: 'fourOhFour',
 	loadingTemplate: 'loading',
 	onBeforeAction: function(pause) {
 		// routerBeforeHooks.scrollUp();
