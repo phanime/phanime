@@ -102,8 +102,7 @@ var routerBeforeHooks = {
 
 	isLoggedIn: function(pause) {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
-			this.render('signIn');
-			pause();
+			Router.go('signIn');
 		}
 	},
 
