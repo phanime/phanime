@@ -13,7 +13,6 @@ less
 gfk:notifications
 alisalaah:moment-tz-data
 dburles:collection-helpers
-mrt:publish-composite
 spiderable
 dandv:jquery-rateit
 chrismbeckett:fontawesome4
@@ -28,4 +27,5 @@ matteodem:easy-search
 gadicohen:phantomjs
 mizzao:user-status
 reactive-var
+reywood:publish-composite
 
