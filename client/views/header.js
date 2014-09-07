@@ -1,5 +1,5 @@
 Template.header.events({
-	'click #logout': function(event) {
+	'click #signOut': function(event) {
 		Meteor.logout();
 		return false;
 	}
