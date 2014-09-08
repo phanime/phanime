@@ -84,6 +84,10 @@ textarea {
 	text-align: center;
 }
 
+.inline-text {
+	display: inline-block;
+}
+
 .block {
 	border: 1px solid #d8d8d8;
 	-webkit-border-radius: 3px;
@@ -211,6 +215,8 @@ textarea {
 .description {
 	white-space: pre-line;
 	text-rendering: optimizeLegibility;
+	font-size: 15px;
+	letter-spacing: 0.5px;
 }
 
 .footer {
@@ -563,42 +569,78 @@ textarea {
 	padding: 20px;
 }
 
-.genreList {
-	margin: 10px 0;
+.add-library-button {
+	margin-top: 10px;
+	border: none;
+	color: #FFF;
+	background-color: #8bc34a;
+	border-radius: 2px !important;
 }
 
-	.genreList a {
+	.add-library-button + ul > li > a {
+		cursor: pointer;
+	}
+
+.genresList {
+	margin-top: 10px;
+}
+
+	.genresList a {
 		display: inline-block;
-		border: 1px solid rgba(255,255,255,.5);
-		color: #fff;
+/*		border: 1px solid rgba(255,255,255,.5);
+		color: #fff;*/
+
+		border: 1px solid #8bc34a;
+		color: #575757;
+		text-decoration: none;
+		border-radius: 2px;
+
 		padding: 3px 5px;
 		margin: 5px 3px;
-		text-shadow: 0 0 3px rgba(0,0,0,0.8);
-		-webkit-transition: all 0.3s ease-in-out;
-		-moz-transition: all 0.3s ease-in-out;
-		-o-transition: all 0.3s ease-in-out;
-		transition: all 0.3s ease-in-out;			
+/*		text-shadow: 0 0 3px rgba(0,0,0,0.8);*/
+		-webkit-transition: all 0.25s ease-in-out;
+		-moz-transition: all 0.25s ease-in-out;
+		-o-transition: all 0.25s ease-in-out;
+		transition: all 0.25s ease-in-out;			
 	}
 
-	.genreList a:hover {
-		text-shadow: none;
-		border: 1px solid #fff;
-		box-shadow: 0 0 10px rgba(255, 255, 255, 0.80);
-	}
-
-	.genreList .add-library-button {
-		padding: 4px 10px;
-		top: -1px;
-		border: none;
-		color: #FFF;
+	.genresList a:hover {
 		background-color: #8bc34a;
-		border-radius: 2px;
-		box-shadow: 0 0 2px rgba(0,0,0,0.5);
+		color: #fff;
+/*		text-shadow: none;
+		border: 1px solid #fff;
+		box-shadow: 0 0 10px rgba(255, 255, 255, 0.80);*/
 	}
 
-	.genreList .dropdown-menu > li > a {
-		text-shadow: none;
-		cursor: pointer;
+
+.themesList {
+	margin-top: 10px;
+}
+
+	.themesList a {
+		display: inline-block;
+/*		border: 1px solid rgba(255,255,255,.5);
+		color: #fff;*/
+
+		border: 1px solid #8bc34a;
+		color: #575757;
+		text-decoration: none;
+
+		padding: 3px 5px;
+		margin: 5px 3px;
+/*		text-shadow: 0 0 3px rgba(0,0,0,0.8);*/
+		-webkit-transition: all 0.25s ease-in-out;
+		-moz-transition: all 0.25s ease-in-out;
+		-o-transition: all 0.25s ease-in-out;
+		transition: all 0.25s ease-in-out;			
+	}
+
+	.themesList a:hover {
+		background-color: #8bc34a;
+		color: #fff;
+/*		text-shadow: none;
+		border: 1px solid #fff;
+		box-shadow: 0 0 10px rgba(255, 255, 255, 0.80);*/
 	}
 
 .anime-info {
@@ -864,7 +906,7 @@ textarea {
 
 /*--- Button ---*/
 .btn {
-	border-radius: 0px;
+	border-radius: 2px;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;

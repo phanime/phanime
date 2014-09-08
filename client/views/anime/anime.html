@@ -27,6 +27,25 @@
 							{{> addLibraryEntry}}
 						{{/if}}
 					</div>
+
+					<div class="genresList">
+						{{#if genres}}
+							<h4 class="thin-text inline-text">Genres: </h4>
+							{{#each genres}}
+								<a>{{this}}</a>
+							{{/each}}
+						{{/if}}
+					</div>
+
+					<div class="themesList">
+						{{#if themes}}
+							<h4 class="thin-text inline-text">Themes:</h4>
+							{{#each themes}}
+								<a>{{this}}</a>
+							{{/each}}
+						{{/if}}
+					</div>
+
 				</div>
 			</div>
 
@@ -170,26 +189,6 @@
 	</div>
 
 </div>
-
-
-
-<div class="fancy-heading">
-	<div class="container">
-		<div class="anime-important">
-			<div class="genreList">
-				{{#each genres}}
-					<a>{{this}}</a>
-				{{/each}}
-
-				{{#if currentUser}}
-					{{> addLibraryEntry}}
-				{{/if}}
-			</div>
-		</div>
-	</div>
-	<div class="banner-gradient"></div>
-</div>
-
 
 
 </template>
