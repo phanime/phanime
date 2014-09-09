@@ -126,28 +126,39 @@ Template.libraryEntryCard.events({
 		var privacy;
 		var rewatching;
 		var highPriority;
+		var toolTitle;
 
 		// The privacy icon was clicked
 		if (icon.hasClass('entry-privacy')) {
 			
 			if (libraryEntry.privacy === true) {
 				privacy = false;
+				toolTitle = "Public";
 			} else {
 				privacy = true;
+				toolTitle = "Private";
 			}
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {privacy: privacy}});
+
+			// Fix the tooltip text update it to the newest 
+			$('.libraryEntryIcons.entry-privacy').attr('title', toolTitle).tooltip('fixTitle');
 
 
 		} else if (icon.hasClass('entry-rewatching')) {
 
 			if (libraryEntry.rewatching === true) {
 				rewatching = false;
+				toolTitle = "First time";
 			} else {
 				rewatching = true;
+				toolTitle = "Rewatching";
 			}
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {rewatching: rewatching}});
+
+			// Fix the tooltip text update it to the newest 
+			$('.libraryEntryIcons.entry-rewatching').attr('title', toolTitle).tooltip('fixTitle');
 
 			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'rewatching', rewatching);
 
@@ -162,12 +173,16 @@ Template.libraryEntryCard.events({
 
 			if (libraryEntry.highPriority === true) {
 				highPriority = false;
+				toolTitle = "No Priority";
 			} else {
 				highPriority = true;
+				toolTitle = "High Priority";
 			}
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {highPriority: highPriority}});
 
+			// Fix the tooltip text update it to the newest 
+			$('.libraryEntryIcons.entry-highPriority').attr('title', toolTitle).tooltip('fixTitle');
 
 			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'highPriority', highPriority);
 
@@ -176,6 +191,8 @@ Template.libraryEntryCard.events({
 				// console.log(error);
 				// console.log(result);
 			});
+
+
 
 		}
 
@@ -239,14 +256,19 @@ Template.libraryEntryCard.privacyToolText = function(privacy) {
 		return "Public";
 	}
 
+	$('.libraryEntryIcons.entry-privacy').attr('title', 'NEW_TITLE').tooltip('fixTitle').tooltip('show');
+
+
 };
 
 Template.libraryEntryCard.rewatchingToolText = function(rewatching) {
+
 	if (rewatching === true) {
 		return "Rewatching";
 	} else {
 		return "First time";
 	}
+
 };
 
 
