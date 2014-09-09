@@ -15,16 +15,11 @@ Template.anime.rendered = function() {
 		}
 	});
 
-	console.log('hey');
-
 };
 
 
 Template.anime.airingText = function() {
 
-	console.log(moment(this.startDate).year());
-	console.log(this.endDate);
-	console.log(moment(this.endDate).year());
 
 	if (moment(this.startDate).year() && moment(this.endDate).year()) {
 	

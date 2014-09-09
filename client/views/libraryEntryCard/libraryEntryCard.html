@@ -37,9 +37,9 @@
 				</div>
 
 				<div class="icon-group">
-					<i class="fa entry-rewatching {{entryRewatchingClass rewatching}}"></i>
-					<i class="fa entry-highPriority {{entryHighPriorityClass highPriority}}"></i>
-					<i class="fa entry-privacy {{entryPrivacyClass privacy}}"></i>
+					<i data-toggle="tooltip" data-placement="left" data-stuff="{{rewatchingToolText rewatching}}" class="fa libraryEntryIcons entry-rewatching {{entryRewatchingClass rewatching}}"></i>
+					<i data-toggle="tooltip" data-placement="top" title="{{highPriorityToolText highPriority}}" class="fa libraryEntryIcons entry-highPriority {{entryHighPriorityClass highPriority}}"></i>
+					<i data-toggle="tooltip" data-placement="right" title="{{privacyToolText privacy}}" class="fa libraryEntryIcons entry-privacy {{entryPrivacyClass privacy}}"></i>
 				</div>
 
 				<textarea class="form-control entry-comments" placeholder="Personal comments" value="{{comments}}" maxlength="140" rows="3"></textarea>
