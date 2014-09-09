@@ -13,6 +13,8 @@ Template.libraryEntryCard.rendered = function() {
 		max: 10,
 		step: 1
 	});
+
+	$('.libraryEntryIcons').tooltip();
 }
 
 Template.libraryEntryCard.events({
@@ -116,7 +118,7 @@ Template.libraryEntryCard.events({
 
 	// Update privacy, rewatching, and priority
 
-	'click .fa' : function(event, template) {
+	'click .libraryEntryIcons' : function(event, template) {
 
 		var icon = $(event.target);
 		var libraryEntry = template.data;
@@ -224,5 +226,34 @@ Template.libraryEntryCard.entryHighPriorityClass = function(highPriority) {
 		return "fa-exclamation-circle";
 	} else {
 		return "fa-circle-o";
+	}
+};
+
+
+
+Template.libraryEntryCard.privacyToolText = function(privacy) {
+
+	if (privacy === true) {
+		return "Private";
+	} else {
+		return "Public";
+	}
+
+};
+
+Template.libraryEntryCard.rewatchingToolText = function(rewatching) {
+	if (rewatching === true) {
+		return "Rewatching";
+	} else {
+		return "First time";
+	}
+};
+
+
+Template.libraryEntryCard.highPriorityToolText = function(highPriority) {
+	if (highPriority === true) {
+		return "High Priority";
+	} else {
+		return "No priority";
 	}
 };

@@ -7,7 +7,6 @@ AnimeController = RouteController.extend({
 	
 		if (this.ready()) {
 			var anime = this.data();
-			console.log(this.data());
 
 			SEO.set({
 				title: anime.canonicalTitle + " | phanime",
