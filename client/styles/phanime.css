@@ -790,6 +790,14 @@ textarea {
 		margin-top: 0;
 	}
 
+	.create-post .action-bar:hover {
+		margin-top: 0;
+	}
+
+	.create-post button:focus + .action-bar {
+		margin-top: 0;
+	}
+
 	.create-post:focus {
 		box-shadow: 1px 1px 1px #000;
 	}

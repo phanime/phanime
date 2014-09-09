@@ -11,6 +11,9 @@ Template.createActivityPost.events({
 		var content = $('#createActivityPostContent').val().trim();
 		var user = template.data;
 		var type;
+
+		console.log(content);
+
 		if (content.length >= 1) {
 
 			// Figure out if it's a status update or a profilePost
