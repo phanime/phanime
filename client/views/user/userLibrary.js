@@ -1,3 +1,10 @@
+Template.userLibrary.rendered = function() {
+
+	Session.setDefault('statusFilter', 'all');
+
+};
+
+
 Template.userLibrary.recentlyAdded = function(template) {
 	if (this) {
 		return {
@@ -56,6 +63,8 @@ Template.userLibrary.events({
 
 	'click .statusFilter > button' : function(event, template) {
 		var status = $(event.target).text();
+		
+		Session.set('statusFilter', status);
 		console.log(status);
 	}
 
