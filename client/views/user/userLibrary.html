@@ -1,6 +1,23 @@
 <template name="userLibrary">
 
 	<div class="container main-content">
+
+		<div class="row">
+			<div class="col-sm-12">
+				{{ReactiveVar}}
+				<div class="btn-group statusFilter">
+					<button type="button" class="btn btn-default">Watching</button>
+					<button type="button" class="btn btn-default">Completed</button>
+					<button type="button" class="btn btn-default">Plan to watch</button>
+					<button type="button" class="btn btn-default">On hold</button>
+					<button type="button" class="btn btn-default">Dropped</button>
+				</div>
+
+			</div>
+
+
+		</div>
+
 		<h1 class="thin-text">Recently Added</h1>
 
 		<div class="row">

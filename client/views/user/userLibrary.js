@@ -50,3 +50,13 @@ Template.userLibrary.dropped = function() {
 		};
 	}
 };
+
+
+Template.userLibrary.events({
+
+	'click .statusFilter > button' : function(event, template) {
+		var status = $(event.target).text();
+		console.log(status);
+	}
+
+});
