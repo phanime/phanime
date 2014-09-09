@@ -256,8 +256,6 @@ Template.libraryEntryCard.privacyToolText = function(privacy) {
 		return "Public";
 	}
 
-	$('.libraryEntryIcons.entry-privacy').attr('title', 'NEW_TITLE').tooltip('fixTitle').tooltip('show');
-
 
 };
 
