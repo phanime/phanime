@@ -1,8 +1,6 @@
 Template.userLibrary.rendered = function() {
 
-	Session.set('statusFilter', 'all');
-	// var statusFilter = new ReactiveVar('all');
-	// console.log(this);
+	Session.setDefault('statusFilter', 'All');
 };
 
 
