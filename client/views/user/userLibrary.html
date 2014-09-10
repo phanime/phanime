@@ -2,22 +2,6 @@
 
 	<div class="container main-content">
 
-		<div class="row">
-			<div class="col-sm-12">
-				{{statusFilter}}
-				<div class="btn-group statusFilter">
-					<button type="button" class="btn btn-default">Watching</button>
-					<button type="button" class="btn btn-default">Completed</button>
-					<button type="button" class="btn btn-default">Plan to watch</button>
-					<button type="button" class="btn btn-default">On hold</button>
-					<button type="button" class="btn btn-default">Dropped</button>
-				</div>
-
-			</div>
-
-
-		</div>
-
 		<h1 class="thin-text">Recently Added</h1>
 
 		<div class="row">
@@ -26,18 +10,37 @@
 			{{/each}}
 		</div>
 
-		<h1 class="thin-text">Watching ({{watching.count}})</h1>
 
 		<div class="row">
-			{{#each watching.entries}}
-				{{> UI.dynamic template="libraryEntryCard" data=this}}
-			{{else}}
-				<div class="col-sm-12">
-					<h3 class="thin-text">{{../username}} is not watching any anime</h3>
+			<div class="col-sm-12">
+				{{statusFilter}}
+				<div class="btn-group statusFilter">
+					<button type="button" class="btn btn-default {{activeStatusFilter 'Watching'}}">Watching</button>
+					<button type="button" class="btn btn-default {{activeStatusFilter 'Completed'}}">Completed</button>
+					<button type="button" class="btn btn-default {{activeStatusFilter 'Plan to watch'}}">Plan to watch</button>
+					<button type="button" class="btn btn-default {{activeStatusFilter 'On hold'}}">On hold</button>
+					<button type="button" class="btn btn-default {{activeStatusFilter 'Dropped'}}">Dropped</button>
 				</div>
-			{{/each}}
+
+			</div>
+
 		</div>
 
+		{{#if statusFilterCheck 'Watching'}}
+			<h1 class="thin-text">Watching ({{watching.count}})</h1>
+
+			<div class="row">
+				{{#each watching.entries}}
+					{{> UI.dynamic template="libraryEntryCard" data=this}}
+				{{else}}
+					<div class="col-sm-12">
+						<h3 class="thin-text">{{../username}} is not watching any anime</h3>
+					</div>
+				{{/each}}
+			</div>
+		{{/if}}
+
+		{{#if statusFilterCheck 'Completed'}}
 		<h1 class="thin-text">Completed ({{completed.count}})</h1>
 
 		<div class="row">
@@ -49,7 +52,9 @@
 				</div>
 			{{/each}}
 		</div>
+		{{/if}}
 
+		{{#if statusFilterCheck 'Plan to watch'}}
 		<h1 class="thin-text">Plan to watch ({{planToWatch.count}})</h1>
 
 		<div class="row">
@@ -61,8 +66,10 @@
 				</div>
 			{{/each}}
 		</div>
+		{{/if}}
 
 
+		{{#if statusFilterCheck 'On hold'}}
 		<h1 class="thin-text">On hold ({{onHold.count}})</h1>
 
 		<div class="row">
@@ -74,7 +81,9 @@
 				</div>
 			{{/each}}
 		</div>
+		{{/if}}
 
+		{{#if statusFilterCheck 'Dropped'}}
 		<h1 class="thin-text">Dropped ({{dropped.count}})</h1>
 
 		<div class="row">
@@ -86,6 +95,7 @@
 				</div>
 			{{/each}}
 		</div>
+		{{/if}}
 
 	</div>
 
