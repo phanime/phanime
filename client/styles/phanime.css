@@ -116,6 +116,18 @@ textarea {
 		max-height: 300px;
 	}
 
+
+/*--- General Card --*/
+
+.block.card {
+	width: 230px;
+	margin: 10px auto !important;
+}
+
+	.block.card h4 {
+		margin-bottom: 0;
+	}
+
 .box {
 	margin-bottom: 20px;
 	background-color: #fff;
@@ -272,9 +284,16 @@ textarea {
 		float: left;
 		margin-right: 10px;		
 	}
+		.img.cover.no-float {
+			float: none;
+		}
 
 		.img.cover.img-md {
 			height: 150px;
+		}
+
+		.img.cover.img-lg {
+			height: 285px;
 		}
 
 /*-----------------------------*/
