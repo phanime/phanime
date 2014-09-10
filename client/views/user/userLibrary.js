@@ -1,9 +1,22 @@
 Template.userLibrary.rendered = function() {
 
-	Session.setDefault('statusFilter', 'all');
-
+	Session.set('statusFilter', 'all');
+	// var statusFilter = new ReactiveVar('all');
+	// console.log(this);
 };
 
+
+Template.userLibrary.activeStatusFilter = function(status) {
+	if (Session.get('statusFilter') === status) {
+		return 'active';
+	} else {
+		return '';
+	}
+};
+
+Template.userLibrary.statusFilterCheck = function(status) {
+	return Session.get('statusFilter') === status;
+};
 
 Template.userLibrary.recentlyAdded = function(template) {
 	if (this) {
@@ -65,7 +78,6 @@ Template.userLibrary.events({
 		var status = $(event.target).text();
 		
 		Session.set('statusFilter', status);
-		console.log(status);
 	}
 
 });
