@@ -10,11 +10,13 @@
 			{{/each}}
 		</div>
 
+		<hr>
 
 		<div class="row">
 			<div class="col-sm-12">
 				{{statusFilter}}
 				<div class="btn-group statusFilter">
+					<button type="button" class="btn btn-default {{activeStatusFilter 'All'}}">All</button>
 					<button type="button" class="btn btn-default {{activeStatusFilter 'Watching'}}">Watching</button>
 					<button type="button" class="btn btn-default {{activeStatusFilter 'Completed'}}">Completed</button>
 					<button type="button" class="btn btn-default {{activeStatusFilter 'Plan to watch'}}">Plan to watch</button>
@@ -25,6 +27,8 @@
 			</div>
 
 		</div>
+
+		<hr>
 
 		{{#if statusFilterCheck 'Watching'}}
 			<h1 class="thin-text">Watching ({{watching.count}})</h1>
@@ -38,6 +42,22 @@
 					</div>
 				{{/each}}
 			</div>
+		{{else}}
+			{{#if statusFilterCheck 'All'}}
+
+				<h1 class="thin-text">Watching ({{watching.count}})</h1>
+
+				<div class="row">
+					{{#each watching.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} is not watching any anime</h3>
+						</div>
+					{{/each}}
+				</div>
+
+			{{/if}}
 		{{/if}}
 
 		{{#if statusFilterCheck 'Completed'}}
@@ -52,6 +72,22 @@
 				</div>
 			{{/each}}
 		</div>
+		{{else}}
+			{{#if statusFilterCheck 'All'}}
+
+				<h1 class="thin-text">Completed ({{completed.count}})</h1>
+
+				<div class="row">
+					{{#each completed.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} hasn't completed any anime</h3>
+						</div>
+					{{/each}}
+				</div>
+
+			{{/if}}
 		{{/if}}
 
 		{{#if statusFilterCheck 'Plan to watch'}}
@@ -66,6 +102,22 @@
 				</div>
 			{{/each}}
 		</div>
+		{{else}}
+			{{#if statusFilterCheck 'All'}}
+
+				<h1 class="thin-text">Plan to watch ({{planToWatch.count}})</h1>
+
+				<div class="row">
+					{{#each planToWatch.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} has no plans to watch any anime</h3>
+						</div>
+					{{/each}}
+				</div>
+
+			{{/if}}
 		{{/if}}
 
 
@@ -81,6 +133,22 @@
 				</div>
 			{{/each}}
 		</div>
+		{{else}}
+			{{#if statusFilterCheck 'All'}}
+
+				<h1 class="thin-text">On hold ({{onHold.count}})</h1>
+
+				<div class="row">
+					{{#each onHold.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} hasn't put any anime on hold</h3>
+						</div>
+					{{/each}}
+				</div>
+
+			{{/if}}
 		{{/if}}
 
 		{{#if statusFilterCheck 'Dropped'}}
@@ -95,6 +163,22 @@
 				</div>
 			{{/each}}
 		</div>
+		{{else}}
+			{{#if statusFilterCheck 'All'}}
+
+				<h1 class="thin-text">Dropped ({{dropped.count}})</h1>
+
+				<div class="row">
+					{{#each dropped.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} hasn't dropped any anime</h3>
+						</div>
+					{{/each}}
+				</div>
+
+			{{/if}}
 		{{/if}}
 
 	</div>
