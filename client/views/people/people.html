@@ -1,16 +1,11 @@
 <template name="people">
 	<div class="container main-content">
-	{{#each this}}
 		<div class="row">
-			<div class="col-sm-8">
-				<a href="{{pathFor 'person'}}">{{fullName}}</a>
+		{{#each this}}	
+			<div class="col-sm-4 col-md-4 col-lg-3">
+				{{> UI.dynamic template="personCard" data=this}}
 			</div>
-
-			<div class="col-sm-4">
-				{{formatDateFromNow createdAt}}
-			</div>
-
+		{{/each}}
 		</div>
-	{{/each}}
 	</div>
 </template>
