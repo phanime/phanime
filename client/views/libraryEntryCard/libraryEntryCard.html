@@ -44,6 +44,10 @@
 
 				<textarea class="form-control entry-comments" placeholder="Personal comments" value="{{comments}}" maxlength="140" rows="3"></textarea>
 
+				<div class="thin-text centered" style="margin-top: 3px">
+					{{#with anime}}<a href="{{pathFor 'anime'}}">Go to Anime <i class="fa fa-arrow-circle-right"></i></a>{{/with}}
+				</div>
+
 			</div>
 			{{/if}}
 
