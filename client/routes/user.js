@@ -26,7 +26,6 @@ UserController = RouteController.extend({
 		return Meteor.subscribe('userWithProfilePosts', this.params.username);
 	},
 
-	// notFoundTemplate: 'fourOhFour',
 	data: function (pause) {
 
 		var user = Meteor.users.findOne({username: this.params.username});

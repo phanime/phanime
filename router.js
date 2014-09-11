@@ -60,6 +60,7 @@ Router.map(function () {
 	this.route('userLibrary', {path: '/users/:username/library', layoutTemplate: 'userProfileLayout'});
 	this.route('userFollowers', {path: '/users/:username/followers', layoutTemplate: 'userProfileLayout'});
 	this.route('userFollowing', {path: '/users/:username/following', layoutTemplate: 'userProfileLayout'});
+	this.route('userActivity', {path: '/users/:username/activity', layoutTemplate: 'userProfileLayout'});
 
 
 	/////////////////////////////////////////////////
