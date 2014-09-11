@@ -3,9 +3,10 @@ ProfilePosts = new Meteor.Collection('profilePost');
 // Types of activity
 
 
-ProfilePosts.postFields = function(statusUpdate, posterId, content) {
+ProfilePosts.postFields = function(statusUpdate, userId, posterId, content) {
 	var post = {
 		statusUpdate: statusUpdate, // Could either be true or false 
+		userId: userId,
 		posterId: posterId, // if statusUpdate is true posterId would be equal to userId
 		content: content,
 		createdAt: new Date()
@@ -18,7 +19,7 @@ ProfilePosts.allow({
 
 	insert: function(userId, doc) {
 		// the user must be logged in, and the profile post must be created by the user
-		return (userId && doc.userId === userId);
+		return (userId && doc.posterId === userId);
 	},
 	update: function(userId, doc, fields, modifier) {
 
