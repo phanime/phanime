@@ -11,10 +11,8 @@
 
 				{{#each profilePosts}}
 					{{> profilePostCard}}
-				{{/each}}
-
-				{{#each activity}}
-					{{> activityCard}}
+				{{else}}
+					<h3 class="thin-text">There are no messages on {{username}}'s profile yet.</h3>
 				{{/each}}
 
 			</div>
