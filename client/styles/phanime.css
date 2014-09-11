@@ -790,10 +790,10 @@ textarea {
 	z-index: 0;	
 }
 
-.create-post {
+.create-profilePost {
 	padding: 0;
 }
-	.create-post textarea {
+	.create-profilePost textarea {
 		position: relative;
 		z-index: 1;
 		resize: none;
@@ -801,27 +801,27 @@ textarea {
 		padding: 20px;
 	}
 
-	.create-post textarea:focus {
+	.create-profilePost textarea:focus {
 		box-shadow: none !important;
 	}
 
-	.create-post textarea:focus + .action-bar {
+	.create-profilePost textarea:focus + .action-bar {
 		margin-top: 0;
 	}
 
-	.create-post .action-bar:hover {
+	.create-profilePost .action-bar:hover {
 		margin-top: 0;
 	}
 
-	.create-post button:focus + .action-bar {
+	.create-profilePost button:focus + .action-bar {
 		margin-top: 0;
 	}
 
-	.create-post:focus {
+	.create-profilePost:focus {
 		box-shadow: 1px 1px 1px #000;
 	}
 
-	.create-post .action-bar {
+	.create-profilePost .action-bar {
 		background-color: #E6E6E6;
 		padding: 5px;
 		margin-top:-43px;
@@ -831,7 +831,7 @@ textarea {
 		transition: all 0.4s ease;	
 	}
 
-	.create-post button {
+	.create-profilePost button {
 		margin: 0;
 		padding: 5px 20px;
 	}
