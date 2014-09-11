@@ -4,6 +4,32 @@ Meteor.publish('user', function(username) {
 	return Meteor.users.find({username: username});
 });
 
+Meteor.publishComposite('userWithProfilePosts', function(username) {
+	return {
+		find: function() {
+			return Meteor.users.find({username: username});
+		},
+		children: [
+			{
+				find: function(user) {
+					return ProfilePosts.find({userId: user._id});
+				},
+				children: [
+					{
+						find: function(profilePost, user) {
+							if (profilePost.statusUpdate === false) {
+								return Meteor.users.find({_id: profilePosts.posterId});
+							}
+						}
+					}
+
+				]
+			}
+		]
+	};
+
+});
+
 
 Meteor.publishComposite('userWithActivity', function(username) {
 	return {
