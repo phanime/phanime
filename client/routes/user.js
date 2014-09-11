@@ -23,7 +23,7 @@ UserController = RouteController.extend({
 
 
 	waitOn: function () {
-		return Meteor.subscribe('userWithActivity', this.params.username);
+		return Meteor.subscribe('userWithProfilePosts', this.params.username);
 	},
 
 	// notFoundTemplate: 'fourOhFour',
@@ -33,21 +33,30 @@ UserController = RouteController.extend({
 		if (this.ready()) {
 
 			if (user) {
-				user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
+				user.profilePosts = ProfilePosts.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
 
+				user.profilePosts.forEach(function(profilePost) {
 
-				user.activity.forEach(function(activity) {
-					if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
-					
-						activity.libraryEntry.anime = Anime.findOne({_id: activity.libraryEntry.contentId});
-					
-					} else if (activity.type === 'post') {
-						
-						activity.post.poster = Meteor.users.findOne({_id: activity.post.posterId});
-					
-					}
+					profilePost.poster = Meteor.users.findOne({_id: profilePost.posterId});
 
 				});
+
+
+				// user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
+
+
+				// user.activity.forEach(function(activity) {
+				// 	if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
+					
+				// 		activity.libraryEntry.anime = Anime.findOne({_id: activity.libraryEntry.contentId});
+					
+				// 	} else if (activity.type === 'post') {
+						
+				// 		activity.post.poster = Meteor.users.findOne({_id: activity.post.posterId});
+					
+				// 	}
+
+				// });
 
 				return user;
 			} else {
