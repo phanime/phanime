@@ -4,12 +4,6 @@
 		{{> activityCardLibraryEntry}}
 	{{/if}}
 
-	{{#if activityType "post"}}
-
-		{{> activityCardPost}}
-
-	{{/if}}
-
 
 </template>
 
@@ -32,29 +26,5 @@
 			</div>
 		{{/with}}
 	</div>	
-
-</template>
-
-
-<template name="activityCardPost">
-
-	<div class="block">
-		{{#with post}}
-			<div class="row">
-				<div class="col-sm-12">
-					{{#with poster}}
-						<a href="{{pathFor 'user'}}"><div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}');"></div></a>
-						<h4 style="margin:0">{{username}}</h4>
-					{{/with}}
-					<h6 class="thin-text" style="margin:0">{{formatDateFromNow ../createdAt}}</h6>
-				</div>
-			</div>
-			<div class="description">
-				{{content}}
-			</div>
-		{{/with}}
-
-	</div>	
-
 
 </template>

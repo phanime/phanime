@@ -40,23 +40,6 @@ UserController = RouteController.extend({
 
 				});
 
-
-				// user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
-
-
-				// user.activity.forEach(function(activity) {
-				// 	if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
-					
-				// 		activity.libraryEntry.anime = Anime.findOne({_id: activity.libraryEntry.contentId});
-					
-				// 	} else if (activity.type === 'post') {
-						
-				// 		activity.post.poster = Meteor.users.findOne({_id: activity.post.posterId});
-					
-				// 	}
-
-				// });
-
 				return user;
 			} else {
 				this.render('fourOhFour');
