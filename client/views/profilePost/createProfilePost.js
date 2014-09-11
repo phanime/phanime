@@ -23,7 +23,7 @@ Template.createProfilePost.events({
 				statusUpdate = false;
 			}
 
-			var profilePost = ProfilePosts.postFields(statusUpdate, Meteor.userId(), content);
+			var profilePost = ProfilePosts.postFields(statusUpdate, user._id, Meteor.userId(), content);
 
 
 
