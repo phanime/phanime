@@ -2,9 +2,9 @@ SignInController = RouteController.extend({
 	
 	onBeforeAction: function () {
 		SEO.set({
-			title: "Sign In " + siteSettings.separator + " " + siteSettings.title,
+			title: siteSettings.getFullTitle("Sign In"),
 			og: {
-				'title' : "Sign In " + siteSettings.separator + " " + siteSettings.title,
+				'title' : siteSettings.getFullTitle("Sign In"),
 			}
 		});
 	}

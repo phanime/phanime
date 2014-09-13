@@ -2,7 +2,7 @@ CharactersController = RouteController.extend({
 	
 	onBeforeAction: function () {
 		SEO.set({
-			title: "Characters" + " " + siteSettings.separator + " " + siteSettings.title,
+			title: siteSettings.getFullTitle("Characters"),
 			meta: {
 				'description' : 'Explore the all the characters related to anime shows on phanime'
 			}

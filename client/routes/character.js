@@ -9,12 +9,12 @@ CharacterController = RouteController.extend({
 			var character = this.data();
 
 			SEO.set({
-				title: character.fullName() + " " + siteSettings.separator + " " + siteSettings.title,
+				title: siteSettings.getFullTitle(character.fullName()),
 				meta: {
 					'description' : character.biography
 				},
 				og: {
-					'title' : character.fullName() + " " + siteSettings.separator + " " + siteSettings.title,
+					'title' : siteSettings.getFullTitle(character.fullName()),
 					'description' : character.biography,
 					'type' : 'profile',
 					'image' : character.coverImageUrl(),

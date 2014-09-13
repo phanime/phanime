@@ -2,7 +2,7 @@ SearchController = RouteController.extend({
 	
 	onBeforeAction: function () {
 		SEO.set({
-			title: "Search" + " " + siteSettings.separator + " " + siteSettings.title
+			title: siteSettings.getFullTitle("Search")
 		});
 	},
 
