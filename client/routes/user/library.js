@@ -5,12 +5,12 @@ UserLibraryController = RouteController.extend({
 			var user = this.data();
 
 			SEO.set({
-				title: user.username + "'s Library | Phanime",
+				title: user.username + "'s Library" + " " + siteSettings.separator + " " + siteSettings.title,
 				meta: {
 					'description' : user.about
 				},
 				og: {
-					'title' : user.username + "'s Library | Phanime" ,
+					'title' : user.username + "'s Library" + " " + siteSettings.separator + " " + siteSettings.title,
 					'description' : user.about,
 					'type' : 'profile',
 					'image' : user.avatarImageUrl(),

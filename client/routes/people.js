@@ -2,7 +2,7 @@ PeopleController = RouteController.extend({
 	
 	onBeforeAction: function () {
 		SEO.set({
-			title: "People | Phanime",
+			title: "People" + " " + siteSettings.separator + " " + siteSettings.title,
 			meta: {
 				'description' : 'Explore the people related to anime shows on phanime'
 			}

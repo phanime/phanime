@@ -2,7 +2,7 @@ IndexController = RouteController.extend({
 
 	onBeforeAction: function () {
 		SEO.set({
-			title: "Phanime | Discover anime like never before",
+			title:  siteSettings.title + " " + siteSettings.separator + " " + siteSettings.slogan,
 			meta: {
 				'description' : 'Phanime is a platform made specifically for anime fans'
 			}
