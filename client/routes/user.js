@@ -6,12 +6,12 @@ UserController = RouteController.extend({
 
 			if (user) {
 				SEO.set({
-					title: user.username + "'s Profile" + " " + siteSettings.separator + " " + siteSettings.title,
+					title: siteSettings.getFullTitle(user.username + "'s Profile"),
 					meta: {
 						'description' : user.about
 					},
 					og: {
-						'title' : user.username + "'s Profile" + " " + siteSettings.separator + " " + siteSettings.title,
+						'title' : siteSettings.getFullTitle(user.username + "'s Profile"),
 						'description' : user.about,
 						'type' : 'profile',
 						'image' : user.avatarImageUrl(),
