@@ -35,106 +35,64 @@ Template.userSummary.events({
 // Creating reactive variables
 Template.user.created = function() {
 
-	this.topGenresChartObject = new ReactiveVar({
-		chart: {
-			plotBackgroundColor: null,
-			plotBorderWidth: null,
-			plotShadow: false
-		},
-		title: {
-			text: this.username + "'s top genres"
-		},
-		tooltip: {
-			pointFormat: '<b>{point.percentage:.1f}%</b>'
-		},
-		plotOptions: {
-			pie: {
-				allowPointSelect: true,
-				cursor: 'pointer',
-				dataLabels: {
-					enabled: true,
-					format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-					style: {
-						color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-					},
-					connectorColor: 'silver'
-				}
-			}
-		},
-		series: [{
-			type: 'pie',
-			name: 'genre',
-			data: [
-				['Adventure',   45.0],
-				['Action',       26.8],
-				['Ecchi',   12.8],
-				['Comedy',    8.5],
-				['Yuri',     6.2]
-			]
-		}]
-	});
+	// Initialize the chart object with a null value
+	// so we can show a loading indicator
+	this.topGenresChartObject = new ReactiveVar(null);
 
 };
 
+
+Template.user.rendered = function() {
+	var template = this;
+	var self = this;
+
+	// Grab the Top Genres chart data
+	Meteor.call('topGenresChartData', this.data._id, function(error, result) {
+
+		var chartOptions = {
+			chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false
+			},
+			title: {
+				text: self.data.username + "'s top genres"
+			},
+			tooltip: {
+				pointFormat: '<b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: true,
+						format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+						style: {
+							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+						},
+						connectorColor: 'silver'
+					}
+				}
+			},
+			series: [{
+				type: 'pie',
+				name: 'genre',
+				data: result
+			}]
+		};
+
+		template.topGenresChartObject.set(chartOptions);
+	});
+
+
+};
+
+
 Template.user.topGenresChartObject = function() {
+
 
 	var template = Template.instance();
 	return template.topGenresChartObject.get();
 
-};
-
-Template.user.topGenresChart = function() {
-	var template = Template.instance();
-
-	// var oldObject = template.topGenresChartObject.get();
-
-	// oldObject.series[0]['type'] = 'bar';
-	// template.topGenresChartObject.set(oldObject);
-
-	// console.log(oldObject);
-
-
-	Meteor.call('topGenresChartData', this._id, function(error, result) {
-		console.log(error);
-		console.log(result);
-	});
-
-	return {
-		chart: {
-			plotBackgroundColor: null,
-			plotBorderWidth: null,
-			plotShadow: false
-		},
-		title: {
-			text: this.username + "'s top genres"
-		},
-		tooltip: {
-			pointFormat: '<b>{point.percentage:.1f}%</b>'
-		},
-		plotOptions: {
-			pie: {
-				allowPointSelect: true,
-				cursor: 'pointer',
-				dataLabels: {
-					enabled: true,
-					format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-					style: {
-						color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-					},
-					connectorColor: 'silver'
-				}
-			}
-		},
-		series: [{
-			type: 'pie',
-			name: 'genre',
-			data: [
-				['Adventure',   45.0],
-				['Action',       26.8],
-				['Ecchi',   12.8],
-				['Comedy',    8.5],
-				['Yuri',     6.2]
-			]
-		}]
-	};
 };

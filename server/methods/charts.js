@@ -35,10 +35,14 @@ Meteor.methods({
 		// Sort by count in descending order
 		topGenres = _.sortBy(topGenres, 'count').reverse();
 
-		// Get the top 5 genres
-		topGenres = topGenres.slice(0, 5);
+		// Get the top 10 genres
+		if (topGenres.length > 10)
+			topGenres = topGenres.slice(0, 10);
 
-		console.log(topGenres);
+		// Get the data into high charts compatible for pie charts
+		topGenres = _.map(topGenres, function(obj) {
+			return _.toArray(obj);
+		});
 
 		return topGenres;
 	}
