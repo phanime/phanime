@@ -9,7 +9,7 @@ AnimeController = RouteController.extend({
 			var anime = this.data();
 
 			SEO.set({
-				title: anime.canonicalTitle + " " + siteSettings.separator + " " + siteSettings.title,
+				title: siteSettings.getFullTitle(anime.canonicalTitle),
 				meta: {
 					'description' : anime.description
 				},
