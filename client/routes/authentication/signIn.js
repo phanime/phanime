@@ -2,9 +2,9 @@ SignInController = RouteController.extend({
 	
 	onBeforeAction: function () {
 		SEO.set({
-			title: "Sign In | phanime",
+			title: "Sign In " + siteSettings.separator + " " + siteSettings.title,
 			og: {
-				'title' : "Sign In | phanime" ,
+				'title' : "Sign In " + siteSettings.separator + " " + siteSettings.title,
 			}
 		});
 	}
