@@ -1,2 +1,15 @@
+# Ignore any local packages that are being developed
 packages/
-start/
+
+# Ignore start script
+start
+
+# Ignore generated bundles
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip

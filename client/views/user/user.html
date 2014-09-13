@@ -7,6 +7,12 @@
 					{{> highchartsHelper chartId="test" width="100%" height="100%" chartObject=topGenresChart}}
 				</div>
 
+				{{#with topGenresChartObject}}
+					{{#each series}}
+						{{this.type}}
+					{{/each}}
+				{{/with}}
+
 			</div>
 
 			<div class="col-sm-8 col-md-8 col-lg-6">
