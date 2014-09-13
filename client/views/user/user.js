@@ -84,8 +84,6 @@ Template.user.rendered = function() {
 
 		template.topGenresChartObject.set(chartOptions);
 	});
-
-
 };
 
 

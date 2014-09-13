@@ -2,7 +2,7 @@ SearchController = RouteController.extend({
 	
 	onBeforeAction: function () {
 		SEO.set({
-			title: "Search | Phanime"
+			title: "Search" + " " + siteSettings.separator + " " + siteSettings.title
 		});
 	},
 

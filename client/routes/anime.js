@@ -9,12 +9,12 @@ AnimeController = RouteController.extend({
 			var anime = this.data();
 
 			SEO.set({
-				title: anime.canonicalTitle + " | phanime",
+				title: anime.canonicalTitle + " " + siteSettings.separator + " " + siteSettings.title,
 				meta: {
 					'description' : anime.description
 				},
 				og: {
-					'title' : anime.canonicalTitle + " | phanime" ,
+					'title' : anime.canonicalTitle + " " + siteSettings.separator + " " + siteSettings.title,
 					'description' : anime.description,
 					'type' : 'video.tv_show',
 					'image' : anime.coverImageUrl(),

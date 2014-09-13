@@ -9,12 +9,12 @@ PersonController = RouteController.extend({
 			var person = this.data();
 
 			SEO.set({
-				title: person.fullName() + " | Phanime",
+				title: person.fullName() + " " + siteSettings.separator + " " + siteSettings.title,
 				meta: {
 					'description' : person.otherInfo
 				},
 				og: {
-					'title' : person.fullName() + " | Phanime" ,
+					'title' : person.fullName() + " " + siteSettings.separator + " " + siteSettings.title,
 					'description' : person.otherInfo,
 					'type' : 'profile',
 					'image' : person.coverImageUrl(),
