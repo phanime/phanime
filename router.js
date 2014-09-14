@@ -108,7 +108,7 @@ var routerBeforeHooks = {
 	},
 
 	isAlreadyLoggedIn: function(pause) {
-		if (Meteor.loggingIn() || Meteor.user()) {
+		if (Meteor.user()) {
 			Router.go('index');
 		}
 	},
