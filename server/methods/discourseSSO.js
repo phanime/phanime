@@ -5,7 +5,7 @@ Meteor.methods({
 		// validate sig with payload
 		if (sso.validate(payload, sig)) {
 			var nonce = sso.getNonce(payload);
-			console.log(nonce);
+			// console.log(nonce);
 
 			var userParams = {
 				"nonce": nonce,
@@ -19,7 +19,7 @@ Meteor.methods({
 			// console.log(user.avatarImageUrl());
 
 			var queryParams = sso.buildLoginString(userParams);
-			console.log(queryParams);
+			// console.log(queryParams);
 			var returnUrl = "http://community.phanime.com/session/sso_login?" + queryParams;
 
 
