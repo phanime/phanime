@@ -11,9 +11,9 @@ CommunitySSOController = RouteController.extend({
 			if (params.sso && params.sig && Meteor.user()) {
 				user = Meteor.user();
 
-
+				// Temporary addition here since for some reason the server 
+				// isn't able to recognize the collection helpers
 				user.avatarImageUrl = user.avatarImageUrl();
-				console.log(user.avatarImageUrl);
 
 				
 				// Temporary way to send the user to the right place after verification
