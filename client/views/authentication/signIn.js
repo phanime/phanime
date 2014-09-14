@@ -17,7 +17,6 @@ Template.signIn.events({
 
 			if (error) {
 				Notifications.error('Login Unsuccessful', 'Username or password is invalid');
-				Router.go('signIn');
 			} else {
 				// Check if the login request is coming from discourse or not
 				if (data.sso && data.sig) {
