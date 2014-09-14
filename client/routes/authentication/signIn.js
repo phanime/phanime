@@ -7,6 +7,12 @@ SignInController = RouteController.extend({
 				'title' : siteSettings.getFullTitle("Sign In"),
 			}
 		});
+	},
+	data: function() {
+		return {
+			sso: this.params.sso,
+			sig: this.params.sig
+		};
 	}
 
 });
