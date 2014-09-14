@@ -16,6 +16,11 @@ Meteor.methods({
 		Meteor.users.update({_id: followerId}, {$push: {following: userId}});
 
 		// Follower was added
+		// We should alert the user that was followed 
+		Meteor.call('createAlert', 'userFollow', {followerId: followerId}, userId, function(error, result) {
+			// To make the call async
+		});
+
 		return true; 
 
 	},
