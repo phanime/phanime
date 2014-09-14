@@ -12,8 +12,11 @@ Meteor.methods({
 				"external_id": user._id,
 				"email": user.emails[0].address, // we just grab the first address
 				"username": user.username,
-				"name": (user.profile) ? user.profile.name : ''  
+				"name": (user.profile) ? user.profile.name : '',
+				"avatar_url": user.avatarImageUrl, // This is not using the normal helper, it is manually being added to the user that's passed in 
 			};
+
+			// console.log(user.avatarImageUrl());
 
 			var queryParams = sso.buildLoginString(userParams);
 			console.log(queryParams);

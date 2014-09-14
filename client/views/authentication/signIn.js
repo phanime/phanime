@@ -22,11 +22,18 @@ Template.signIn.events({
 				// Check if the login request is coming from discourse or not
 				if (data.sso && data.sig) {
 
-					console.log(Meteor.user());
+					var user = Meteor.user();
+
+					console.log(user.avatarImageUrl());
+
+					user.avatarImageUrl = user.avatarImageUrl();
+					
 					// Temporary way to send the user to the right place after verification
-					Meteor.call('discourseSSO', data.sso, data.sig, Meteor.user(), function (error, result) {
-						if (result)
+					Meteor.call('discourseSSO', data.sso, data.sig, user, function (error, result) {
+						console.log(result);
+						if (result) {
 							window.location = result;
+						}
 					});
 
 				} else {
