@@ -7,15 +7,3 @@ Alerts.allow({
 		return false;
 	}
 });
-
-
-createAlert = function(event, properties, userToAlert) {
-	var alert = {
-		event: event,
-		userId: userToAlert,
-		properties: properties,
-		read: false
-	};
-
-	return alert;
-};
