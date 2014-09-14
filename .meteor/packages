@@ -30,4 +30,5 @@ reactive-var
 reywood:publish-composite
 meteorhacks:kadira
 maazalik:highcharts
+maazalik:discourse-sso
 
