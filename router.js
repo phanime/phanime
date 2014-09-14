@@ -88,6 +88,9 @@ Router.map(function () {
 	this.route('signOut', {path: 'sign-out'});
 	this.route('signUp', {path: 'sign-up'});
 
+	// Discourse community sso auth medium
+	this.route('communitySSO', {path: '/community/sso'});
+
 
 	// 404 not found route
 
@@ -143,7 +146,7 @@ var routerBeforeHooks = {
 Router.onBeforeAction('loading');
 Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {except: ['signIn', 'signUp', 'index']});
 // If the user is already logged in, then they shouldn't be able to visit the signIn or signUp pages
-Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp']});
+// Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp']});
 
 // Render the landing page if the user isn't logged in on index
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});

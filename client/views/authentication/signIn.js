@@ -36,8 +36,13 @@ Template.signIn.events({
 					});
 
 				} else {
-					// Redirect the user to index page if login successful 
-					Router.go('index');
+					// Let's authenticate the user in discourse as well 
+					// This will direct us to /community/sso route where the 
+					// discourse authentication will be done, that route will then 
+					// eventually lead to the index route
+					window.location = "http://community.phanime.com/session/sso";
+
+
 				}
 
 			}
