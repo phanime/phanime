@@ -163,16 +163,9 @@ Router.configure({
 	layoutTemplate: 'defaultLayout',
 	// notFoundTemplate: 'fourOhFour',
 	loadingTemplate: 'loading',
-	onBeforeAction: function(pause) {
-		// routerBeforeHooks.scrollUp();
-		// routerBeforeHooks.isLoggedIn(pause);
-
-		// routerBeforeHooks.loadingIndicator();
-		// routerBeforeHooks.animateContentIn();
+	waitOn: function () {
+		if (Meteor.user()) {
+			return Meteor.subscribe('userAlerts');
+		}
 	}
 });
-
-
-// // Before hooks for specific routes
-// // Must be equal to the route names of the Iron Router route map
-// Router.before(IR_BeforeHooks.isLoggedIn, {only: ['userAreaA', 'userAreaB']});
