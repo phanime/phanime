@@ -1,11 +1,11 @@
 # Ignore any local packages that are being developed
-packages/
+/packages/
 
 # Ignore disource key file 
 /server/discourseSSOKey.js
 
 # Ignore start script
-start
+/start
 
 # Ignore generated bundles
 *.7z
