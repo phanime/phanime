@@ -1,8 +1,8 @@
 # Ignore any local packages that are being developed
 /packages/
 
-# Ignore disource key file 
-/server/discourseSSOKey.js
+# Ignore private site settings api keys
+/server/privateSiteSettings.js
 
 # Ignore start script
 /start

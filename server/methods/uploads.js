@@ -4,8 +4,8 @@ Meteor.methods({
 		// should move to environment variables
 		// after
 		AWS.config.update({
-			accessKeyId: 'AKIAJQHYOKA5YCOWQSAQ', 
-			secretAccessKey: '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',
+			accessKeyId: privateSiteSettings.accessKeyId, 
+			secretAccessKey: privateSiteSettings.secretAccessKey,
 		});
 
 		var s3 = new AWS.S3();
