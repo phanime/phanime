@@ -12,8 +12,6 @@ Template.createProfilePost.events({
 		var user = template.data;
 		var statusUpdate;
 
-		console.log(content);
-
 		if (content.length >= 1) {
 
 			// Figure out if it's a status update or a profilePost
@@ -28,8 +26,6 @@ Template.createProfilePost.events({
 
 
 			ProfilePosts.insert(profilePost, function(error, result) {
-				console.log(error);
-				console.log(result);
 				if (!error) {
 					// Clear the activity create textarea if everything went well
 					$('#createProfilePostContent').val('');
