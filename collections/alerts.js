@@ -5,6 +5,9 @@ Alerts.allow({
 		// We want the notifications to be send only through
 		// a meteor method
 		return false;
+	},
+	update: function(userId, doc, fields, modifier) {
+		return userId === doc.userId
 	}
 });
 
@@ -21,14 +24,14 @@ Alerts.helpers({
 			case "userFollow": 
 
 				var followerProfileUrl = Router.routes['user'].path({username: this.properties.followerUsername});	
-				userFriendlyText = "<span><a href='" + followerProfileUrl + "'>" + this.properties.followerUsername + "</a></span> started following you.";
+				userFriendlyText = "<span><a href='" + followerProfileUrl + "'>" + this.properties.followerUsername + "</a></span> started following you ";
 
 				break;
 			case "userProfilePost":
 
 				var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername});
 				var userProfileUrl = Router.routes['user'].path({username: Meteor.user().username});
-				userFriendlyText = "<span><a href='" + posterProfileUrl + "'>" + this.properties.posterUsername + "</a></span> posted on <span><a href='" + userProfileUrl + "'>your profile</a></span>.";
+				userFriendlyText = "<span><a href='" + posterProfileUrl + "'>" + this.properties.posterUsername + "</a></span> posted on <span><a href='" + userProfileUrl + "'>your profile</a></span> ";
 
 				break;
 		}

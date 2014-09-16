@@ -142,6 +142,9 @@ textarea {
 		border-radius: 50px;
 	}
 
+	.content-dropdown-wrapper > a span:empty {
+		padding: 0;
+	}
 
 .content-dropdown {
 	padding: 10px;

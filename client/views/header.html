@@ -39,13 +39,12 @@
 					<li><a href="{{pathFor 'search'}}">Search</a></li>
 					{{#if currentUser}}
 						<li class="dropdown content-dropdown-wrapper">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{alertsClass}}"></i><span>{{unreadAlertCount}}</span></a>
+							<a href="#" id="alertsToggle" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{alertsClass}}"></i><span>{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span></a>
 
 							<div class="dropdown-menu content-dropdown">
 								
 								{{#each alerts}}
-
-									<li>{{{userFriendlyText}}}</li>
+									<li>{{{userFriendlyText}}} {{formatDateFromNow createdAt}}</li>
 								{{else}}
 									You have no alerts.
 								{{/each}}
