@@ -67,9 +67,11 @@
 /*-------------------------------*/
 
 html, body {
-  margin: 0px;
-  font-family: 'Lato', sans-serif;
-  background-color: #eee;
+	margin: 0px;
+	font-family: 'Lato', sans-serif;
+	background-color: #eee;
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
 ::-moz-selection { /* Code for Firefox */
