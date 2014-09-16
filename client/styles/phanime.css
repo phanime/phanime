@@ -126,6 +126,22 @@ textarea {
 		max-height: 300px;
 	}
 
+.content-dropdown-wrapper > a {
+	position: relative;
+}
+
+	.content-dropdown-wrapper > a span {
+		position: absolute;
+		background-color: #83BD40;
+		color: #fff;
+		top: 3px;
+		right: 0;
+		padding: 4px 5px;
+		line-height: 10px;
+		font-size: 11px;
+		border-radius: 50px;
+	}
+
 
 .content-dropdown {
 	padding: 10px;

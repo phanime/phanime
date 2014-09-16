@@ -38,11 +38,11 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="{{pathFor 'search'}}">Search</a></li>
 					{{#if currentUser}}
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{alertsClass}}"></i></a>
+						<li class="dropdown content-dropdown-wrapper">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{alertsClass}}"></i><span>{{unreadAlertCount}}</span></a>
 
 							<div class="dropdown-menu content-dropdown">
-								{{unreadAlertCount}}
+								
 								{{#each alerts}}
 
 									<li>{{{userFriendlyText}}}</li>
