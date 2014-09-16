@@ -20,8 +20,8 @@ Alerts.helpers({
 
 			case "userFollow": 
 
-				var routerPath = Router.routes['user'].path({username: 'Maaz'});	
-				userFriendlyText = "Someone followed you, visit their <a href='" + routerPath + "'>profile</a>";
+				var followerProfileUrl = Router.routes['user'].path({username: 'Maaz'});	
+				userFriendlyText = "Someone followed you, visit their <a href='" + followerProfileUrl + "'>profile</a>";
 
 				break;
 			case "userProfilePost":

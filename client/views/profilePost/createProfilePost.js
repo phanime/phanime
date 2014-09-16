@@ -30,6 +30,9 @@ Template.createProfilePost.events({
 					// Clear the activity create textarea if everything went well
 					$('#createProfilePostContent').val('');
 
+
+					// Add the poster's name in the profile post
+					profilePost.posterUsername = Meteor.user().username;
 					// Send out an alert as long as it wasn't a status update					
 					if (statusUpdate === false) {
 						Meteor.call('createAlert', 'userProfilePost', profilePost, user._id, function(error, result) {
