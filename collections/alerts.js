@@ -20,13 +20,15 @@ Alerts.helpers({
 
 			case "userFollow": 
 
-				var followerProfileUrl = Router.routes['user'].path({username: 'Maaz'});	
-				userFriendlyText = "Someone followed you, visit their <a href='" + followerProfileUrl + "'>profile</a>";
+				var followerProfileUrl = Router.routes['user'].path({username: this.properties.followerUsername});	
+				userFriendlyText = "<span><a href='" + followerProfileUrl + "'>" + this.properties.followerUsername + "</a></span> started following you.";
 
 				break;
 			case "userProfilePost":
 
-				userFriendlyText = 'Someone posted on your profile';
+				var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername});
+				var userProfileUrl = Router.routes['user'].path({username: Meteor.user().username});
+				userFriendlyText = "<span><a href='" + posterProfileUrl + "'>" + this.properties.posterUsername + "</a></span> posted on <span><a href='" + userProfileUrl + "'>your profile</a></span>.";
 
 				break;
 		}
