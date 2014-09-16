@@ -6,7 +6,8 @@ Meteor.methods({
 			event: event,
 			userId: userIdToAlert,
 			properties: properties, // Any details that defines this alert
-			read: false
+			read: false,
+			createdAt: new Date()
 		};
 
 		Alerts.insert(alert, function(error, result) {
@@ -14,5 +15,8 @@ Meteor.methods({
 			console.log(result);
 		});
 
+	},
+	markAllAlertsRead: function(userId) {
+		Alerts.update({userId: userId}, {$set: {read: true}}, {multi: true});
 	}
 });
