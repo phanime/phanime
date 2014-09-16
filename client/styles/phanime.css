@@ -127,6 +127,16 @@ textarea {
 	}
 
 
+.content-dropdown {
+	padding: 10px;
+	min-width: 300px;
+}
+
+	.content-dropdown > li {
+		padding: 5px 0;
+		border-bottom: 1px solid #ECEBEB;
+	}
+
 /*--- General Card --*/
 
 .block.card {
