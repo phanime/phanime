@@ -39,6 +39,20 @@
 					<li><a href="{{pathFor 'search'}}">Search</a></li>
 					{{#if currentUser}}
 						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{alertsClass}}"></i></a>
+
+							<div class="dropdown-menu content-dropdown">
+								{{unreadAlertCount}}
+								{{#each alerts}}
+
+									<li>{{{userFriendlyText}}}</li>
+								{{else}}
+									You have no alerts.
+								{{/each}}
+							</div>
+
+						</li>
+						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.username}}<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								{{#with currentUser}}
