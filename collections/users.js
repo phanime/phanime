@@ -53,3 +53,8 @@ Meteor.users.allow({
 
 
 });
+
+
+// Since this collection is only for closed beta, we can add it in here  
+RequestedInvites = new Meteor.Collection('requestedInvites');
+
