@@ -14,10 +14,10 @@
 					<h1 style="margin-top:0">{{title}}</h1>
 
 					<ul class="anime-info">
-						<li>{{type}}</li> 
-						<li>{{episodeDuration}} mins.</li>
-						<li>{{ageRating}}</li>
-						<li>{{totalEpisodes}} episodes</li>
+						{{#if type}}<li>{{type}}</li>{{/if}}
+						{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
+						{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
+						{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
 						<li>{{airingText}} {{formatDateDefault startDate}} to {{#if isMomentDatePresent endDate}}{{formatDateDefault endDate}}{{else}} - {{/if}}</li>
 					</ul>
 
