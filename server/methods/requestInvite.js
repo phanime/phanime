@@ -9,7 +9,9 @@ Meteor.methods({
 		if (!requestedInvite) {
 
 			// Generate a random unique code by inserting a document (_id field)
-			var id = RequestedInvites.insert({email: email});
+			var id = RequestedInvites.insert({
+				email: email, used: false
+			});
 
 			// Send an email
 			Meteor.call('requestInviteEmail', email, id, function(error, result) {

@@ -3,17 +3,6 @@ Accounts.validateNewUser(function(user) {
 	var isGood = false;
 
 
-	// Check signup code
-	var requestedInvite = RequestedInvites.findOne({_id: user.profile.signUpCode, used: false});
-
-	if (!requestedInvite) {
-		// So we either couldn't find a code, or it's already used in which case 
-		throw new Meteor.Error(403, 'Invalid Sign Up Code! Please request one on the front page or provide a valid Sign Up Code.');
-		isGood = false;
-	} else {
-		isGood = true;
-	}
-
 	var usernameRegex = /^[a-zA-Z0-9_]+$/;
 
 	// Check user name
@@ -39,6 +28,22 @@ Accounts.validateNewUser(function(user) {
 		isGood = false;
 		throw new Meteor.Error(403, "Please provide a valid email address");
 	}
+
+
+	// Check signup code
+	var requestedInvite = RequestedInvites.findOne({_id: user.profile.signUpCode, used: false});
+
+	console.log(user.profile.signUpCode);
+
+	if (!requestedInvite) {
+		// So we either couldn't find a code, or it's already used in which case 
+		throw new Meteor.Error(403, 'Sign Up Code is invalid or already in use! Please request one on the front page or provide a valid Sign Up Code.');
+		isGood = false;
+	} else {
+		isGood = true;
+	}
+
+
 
 	if (isGood === true) {
 
