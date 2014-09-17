@@ -3,9 +3,10 @@ Template.signUp.events({
 		var username = $('#username').val().trim();
 		var email = $('#email').val().trim();
 		var password = $('#password').val().trim();
+		var code = $('#code').val().trim();
 
 
-		if (!email || !username || !password) {
+		if (!email || !username || !password || !code) {
 			Notifications.error('Registration unsuccessful', 'All fields are requied!');
 		}
 
