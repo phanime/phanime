@@ -1,12 +1,3 @@
-Template.landing.rendered = function() {
-	// $('.bg').blurjs({
-	// 	source: 'body',
-	// 	radius: 30,
-	// 	overlay: 'rgba(0,0,0,0.2)'
-	// });
-}
-
-
 Template.landing.landingImage = function() {
 
 		var gifs = [
@@ -18,7 +9,7 @@ Template.landing.landingImage = function() {
 			"http://31.media.tumblr.com/tumblr_m3q9vmuqGg1rozgayo1_500.gif",
 			"http://media-cache-ec0.pinimg.com/originals/13/9f/f5/139ff545b37593fcff57c0c9f676de17.jpg",
 			"http://media.giphy.com/media/13LQZoCE0Nysr6/giphy.gif",
-			"http://static.tumblr.com/qmeablg/6JAlyn4op/tumblr_layytg8cqf1qc2jhfo1_500.gif",
+			// "http://static.tumblr.com/qmeablg/6JAlyn4op/tumblr_layytg8cqf1qc2jhfo1_500.gif", -- Too much movement (pikachu)
 			"http://media-cache-ec0.pinimg.com/originals/68/0b/69/680b69563aceba3df48b4483d007bce3.jpg",
 			"http://media.giphy.com/media/VUC9YdLSnKuJy/giphy.gif",
 			"http://media.giphy.com/media/OaHp43V1N4OvC/giphy.gif",
@@ -30,6 +21,38 @@ Template.landing.landingImage = function() {
 		var randGif = gifs[Math.floor(Math.random() * gifs.length)];
 
 		return randGif;
-}
+};
+
+
+Template.landing.events({
+
+	'click #requestInvite' : function(event) {
+
+		var email = $('#requestEmail').val();
+
+		// Do a quick check to see if email conforms to a good format
+		var emailRegex = /\S+@\S+\.\S+/;
+
+		if (emailRegex.test(email)) {
+
+			Meteor.call('requestInviteFlow', email, function(error, result) {
+				
+				if (error) {
+					Notifications.error('Failed', error.reason);
+				} else {
+					Notifications.success('Request Successfully Received', 'We\'ve successfully received your request, you should get an email from us in a few!');
+				}
+
+
+			});
+
+
+		} else {
+			Notifications.error('Invalid Email', 'Please provide a valid email');
+		}
+
+	}
+
+});
 
 
