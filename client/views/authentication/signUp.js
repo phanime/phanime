@@ -15,7 +15,10 @@ Template.signUp.events({
 		var user = {
 			username: username,
 			email: email,
-			password: password
+			password: password,
+			profile: {
+				signUpCode: code
+			}
 		}
 
 		Accounts.createUser(user, function(error) {

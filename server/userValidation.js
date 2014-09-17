@@ -1,7 +1,18 @@
 Accounts.validateNewUser(function(user) {
 
 	var isGood = false;
-	console.log(user);
+
+
+	// Check signup code
+	var requestedInvite = RequestedInvites.findOne({_id: user.profile.signUpCode, used: false});
+
+	if (!requestedInvite) {
+		// So we either couldn't find a code, or it's already used in which case 
+		throw new Meteor.Error(403, 'Invalid Sign Up Code! Please request one on the front page or provide a valid Sign Up Code.');
+		isGood = false;
+	} else {
+		isGood = true;
+	}
 
 	var usernameRegex = /^[a-zA-Z0-9_]+$/;
 
@@ -30,6 +41,11 @@ Accounts.validateNewUser(function(user) {
 	}
 
 	if (isGood === true) {
+
+		// Seems like all validation checked out, so we're about to create the account
+		// we should set the signUpCode to used
+		RequestedInvites.update({_id: user.profile.signUpCode}, {$set: {used: true}});
+
 		return true;
 	}
 
