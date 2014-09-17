@@ -445,7 +445,7 @@ textarea {
 	max-height: 250px;
 	color: #fff;
 }
-	.invite-block .col-sm-4 {
+	.invite-block .col-sm-5, .invite-block .col-sm-7 {
 		padding: 0;
 	}
 
