@@ -1,15 +1,15 @@
 Meteor.methods({
 	
-	requestInviteEmail: function(email, username) {
+	requestInviteEmail: function(email, code) {
 
 		// Extremely awkward way to generate the message atm
 		var message = '<h1>Discover Anime like Never Before</h1><br>';
-		message += "We've created a closed beta account for you that you can use by visiting <a href='http://alpha.phanime.com/sign-in'>sign-in</a> page.";
-		message += "Username: " + username;
+		message += "You've been invited to Phanime's closed beta."
+		message += "We've attached a unique code to this email that you can use to sign up."
+		message += "Code: " + code;
+		message += "Paste this code into the code field on the <a href='http://alpha.phanime.com/sign-up'>sign-un</a> page to create an account and get full access to Phanime!";
 		message += "<div>Sincerely,</div>";
 		message += "<div>The Phanime Team</div>";
-
-		// We don't really need the username
 
 		Email.send({
 			to: email,
