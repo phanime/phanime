@@ -1,29 +1,29 @@
-HTTP.methods({
-	'api/v1/characters': {
-		get: function(data) {
-			this.setContentType('application/json');
-			var characters = Characters.find();
-			var test = [];
+// HTTP.methods({
+// 	'api/v1/characters': {
+// 		get: function(data) {
+// 			this.setContentType('application/json');
+// 			var characters = Characters.find();
+// 			var test = [];
 
-			characters.forEach(function(character) {
+// 			characters.forEach(function(character) {
 
 
-				//Characters.update({_id: character._id}, {$unset: {coverImageUrl: ""}});
+// 				//Characters.update({_id: character._id}, {$unset: {coverImageUrl: ""}});
 
-				test.push(character);
+// 				test.push(character);
 
-				// Delete the old one and insert a new one
-				// Characters.remove(character._id);
+// 				// Delete the old one and insert a new one
+// 				// Characters.remove(character._id);
 				
-				// delete character._id;
-				// character.createdAt = new Date();
-				// character.updatedAt = new Date();
+// 				// delete character._id;
+// 				// character.createdAt = new Date();
+// 				// character.updatedAt = new Date();
 
-				// Characters.insert(character);
+// 				// Characters.insert(character);
 				
-			});
+// 			});
 
-			return JSON.stringify(test);		
-		}
-	}
-});
+// 			return JSON.stringify(test);		
+// 		}
+// 	}
+// });
