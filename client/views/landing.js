@@ -5,7 +5,7 @@ Template.landing.landingImage = function() {
 			"http://24.media.tumblr.com/d3aa208c3d135fc4cbdc1d4b469a4c8f/tumblr_mwadwrdFWB1qztgoio1_500.gif",
 			"http://media2.giphy.com/media/fm6xxZHgHLwxa/giphy.gif",
 			"http://media0.giphy.com/media/ZOGCyj0NW28gg/giphy.gif",
-			"http://media.giphy.com/media/zHGXhFJCVCbD2/giphy.gif",
+			// "http://media.giphy.com/media/zHGXhFJCVCbD2/giphy.gif", // -- Girl Crying with her feet
 			"http://31.media.tumblr.com/tumblr_m3q9vmuqGg1rozgayo1_500.gif",
 			"http://media-cache-ec0.pinimg.com/originals/13/9f/f5/139ff545b37593fcff57c0c9f676de17.jpg",
 			"http://media.giphy.com/media/13LQZoCE0Nysr6/giphy.gif",
