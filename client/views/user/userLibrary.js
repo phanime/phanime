@@ -1,11 +1,28 @@
-Template.userLibrary.rendered = function() {
+Template.userLibrary.created = function() {
 
-	Session.setDefault('statusFilter', 'All');
+	this.statusFilter = new ReactiveVar('All');
+	this.libraryView = new ReactiveVar('Cover');
+
 };
 
 
+Template.userLibrary.activeLibraryView = function(libraryView) {
+	var template = Template.instance();
+	var currentLibraryView = template.libraryView.get();
+
+	if (currentLibraryView === libraryView) {
+		return 'active';
+	} else {
+		return '';
+	}	
+}
+
+
 Template.userLibrary.activeStatusFilter = function(status) {
-	if (Session.get('statusFilter') === status) {
+	var template = Template.instance();
+	var statusFilter = template.statusFilter.get();
+
+	if (statusFilter === status) {
 		return 'active';
 	} else {
 		return '';
@@ -13,7 +30,9 @@ Template.userLibrary.activeStatusFilter = function(status) {
 };
 
 Template.userLibrary.statusFilterCheck = function(status) {
-	return Session.get('statusFilter') === status;
+	var template = Template.instance();
+	var statusFilter = template.statusFilter.get();
+	return statusFilter === status;
 };
 
 Template.userLibrary.recentlyAdded = function(template) {
@@ -75,7 +94,13 @@ Template.userLibrary.events({
 	'click .statusFilter > button' : function(event, template) {
 		var status = $(event.target).text();
 		
-		Session.set('statusFilter', status);
+		template.statusFilter.set(status);
+	},
+
+	'click .libraryView > button' : function(event, template) {
+		var libraryView = $(event.target).text();
+
+		template.libraryView.set(libraryView);
 	}
 
 });
