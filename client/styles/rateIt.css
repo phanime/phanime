@@ -1,0 +1,17 @@
+div.rateit div.rateit-reset {
+	background-image: url('http://cdn.phanime.com/images/site/delete.gif');
+	margin-right: 4px;
+}
+
+div.rateit div.rateit-range {
+	background-image: url('http://cdn.phanime.com/images/site/star.gif');
+}
+
+
+div.rateit div.rateit-selected {
+	background-image: url('http://cdn.phanime.com/images/site/star.gif');
+}
+
+div.rateit div.rateit-hover {
+	background-image: url('http://cdn.phanime.com/images/site/star.gif');
+}
