@@ -32,6 +32,11 @@ Template.userLibrary.activeStatusFilter = function(status) {
 Template.userLibrary.statusFilterCheck = function(status) {
 	var template = Template.instance();
 	var statusFilter = template.statusFilter.get();
+
+	if (statusFilter === 'All') {
+		return true;
+	}
+	
 	return statusFilter === status;
 };
 
