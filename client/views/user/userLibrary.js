@@ -15,7 +15,15 @@ Template.userLibrary.activeLibraryView = function(libraryView) {
 	} else {
 		return '';
 	}	
-}
+};
+
+Template.userLibrary.libraryViewCheck = function(libraryView) {
+	var template = Template.instance();
+	var currentLibraryView = template.libraryView.get();
+
+	return currentLibraryView === libraryView;
+
+};
 
 
 Template.userLibrary.activeStatusFilter = function(status) {
@@ -36,7 +44,7 @@ Template.userLibrary.statusFilterCheck = function(status) {
 	if (statusFilter === 'All') {
 		return true;
 	}
-	
+
 	return statusFilter === status;
 };
 

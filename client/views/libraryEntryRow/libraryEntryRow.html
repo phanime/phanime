@@ -1,0 +1,12 @@
+<template name="libraryEntryRow">
+
+
+	<tr>
+		<td>{{anime.title}}</td>
+		<td>{{rating}}/10</td>
+		<td>{{#if episodesSeen}}{{episodesSeen}}{{else}} - {{/if}}/{{#if anime.totalEpisodes}}{{anime.totalEpisodes}}{{else}}?{{/if}}</td>
+		<td>{{anime.type}}</td>
+	</tr>
+
+
+</template>
