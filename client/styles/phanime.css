@@ -1011,6 +1011,11 @@ input.form-control.input-inline {
 } 
 
 
+table > thead {
+	border-bottom: 2px solid #ccc;
+}
+
+
 @media (min-width: 1400px) {
 	.container {
 		width: 1360px;

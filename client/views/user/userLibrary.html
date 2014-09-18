@@ -37,74 +37,216 @@
 		<hr>
 
 		{{#if statusFilterCheck 'Watching'}}
+
 			<h1 class="thin-text">Watching ({{watching.count}})</h1>
 
-			<div class="row">
-				{{#each watching.entries}}
-					{{> UI.dynamic template="libraryEntryCard" data=this}}
-				{{else}}
-					<div class="col-sm-12">
-						<h3 class="thin-text">{{../username}} is not watching any anime</h3>
-					</div>
-				{{/each}}
-			</div>
+
+			{{#if libraryViewCheck 'Cover'}}
+				<div class="row">
+					{{#each watching.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} is not watching any anime</h3>
+						</div>
+					{{/each}}
+				</div>
+			{{else}}
+
+				<div class="table-responsive">
+					<table class="table table-striped block">
+						<thead>
+							<tr>
+								<td>Title</td>
+								<td>Score</td>
+								<td>Progress</td>
+								<td>Type</td>
+							</tr>
+
+						</thead>
+
+
+						<tbody>
+							{{#each watching.entries}}
+								{{> UI.dynamic template="libraryEntryRow" data=this}}
+							{{/each}}
+						</tbody>
+
+					</table>
+				</div>
+
+
+			{{/if}}
+
 		{{/if}}
+
+
+
 
 		{{#if statusFilterCheck 'Completed'}}
-		<h1 class="thin-text">Completed ({{completed.count}})</h1>
+			<h1 class="thin-text">Completed ({{completed.count}})</h1>
 
-		<div class="row">
-			{{#each completed.entries}}
-				{{> UI.dynamic template="libraryEntryCard" data=this}}
-			{{else}}
-				<div class="col-sm-12">
-					<h3 class="thin-text">{{../username}} hasn't completed any anime</h3>
+			{{#if libraryViewCheck 'Cover'}}
+				<div class="row">
+					{{#each completed.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} hasn't completed any anime</h3>
+						</div>
+					{{/each}}
 				</div>
-			{{/each}}
-		</div>
+			{{else}}
+				<div class="table-responsive">
+					<table class="table table-striped block">
+						<thead>
+							<tr>
+								<td>Title</td>
+								<td>Score</td>
+								<td>Progress</td>
+								<td>Type</td>
+							</tr>
+
+						</thead>
+
+
+						<tbody>
+							{{#each completed.entries}}
+								{{> UI.dynamic template="libraryEntryRow" data=this}}
+							{{/each}}
+						</tbody>
+
+					</table>
+				</div>
+			{{/if}}
+
+
 		{{/if}}
 
-		{{#if statusFilterCheck 'Plan to watch'}}
-		<h1 class="thin-text">Plan to watch ({{planToWatch.count}})</h1>
 
-		<div class="row">
-			{{#each planToWatch.entries}}
-				{{> UI.dynamic template="libraryEntryCard" data=this}}
-			{{else}}
-				<div class="col-sm-12">
-					<h3 class="thin-text">{{../username}} has no plans to watch any anime</h3>
+
+		{{#if statusFilterCheck 'Plan to watch'}}
+			<h1 class="thin-text">Plan to watch ({{planToWatch.count}})</h1>
+
+			{{#if libraryViewCheck 'Cover'}}
+				<div class="row">
+					{{#each planToWatch.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} has no plans to watch any anime</h3>
+						</div>
+					{{/each}}
 				</div>
-			{{/each}}
-		</div>
+
+			{{else}}
+
+				<div class="table-responsive">
+					<table class="table table-striped block">
+						<thead>
+							<tr>
+								<td>Title</td>
+								<td>Score</td>
+								<td>Progress</td>
+								<td>Type</td>
+							</tr>
+
+						</thead>
+
+
+						<tbody>
+							{{#each planToWatch.entries}}
+								{{> UI.dynamic template="libraryEntryRow" data=this}}
+							{{/each}}
+						</tbody>
+
+					</table>
+				</div>
+			{{/if}}
+
+
 		{{/if}}
 
 
 		{{#if statusFilterCheck 'On hold'}}
-		<h1 class="thin-text">On hold ({{onHold.count}})</h1>
+			<h1 class="thin-text">On hold ({{onHold.count}})</h1>
 
-		<div class="row">
-			{{#each onHold.entries}}
-				{{> UI.dynamic template="libraryEntryCard" data=this}}
-			{{else}}
-				<div class="col-sm-12">
-					<h3 class="thin-text">{{../username}} hasn't put any anime on hold</h3>
+			{{#if libraryViewCheck 'Cover'}}
+				<div class="row">
+					{{#each onHold.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} hasn't put any anime on hold</h3>
+						</div>
+					{{/each}}
 				</div>
-			{{/each}}
-		</div>
+
+			{{else}}
+
+				<div class="table-responsive">
+					<table class="table table-striped block">
+						<thead>
+							<tr>
+								<td>Title</td>
+								<td>Score</td>
+								<td>Progress</td>
+								<td>Type</td>
+							</tr>
+
+						</thead>
+
+
+						<tbody>
+							{{#each onHold.entries}}
+								{{> UI.dynamic template="libraryEntryRow" data=this}}
+							{{/each}}
+						</tbody>
+
+					</table>
+				</div>
+
+			{{/if}}
 		{{/if}}
 
 		{{#if statusFilterCheck 'Dropped'}}
-		<h1 class="thin-text">Dropped ({{dropped.count}})</h1>
+			<h1 class="thin-text">Dropped ({{dropped.count}})</h1>
 
-		<div class="row">
-			{{#each dropped.entries}}
-				{{> UI.dynamic template="libraryEntryCard" data=this}}
-			{{else}}
-				<div class="col-sm-12">
-					<h3 class="thin-text">{{../username}} hasn't dropped any anime</h3>
+			{{#if libraryViewCheck 'Cover'}}
+				<div class="row">
+					{{#each dropped.entries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+					{{else}}
+						<div class="col-sm-12">
+							<h3 class="thin-text">{{../username}} hasn't dropped any anime</h3>
+						</div>
+					{{/each}}
 				</div>
-			{{/each}}
-		</div>
+			{{else}}
+
+				<div class="table-responsive">
+					<table class="table table-striped block">
+						<thead>
+							<tr>
+								<td>Title</td>
+								<td>Score</td>
+								<td>Progress</td>
+								<td>Type</td>
+							</tr>
+
+						</thead>
+
+
+						<tbody>
+							{{#each dropped.entries}}
+								{{> UI.dynamic template="libraryEntryRow" data=this}}
+							{{/each}}
+						</tbody>
+
+					</table>
+				</div>
+
+			{{/if}}
 		{{/if}}
 
 	</div>
