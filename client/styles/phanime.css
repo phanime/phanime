@@ -879,6 +879,19 @@ textarea {
 	}
 
 
+/*----------------------------------*/
+/*--------- Post Comments ----------*/
+/*----------------------------------*/
+
+.block.create-comment {
+	margin: 0;
+	margin-top: -25px;
+	background-color: #F5F5F5;
+}
+	.block.create-comment .textarea-container {
+		margin-left: 60px;
+	}
+
 
 
 /*-----------------------------*/
