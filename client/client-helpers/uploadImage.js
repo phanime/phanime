@@ -6,6 +6,11 @@ uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 		Meteor.call('uploadImage', e.target.result, file.name, file.size, file.type, contentDirectory, typeDirectory, contentId, function(error, result) {
 			console.log(error);
 			console.log(result);
+
+			if (error) {
+				Notifications.error('Upload Failed', error.reason);
+			}
+
 			if (result) {
 				Session.set('fileUrl', result.imageName);
 				$('.imagePreview').attr('src', result.fileUrl);
