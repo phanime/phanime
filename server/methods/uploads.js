@@ -1,5 +1,14 @@
 Meteor.methods({
 	uploadImage: function(image, imageName, imageSize, imageType, contentDirectory, typeDirectory, contentId) {
+
+		var imageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+
+		console.log(imageTypes.indexOf(imageType));
+
+		// Ensure we only get images
+		if (imageTypes.indexOf(imageType) === -1)
+			throw new Meteor.Error(403, 'Only image files allowed (gif, jpeg, png)');
+
 		// Temporary, for testing purposes
 		// should move to environment variables
 		// after
