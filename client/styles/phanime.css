@@ -883,15 +883,40 @@ textarea {
 /*--------- Post Comments ----------*/
 /*----------------------------------*/
 
-.block.create-comment {
-	margin: 0;
+.block.comment-list {
+	padding: 10px 20px;
 	margin-top: -25px;
 	background-color: #F5F5F5;
 }
-	.block.create-comment .textarea-container {
+
+.comment-list .create-comment {
+	padding: 10px 0; 
+	background-color: #F5F5F5;
+}
+	.comment-list .create-comment .textarea-container {
 		margin-left: 60px;
 	}
 
+.comment-list .comment-card {
+	margin: 0 -20px;
+	padding: 10px 20px;
+	border-bottom: 1px solid #DDD;
+}
+	
+	.comment-list .comment-card .content {
+		margin-left: 60px;
+	}
+
+	.comment-list .comment-card .username {
+		font-weight: bold;
+		font-size: 16px;
+		padding-right: 3px;
+	}
+
+	.comment-list .comment-card .created-at {
+		color: #838383;
+		margin-top: 8px;
+	}
 
 
 /*-----------------------------*/

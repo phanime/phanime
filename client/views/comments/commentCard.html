@@ -1,0 +1,20 @@
+<template name="commentCard">
+
+	<div class="comment-card">
+		<div class="row">
+
+			<div class="col-sm-12">
+
+				<div class="img img-sm avatar" style="background-image: url('{{user.avatarImageUrl}}')"></div>
+
+				<div class="content">
+					<span class="username">{{user.username}}</span> {{content}}
+					<div class="created-at">{{formatDateFromNow createdAt}}</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</template>
