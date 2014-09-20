@@ -19,7 +19,7 @@ Meteor.publishComposite('userWithProfilePosts', function(username) {
 						// Publish the poster as well if it wasn't a status update
 						find: function(profilePost, user) {
 							if (profilePost.statusUpdate === false) {
-								return Meteor.users.find({_id: profilePost.posterId}, {fields: {username: 1}});
+								return Meteor.users.find({_id: profilePost.posterId}, {fields: {username: 1, profile: 1}});
 							}
 						}
 					},
@@ -36,7 +36,7 @@ Meteor.publishComposite('userWithProfilePosts', function(username) {
 								find: function(comment, profilePost, user) {
 									// Publish users if it isn't published 
 									if (comment.userId !== user._id && comment.userId !== profilePost.posterId) {
-										return Meteor.users.find({_id: comment.userId}, {fields: {username: 1}});
+										return Meteor.users.find({_id: comment.userId}, {fields: {username: 1, profile: 1}});
 									}
 								}
 							}
