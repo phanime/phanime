@@ -5,7 +5,12 @@
 
 			<div class="col-sm-12">
 
-				<div class="img img-sm avatar" style="background-image: url('{{user.avatarImageUrl}}')"></div>
+				
+				{{#with user}}
+				<a href="{{pathFor 'user'}}">
+					<div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
+				</a>
+				{{/with}}
 
 				<div class="content">
 					<span class="username">{{user.username}}</span> {{content}}

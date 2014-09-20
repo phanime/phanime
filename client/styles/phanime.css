@@ -897,6 +897,10 @@ textarea {
 		margin-left: 60px;
 	}
 
+.comment-list .expand-comments-list {
+	cursor: pointer;
+}
+
 .comment-list .comment-card {
 	margin: 0 -20px;
 	padding: 10px 20px;
