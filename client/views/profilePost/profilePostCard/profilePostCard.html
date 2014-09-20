@@ -16,7 +16,8 @@
 	</div>
 
 	<div class="block comment-list">
-		{{#each comments}}
+		<div class="expand-comments-list">{{expandCommentsText}}</div>
+		{{#each commentsList}}
 			{{> UI.dynamic template="commentCard" data=this}}
 		{{/each}}	
 
