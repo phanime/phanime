@@ -13,9 +13,15 @@
 		<div class="description">
 			{{content}}
 		</div>
-	</div>	
+	</div>
 
-	{{> createComment}}
+	<div class="block comment-list">
+		{{#each comments}}
+			{{> UI.dynamic template="commentCard" data=this}}
+		{{/each}}	
+
+		{{> createComment}}
+	</div>
 
 
 </template>
