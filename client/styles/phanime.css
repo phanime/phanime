@@ -899,6 +899,7 @@ textarea {
 
 .comment-list .expand-comments-list {
 	cursor: pointer;
+	color: #83BD40;
 }
 
 .comment-list .comment-card {

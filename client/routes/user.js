@@ -38,14 +38,13 @@ UserController = RouteController.extend({
 
 					profilePost.poster = Meteor.users.findOne({_id: profilePost.posterId});
 
-					profilePost.comments = Comments.find({contentId: profilePost._id, type: 'profilePost'}, {sort: {createdAt: 1}}).fetch();
+					// profilePost.comments = Comments.find({contentId: profilePost._id, type: 'profilePost'}, {sort: {createdAt: 1}}).fetch();
 
-					profilePost.comments.forEach(function(comment) {
-						comment.user = Meteor.users.findOne({_id: comment.userId});
-					});
+					// profilePost.comments.forEach(function(comment) {
+					// 	comment.user = Meteor.users.findOne({_id: comment.userId});
+					// });
 
 				});
-				console.log(user);
 				return user;
 			} else {
 				this.render('fourOhFour');
