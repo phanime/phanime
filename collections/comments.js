@@ -4,7 +4,7 @@ Comments.allow({
 
 	insert: function(userId, doc) {
 		// the user must be logged in, and the comment must be created by the user
-		return (userId && doc.posterId === userId);
+		return (userId && doc.userId === userId);
 	},
 	update: function(userId, doc, fields, modifier) {
 
