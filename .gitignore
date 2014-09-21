@@ -5,7 +5,7 @@
 /server/privateSiteSettings.js
 
 # Ignore start script
-/start
+/startScript
 
 # Ignore generated bundles
 *.7z
