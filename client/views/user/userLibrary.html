@@ -36,12 +36,97 @@
 
 		<hr>
 
-		{{#if statusFilterCheck 'Watching'}}
+		{{#if libraryViewCheck 'List'}}
+		<div class="table-responsive">
+			<table class="table table-striped block table-hover">
+				<thead>
+					<tr>
+						<td>Title</td>
+						<td>Score</td>
+						<td>Progress</td>
+						<td>Type</td>
+					</tr>
 
-			<h1 class="thin-text">Watching ({{watching.count}})</h1>
+				</thead>
 
 
-			{{#if libraryViewCheck 'Cover'}}
+				<tbody>
+
+					{{#if statusFilterCheck 'Watching'}}
+
+						<tr>
+							<td colspan="4"><h4 class="thin-text centered-text">Watching ({{watching.count}})</h4></td>
+						</tr>
+
+						{{#each watching.entries}}
+							{{> UI.dynamic template="libraryEntryRow" data=this}}
+						{{/each}}
+
+					{{/if}}
+
+					{{#if statusFilterCheck 'Completed'}}
+
+						<tr>
+							<td colspan="4"><h4 class="thin-text centered-text">Completed ({{completed.count}})</h4></td>
+						</tr>
+
+						{{#each completed.entries}}
+							{{> UI.dynamic template="libraryEntryRow" data=this}}
+						{{/each}}
+
+					{{/if}}					
+
+
+					{{#if statusFilterCheck 'Plan to watch'}}
+
+						<tr>
+							<td colspan="4"><h4 class="thin-text centered-text">Plan to watch ({{planToWatch.count}})</h4></td>
+						</tr>
+
+						{{#each planToWatch.entries}}
+							{{> UI.dynamic template="libraryEntryRow" data=this}}
+						{{/each}}
+
+					{{/if}}
+
+
+					{{#if statusFilterCheck 'On hold'}}
+
+						<tr>
+							<td colspan="4"><h4 class="thin-text centered-text">On hold ({{onHold.count}})</h4></td>
+						</tr>
+
+						{{#each onHold.entries}}
+							{{> UI.dynamic template="libraryEntryRow" data=this}}
+						{{/each}}
+
+					{{/if}}
+
+					{{#if statusFilterCheck 'Dropped'}}
+
+						<tr>
+							<td colspan="4"><h4 class="thin-text centered-text">Dropped ({{dropped.count}})</h4></td>
+						</tr>
+
+						{{#each dropped.entries}}
+							{{> UI.dynamic template="libraryEntryRow" data=this}}
+						{{/each}}
+
+					{{/if}}
+
+				</tbody>
+			</table>
+		</div>
+
+
+		{{/if}}
+
+
+		{{#if libraryViewCheck 'Cover'}}
+			{{#if statusFilterCheck 'Watching'}}
+
+				<h1 class="thin-text">Watching ({{watching.count}})</h1>
+
 				<div class="row">
 					{{#each watching.entries}}
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
@@ -51,42 +136,14 @@
 						</div>
 					{{/each}}
 				</div>
-			{{else}}
-
-				<div class="table-responsive">
-					<table class="table table-striped block table-hover">
-						<thead>
-							<tr>
-								<td>Title</td>
-								<td>Score</td>
-								<td>Progress</td>
-								<td>Type</td>
-							</tr>
-
-						</thead>
-
-
-						<tbody>
-							{{#each watching.entries}}
-								{{> UI.dynamic template="libraryEntryRow" data=this}}
-							{{/each}}
-						</tbody>
-
-					</table>
-				</div>
 
 
 			{{/if}}
 
-		{{/if}}
 
+			{{#if statusFilterCheck 'Completed'}}
+				<h1 class="thin-text">Completed ({{completed.count}})</h1>
 
-
-
-		{{#if statusFilterCheck 'Completed'}}
-			<h1 class="thin-text">Completed ({{completed.count}})</h1>
-
-			{{#if libraryViewCheck 'Cover'}}
 				<div class="row">
 					{{#each completed.entries}}
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
@@ -96,39 +153,15 @@
 						</div>
 					{{/each}}
 				</div>
-			{{else}}
-				<div class="table-responsive">
-					<table class="table table-striped block table-hover">
-						<thead>
-							<tr>
-								<td>Title</td>
-								<td>Score</td>
-								<td>Progress</td>
-								<td>Type</td>
-							</tr>
 
-						</thead>
-
-
-						<tbody>
-							{{#each completed.entries}}
-								{{> UI.dynamic template="libraryEntryRow" data=this}}
-							{{/each}}
-						</tbody>
-
-					</table>
-				</div>
 			{{/if}}
 
 
-		{{/if}}
 
+			{{#if statusFilterCheck 'Plan to watch'}}
+				<h1 class="thin-text">Plan to watch ({{planToWatch.count}})</h1>
 
-
-		{{#if statusFilterCheck 'Plan to watch'}}
-			<h1 class="thin-text">Plan to watch ({{planToWatch.count}})</h1>
-
-			{{#if libraryViewCheck 'Cover'}}
+				
 				<div class="row">
 					{{#each planToWatch.entries}}
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
@@ -139,39 +172,13 @@
 					{{/each}}
 				</div>
 
-			{{else}}
 
-				<div class="table-responsive">
-					<table class="table table-striped block table-hover">
-						<thead>
-							<tr>
-								<td>Title</td>
-								<td>Score</td>
-								<td>Progress</td>
-								<td>Type</td>
-							</tr>
-
-						</thead>
-
-
-						<tbody>
-							{{#each planToWatch.entries}}
-								{{> UI.dynamic template="libraryEntryRow" data=this}}
-							{{/each}}
-						</tbody>
-
-					</table>
-				</div>
 			{{/if}}
 
 
-		{{/if}}
+			{{#if statusFilterCheck 'On hold'}}
+				<h1 class="thin-text">On hold ({{onHold.count}})</h1>
 
-
-		{{#if statusFilterCheck 'On hold'}}
-			<h1 class="thin-text">On hold ({{onHold.count}})</h1>
-
-			{{#if libraryViewCheck 'Cover'}}
 				<div class="row">
 					{{#each onHold.entries}}
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
@@ -182,37 +189,12 @@
 					{{/each}}
 				</div>
 
-			{{else}}
-
-				<div class="table-responsive">
-					<table class="table table-striped block table-hover">
-						<thead>
-							<tr>
-								<td>Title</td>
-								<td>Score</td>
-								<td>Progress</td>
-								<td>Type</td>
-							</tr>
-
-						</thead>
-
-
-						<tbody>
-							{{#each onHold.entries}}
-								{{> UI.dynamic template="libraryEntryRow" data=this}}
-							{{/each}}
-						</tbody>
-
-					</table>
-				</div>
 
 			{{/if}}
-		{{/if}}
 
-		{{#if statusFilterCheck 'Dropped'}}
-			<h1 class="thin-text">Dropped ({{dropped.count}})</h1>
+			{{#if statusFilterCheck 'Dropped'}}
+				<h1 class="thin-text">Dropped ({{dropped.count}})</h1>
 
-			{{#if libraryViewCheck 'Cover'}}
 				<div class="row">
 					{{#each dropped.entries}}
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
@@ -221,29 +203,6 @@
 							<h3 class="thin-text">{{../username}} hasn't dropped any anime</h3>
 						</div>
 					{{/each}}
-				</div>
-			{{else}}
-
-				<div class="table-responsive">
-					<table class="table table-striped block table-hover">
-						<thead>
-							<tr>
-								<td>Title</td>
-								<td>Score</td>
-								<td>Progress</td>
-								<td>Type</td>
-							</tr>
-
-						</thead>
-
-
-						<tbody>
-							{{#each dropped.entries}}
-								{{> UI.dynamic template="libraryEntryRow" data=this}}
-							{{/each}}
-						</tbody>
-
-					</table>
 				</div>
 
 			{{/if}}
