@@ -7,21 +7,23 @@
 		<h1>Discover Anime like Never Before</h1>
 		{{#if invitesLeft}}
 			<h3>We've got {{{invitesLeft}}} still left!</h3>
+
+			<div class="input-group input-lg row">
+				<div class="col-sm-7">
+					<input id="requestEmail" type="email" placeholder="Enter your email" class="form-control">
+				</div>
+
+				<div class="col-sm-5">
+				<span class="input-group-btn">
+					<button id="requestInvite" class="btn btn-default btn-fancy" type="button">Request Invite</button>
+				</span>
+				</div>
+			</div>
+			
 		{{else}}
 			<h3>All invites are gone, Check back soon!</h3>
 		{{/if}}
-		
-		<div class="input-group input-lg row">
-			<div class="col-sm-7">
-				<input id="requestEmail" type="email" placeholder="Enter your email" class="form-control">
-			</div>
 
-			<div class="col-sm-5">
-			<span class="input-group-btn">
-				<button id="requestInvite" class="btn btn-default btn-fancy" type="button">Request Invite</button>
-			</span>
-			</div>
-		</div>
 		<h6>or <a href="{{pathFor 'signIn'}}">sign-in</a></h6>
 
 	</div>
