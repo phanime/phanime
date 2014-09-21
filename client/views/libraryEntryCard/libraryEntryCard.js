@@ -14,7 +14,7 @@ Template.libraryEntryCard.rendered = function() {
 		step: 1
 	});
 
-	$('.libraryEntryIcons').tooltip();
+	$('.fa.entry').tooltip();
 }
 
 Template.libraryEntryCard.events({
