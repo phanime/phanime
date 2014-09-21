@@ -65,14 +65,13 @@ Template.libraryEntryCard.events({
 	// Change the rating
 
 	'rated .entry-rating' : function(event, template) {
-		//console.log($(event.target));
 
 		var libraryEntry = template.data;
 		var rating = $(event.target).rateit('value');
 		
 		// Update library entry
-		console.log(rating);
-		console.log(libraryEntry.rating);
+		// console.log(rating);
+		// console.log(libraryEntry.rating);
 		// Lets make sure the rating is different
 		if (rating !== libraryEntry.rating) {
 
@@ -85,6 +84,27 @@ Template.libraryEntryCard.events({
 		} else {
 			console.log('Ratings are the same, didn\'t update');
 		}
+	},
+
+	'reset .entry-rating' : function(event, template) {
+
+		var libraryEntry = template.data;
+		var rating = $(event.target).rateit('value');
+		
+		// Update library entry
+		// console.log(rating);
+		// console.log(libraryEntry.rating);
+		// Lets make sure the rating is different
+		if (rating !== libraryEntry.rating) {
+
+			// This means we should remove the rating (you can't give an anime a rating of 0)
+			if (rating === 0) {
+				LibraryEntries.update({_id: libraryEntry._id}, {$unset: {rating: ''}});
+			}
+		} else {
+			console.log('Ratings are the same, didn\'t update');
+		}
+
 	},
 
 	// Change the episodes seen
