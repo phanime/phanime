@@ -273,9 +273,7 @@ textarea {
 }
 
 .footer {
-	text-align: center;
-	font-style: italic;
-	background-color: #83BD40;
+	background-color: #575757;
 	color: #fff;
 	padding: 20px;
 }
