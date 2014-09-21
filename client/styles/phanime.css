@@ -440,11 +440,12 @@ textarea {
 	left: 0;
 	bottom: 0;
 	z-index: 10;
-	max-width: 550px;
+	max-width: 650px;
 	margin: auto;
 	max-height: 250px;
 	color: #fff;
 }
+
 	.invite-block .col-sm-5, .invite-block .col-sm-7 {
 		padding: 0;
 	}
