@@ -987,11 +987,17 @@ textarea {
 		width: 100%;
 	}
 
+		.libraryEntryForm .entry-episodesSeen {
+			width: 70px !important;
+		}
 
-		.libraryEntryForm .entry-total-episodes {
+		.libraryEntryForm .entry-episodes {
 			display: inline;
 			font-size: 16px;
 		}
+			.libraryEntryForm .entry-episodes span {
+				font-size: 18px;
+			}
 
 		.libraryEntryForm .icon-group {
 			margin: 10px auto;
@@ -1002,6 +1008,19 @@ textarea {
 			font-size: 25px;
 			padding: 5px 10px;
 			cursor: pointer;
+		}
+
+		.libraryEntryForm textarea {
+			height: 55px;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			vertical-align: top;
+		}
+
+		.libraryEntryForm .comments {
+			max-height: 80px;
+			overflow-y: auto;
 		}
 
 
