@@ -23,6 +23,24 @@ Template.landing.landingImage = function() {
 		return randGif;
 };
 
+Template.landing.invitesLeft = function() {
+
+	var obj = Meteor.subscribe('requestedInvites');
+
+	if (obj.ready()) {
+		var count = RequestedInvites.find().count();
+		var left = 100 - count;
+
+		if (left > 1) {
+			return "<span>" + left + "</span>" + " invites";
+		} else if (left === 1) {
+			return "<span>" + left + "</span>" + " invite";
+		}
+
+	};
+
+};
+
 
 Template.landing.events({
 

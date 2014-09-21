@@ -64,14 +64,15 @@ Template.libraryEntryCard.events({
 
 	// Change the rating
 
-	'click .entry-rating' : function(event, template) {
+	'rated .entry-rating' : function(event, template) {
 		//console.log($(event.target));
 
 		var libraryEntry = template.data;
-		var rating = $('#rating_' + libraryEntry._id).rateit('value');
+		var rating = $(event.target).rateit('value');
 		
 		// Update library entry
-		
+		console.log(rating);
+		console.log(libraryEntry.rating);
 		// Lets make sure the rating is different
 		if (rating !== libraryEntry.rating) {
 
