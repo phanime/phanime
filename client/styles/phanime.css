@@ -1024,6 +1024,11 @@ textarea {
 		}
 
 
+/*-- Tabular version ---*/
+.library-entry-row {
+	cursor: pointer;
+}
+
 /*-----------------------------------*/
 /*----- Bootstrap Theme changes -----*/
 /*-----------------------------------*/
