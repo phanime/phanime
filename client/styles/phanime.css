@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
 
 @-webkit-keyframes resize-width {
 	0%   { width: 0; }
@@ -68,7 +68,7 @@
 
 html, body {
 	margin: 0px;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	background-color: #eee;
 	-webkit-font-smoothing: antialiased;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
@@ -975,6 +975,7 @@ textarea {
 		padding: 5px;
 		top: -5px;
 		height: 285px;
+		color: #696969;
 		/*box-shadow: 0 0 15px rgba(0,0,0,0.5);*/
 		-webkit-transition: all 0.2s ease-in-out;
 		-moz-transition: all 0.2s ease-in-out;
