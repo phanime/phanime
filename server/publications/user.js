@@ -102,7 +102,13 @@ Meteor.publishComposite('userWithLibraryEntries', function(username) {
 		children: [
 			{
 				find: function(user) {
-					return LibraryEntries.find({userId: user._id});
+					
+					// If user's profile is not current profile we don't publish private entries
+					if (user._id !== this.userId) {
+						return LibraryEntries.find({userId: user._id, privacy: {$ne: true}});
+					} else {
+						return LibraryEntries.find({userId: user._id});
+					}
 				},
 				children: [
 					{
