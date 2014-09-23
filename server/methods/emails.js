@@ -18,7 +18,7 @@ Meteor.methods({
 		Email.send({
 			to: email,
 			from: 'no-reply@phanime.com',
-			subject: 'You\'ve been invited to Phanime\'s clsoed beta!',
+			subject: 'You\'ve been invited to Phanime\'s closed beta!',
 			html: message,
 		});
 
