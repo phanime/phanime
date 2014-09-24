@@ -265,3 +265,32 @@ RESTstop.add('libraryEntries', { require_login: true, method: 'POST' }, function
 	}
 
 });
+
+//////////////////////////////////////////////////////
+//////////////// DELETE specific by ID ///////////////
+//////////////////////////////////////////////////////
+
+RESTstop.add('libraryEntries/:_id', { require_login: true, method: 'DELETE' }, function() {
+
+
+	var removed = LibraryEntries.remove({_id: this.params._id, userId: this.user._id});
+
+
+	if (removed === 0) {
+		return [200,
+			{
+				success: false,
+				message: 'Library Entry was not removed'
+			}
+		];
+	} else {
+		return [200, 
+			{
+				success: true,
+				message: 'Library entry successfully removed'
+
+			}
+		];
+	}
+
+});
