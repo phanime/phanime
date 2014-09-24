@@ -77,7 +77,7 @@ Template.libraryEntryCard.events({
 
 			// This means we should remove the rating (you can't give an anime a rating of 0)
 			if (rating === 0) {
-				LibraryEntries.update({_id: libraryEntry._id}, {$unset: {rating: ""}});
+				LibraryEntries.update({_id: libraryEntry._id}, {$unset: {rating: ""}, $set: {updatedAt: new Date()}});
 			} else {
 				LibraryEntries.update({_id: libraryEntry._id}, {$set: {rating: rating, updatedAt: new Date()}});
 			}
@@ -99,7 +99,7 @@ Template.libraryEntryCard.events({
 
 			// This means we should remove the rating (you can't give an anime a rating of 0)
 			if (rating === 0) {
-				LibraryEntries.update({_id: libraryEntry._id}, {$unset: {rating: ''}});
+				LibraryEntries.update({_id: libraryEntry._id}, {$unset: {rating: ''}, $set: {updatedAt: new Date()}});
 			}
 		} else {
 			console.log('Ratings are the same, didn\'t update');
@@ -160,7 +160,7 @@ Template.libraryEntryCard.events({
 				toolTitle = "Private";
 			}
 
-			LibraryEntries.update({_id: libraryEntry._id}, {$set: {privacy: privacy}});
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {privacy: privacy, updatedAt: new Date()}});
 
 			// Fix the tooltip text update it to the newest 
 			$('.libraryEntryIcons.entry-privacy').attr('title', toolTitle).tooltip('fixTitle');
@@ -176,7 +176,7 @@ Template.libraryEntryCard.events({
 				toolTitle = "Rewatching";
 			}
 
-			LibraryEntries.update({_id: libraryEntry._id}, {$set: {rewatching: rewatching}});
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {rewatching: rewatching, updatedAt: new Date()}});
 
 			// Fix the tooltip text update it to the newest 
 			$('.libraryEntryIcons.entry-rewatching').attr('title', toolTitle).tooltip('fixTitle');
@@ -200,7 +200,7 @@ Template.libraryEntryCard.events({
 				toolTitle = "High Priority";
 			}
 
-			LibraryEntries.update({_id: libraryEntry._id}, {$set: {highPriority: highPriority}});
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {highPriority: highPriority, updatedAt: new Date()}});
 
 			// Fix the tooltip text update it to the newest 
 			$('.libraryEntryIcons.entry-highPriority').attr('title', toolTitle).tooltip('fixTitle');
@@ -222,11 +222,15 @@ Template.libraryEntryCard.events({
 	// Change the comments
 
 	'blur .entry-comments' : function(event, template) {
-		var comments = $(event.target).val();
+		var comments = $(event.target).val().trim();
 		var libraryEntry = template.data;
 
 		// Some simple cleaning 
 		comments = comments.trim();
+
+		if (comments === '') {
+			LibraryEntries.update({_id: libraryEntry._id}, {$unset: {comments: ''}, $set: {updatedAt: new Date()}});
+		}
 
 		// Ensure comments are different from before
 		if (comments !== libraryEntry.comments) {
