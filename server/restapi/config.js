@@ -82,6 +82,9 @@ restAPIHelpers = {
 				success: 'false',
 				message: 'Resource not unique'
 			}];			
+		},
+		responseJSON: function(response) {
+			return [200, {'Content-Type': 'application/json'}, response];
 		}
 	}
 };

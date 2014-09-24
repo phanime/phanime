@@ -8,7 +8,9 @@ RESTstop.add('libraryEntries', { require_login: true, method: 'GET' }, function(
 
 	// Grab all of user's library entries
 
-	return {libraryEntries: LibraryEntries.find({ userId: this.user._id }).fetch()};
+	var response = {libraryEntries: LibraryEntries.find({ userId: this.user._id }).fetch()};
+
+	return restAPIHelpers.returns.responseJSON(response);
 
 });
 
@@ -22,7 +24,9 @@ RESTstop.add('libraryEntries/:_id', { require_login: true, method: 'GET' }, func
 
 	// Grab a specific entry from user's library
 
-	return {libraryEntry: LibraryEntries.findOne({_id: this.params._id, userId: this.user._id })};
+	var response = {libraryEntry: LibraryEntries.findOne({_id: this.params._id, userId: this.user._id })};
+
+	return restAPIHelpers.returns.responseJSON(response);
 
 });
 
@@ -127,7 +131,11 @@ RESTstop.add('libraryEntries/:_id', { require_login: true, method: 'PUT' }, func
 		updatedLibraryEntry.updatedAt = new Date();
 
 		LibraryEntries.update({_id: this.params._id, userId: this.user._id}, {$set: updatedLibraryEntry});
-		return {libraryEntry: LibraryEntries.findOne({_id: this.params._id, userId: this.user._id })};
+
+		var response = {libraryEntry: LibraryEntries.findOne({_id: this.params._id, userId: this.user._id })};
+
+		return restAPIHelpers.returns.responseJSON(response);
+
 
 	} else {
 		return restAPIHelpers.returns.invalidInput();
@@ -258,7 +266,11 @@ RESTstop.add('libraryEntries', { require_login: true, method: 'POST' }, function
 		libraryEntry.updatedAt = new Date();
 
 		var libraryId = LibraryEntries.insert(libraryEntry);
-		return {libraryEntry: LibraryEntries.findOne({_id: libraryId, userId: this.user._id })};
+
+		var response = {libraryEntry: LibraryEntries.findOne({_id: libraryId, userId: this.user._id })};
+
+		return restAPIHelpers.returns.responseJSON(response);
+
 
 	} else {
 		return restAPIHelpers.returns.invalidInput();
@@ -274,23 +286,24 @@ RESTstop.add('libraryEntries/:_id', { require_login: true, method: 'DELETE' }, f
 
 
 	var removed = LibraryEntries.remove({_id: this.params._id, userId: this.user._id});
-
+	var response;
 
 	if (removed === 0) {
-		return [200,
-			{
+
+		response = {
 				success: false,
 				message: 'Library Entry was not removed'
-			}
-		];
+		};
+		
 	} else {
-		return [200, 
-			{
+		response = {
 				success: true,
 				message: 'Library entry successfully removed'
-
-			}
-		];
+		};
 	}
+
+
+
+	return restAPIHelpers.returns.responseJSON(response);
 
 });

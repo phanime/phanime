@@ -8,7 +8,9 @@ RESTstop.add('anime/:_id', { require_login: true, method: 'GET' }, function() {
 
 	// Grab a specific anime
 
-	return {anime: Anime.findOne({_id: this.params._id})};
+	var response = {anime: Anime.findOne({_id: this.params._id})};
+
+	return restAPIHelpers.returns.responseJSON(response);
 
 });
 
