@@ -118,11 +118,147 @@ RESTstop.add('libraryEntries/:_id', { require_login: true, method: 'PUT' }, func
 			delete updatedLibraryEntry.userId
 		}
 
+		// We don't want to update the createdAt field
+		if (updatedLibraryEntry.createdAt) {
+			delete updatedLibraryEntry.createdAt;
+		}
+
 		// Update the date for when the library entry was updated
 		updatedLibraryEntry.updatedAt = new Date();
 
 		LibraryEntries.update({_id: this.params._id, userId: this.user._id}, {$set: updatedLibraryEntry});
 		return {libraryEntry: LibraryEntries.findOne({_id: this.params._id, userId: this.user._id })};
+
+	} else {
+		return restAPIHelpers.returns.invalidInput();
+	}
+
+});
+
+
+//////////////////////////////////////////////
+//////////////// POST specific ///////////////
+//////////////////////////////////////////////
+
+// maps to: /api/v1/resource
+
+RESTstop.add('libraryEntries', { require_login: true, method: 'POST' }, function() {
+
+	// Update a specific library entry for user
+
+	var libraryEntry = this.request.body;
+
+
+
+	// Ensure data coming in is valid
+
+	// Required for creation
+	if (libraryEntry.animeId) {
+	
+		// if we don't pass we should return
+		if (!restAPIHelpers.allowedValues.checkAnimeId(libraryEntry.animeId)) {
+			return restAPIHelpers.returns.invalidInput();
+		}
+
+	} else {
+		return restAPIHelpers.returns.invalidInput();
+	}
+
+	// Required for creation
+	if (libraryEntry.userId !== this.user._id) {
+	
+		return restAPIHelpers.returns.invalidInput();
+
+	}
+
+
+	// Required for creation
+	if (libraryEntry.status) {
+	
+		// if we don't pass we should return
+		if (!restAPIHelpers.allowedValues.checkStatus(libraryEntry.status)) {
+			return restAPIHelpers.returns.invalidInput();
+		}
+
+	} else {
+		return restAPIHelpers.returns.invalidInput();
+	}
+
+
+	// Check unique
+	// if not unique, than throw error
+	if (!restAPIHelpers.allowedValues.checkUniqueEntry(libraryEntry.animeId, this.user._id)) {
+		return restAPIHelpers.returns.notUnique();
+	}
+
+
+	if (libraryEntry.episodesSeen) {
+	
+		// We aren't doing an exhaustive check like figuring out if the episodesSeen lies 
+		// in between the total episodes or not.
+		// we really should be doing that though.
+		if (!restAPIHelpers.allowedValues.checkEpisodesSeen(libraryEntry.episodesSeen)) {
+			return restAPIHelpers.returns.invalidInput();
+		}
+
+	}
+
+	if (libraryEntry.comments) {
+	
+		// if we don't pass we should return
+		if (!restAPIHelpers.allowedValues.checkComments(libraryEntry.comments)) {
+			return restAPIHelpers.returns.invalidInput();
+		}
+
+	}
+
+	if (libraryEntry.rating) {
+	
+		// if we don't pass we should return
+		if (!restAPIHelpers.allowedValues.checkRating(libraryEntry.rating)) {
+			return restAPIHelpers.returns.invalidInput();
+		}
+
+	}
+
+	if (libraryEntry.privacy) {
+	
+		// if we don't pass we should return
+		if (!restAPIHelpers.allowedValues.checkPrivacy(libraryEntry.privacy)) {
+			return restAPIHelpers.returns.invalidInput();
+		}
+
+	}
+
+	if (libraryEntry.highPriority) {
+	
+		// if we don't pass we should return
+		if (!restAPIHelpers.allowedValues.checkHighPriority(libraryEntry.highPriority)) {
+			return restAPIHelpers.returns.invalidInput();
+		}
+
+	}
+
+	if (libraryEntry.rewatching) {
+	
+		// if we don't pass we should return
+		if (!restAPIHelpers.allowedValues.checkRewatching(libraryEntry.Rewatching)) {
+			return restAPIHelpers.returns.invalidInput();
+		}
+
+	}
+
+	// Ensure object keys are part of the schema and aren't random
+	if (restAPIHelpers.schemaCheck.libraryEntries(libraryEntry)) {
+
+		// Add library createdAt date
+		libraryEntry.createdAt = new Date();
+
+		// Add library updatedAt date
+		libraryEntry.updatedAt = new Date();
+
+		var libraryId = LibraryEntries.insert(libraryEntry);
+		return {libraryEntry: LibraryEntries.findOne({_id: libraryId, userId: this.user._id })};
 
 	} else {
 		return restAPIHelpers.returns.invalidInput();

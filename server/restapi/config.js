@@ -9,6 +9,20 @@ RESTstop.configure({
 
 restAPIHelpers = {
 	allowedValues: {
+		checkAnimeId: function(animeId) {
+			if (Anime.findOne({_id: animeId})) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		checkUniqueEntry: function(animeId, userId) {
+			if (LibraryEntries.findOne({userId: userId, animeId: animeId})) {
+				return false;
+			} else {
+				return true;
+			}
+		},
 		checkStatus: function(status) {
 			return ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped'].indexOf(status) > -1;
 		},
@@ -62,6 +76,12 @@ restAPIHelpers = {
 				success: 'false',
 				message: 'Invalid input'
 			}];
+		},
+		notUnique: function() {
+			return [400, {
+				success: 'false',
+				message: 'Resource not unique'
+			}];			
 		}
 	}
 };
