@@ -23,9 +23,9 @@ restAPIHelpers = {
 
 		checkEpisodesSeen: function(seen, total) {
 			if (total) {
-				return seen >= 1 && seen <= total;
+				return seen % 1 === 0 && seen >= 1 && seen <= total;
 			} else {
-				return seen >= 1;
+				return seen % 1 === 0 && seen >= 1;
 			}
 		},
 
@@ -39,6 +39,29 @@ restAPIHelpers = {
 
 		checkRewatching: function(rewatching) {
 			return rewatching == 'true' || rewatching == 'false';
+		}
+	},
+	schemaCheck: {
+		libraryEntries: function(entry) {
+			var fields = ['_id', 'userId', 'animeId', 'status', 'comments', 'rating', 'episodesSeen', 'privacy', 'highPriority', 'rewatching', 'updatedAt', 'createdAt'];
+
+			for (var key in entry) {
+				if (fields.indexOf(key) === -1) {
+					return false;
+				} 
+			}
+
+			return true;
+
+
+		}
+	},
+	returns: {
+		invalidInput: function() {
+			return [400, {
+				success: 'false',
+				message: 'Invalid input'
+			}];
 		}
 	}
 };
