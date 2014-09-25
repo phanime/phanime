@@ -15,7 +15,6 @@ alisalaah:moment-tz-data
 dburles:collection-helpers
 spiderable
 dandv:jquery-rateit
-chrismbeckett:fontawesome4
 mizzao:bootstrap-3
 percolatestudio:synced-cron
 rosh93:aws-sdk
@@ -32,4 +31,5 @@ maazalik:highcharts
 maazalik:discourse-sso
 meteorhacks:kadira
 hellogerard:reststop2
+chrismbeckett:fontawesome4
 
