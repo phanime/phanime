@@ -15,9 +15,9 @@
 
 					<ul class="anime-info">
 						{{#if type}}<li>{{type}}</li>{{/if}}
+						{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
 						{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
 						{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
-						{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
 						<li>{{airingText}} {{formatDateDefault startDate}} to {{#if isMomentDatePresent endDate}}{{formatDateDefault endDate}}{{else}} - {{/if}}</li>
 					</ul>
 
