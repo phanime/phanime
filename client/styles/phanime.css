@@ -96,6 +96,10 @@ textarea {
 	text-align: center;
 }
 
+.sub-text {
+	color: #A8A8A8;
+}
+
 .inline-text {
 	display: inline-block;
 }
