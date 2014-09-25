@@ -15,6 +15,9 @@ Template.libraryEntryCard.rendered = function() {
 	});
 
 	$('.fa.entry').tooltip();
+
+	// $('.entry-rating').tooltip();
+
 }
 
 Template.libraryEntryCard.events({
@@ -106,7 +109,12 @@ Template.libraryEntryCard.events({
 		}
 
 	},
+	'over .entry-rating' : function(event, template, value) {
+		var rating = $(event.target).rateit('value');
+		console.log(value);
 
+		$(event.target).attr('title', value);
+	},
 	// Change the episodes seen
 
 	'change .entry-episodesSeen' : function(event, template) {
