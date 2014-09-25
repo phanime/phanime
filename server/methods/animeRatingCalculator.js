@@ -34,14 +34,14 @@ Meteor.methods({
 
 			// We don't want to count entries that have status 
 			// as plan to watch. Even if they rated the anime,
-			// their rating will not be counted
+			// their rating shouldn't really matter
 			if (status !== 'Plan to watch') {
 
 				// rating and episodesSeen must exist for the 
 				// weighted average to work
 				if (rating > 0 && episodesSeen > 0) {
 					ratingCounts[rating] += 1;
-					totalWeightedRatings = rating * episodesSeen;
+					totalWeightedRatings += rating * episodesSeen;
 					totalWeight += episodesSeen;
 					totalRatings++;
 				}
@@ -60,8 +60,10 @@ Meteor.methods({
 			console.log(totalWeight);
 			averageRating = totalWeightedRatings/totalWeight;
 
+			console.log("Average Rating for " + animeId + " : " + averageRating);
 			// Update the anime with calculated ratings
-			Anime.update({_id: animeId}, {$set: {rating: averageRating, totalRatings: totalRatings, ratingCounts: ratingCounts, ratingUpdatedAt: new Date()}});
+			Anime.update({_id: animeId}, {$unset: {ratingCount: ""}, $set: {rating: averageRating, totalRatings: totalRatings, ratingCounts: ratingCounts, ratingUpdatedAt: new Date()}});
+
 		}
 
 	}
