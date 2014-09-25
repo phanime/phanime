@@ -104,6 +104,10 @@ textarea {
 	display: inline-block;
 }
 
+.margin-text {
+	margin-top: 20px !important;
+}
+
 .block {
 	border: 1px solid #d8d8d8;
 	-webkit-border-radius: 3px;

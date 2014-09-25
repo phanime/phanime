@@ -4,12 +4,28 @@
 		<div class="row">
 			<div class="col-sm-12 block">
 				<div class="row">
-					<div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
+					<div class="col-sm-4 col-md-3 col-lg-2">
 						<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
+						<h2 class="thin-text margin-text">Animeography</h2>
+						{{#each anime}}
+							<h5><a href="{{pathFor 'anime'}}">{{title}}</a></h5>
+						{{else}}
+							<h5 class="sub-text">No anime found.</h5>
+						{{/each}}
+
+						<h2 class="thin-text margin-text">Voice Actors</h2>
+						{{#each people}}
+							<h5><a href="{{pathFor 'person'}}">{{fullName}}</a></h5>
+						{{else}}
+							<h5 class="sub-text">No voice actors found.</h5>
+						{{/each}}
+
 					</div>
-					<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+					<div class="col-sm-8 col-md-9 col-lg-10">
 						<h1 style="margin-top:0">{{fullName}}</h1>
 						<div class="description thin-text">{{biography}}</div>
+						
+
 					</div>
 				</div>
 

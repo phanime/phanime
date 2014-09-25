@@ -1,6 +1,9 @@
 Castings = new Meteor.Collection("castings");
 
 Castings.helpers({
+	anime: function() {
+		return Anime.findOne({_id: this.animeId});
+	},
 	character: function() {
 		return Characters.findOne({_id: this.characterId});
 	},

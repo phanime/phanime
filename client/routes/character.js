@@ -33,6 +33,19 @@ CharacterController = RouteController.extend({
 		if (this.ready()) {
 
 			if (character) {
+				character.castings = Castings.find({characterId: character._id}).fetch();
+				var animeIds = [];
+				var peopleIds = [];
+				character.castings.forEach(function(casting) {
+
+					animeIds.push(casting.animeId);
+					peopleIds.push(casting.personId);
+
+				});
+
+				character.anime = Anime.find({_id: {$in: animeIds}});
+				character.people = People.find({_id: {$in: peopleIds}});
+
 				return character;
 			} else {
 				this.render('fourOhFour');
