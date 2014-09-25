@@ -1,6 +1,5 @@
 // Publish a specific character by ID
 
-
 Meteor.publishComposite("character", function(characterId) {
 
 	return {
@@ -15,12 +14,12 @@ Meteor.publishComposite("character", function(characterId) {
 				children: [
 					{
 						find: function(casting, character) {
-							return Anime.find({_id: casting.animeId});
+							return Anime.find({_id: casting.animeId}, {fields: requireCollectionFields.anime.imageAndTitle});
 						}
 					},
 					{
 						find: function(casting, character) {
-							return People.find({_id: casting.personId});
+							return People.find({_id: casting.personId}, {fields: requireCollectionFields.person.imageAndName});
 						}
 					}
 				]  
