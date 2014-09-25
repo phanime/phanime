@@ -114,7 +114,7 @@ Meteor.publishComposite('userWithLibraryEntries', function(username) {
 					{
 						find: function(libraryEntry, user) {
 
-							return Anime.find({_id: libraryEntry.animeId});
+							return Anime.find({_id: libraryEntry.animeId}, {fields: requireCollectionFields.anime.requiredLibraryEntry});
 
 						}
 					}
