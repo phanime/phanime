@@ -33,7 +33,7 @@ AnimePages = new Meteor.Pagination(Anime, {
 	routerTemplate: 'animeExplore',
 	homeRoute: '/anime/explore/',
 	route: '/anime/explore/page/',
-	perPage: 18,
+	perPage: 30,
 	itemTemplate: 'animeCardProxy',
 	routerLayout: 'defaultLayout',
 	sort: {canonicalTitle: 1},
