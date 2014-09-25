@@ -2,29 +2,62 @@
 
 	<div class="block" style="margin-top:0">
 
-		<form role="form">
-			<div class="form-group">
-				<label>Avatar</label>
-				<div class="row">
-					<div class="col-sm-6">
-						{{> uploadFile contentDirectory="users" typeDirectory="avatar" contentId=currentUser._id}}
-					</div>
+		<form role="form" class="form-horizontal">
+			<div class="form-group" style="margin-bottom: 20px">
+				<label class="col-sm-3">Avatar</label>
+				<div class="col-sm-9">
+					{{> uploadFile contentDirectory="users" typeDirectory="avatar" contentId=currentUser._id}}
+				</div>
+			</div>
 
+			<hr>
+
+			<div class="form-group" style="margin-bottom: 20px">
+				<label class="col-sm-3">Profile Banner</label>
+				<div class="col-sm-9">
+					{{> uploadFile contentDirectory="users" typeDirectory="profileBanner" contentId=currentUser._id}}
+				</div>
+			</div>
+
+			<hr>
+
+			{{#with currentUser}}
+			<div class="form-group">
+				<label class="col-sm-3">Location</label>
+				<div class="col-sm-9">
+					<input type="text" value="{{profile.location}}" id="location" class="form-control" placeholder="Location">
+				</div>
+			</div>			
+
+			<div class="form-group">
+				<label class="col-sm-3">Occupation</label>
+				<div class="col-sm-9">
+					<input type="text" value="{{profile.occupation}}" id="occupation" class="form-control" placeholder="Occupation">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3">Website</label>
+				<div class="col-sm-9">
+					<input type="text" value="{{profile.website}}" id="website" class="form-control" placeholder="Website">
 				</div>
 			</div>
 
 			<hr>
 
 			<div class="form-group">
-				<label>Profile Banner</label>
-				<div class="row" style="margin-bottom: 20px">
-					<div class="col-sm-12">
-						{{> uploadFile contentDirectory="users" typeDirectory="profileBanner" contentId=currentUser._id}}
-					</div>
+				<label class="col-sm-3">About You</label>
+				<div class="col-sm-9">
+					<textarea id="about" value="{{profile.about}}" class="form-control" placeholder="Something about you..." rows="5" maxlength="1000"></textarea>
 				</div>
-
-
 			</div>
+			{{/with}}
+
+			<div class="row">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-primary btn-beside">Save Changes</button>
+				</div>	
+			</div>		
 
 		</form>		
 

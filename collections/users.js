@@ -34,20 +34,13 @@ Meteor.users.helpers({
 });
 
 
-	// update: function(userId, doc, fields, modifier) {
-
-	// 	// can only change your own library entries
-	// 	return doc.userId === userId;
-
-	// },
 
 Meteor.users.allow({
 
 	update: function(userId, doc, fields, modifier) {
 
 		// can only update if you're the user
-		// for now we'll just return true
-		return true;
+		return doc._id === userId;
 
 	}
 
