@@ -7,7 +7,10 @@ requireCollectionFields = {
 	},
 	person: {
 		imageAndName: {coverImage: 1, firstName: 1, lastName: 1}
-	}
+	},
+	character: {
+		imageAndName: {coverImage: 1, firstName: 1, lastName: 1}
+	},
 
 
 };
