@@ -3,3 +3,7 @@ ul.notifications {
 	bottom: 0;
 	top: auto;
 }
+
+li.notification.success {
+	background-color: #8bc34a;
+}
