@@ -10,19 +10,30 @@ IndexController = RouteController.extend({
 	},	
 
 	waitOn: function () {
-		return Meteor.subscribe('index', Meteor.user().username);
+		return Meteor.subscribe('indexCurrentUser');
 	},
 
 	data: function () {
-		
-		var libraryEntries = LibraryEntries.find({userId: Meteor.userId(), $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {limit: 6, sort: {updatedAt: -1}});
-		var recAnimeIds = _.pluck(Meteor.user().recommendedAnime, 'animeId');
-		var recommendedAnime = Anime.find({_id: {$in: recAnimeIds}});
+		if (this.ready()) {
+			var libraryEntries = LibraryEntries.find({userId: Meteor.userId(), $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {limit: 6, sort: {updatedAt: -1}});
+			var recAnimeIds = _.pluck(Meteor.user().recommendedAnime, 'animeId');
+			var recommendedAnime = Anime.find({_id: {$in: recAnimeIds}}, {limit: 12});
 
-		return {
-			libraryEntries: libraryEntries,
-			recommendedAnime: recommendedAnime
-		};
+			var returnObj = {};
+
+			// This will ensure our if conditions work appropriately in templates
+			if (recommendedAnime.count() > 0) {
+				returnObj.recommendedAnime = recommendedAnime;
+			}
+
+			// This will ensure our if conditions work appropriately in templates
+			if (libraryEntries.count() > 0) {
+				returnObj.libraryEntries = libraryEntries;
+			}
+
+			return returnObj;
+		}
+
 	}	
 
 });

@@ -1,7 +1,7 @@
-Meteor.publishComposite('index', function(username) {
+Meteor.publishComposite('indexCurrentUser', function() {
 	return {
 		find: function() {
-			return Meteor.users.find({username: username});
+			return Meteor.users.find({_id: this.userId});
 		},
 		children: [
 			{
