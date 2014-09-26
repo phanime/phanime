@@ -26,4 +26,6 @@ Currently contributions are made using Meteor's packaging system.
 
 ## License
 
-Phanime is licensed under Apache License 2.0
+© 2014 Copyright Phanime
+
+Phanime is licensed under Apache License 2.0. For more information read the [LICENSE](https://github.com/MaazAli/phanime/blob/master/LICENSE)
