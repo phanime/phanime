@@ -28,7 +28,7 @@ Template.landing.invitesLeft = function() {
 	var obj = Meteor.subscribe('requestedInvites');
 
 	if (obj.ready()) {
-		var count = RequestedInvites.find({user: true}).count();
+		var count = RequestedInvites.find({used: true}).count();
 		var left = 100 - count;
 
 		if (left > 1) {
