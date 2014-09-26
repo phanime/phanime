@@ -48,23 +48,28 @@ Meteor.methods({
 		});
 
 
-		// We should grab all the anime we need here
-		var animeWeNeed = Anime.find({_id: {$in: _.pluck(recommendedAnime, 'animeId')}}, {fields: requireCollectionFields.anime.imageAndTitle}).fetch();
+		// We should include this part at a later date 
+		// when we can actually utilize it properly ...
+		// currently we grab the anime referenced by their 
+		// ids on the front end
+		
+		// // We should grab all the anime we need here
+		// var animeWeNeed = Anime.find({_id: {$in: _.pluck(recommendedAnime, 'animeId')}}, {fields: requireCollectionFields.anime.imageAndTitle}).fetch();
 
 
-		// console.log(animeWeNeed);
+		// // console.log(animeWeNeed);
 
-		recommendedAnime = _.map(recommendedAnime, function(obj) {
-			console.log(obj);
+		// recommendedAnime = _.map(recommendedAnime, function(obj) {
+		// 	console.log(obj);
 
-			obj.anime = _.find(animeWeNeed, function(anime) {
+		// 	obj.anime = _.find(animeWeNeed, function(anime) {
 
-				return anime._id === obj.animeId;
-			});
+		// 		return anime._id === obj.animeId;
+		// 	});
 
-			return obj;
+		// 	return obj;
 
-		});
+		// });
 
 		// sort them in desc order
 		recommendedAnime = _.sortBy(recommendedAnime, 'score').reverse();

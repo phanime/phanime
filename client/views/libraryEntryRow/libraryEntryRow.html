@@ -1,7 +1,7 @@
 <template name="libraryEntryRow">
 
 
-	<tr class="library-entry-row thin-text">
+	<tr class="library-entry-row">
 		<td>{{anime.title}} {{#with anime}}<a href="{{pathFor 'anime'}}"><i class="fa fa-arrow-circle-right"></i></a>{{/with}}</td>
 		<td>{{hyphenNotExist rating}}/10</td>
 		<td>{{hyphenNotExist episodesSeen}}/{{#if anime.totalEpisodes}}{{anime.totalEpisodes}}{{else}}?{{/if}}</td>
