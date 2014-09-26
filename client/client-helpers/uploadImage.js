@@ -8,7 +8,7 @@ uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 			console.log(result);
 
 			if (error) {
-				Notifications.error('Upload Failed', error.reason);
+				Notifications.error('Upload Failed', error.reason, {timeout: 0});
 			}
 
 			if (result) {
@@ -21,12 +21,12 @@ uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 
 				if (contentDirectory === "users" && typeDirectory === "avatar") {
 					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.avatarImage": file.name}});
-					Notifications.success('Upload Successful', 'Your avatar was successfully saved');
+					Notifications.success('Upload Successful', 'Your avatar was successfully saved', {timeout: 0});
 				}
 
 				if (contentDirectory === "users" && typeDirectory === "profileBanner") {
 					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.profileBannerImage": file.name}});
-					Notifications.success('Upload Successful', 'Your profile banner was successfully saved');
+					Notifications.success('Upload Successful', 'Your profile banner was successfully saved', {timeout: 0});
 				}
 
 
