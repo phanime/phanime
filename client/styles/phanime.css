@@ -355,6 +355,12 @@ textarea {
 		color: #8bc34a;
 	}
 
+	.btn.btn-transparent:focus {
+		background-color: transparent;
+		border-color: #8bc34a;
+		color: #8bc34a;
+	}
+
 /*-----------------------------*/
 /*------- General APP  --------*/
 /*-----------------------------*/
