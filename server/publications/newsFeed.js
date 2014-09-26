@@ -1,4 +1,4 @@
-Meteor.publishComposite('userNewsFeed', function(username) {
+Meteor.publishComposite('index', function(username) {
 	return {
 		find: function() {
 			return Meteor.users.find({username: username});
@@ -43,5 +43,4 @@ Meteor.publishComposite('userNewsFeed', function(username) {
 			}
 		]
 	};
-
 });

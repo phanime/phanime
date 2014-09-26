@@ -20,7 +20,7 @@ Meteor.methods({
 			// We also don't want to recommend anime that are similar to the ones 
 			// the user has dropped, so we shouldn't look at their dropped anime
 			if (libraryEntry.rating >= 7 || libraryEntry.status !== 'Dropped') {
-				var potentialAnime = Anime.find({genres: {$in: anime.genres}, _id: {$nin: animeIdsAlready}}).fetch();
+				var potentialAnime = Anime.find({genres: {$in: anime.genres}, _id: {$nin: animeIdsAlready}}, {fields: {_id: 1}}).fetch();
 				
 				potentialAnime.forEach(function(anime) {
 					if (recommendedAnime[anime._id])
@@ -34,10 +34,12 @@ Meteor.methods({
 
 		});
 
-
 		// We generate recommendation objects from these
 		recommendedAnime = _.map(recommendedAnime, function(num, key) {
 			// These will later on have multiple metrics
+
+			// We'll need to query all the anime again
+
 			var obj = {
 				animeId: key,
 				score: num
@@ -45,6 +47,26 @@ Meteor.methods({
 			return obj;
 		});
 
+
+		// We should grab all the anime we need here
+		var animeWeNeed = Anime.find({_id: {$in: _.pluck(recommendedAnime, 'animeId')}}, {fields: requireCollectionFields.anime.imageAndTitle}).fetch();
+
+
+		// console.log(animeWeNeed);
+
+		recommendedAnime = _.map(recommendedAnime, function(obj) {
+			console.log(obj);
+
+			obj.anime = _.find(animeWeNeed, function(anime) {
+
+				return anime._id === obj.animeId;
+			});
+
+			return obj;
+
+		});
+
+		// console.log(recommendedAnime);
 
 		// sort them in desc order
 		recommendedAnime = _.sortBy(recommendedAnime, 'score').reverse();

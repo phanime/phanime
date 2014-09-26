@@ -16,12 +16,12 @@
 
 
 		{{#each currentUser.recommendedAnime}}
-			{{> UI.dynamic template="animeCard" data=this}}
+			{{> UI.dynamic template="animeCard" data=anime}}
 		{{else}}
 			<div class="block centered-text">
 				<h2 class="thin-text sub-text">We don't have any recommendations for you yet</h2>	
 			
-				<a style="margin-top: 30px; margin-bottom: 20px;" href="{{pathFor 'animeExplore'}}" class="btn btn-primary btn-lg btn-transparent">Add Library Entries</a>
+				<button id="requestRecommendation" style="margin-top: 30px; margin-bottom: 20px;" class="btn btn-primary btn-lg btn-transparent">Request Recommendations</button>
 				<h6 class="sub-text">Add more library entries for better recommendations</h6>
 			</div>
 		{{/each}}
