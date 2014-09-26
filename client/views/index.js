@@ -46,15 +46,17 @@ Template.index.events({
 	'click #requestRecommendation' : function(event, template) {
 
 		// We should hide the button until the recommendations are generated
-		$('#requestRecommendation').css('display', 'none');
+		$('#requestRecommendation').attr('id', 'loading');
+		$('#loading').text('Loading...');
 		console.log('recommendations started');
 
 		Meteor.call('generateAnimeRecommendations', Meteor.userId(), function(error, results) {
 			if (!error) {
 				console.log('recommendations finished');
 			}
-			// We can now show the button
-			$('#requestRecommendation').css('display', '');
+			// We change the button back
+			$('#loading').attr('id', 'requestRecommendation');
+			$('#requestRecommendation').text('Request Recommendations');
 		});
 
 	}

@@ -72,8 +72,8 @@ Meteor.methods({
 		recommendedAnime = _.sortBy(recommendedAnime, 'score').reverse();
 
 		// Get the top 10 recommendations
-		if (recommendedAnime.length > 10) {
-			recommendedAnime = recommendedAnime.slice(0, 10);
+		if (recommendedAnime.length > 12) {
+			recommendedAnime = recommendedAnime.slice(0, 12);
 		}
 
 		// Update the recommendations in the user document
