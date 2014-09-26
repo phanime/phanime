@@ -12,7 +12,13 @@ Meteor.methods({
 
 		libraryEntries.forEach(function(libraryEntry) {
 			var anime = Anime.findOne({_id: libraryEntry.animeId});
-			// Ignore any entry that's rated below 7, or is dropped
+			// Ignore any entry that's rated below 7..
+			// ideally we want to get the average rating of this user
+			// and then use that number as our base rating. Since there 
+			// aren't many users with lots of ratings, we'll just use 7
+
+			// We also don't want to recommend anime that are similar to the ones 
+			// the user has dropped, so we shouldn't look at their dropped anime
 			if (libraryEntry.rating >= 7 || libraryEntry.status !== 'Dropped') {
 				var potentialAnime = Anime.find({genres: {$in: anime.genres}, _id: {$nin: animeIdsAlready}}).fetch();
 				
