@@ -6,6 +6,8 @@ Meteor.methods({
 		console.log(imageTypes.indexOf(imageType));
 		console.log(imageSize);
 
+		// We don't want the upload to block other requests!
+		this.unblock();
 
 		// Ensure we only get images
 		if (imageTypes.indexOf(imageType) === -1)
