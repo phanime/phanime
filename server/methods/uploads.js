@@ -4,10 +4,17 @@ Meteor.methods({
 		var imageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 
 		console.log(imageTypes.indexOf(imageType));
+		console.log(imageSize);
+
 
 		// Ensure we only get images
 		if (imageTypes.indexOf(imageType) === -1)
 			throw new Meteor.Error(403, 'Only image files allowed (gif, jpeg, png)');
+
+		// Ensure size is less than 2 MB
+		// The imageSize variable is in bytes
+		if (imageSize > 2000000)
+			throw new Meteor.Error(403, 'Max file size of 2 MB allowed');
 
 		// Temporary, for testing purposes
 		// should move to environment variables
