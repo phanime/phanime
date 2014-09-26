@@ -38,7 +38,25 @@ Meteor.publishComposite('index', function(username) {
 						]
 
 					}
-
+				]
+			},
+			{
+				find: function(user) {
+					var animeIds = _.pluck(user.recommendedAnime, 'animeId');
+					// Limit to 12 recommendations for now
+					return Anime.find({_id: {$in: animeIds}}, {fields: requireCollectionFields.anime.imageAndTitle, limit: 12});
+				}
+			},
+			{
+				find: function(user) {
+					return LibraryEntries.find({userId: user._id, $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {limit: 6});
+				},
+				children: [
+					{
+						find: function(libraryEntry, user) {
+							return Anime.find({_id: libraryEntry.animeId});
+						}
+					}
 				]
 			}
 		]

@@ -10,11 +10,19 @@ IndexController = RouteController.extend({
 	},	
 
 	waitOn: function () {
-		return Meteor.subscribe('libraryEntriesIndexLatest');
+		return Meteor.subscribe('index', Meteor.user().username);
 	},
 
 	data: function () {
-		return LibraryEntries.find({userId: Meteor.userId(), $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {limit: 6, sort: {updatedAt: -1}});
+		
+		var libraryEntries = LibraryEntries.find({userId: Meteor.userId(), $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {limit: 6, sort: {updatedAt: -1}});
+		var recAnimeIds = _.pluck(Meteor.user().recommendedAnime, 'animeId');
+		var recommendedAnime = Anime.find({_id: {$in: recAnimeIds}});
+
+		return {
+			libraryEntries: libraryEntries,
+			recommendedAnime: recommendedAnime
+		};
 	}	
 
 });
