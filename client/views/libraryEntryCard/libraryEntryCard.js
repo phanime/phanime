@@ -111,7 +111,6 @@ Template.libraryEntryCard.events({
 	},
 	'over .entry-rating' : function(event, template, value) {
 		var rating = $(event.target).rateit('value');
-		console.log(value);
 
 		$(event.target).attr('title', value);
 	},
