@@ -14,6 +14,7 @@ Meteor.methods({
 				"username": user.username,
 				"name": (user.profile) ? user.profile.name : '',
 				"avatar_url": user.avatarImageUrl, // This is not using the normal helper, it is manually being added to the user that's passed in 
+				"about_me": (user.profile) ? user.profile.about : '',
 			};
 
 			// console.log(user.avatarImageUrl());
