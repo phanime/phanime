@@ -10,21 +10,31 @@
 
 <template name="activityCardLibraryEntry">
 
-	<div class="block">
-		{{#with libraryEntry}}
-			<div class="row">
-				<div class="col-sm-12">
-					{{#with anime}}
-						<a href="{{pathFor 'anime'}}">
-							<div class="img img-md cover" style="background-image: url('{{coverImageUrl}}')"></div>
-						</a>
-						<h4 style="margin-top:0">{{title}}</h4>
-					{{/with}}
-					<h4 class="thin-text">{{whatChanged}} {{newValue}}</h4> 
-					<h6 class="thin-text">{{formatDateFromNow ../createdAt}}</h6>
+	<div class="cd-timeline-block">
+
+		<div class="cd-timeline-img cd-picture">
+			<i class="{{representIcon}}"></i>
+		</div>
+
+		<div class="cd-timeline-content">
+			{{#with libraryEntry}}
+				<div class="row">
+					<div class="col-sm-12">
+						{{#with anime}}
+							<a href="{{pathFor 'anime'}}">
+								<div class="img img-md cover" style="background-image: url('{{coverImageUrl}}')"></div>
+							</a>
+							<h4 style="margin-top:0">{{title}}</h4>
+						{{/with}}
+						<h5 class="thin-text">{{../friendlyText}}</h5> 
+						<h6 class="thin-text">{{formatDateFromNow ../createdAt}}</h6>
+					</div>
 				</div>
-			</div>
-		{{/with}}
+			{{/with}}
+
+			<span class="cd-date">{{formatDateDefault createdAt}}</span>
+
+		</div>
 	</div>	
 
 </template>

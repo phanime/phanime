@@ -4,6 +4,9 @@ Meteor.publishComposite('indexCurrentUser', function() {
 			return Meteor.users.find({_id: this.userId});
 		},
 		children: [
+
+			// For some reason this causes some errors, need to figure out what's wrong exactly
+			// Possibly an issue with the user.following not being an array / or user.following not existing
 			// {
 			// 	find: function(user) {
 			// 		return ProfilePosts.find({$or: [{userId: user._id}, {userId: {$in: user.following}}]});

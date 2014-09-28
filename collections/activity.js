@@ -14,3 +14,129 @@ Activity.libraryEntryFields = function(type, contentId, whatChanged, newValue) {
 	return libraryEntry;
 
 };
+
+
+Activity.helpers({
+
+	friendlyText: function() {
+		var friendlyText = "";
+		// if it's a libraryEntry
+		var user = Meteor.users.findOne({_id: this.userId});
+		if (this.type === 'libraryEntry') {
+			switch (this.libraryEntry.whatChanged) {
+
+				case "episodesSeen": 
+
+					friendlyText = user.username + ' watched episode ' + this.libraryEntry.newValue;
+
+					break;
+				case "status":
+
+					switch (this.libraryEntry.newValue) {
+
+						case "Watching":
+							friendlyText = user.username + " is currently watching";
+							break;
+						case "Completed":
+							friendlyText = user.username + " has completed";
+							break;
+						case "Plan to watch":
+							friendlyText = user.username + " plans to watch";
+							break;
+						case "On hold":
+							friendlyText = user.username + " has put on hold";
+							break;
+						case "Dropped":
+							friendlyText = user.username + " has dropped";
+							break;
+					} 
+					break;
+
+				case "highPriority":
+
+					if (this.libraryEntry.newValue === true) {
+						friendlyText = user.username + " has set to high priority";
+					} else {
+						friendlyText = user.username + " has removed from high priority";
+					}
+
+					break;
+
+				case "rewatching":
+
+					if (this.libraryEntry.newValue === true) {
+						friendlyText = user.username + " is rewatching";
+					} else {
+						friendlyText = user.username + " is watching first time";
+					}
+
+					break;
+
+			}
+
+		}
+
+		return friendlyText;
+
+	},
+
+	representIcon: function() {
+
+		var icon = 'fa fa-check';
+
+		if (this.type === 'libraryEntry') {
+			switch (this.libraryEntry.whatChanged) {
+				case "episodesSeen": 
+
+					icon = 'fa fa-plus';
+
+					break;
+				case "status":
+
+					switch (this.libraryEntry.newValue) {
+
+						case "Watching":
+							icon = 'fa fa-eye';
+							break;
+						case "Completed":
+							icon = 'fa fa-check';
+							break;
+						case "Plan to watch":
+							icon = 'fa fa-lightbulb-o';
+							break;
+						case "On hold":
+							icon = 'fa fa-lock';
+							break;
+						case "Dropped":
+							icon = 'fa fa-times';
+							break;
+					} 
+					break;
+
+				case "highPriority":
+
+					if (this.libraryEntry.newValue === true) {
+						icon = 'fa fa-exclamation';
+					} else {
+						icon = 'fa fa-exclamation';
+					}
+
+					break;
+
+				case "rewatching":
+
+					if (this.libraryEntry.newValue === true) {
+						icon = 'fa fa-history';
+					} else {
+						icon = 'fa fa-clock-o';
+					}
+
+					break;
+			}
+
+		}
+
+		return icon;
+	}
+
+});
