@@ -17,6 +17,19 @@ Template.userLibrary.activeLibraryView = function(libraryView) {
 	}	
 };
 
+Template.userLibrary.coverViewDisabled = function() {
+	var template = Template.instance();
+	var entries = template.data.libraryEntries;
+	console.log(entries.length);
+
+	// If we have more than 100 entries, then we shouldn't allow to switch to cover
+	if (entries.length > 100) {
+		return 'disabled';
+	} else {
+		return '';
+	}
+}
+
 Template.userLibrary.libraryViewCheck = function(libraryView) {
 	var template = Template.instance();
 	var currentLibraryView = template.libraryView.get();
