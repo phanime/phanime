@@ -1,7 +1,7 @@
 Template.userLibrary.created = function() {
 
-	this.statusFilter = new ReactiveVar('All');
-	this.libraryView = new ReactiveVar('Cover');
+	this.statusFilter = new ReactiveVar('Watching');
+	this.libraryView = new ReactiveVar('List');
 
 };
 

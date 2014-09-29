@@ -4,6 +4,11 @@
   margin-top: 2em;
   margin-bottom: 2em;
 }
+
+#cd-timeline:empty {
+  display: none;
+}
+
 #cd-timeline::before {
   /* this is the vertical line */
   content: '';

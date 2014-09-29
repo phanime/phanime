@@ -28,7 +28,7 @@ UserLibraryController = RouteController.extend({
 		
 		if (this.ready()) {
 			
-			user.libraryEntries = LibraryEntries.find({userId: user._id}).fetch();
+			user.libraryEntries = LibraryEntries.find({userId: user._id}, {limit: 100}).fetch();
 
 			user.libraryEntries.forEach(function(libraryEntry) {
 				libraryEntry.anime = Anime.findOne({_id: libraryEntry.animeId});
