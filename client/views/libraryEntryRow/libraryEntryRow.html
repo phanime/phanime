@@ -9,13 +9,9 @@
 	</tr>
 
 	{{#if expanded}}
-	<tr>
-		<td colspan="4">
-
-			<h3>Editing in list mode currently unavailable</h3>
-
-		</td>	
-	</tr>
+		{{#if isUserIdCurrentUser userId}}
+			{{> libraryEntryRowEdit}}
+		{{/if}}
 	{{/if}}
 
 

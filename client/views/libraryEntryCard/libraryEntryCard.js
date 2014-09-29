@@ -18,7 +18,7 @@ Template.libraryEntryCard.rendered = function() {
 
 	// $('.entry-rating').tooltip();
 
-}
+};
 
 Template.libraryEntryCard.events({
 
