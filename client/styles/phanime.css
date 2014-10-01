@@ -108,6 +108,11 @@ textarea {
 	margin-top: 20px !important;
 }
 
+.background-hr {
+	width: 90%;
+	border-color: #E0E0E0;
+}
+
 .block {
 	border: 1px solid #d8d8d8;
 	-webkit-border-radius: 3px;
