@@ -1,10 +1,16 @@
 <template name="search">
 
-	<div class="container main-content">
+	<div class="container main-content search-wrapper">
+
+		<div class="close-search">
+			<i class="fa fa-times-circle close-search-handler"></i>
+		</div>
 
 		<div class="row">
 			<div class="col-sm-offset-3 col-sm-6">
-				{{> esInput index="anime" reactive=false classes="form-control input-lg" placeholder="Search..."}}
+				<div class="search-input">
+					{{> esInput index="anime" reactive=false classes="form-control input-lg" placeholder="Search..."}}
+				</div>
 			</div>
 		</div>
 
@@ -13,7 +19,7 @@
 				{{> loading}}
 			</div>
 		{{else}}
-			<div class="row" style="margin: 50px auto;">
+			<div class="row search-results" style="margin: 50px auto;">
 				{{#esEach index="anime"}}
 					{{> UI.dynamic template="animeCardProxy" data=this}}
 				{{/esEach}}
@@ -22,7 +28,7 @@
 
 		{{#ifEsHasNoResults index="anime"}}
 			<div class="row">
-		  		<h2 class="thin-text" style="text-align: center;">No results found!</h2>
+				<h2 class="thin-text" style="text-align: center;">No results found!</h2>
 		  	</div>
 		{{/ifEsHasNoResults}}
 	</div>

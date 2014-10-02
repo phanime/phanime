@@ -10,6 +10,9 @@ Template.header.events({
 				// All alerts were marked read successfully
 			}
 		});
+	},
+	'click #searchGlobal' : function(event) {
+		Session.set('isSearchingGlobal', true);
 	}
 });
 

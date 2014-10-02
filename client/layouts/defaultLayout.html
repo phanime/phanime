@@ -2,5 +2,8 @@
 	{{> header}}
 		{{> yield}}
 	{{> footer}}
+	{{#if isSearchingGlobal}}
+		{{> search}}
+	{{/if}}
 	{{> notifications}}
 </template>

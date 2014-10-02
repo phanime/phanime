@@ -36,7 +36,7 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="{{pathFor 'search'}}"><i class="fa fa-search"></i></a></li>
+					<li><a id="searchGlobal"><i style="cursor: pointer" class="fa fa-search"></i></a></li>
 					{{#if currentUser}}
 						<li class="dropdown content-dropdown-wrapper">
 							<a href="#" id="alertsToggle" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{alertsClass}}"></i><span>{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span></a>
