@@ -130,6 +130,11 @@ var routerBeforeHooks = {
 		}		
 	},
 
+	// remove the search template / set sesion variable to false
+	removeSearch: function(pause) {
+		Session.set('isSearchingGlobal', false);
+	},
+
 	// We want to ensure that when a new page loads
 	// we have it scrolled all the way to the top
 	scrollUp: function() {
@@ -139,6 +144,14 @@ var routerBeforeHooks = {
 		$('.container.main-content').addClass("animated fadeIn fateInRight");
 		$('footer').removeClass("hide");
 	}
+};
+
+
+var routerOnStopHooks = {
+	// remove the search template / set sesion variable to false
+	removeSearch: function(pause) {
+		Session.set('isSearchingGlobal', false);
+	}	
 }
 
 
@@ -151,8 +164,13 @@ Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'si
 // Render the landing page if the user isn't logged in on index
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 
+// Router.onBeforeAction(routerBeforeHooks.removeSearch);
+
 // These routes need admin permissions 
 Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'charactersAdd', 'peopleAdd', 'studiosAdd', 'staffMembersAdd', 'castingsAdd']});
+
+// Removes the search right before the route changes (typically)
+Router.onStop(routerOnStopHooks.removeSearch);
 
 // Router.onBeforeAction('dataNotFound');
 
