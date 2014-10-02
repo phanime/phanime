@@ -14,23 +14,27 @@
 			</div>
 		</div>
 
-		{{#ifEsIsSearching index="anime"}}
-			<div class="row" style="margin: 50px auto;">
-				{{> loading}}
-			</div>
-		{{else}}
-			<div class="row search-results" style="margin: 50px auto;">
-				{{#esEach index="anime"}}
-					{{> UI.dynamic template="animeCardProxy" data=this}}
-				{{/esEach}}
-			</div>
-		{{/ifEsIsSearching}}
+		<div class="container row search-results" style="margin: 50px auto;">
+			<div class="col-sm-12">
+			{{#ifEsIsSearching index="anime"}}
+				<div class="row">
+					{{> loading}}
+				</div>
+			{{else}}
+				<div class="row">
+					{{#esEach index="anime"}}
+						{{> UI.dynamic template="animeCardProxy" data=this}}
+					{{/esEach}}
+				</div>
+			{{/ifEsIsSearching}}
 
-		{{#ifEsHasNoResults index="anime"}}
-			<div class="row">
-				<h2 class="thin-text" style="text-align: center;">No results found!</h2>
-		  	</div>
-		{{/ifEsHasNoResults}}
+			{{#ifEsHasNoResults index="anime"}}
+				<div class="row">
+					<h2 class="thin-text" style="text-align: center;">No results found!</h2>
+			  	</div>
+			{{/ifEsHasNoResults}}
+			</div>
+		</div>
 	</div>
 
 </template>

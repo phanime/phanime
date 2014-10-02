@@ -22,10 +22,10 @@
 	background-color: rgba(233, 233, 233, 0.95);
 	width: 100%;
 	height: 100%;
-	-webkit-animation: fade-in-top 0.75s; /* Safari 4+ */
-	-moz-animation: fade-in-top 0.75s; /* Fx 5+ */
-	-o-animation: fade-in-top 0.75s; /* Opera 12+ */
-	animation: fade-in-top 0.75s; /* IE 10+ */
+	-webkit-animation: fade-in-top 0.50s; /* Safari 4+ */
+	-moz-animation: fade-in-top 0.50s; /* Fx 5+ */
+	-o-animation: fade-in-top 0.50s; /* Opera 12+ */
+	animation: fade-in-top 0.50s; /* IE 10+ */
 }
 
 .search-wrapper .close-search {
@@ -42,6 +42,6 @@
 }
 
 .search-wrapper .search-results {
-	height: 615px;
+	max-height: 615px;
 	overflow-y: auto;
 }

@@ -14,6 +14,14 @@ Template.search.rendered = function() {
 	// focus the input
 	$('input').focus();
 
+	$('.container.row.search-results').mCustomScrollbar({
+		theme: 'dark',
+		scrollButtons: {
+			enable: true,
+			scrollInertia: 0
+		}
+	});
+
 };
 
 
