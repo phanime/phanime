@@ -12,7 +12,8 @@ Template.header.events({
 		});
 	},
 	'click #searchGlobal' : function(event) {
-		Session.set('isSearchingGlobal', true);
+		if (Meteor.user())
+			Session.set('isSearchingGlobal', true);
 	}
 });
 

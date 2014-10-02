@@ -27,22 +27,4 @@ Template.search.events({
 });
 
 
-Template.body.rendered = function() {
-
-	console.log('rendered body');
-	$('body').on('keydown', function(event) {
-
-		// ctrl + `
-		if (event.which === 192)
-			Session.set('isSearchingGlobal', true);
-
-
-		// ESC
-		if (event.which === 27)
-			Session.set('isSearchingGlobal', false);
-
-		console.log(event.which);
-
-	});
-
-};
+// The actual events that handle showing / hiding the search are found in body.js
