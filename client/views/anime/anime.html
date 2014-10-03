@@ -117,7 +117,9 @@
 					{{#each staffMembers}}
 						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
 							<div class="col-sm-6">
-								<a href="{{pathFor 'character' character}}">{{person.fullName}}</a>
+								{{#with person}}
+									<a href="{{pathFor 'person'}}">{{fullName}}</a>
+								{{/with}}
 							</div>
 
 							<div class="col-sm-6">
