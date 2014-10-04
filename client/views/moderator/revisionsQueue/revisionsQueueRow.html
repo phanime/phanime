@@ -1,0 +1,27 @@
+<template name="revisionsQueueRow">
+	<tr style="cursor: pointer" class="queueRow">
+		<td>{{status}}</td>
+		<td>{{contentType}}</td>
+		<td>{{type}}</td>
+		<td>{{username}}</td>
+		<td>{{formatDateFromNow createdAt}}</td>
+	</tr>
+
+	{{#if isExpanded}}
+	<tr>
+		<td colspan="5">
+			{{> revisionsAnimeUpdateForm currentAnime=content}}
+
+			<hr>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-primary approveRevision">Approve Revision</button>
+					<button type="button" class="btn btn-danger declineRevision">Decline Revision</button>
+				</div>
+			</div>
+		</td> 
+	</tr>
+	{{/if}}
+
+</template>

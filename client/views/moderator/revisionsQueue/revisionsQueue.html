@@ -13,18 +13,22 @@
 
 
 
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
 					<tr>
+						<td>Status</td>
 						<td>Content Type</td>
-						<td>User</td>
+						<td>Type</td>
+						<td>Username</td>
+						<td>Created at</td>
 					</tr>
 				</thead>
 
 
 				<tbody>
-
-
+					{{#each this}}
+						{{> revisionsQueueRow}}
+					{{/each}}
 				</tbody>
 
 			</table>

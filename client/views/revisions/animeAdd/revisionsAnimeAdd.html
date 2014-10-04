@@ -4,7 +4,7 @@
 
 		<div class="block">
 			<h1>Add Anime</h1>
-			{{#autoForm schema="AnimeSchema" id="insertRevisionAnime" type="method" meteormethod="revisionsAnimeAdd"}}
+			{{#autoForm schema="AnimeSchema" doc=document id="insertRevisionAnime" type="method" meteormethod="revisionsAnimeAdd"}}
 
 				{{> afQuickField name='coverImage' placeholder="Please provide a URL of the image"}}
 				{{> afQuickField name='canonicalTitle' placeholder="The standardized title of this anime (romaji or english)"}}
