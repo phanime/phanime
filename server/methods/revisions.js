@@ -33,9 +33,43 @@ Meteor.methods({
 				console.log(_id);
 			});
 
-		} else {
-			console.log ('Anime is not unique!');
 		}
+
+
+	},
+
+	// Revision Approved 
+	revisionApproved: function(revision) {
+
+		// If the user isn't a moderator 
+		// they cannot approve revisions
+		if (!Meteor.user().isModerator())
+			throw new Meteor.Error(403, "Only moderators are allowed to approve revisions");
+
+		// Anime Additions should work
+		if (revision.contentType === 'Anime') {
+
+
+			// We can basically insert 
+			if (revision.type === 'Addition') {
+				// revision.content contains the anime object
+
+				// We'll just throw it in the createAnimeObject method to grab the default fields 
+				var animeObject = Anime.createAnimeObject(revision.content);
+
+
+				Anime.insert(animeObject, function(error, _id) {
+					console.log(_id);
+
+					if (error) 
+						throw new Meteor.Error(403, error.reason);
+				});
+			}
+
+
+
+		}
+
 
 
 	}

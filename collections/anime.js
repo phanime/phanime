@@ -42,6 +42,18 @@ AnimePages = new Meteor.Pagination(Anime, {
 
 });
 
+
+Anime.createAnimeObject = function(anime) {
+
+	// We're just going to add some default fields 
+	anime.createdAt = new Date();
+	anime.updatedAt = new Date();
+	anime.slug = getSlug(anime.canonicalTitle);
+
+	return anime;
+
+}
+
 Anime.allow({
 
 	insert: function(userId, doc) {
