@@ -71,6 +71,12 @@ Router.map(function () {
 	this.route('accountSecurity', {path: '/account/security', layoutTemplate: 'accountLayout'});
 	this.route('accountPreferences', {path: '/account/preferences', layoutTemplate: 'accountLayout'});
 
+	/////////////////////////////////////////////////
+	/////////////////// Revisions ///////////////////
+	/////////////////////////////////////////////////
+
+	this.route('revisionsAnimeAdd', {path: 'revisions/anime/add'});
+
 
 	/////////////////////////////////////////////////
 	/////////////////// Moderator ///////////////////

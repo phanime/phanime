@@ -12,3 +12,13 @@ Template.revisionsQueue.contentFilter = function(content) {
 	return content === currentContentFilter ? 'active' : '';
 	
 };
+
+
+
+Template.revisionsQueue.events({
+
+	'click .contentFilter > button' : function(event, template) {
+		template.currentContentFilter.set($(event.target).text());
+	}
+
+});

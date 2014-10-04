@@ -3,7 +3,7 @@
 		<h1>Add Anime</h1>
 		{{#autoForm schema="AnimeSchema" id="insertAnime" type="method" meteormethod="createAnime"}}
 
-			<input type="file" id="uploadCharacterCover">
+			<input type="file" id="uploadAnimeCover">
 			<img class="imagePreview">
 
 			{{> afQuickField name='coverImage' value=fileUrl}}

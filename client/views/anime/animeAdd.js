@@ -1,6 +1,6 @@
 Template.animeAdd.events({
 	'change #uploadCharacterCover' : function(event, template) {
-		var file = template.find('#uploadCharacterCover').files[0];
+		var file = template.find('#uploadAnimeCover').files[0];
 		console.log(file);
 		
 		uploadImage(file, 'anime', 'cover');

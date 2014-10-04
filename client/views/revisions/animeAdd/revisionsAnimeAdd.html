@@ -1,0 +1,44 @@
+<template name="revisionsAnimeAdd">
+
+	<div class="container main-content">
+
+		<div class="block">
+			<h1>Add Anime</h1>
+			{{#autoForm schema="AnimeSchema" id="insertAnime" type="method" meteormethod="revisionsAnimeAdd"}}
+
+				{{> afQuickField name='coverImage' placeholder="Please provide a URL of the image"}}
+				{{> afQuickField name='canonicalTitle' placeholder="The standardized title of this anime (romaji or english)"}}
+				{{> afQuickField name='romajiTitle' placeholder="Romanized version of the title"}}
+				{{> afQuickField name='englishTitle' placeholder="Official english version of the title"}}
+				{{> afQuickField name='japaneseTitle' placeholder="Japanese title"}}
+				{{> afQuickField name='type' options="allowed"}}
+
+				{{> afQuickField name='status' options="allowed"}}
+				<h6 class="sub-text">Please ensure this coincides with the start/end dates, if provided</h6>
+
+				{{> afQuickField name='startDate'}}
+				{{> afQuickField name='endDate'}}
+				{{> afQuickField name='languageVersion' options="allowed"}}
+				{{> afQuickField name='ageRating' options="allowed"}}
+				{{> afQuickField name='genres'}}
+				{{> afQuickField name='themes'}}
+				{{> afQuickField name='studios'}}
+				{{> afQuickField name='seasonNumber' placeholder="Provide an official season number of this title"}}
+				{{> afQuickField name='totalEpisodes' placeholder="Not required if series is not finished"}}
+				{{> afQuickField name='episodeDuration' placeholder="Episode duration in minutes"}}
+				{{> afQuickField name='titleSynonyms' placeholder="Any other titles that this anime is recognized by (one on each line)"}}
+				{{> afQuickField name='description' placeholder="Synopsis of the anime. If description is taken from another site, add their site's name as source at the end."}}
+
+				<div class="row">
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-primary btn-beside">Add Anime</button>
+						<button type="reset" class="btn btn-danger btn-beside">Reset</button>
+					</div>
+				</div>
+
+
+			{{/autoForm}}
+		</div>
+	</div>
+
+</template>
