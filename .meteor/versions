@@ -52,10 +52,10 @@ matteodem:easy-search@1.1.0
 meteor-platform@1.1.1
 meteor@1.1.1
 meteorhacks:kadira-binary-deps@1.2.0
-meteorhacks:kadira@2.10.1
+meteorhacks:kadira@2.11.2
 minifiers@1.1.0
 minimongo@1.0.3
-mizzao:bootstrap-3@3.2.0
+mizzao:bootstrap-3@3.2.0_1
 mizzao:timesync@0.2.2
 mizzao:user-status@0.6.2
 mobile-status-bar@1.0.0
