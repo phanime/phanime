@@ -31,7 +31,11 @@ Template.revisionsQueueRow.events({
 
 		console.log(template.data);
 
-		// We'll update the revision's status to Declined here
+		var revision = template.data;
+
+
+		// We update the revision's status to Declined here
+		Revisions.update({_id: revision._id}, {$set: {status: "Declined"}});
 
 
 

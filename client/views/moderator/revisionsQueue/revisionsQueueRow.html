@@ -10,7 +10,9 @@
 	{{#if isExpanded}}
 	<tr>
 		<td colspan="5">
-			{{> revisionsAnimeUpdateForm currentAnime=content}}
+			<div style="padding: 0 10px; max-height: 400px; overflow-y: auto; overflow-x: hidden">
+				{{> revisionsAnimeUpdateForm currentAnime=content}}
+			</div>
 
 			<hr>
 

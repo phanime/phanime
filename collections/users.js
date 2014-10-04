@@ -16,7 +16,10 @@ Meteor.users.helpers({
 
 	},
 	isAdmin: function() {
-		return this.username === 'Maaz' || this.username === 'Lovabelle' || this.username === 'despisal';
+		return this.username === 'Maaz' || this.username === 'Lovabelle';
+	},
+	isModerator: function() {
+		return this.username === 'Maaz' || this.username === 'Lovabelle';
 	},
 	followerCount: function() {
 		if (this.followers)

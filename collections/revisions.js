@@ -17,3 +17,16 @@ Revisions.createRevisionObject = function(contentType, type, userId, username, c
 
 
 };
+
+
+Revisions.allow({
+
+	update: function(userId, doc, fields, modifier) {
+
+		// can only update revisions if you're the moderator
+		return Meteor.user().isModerator();
+
+	}
+
+
+});
