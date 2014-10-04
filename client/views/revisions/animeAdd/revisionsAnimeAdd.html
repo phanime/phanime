@@ -4,7 +4,7 @@
 
 		<div class="block">
 			<h1>Add Anime</h1>
-			{{#autoForm schema="AnimeSchema" id="insertAnime" type="method" meteormethod="revisionsAnimeAdd"}}
+			{{#autoForm schema="AnimeSchema" id="insertRevisionAnime" type="method" meteormethod="revisionsAnimeAdd"}}
 
 				{{> afQuickField name='coverImage' placeholder="Please provide a URL of the image"}}
 				{{> afQuickField name='canonicalTitle' placeholder="The standardized title of this anime (romaji or english)"}}
@@ -14,11 +14,13 @@
 				{{> afQuickField name='type' options="allowed"}}
 
 				{{> afQuickField name='status' options="allowed"}}
-				<h6 class="sub-text">Please ensure this coincides with the start/end dates, if provided</h6>
+				<h5 class="sub-text" style="margin-top: -10px">Please ensure this coincides with the start/end dates, if provided</h5>
 
 				{{> afQuickField name='startDate'}}
 				{{> afQuickField name='endDate'}}
 				{{> afQuickField name='languageVersion' options="allowed"}}
+				<h5 class="sub-text" style="margin-top: -10px">Please select the version this anime is available in (English Subbed, English Dubbed, or both)</h5>
+
 				{{> afQuickField name='ageRating' options="allowed"}}
 				{{> afQuickField name='genres'}}
 				{{> afQuickField name='themes'}}

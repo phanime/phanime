@@ -16,7 +16,7 @@ Meteor.methods({
 
 		if (titleCheck || slugCheck) {
 			uniqueCondition = false;
-			throw new Meteor.Error(403, "Anime not unique");
+			throw new Meteor.Error(403, "The canonical title of the anime was found in our database");
 
 		} else {
 			uniqueCondition = true;
