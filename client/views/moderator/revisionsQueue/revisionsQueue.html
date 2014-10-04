@@ -4,7 +4,7 @@
 	<div class="container main-content">
 		<div class="block">
 		
-			<div class="row">
+			<div class="row" style="margin-bottom: 20px;">
 				<div class="col-sm-12">
 					<div class="btn-group contentFilter">
 						<button type="button" class="btn btn-default {{contentFilter 'All'}}">All</button>
@@ -36,7 +36,7 @@
 
 
 				<tbody>
-					{{#each this}}
+					{{#each revisions}}
 						{{> revisionsQueueRow}}
 					{{/each}}
 				</tbody>

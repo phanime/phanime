@@ -24,6 +24,32 @@ Template.revisionsQueue.statusFilter = function(status) {
 };
 
 
+Template.revisionsQueue.revisions = function() {
+
+	var template = Template.instance();
+	var currentContentFilter = template.currentContentFilter.get();	
+	var currentStatusFilter = template.currentStatusFilter.get();
+
+	var filter = {
+		contentType: currentContentFilter,
+		status: currentStatusFilter
+	};
+
+	// We don't want to filter if it's all
+	if (filter.contentType === "All")
+		delete filter.contentType;
+
+	if (filter.status === "All")
+		delete filter.status;
+
+
+	return Revisions.find(filter, {sort: {createdAt: -1}});
+
+};
+
+
+
+
 
 Template.revisionsQueue.events({
 
