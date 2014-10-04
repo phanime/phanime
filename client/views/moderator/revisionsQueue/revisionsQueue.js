@@ -43,7 +43,13 @@ Template.revisionsQueue.revisions = function() {
 		delete filter.status;
 
 
-	return Revisions.find(filter, {sort: {createdAt: -1}});
+	var revisions = Revisions.find(filter, {sort: {createdAt: -1}}).fetch();
+	
+	revisions.forEach(function(revision) {
+		return revision.content.revisionId = revision._id;
+	});
+
+	return revisions;
 
 };
 

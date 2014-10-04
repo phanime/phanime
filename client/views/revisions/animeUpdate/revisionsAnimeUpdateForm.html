@@ -1,7 +1,7 @@
 <template name="revisionsAnimeUpdateForm">
 
-	{{#autoForm schema="AnimeSchema" doc=currentAnime id="updateRevisionAnime" type="method" meteormethod="revisionsAnimeUpdate"}}
-
+	{{#autoForm schema="AnimeRevisionsSchema" doc=currentAnime id="updateRevisionsAnime" type="method" meteormethod="revisionsAnimeUpdate"}}
+		{{> afQuickField name='revisionId' type="hidden"}}
 		{{> afQuickField name='coverImage' placeholder="Please provide a URL of the image"}}
 		{{> afQuickField name='canonicalTitle' placeholder="The standardized title of this anime (romaji or english)"}}
 		{{> afQuickField name='romajiTitle' placeholder="Romanized version of the title"}}

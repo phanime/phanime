@@ -37,9 +37,44 @@ Meteor.methods({
 
 
 	},
+	revisionsAnimeUpdate: function(anime) {
 
+		// If revision is an Addition, we need to check for uniqueness
+
+		// if anime._id exists than this anime already is in the database
+		// in which case this is a revision, else it's an addition (updated)
+		if (!anime._id) {
+
+			var titleCheck = Anime.findOne({canonicalTitle: anime.canonicalTitle});
+			var slugCheck = Anime.findOne({slug: getSlug(anime.canonicalTitle)});
+			var uniqueCondition;
+
+			if (titleCheck || slugCheck) {
+				uniqueCondition = false;
+				throw new Meteor.Error(403, "The canonical title of the anime was found in our database");
+			} else {
+				uniqueCondition = true;
+			}
+
+			if (uniqueCondition && Meteor.user()) {
+
+				Revisions.update({_id: anime.revisionId}, {$set: {content: anime}}, function(error, num) {
+					if (error)
+						throw new Meteor.Error(403, error.reason);
+
+				});
+
+			}
+		}
+
+
+	},
 	// Revision Approved 
 	revisionApproved: function(revision) {
+
+		// We should actually be pulling the revision from the database
+		// to ensure the revision object itself hasn't been screwed up
+		// during transmision. For now, we'll leave it be.
 
 		// If the user isn't a moderator 
 		// they cannot approve revisions
@@ -54,7 +89,7 @@ Meteor.methods({
 			if (revision.type === 'Addition') {
 				// revision.content contains the anime object
 
-				// We'll just throw it in the createAnimeObject method to grab the default fields 
+				// We'll just throw it in the createAnimeObject method to generate the default fields
 				var animeObject = Anime.createAnimeObject(revision.content);
 
 

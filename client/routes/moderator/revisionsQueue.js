@@ -11,7 +11,16 @@ RevisionsQueueController = RouteController.extend({
 	},
 
 	data: function () {
-		return Revisions.find({}, {sort: {createdAt: -1}});
+		var revisions = Revisions.find({}, {sort: {createdAt: -1}}).fetch();
+
+		revisions.forEach(function(revision) {
+			// This is mainly done so the content context also has the revisionId available
+			revision.content.revisionId = revision._id;
+			
+		});
+
+
+		return revisions;
 	}
 
 
