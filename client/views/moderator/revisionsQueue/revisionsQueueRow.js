@@ -8,6 +8,7 @@ Template.revisionsQueueRow.isExpanded = function() {
 };
 
 
+
 Template.revisionsQueueRow.events({
 
 	'click tr.queueRow' : function(event, template) {
@@ -22,7 +23,8 @@ Template.revisionsQueueRow.events({
 
 		// Approving the revision basically means we'll be adding the updated data to our database
 
-		// We'll also update the revision's status to Approved here
+		// We also update the revision's status to Approved here
+		Revisions.update({_id: revision._id}, {$set: {status: "Approved"}});
 
 	},
 

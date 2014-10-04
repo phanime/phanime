@@ -4,14 +4,24 @@
 	<div class="container main-content">
 		<div class="block">
 		
-			<div class="btn-group contentFilter">
-				<button type="button" class="btn btn-default {{contentFilter 'All'}}">All</button>
-				<button type="button" class="btn btn-default {{contentFilter 'Anime'}}">Anime</button>
-				<button type="button" class="btn btn-default {{contentFilter 'People'}}">People</button>
-				<button type="button" class="btn btn-default {{contentFilter 'Characters'}}">Characters</button>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="btn-group contentFilter">
+						<button type="button" class="btn btn-default {{contentFilter 'All'}}">All</button>
+						<button type="button" class="btn btn-default {{contentFilter 'Anime'}}">Anime</button>
+						<button type="button" class="btn btn-default {{contentFilter 'People'}}">People</button>
+						<button type="button" class="btn btn-default {{contentFilter 'Characters'}}">Characters</button>
+					</div>
+
+
+					<div class="btn-group btn-beside statusFilter">
+						<button type="button" class="btn btn-default {{statusFilter 'All'}}">All</button>
+						<button type="button" class="btn btn-info {{statusFilter 'Open'}}">Open</button>
+						<button type="button" class="btn btn-primary {{statusFilter 'Approved'}}">Approved</button>
+						<button type="button" class="btn btn-danger {{statusFilter 'Declined'}}">Declined</button>
+					</div>
+				</div>
 			</div>
-
-
 
 			<table class="table table-striped">
 				<thead>
