@@ -1,5 +1,5 @@
 Meteor.methods({
-    revisionsAnimeAdd: function(anime) {
+	revisionsAnimeAdd: function(anime) {
 
 		// Ensure integerity of data
 		check(anime, AnimeSchema);
@@ -22,11 +22,14 @@ Meteor.methods({
 			uniqueCondition = true;
 		}
 
-		if (uniqueCondition) {
+		// We want the anime to be unique and the user to be logged in
+		// before we add in the revision
+		if (uniqueCondition && Meteor.user()) {
 
+			var revisionAnime = Revisions.createRevisionObject('Anime', 'Addition', Meteor.user()._id, Meteor.user().username, anime);
 
 			// Insert the document into the database
-			Revisions.insert(anime, function(error, _id) {
+			Revisions.insert(revisionAnime, function(error, _id) {
 				console.log(_id);
 			});
 
