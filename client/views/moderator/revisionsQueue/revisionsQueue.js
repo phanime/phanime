@@ -1,7 +1,7 @@
 Template.revisionsQueue.created = function() {
 
 	this.currentContentFilter = new ReactiveVar('All');
-	this.currentStatusFilter = new ReactiveVar('All');
+	this.currentStatusFilter = new ReactiveVar('Open');
 };
 
 
