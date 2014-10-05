@@ -8,6 +8,44 @@ Template.revisionsQueueRow.isExpanded = function() {
 };
 
 
+Template.revisionsQueueRow.approveButton = function() {
+
+	var template = Template.instance();
+	var revision = template.data;
+
+	if (revision.status === "Open" || revision.status === "Declined") {
+		return true;
+	} else {
+		return false;
+	}
+};
+
+
+Template.revisionsQueueRow.declineButton = function() {
+
+	var template = Template.instance();
+	var revision = template.data;
+
+	if (revision.status === "Open") {
+		return true;
+	} else {
+		return false;
+	}
+
+};
+
+
+Template.revisionsQueueRow.reopenButton = function() {
+	var template = Template.instance();
+	var revision = template.data;
+
+	if (revision.status === "Declined") {
+		return true;
+	} else {
+		return false;
+	}
+};
+
 
 Template.revisionsQueueRow.events({
 
@@ -22,10 +60,10 @@ Template.revisionsQueueRow.events({
 		var revision = template.data;
 
 		// Approving the revision basically means we'll be adding the updated data to our database
-		Meteor.call('revisionApproved', revision, function(error, result) {
+		Meteor.call('revisionApproved', revision, function(error, contentId) {
 
 			if (error) {
-				Notifications.error('Revision couldn\'t be approved', error.result);
+				Notifications.error('Revision couldn\'t be approved', error.reason);
 			} else {
 				Notifications.success('Revision approved', 'Revision was successfully approved, the changes are now live');
 			}
@@ -39,21 +77,19 @@ Template.revisionsQueueRow.events({
 
 	'click .declineRevision' : function(event, template) {
 
-
-
 		var revision = template.data;
-
-		var imageUrl = "http://upload.wikimedia.org/wikipedia/commons/4/4e/Pleiades_large.jpg";
-
-		Meteor.call('uploadImageFromUrl', imageUrl, 'characters', 'cover', '123', function(error, result) {
-			console.log(error);
-			console.log(result);
-		});
 
 		// We update the revision's status to Declined here
 		Revisions.update({_id: revision._id}, {$set: {status: "Declined", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
 
 
+	},
+	'click .reopenRevision' : function(event, template) {
+
+		var revision = template.data;
+
+		// We update the revision's status to Declined here
+		Revisions.update({_id: revision._id}, {$set: {status: "Open", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
 
 	}
 

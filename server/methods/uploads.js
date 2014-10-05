@@ -79,17 +79,13 @@ Meteor.methods({
 		};
 
 
-		var contentTypes = {
-			'image/gif': 'gif', 
-			'image/jpeg': 'jpg', 
-			'image/png': 'png'
-		};
+		console.log(url);
 
 		if (!contentId) {
 			throw new Meteor.Error(403, 'Content ID must be defined for this method');
 		}
 
-		request(options, function(error, response, body) {
+		request(options, Meteor.bindEnvironment(function(error, response, body) {
 			// console.log(error);
 			// console.log(response);
 			// console.log(body);
@@ -118,7 +114,7 @@ Meteor.methods({
 
 			var s3 = new AWS.S3();
 
-			s3.createBucket({Bucket: 'phanime'}, function() {
+			s3.createBucket({Bucket: 'phanime'}, Meteor.bindEnvironment(function() {
 
 				var params = {
 					Bucket: 'phanime', 
@@ -128,10 +124,11 @@ Meteor.methods({
 					ContentType: contentType
 				};
 
-				s3.putObject(params, function(err, data) {
+				s3.putObject(params, Meteor.bindEnvironment(function(err, data) {
 
 					if (err) {
 						console.log(err);
+						throw new Meteor.Error(403, err);
 					} else {
 						console.log('Successfully uploaded data to ' + params.Bucket + "/" + params.Key);
 
@@ -141,17 +138,14 @@ Meteor.methods({
 							Anime.update({_id: contentId}, {$set: {coverImage: imageName}});
 						}
 
-
-
-
 					}
 
-				});
+				}));
 
 
-			});
+			}));
 
-		});
+		}));
 
 	}	
 

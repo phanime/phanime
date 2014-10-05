@@ -3,10 +3,20 @@ Anime = new Meteor.Collection("anime");
 Anime.helpers({
 
 	coverImageUrl: function() {
-		if (this.coverImage) {
-			return "http://cdn.phanime.com/images/anime/cover/" + this.coverImage;
+		// If revisionId exists then we're using the new upload system
+		// so we should use animeId in the url
+		if (this.revisionId) {
+			if (this.coverImage) {
+				return "http://cdn.phanime.com/images/anime/cover/" + this._id  + "/" + this.coverImage;
+			} else {
+				return "http://cdn.phanime.com/images/site/na.gif";
+			}
 		} else {
-			return "http://cdn.phanime.com/images/site/na.gif";
+			if (this.coverImage) {
+				return "http://cdn.phanime.com/images/anime/cover/" + this.coverImage;
+			} else {
+				return "http://cdn.phanime.com/images/site/na.gif";
+			}
 		}		
 	},
 	title: function() {

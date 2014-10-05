@@ -92,13 +92,32 @@ Meteor.methods({
 				// We'll just throw it in the createAnimeObject method to generate the default fields
 				var animeObject = Anime.createAnimeObject(revision.content);
 
+				// Ensure uniqueness
+				var titleCheck = Anime.findOne({canonicalTitle: animeObject.canonicalTitle});
+				var slugCheck = Anime.findOne({slug: animeObject.slug});
 
-				Anime.insert(animeObject, function(error, _id) {
-					console.log(_id);
+				var uniqueCondition;
 
-					if (error) 
-						throw new Meteor.Error(403, error.reason);
-				});
+				if (titleCheck || slugCheck) {
+					uniqueCondition = false;
+				} else {
+					uniqueCondition = true;
+				}
+
+				if (uniqueCondition) {
+
+					var animeId = Anime.insert(animeObject);
+
+					if (animeId) {
+						Meteor.call("uploadImageFromUrl", animeObject.coverImage, 'anime', 'cover', animeId, function(error, result) {
+							console.log(error);
+						});
+					}
+
+					return animeId;
+				} else {
+					throw new Meteor.Error(403, 'Anime is not unique');
+				}
 			}
 
 

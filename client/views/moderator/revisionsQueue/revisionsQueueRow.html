@@ -18,8 +18,19 @@
 
 			<div class="row">
 				<div class="col-sm-12">
-					<button type="button" class="btn btn-primary approveRevision">Approve Revision</button>
-					<button type="button" class="btn btn-danger declineRevision">Decline Revision</button>
+
+					{{#if reopenButton}}
+						<button type="button" class="btn btn-info reopenRevision">Re-Open Revision</button>
+					{{/if}}
+
+					{{#if approveButton}}
+						<button type="button" class="btn btn-primary approveRevision">Approve Revision</button>
+					{{/if}}
+
+					{{#if declineButton}}
+						<button type="button" class="btn btn-danger declineRevision">Decline Revision</button>
+					{{/if}}
+
 				</div>
 			</div>
 		</td> 
