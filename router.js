@@ -132,8 +132,13 @@ var routerBeforeHooks = {
 			this.render('permissionDenied');
 			pause();
 		}
+	},
+	isModerator: function(pause) {
+		if (!(Meteor.loggingIn() || Meteor.user().isModerator())) {
+			this.render('permissionDenied');
+			pause();
+		}
 	}, 
-
 	landingPage: function(pause) {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
 			this.render('landing');
@@ -179,6 +184,11 @@ Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 
 // These routes need admin permissions 
 Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'charactersAdd', 'peopleAdd', 'studiosAdd', 'staffMembersAdd', 'castingsAdd']});
+
+
+// These routes need moderator permissions 
+Router.onBeforeAction(routerBeforeHooks.isModerator, {only: ['revisionsQueue']});
+
 
 // Removes the search right before the route changes (typically)
 Router.onStop(routerOnStopHooks.removeSearch);
