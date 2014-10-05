@@ -110,7 +110,9 @@ Meteor.methods({
 
 					if (animeId) {
 						Meteor.call("uploadImageFromUrl", animeObject.coverImage, 'anime', 'cover', animeId, function(error, result) {
-							throw new Meteor.Error(403, error.reason);
+							if (error) {
+								throw new Meteor.Error(403, error.reason);
+							}
 						});
 					}
 
