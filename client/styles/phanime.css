@@ -977,7 +977,7 @@ textarea {
 	transition: all 0.3s ease-in-out;	
 }
 
-.anime-card.library-entry .progress {
+.anime-card .progress {
 	position: absolute;
 	z-index: 1;
 	top: 0;

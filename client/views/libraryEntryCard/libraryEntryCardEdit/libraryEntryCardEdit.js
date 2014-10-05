@@ -45,7 +45,7 @@ Template.libraryEntryCardEdit.events({
 
 				LibraryEntries.update({_id: libraryEntry._id}, {$set: {
 					status: status, 
-					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null),
+					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : libraryEntry.episodesSeen),
 					updatedAt: new Date(),
 				}});
 

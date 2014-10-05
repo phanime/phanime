@@ -10,7 +10,9 @@
 			<div class="banner-gradient"></div>
 
 			{{#if libraryEntry}}
-				{{> libraryEntryCardEdit}}
+				{{#with libraryEntry}}
+					{{> libraryEntryCardEdit}}
+				{{/with}}
 			{{else}}
 				{{> libraryEntryCardAdd}}
 			{{/if}}				

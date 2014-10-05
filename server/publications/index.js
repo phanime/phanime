@@ -47,8 +47,15 @@ Meteor.publishComposite('indexCurrentUser', function() {
 				find: function(user) {
 					var animeIds = _.pluck(user.recommendedAnime, 'animeId');
 					// Limit to 12 recommendations for now
-					return Anime.find({_id: {$in: animeIds}}, {fields: requireCollectionFields.anime.imageAndTitle, limit: 12});
-				}
+					return Anime.find({_id: {$in: animeIds}}, {fields: requireCollectionFields.anime.requiredLibraryEntry, limit: 12});
+				},
+				children: [
+					{
+						find: function(anime, user) {
+							return LibraryEntries.find({userId: user._id, animeId: anime._id});
+						}
+					}
+				]
 			},
 			{
 				find: function(user) {
@@ -57,7 +64,7 @@ Meteor.publishComposite('indexCurrentUser', function() {
 				children: [
 					{
 						find: function(libraryEntry, user) {
-							return Anime.find({_id: libraryEntry.animeId});
+							return Anime.find({_id: libraryEntry.animeId}, {fields: requireCollectionFields.anime.requiredLibraryEntry});
 						}
 					}
 				]
