@@ -21,5 +21,17 @@ Template.animeCardProxy.coverImageUrlProxy = function() {
 Template.animeCardProxy.titleProxy = function() {
 	// For the time being we just choose
 	// the standard title
+
+	var anime = Template.instance().data;
+
 	return anime.canonicalTitle;
+};
+
+
+Tmeplate.animeCardProxy.libraryEntryProxy = function() {
+
+	var anime = Template.instance().data;
+
+	return LibraryEntries.findOne({userId: Meteor.userId(), animeId: anime._id});
+
 }
