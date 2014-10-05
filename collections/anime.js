@@ -23,6 +23,9 @@ Anime.helpers({
 		// For the time being we just choose
 		// the standard title
 		return this.canonicalTitle;
+	},
+	libraryEntry: function() {
+		return LibraryEntries.findOne({animeId: this._id, userId: Meteor.userId()});
 	}
 
 });

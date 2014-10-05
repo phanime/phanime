@@ -991,7 +991,7 @@ textarea {
 }
 
 
-	.anime-card.library-entry:hover .libraryEntryForm {
+	.anime-card:hover .libraryEntryForm {
 		opacity: 1;
 	}
 
