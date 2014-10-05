@@ -36,6 +36,10 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
+					{{#if currentUser.isModerator}}
+						<li><a title="Revisions Queue" href="{{pathFor 'revisionsQueue'}}"><i class="fa fa-files-o"></i></a></li>
+					{{/if}}
+
 					{{#if currentUser}}
 						<li><a id="searchGlobal"><i style="cursor: pointer" class="fa fa-search"></i></a></li>
 						<li class="dropdown content-dropdown-wrapper">
