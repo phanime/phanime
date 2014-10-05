@@ -110,9 +110,25 @@ Meteor.methods({
 
 					if (animeId) {
 						Meteor.call("uploadImageFromUrl", animeObject.coverImage, 'anime', 'cover', animeId, function(error, result) {
-							console.log(error);
+							throw new Meteor.Error(403, error.reason);
 						});
 					}
+
+
+					// If the revisions's status was declined before, then we should remove a point from revisionsDeclinedCount and add one to revisionsApprovedCount 
+
+					if (revision.status === 'Declined') {
+						// Remove a point from declined count since we're actually making this revision approved now
+						Meteor.users.update({_id: revision.userId}, {$inc: {revisionDeclinedCount: -1}});
+					}
+
+					// Update the user's positive scoring
+					Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
+
+
+					// We also update the revision's status to Approved here
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+
 
 					return animeId;
 				} else {
@@ -123,8 +139,31 @@ Meteor.methods({
 
 
 		}
+	
+	},
 
+	revisionDeclined: function(revision) {
+		// Increase the declined revision count first
+		Meteor.users.update({_id: revision.userId}, {$inc: {revisionDeclinedCount: 1}});
 
+		// Update the revision's status to declined
+		Revisions.update({_id: revision._id}, {$set: {status: "Declined", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+	},
+
+	revisionReopen: function(revision) {
+		// Increase the declined revision count first
+
+		// if the revision was declined before, we should remove a point from declined count, since we're re-opening it.
+		if (revision.status === 'Declined') {
+			Meteor.users.update({_id: revision.userId}, {$inc: {revisionDeclinedCount: -1}});
+		} else if (revision.status === 'Approved') {
+			// You can't Open an Approved revision, however, if that functionality is ever added 
+			// this will remove 1 from approved count
+			Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: -1}});
+		}
+
+		// Update the revision's status to declined
+		Revisions.update({_id: revision._id}, {$set: {status: "Open", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
 
 	}
 });

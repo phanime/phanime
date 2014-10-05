@@ -70,27 +70,38 @@ Template.revisionsQueueRow.events({
 
 		});
 
-		// We also update the revision's status to Approved here
-		Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
-
 	},
 
 	'click .declineRevision' : function(event, template) {
 
 		var revision = template.data;
 
-		// We update the revision's status to Declined here
-		Revisions.update({_id: revision._id}, {$set: {status: "Declined", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+		Meteor.call('revisionDeclined', revision, function(error, result) {
 
+			if (error) {
+				Notifications.error('Revision couldn\'t be declined', error.reason);
+			} else {
+				Notifications.success('Revision declined', 'Revision was successfully declined, you can make changes to it.');
+			}
+
+
+		});
 
 	},
 	'click .reopenRevision' : function(event, template) {
 
 		var revision = template.data;
 
-		// We update the revision's status to Declined here
-		Revisions.update({_id: revision._id}, {$set: {status: "Open", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+		Meteor.call('revisionReopen', revision, function(error, result) {
 
+			if (error) {
+				Notifications.error('Revision couldn\'t be re-opened', error.reason);
+			} else {
+				Notifications.success('Revision re-opened', 'Revision was successfully re-opened, you can make changes to it.');
+			}
+
+
+		});
 	}
 
 });
