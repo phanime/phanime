@@ -103,7 +103,15 @@ Meteor.publishComposite("animeBySlug", function(animeSlug) {
 			{
 				find: function(anime) {
 					return Reviews.find({animeId: anime._id});
-				}
+				},
+				children: [
+					{
+						find: function(review, anime) {
+							return Meteor.users.find({_id: review.userId});
+						}
+					}
+
+				]
 			}
 
 		]
