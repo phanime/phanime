@@ -38,6 +38,17 @@ EasySearch.createSearchIndex('anime', {
 	'query' : function(searchString) {
 		var query = EasySearch.getSearcher('mongo-db').defaultQuery(this, searchString);
 		return query;
+	},
+	'changeResults' : function (results) {
+		// We should attach libraryEntries to anime if the user exists
+
+		if (Meteor.userId()) {
+			results.results.forEach(function(anime) {
+				anime.libraryEntry = LibraryEntries.findOne({userId: Meteor.userId(), animeId: anime._id});
+			});
+		}
+
+		return results;
 	}
 });
 
@@ -372,14 +383,17 @@ AnimeRevisionsSchema = new SimpleSchema({
 	},
 	myAnimeListId: {
 		type: String,
+		label: "MyAnimeList ID",
 		optional: true
 	},
 	animeNewsNetworkId: {
 		type: String,
+		label: "AnimeNewsNetwork ID",
 		optional: true
 	},
 	anidbId: {
 		type: String,
+		label: "aniDB ID",
 		optional: true
 	}
 });

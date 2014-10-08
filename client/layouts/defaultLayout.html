@@ -1,6 +1,10 @@
 <template name="defaultLayout">
 	{{> header}}
-		{{> yield}}
+
+	{{> globalNotice}}
+
+	{{> yield}}
+
 	{{> footer}}
 
 	{{#if isSearchingGlobal}}

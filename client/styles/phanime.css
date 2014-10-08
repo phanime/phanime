@@ -285,6 +285,17 @@ textarea {
 	letter-spacing: 0.5px;
 }
 
+.global-notice {
+	padding: 20px;
+	font-size: 30px;
+	background-color: #ccc;
+	color: #fff;
+}
+
+	.global-notice a {
+		color: #ccc;
+	}
+
 .footer {
 	background-color: #575757;
 	color: #fff;
