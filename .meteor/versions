@@ -51,8 +51,10 @@ manuelschoebel:ms-seo@0.3.0
 matteodem:easy-search@1.1.0
 meteor-platform@1.1.1
 meteor@1.1.1
+meteorhacks:async@1.0.0
 meteorhacks:kadira-binary-deps@1.2.0
 meteorhacks:kadira@2.11.2
+meteorhacks:npm@1.2.0
 minifiers@1.1.0
 minimongo@1.0.3
 mizzao:bootstrap-3@3.2.0_1
@@ -63,6 +65,7 @@ mongo-livedata@1.0.5
 mongo@1.0.6
 mrt:moment@2.6.0
 npm-bcrypt@0.7.7
+npm-container@1.0.0
 observe-sequence@1.0.2
 ordered-dict@1.0.0
 percolatestudio:synced-cron@0.3.0

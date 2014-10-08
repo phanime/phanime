@@ -6,3 +6,8 @@ UI.registerHelper("formatDateFromNow", function(date) {
 	return moment(date).fromNow();
 });
 
+
+
+UI.registerHelper("formatDateUTC", function(date) {
+	return moment(date).utc().format("MMM Do, YYYY");
+});

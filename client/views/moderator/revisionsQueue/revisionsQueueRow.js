@@ -87,6 +87,13 @@ Template.revisionsQueueRow.events({
 
 		});
 
+		// Meteor.call('uploadImageFromUrl', revision.content.coverImage, 'anime', 'cover', 'somerandomID', function(error, result) {
+
+		// 	console.log(error);
+		// 	console.log(result);
+
+		// });
+
 	},
 	'click .reopenRevision' : function(event, template) {
 

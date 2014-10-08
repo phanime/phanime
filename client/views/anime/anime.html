@@ -18,7 +18,7 @@
 						{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
 						{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
 						{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
-						<li>{{airingText}} {{formatDateDefault startDate}} to {{#if isMomentDatePresent endDate}}{{formatDateDefault endDate}}{{else}} - {{/if}}</li>
+						<li>{{airingText}} {{formatDateUTC startDate}} to {{#if isMomentDatePresent endDate}}{{formatDateUTC endDate}}{{else}} - {{/if}}</li>
 					</ul>
 
 					<div class="description thin-text">{{description}}</div>
@@ -176,7 +176,7 @@
 								<tr class="thin-text">
 									<td>{{episodeNumber}}</td>
 									<td>{{#if episodeTitle}} {{episodeTitle}} {{else}} -- {{/if}}</td>
-									<td>{{#if isMomentDatePresent airDate}} {{formatDateDefault airDate}} {{else}} -- {{/if}}</td>
+									<td>{{#if isMomentDatePresent airDate}} {{formatDateUTC airDate}} {{else}} -- {{/if}}</td>
 								</tr>
 							{{/each}}
 						</tbody>

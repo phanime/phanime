@@ -2,7 +2,7 @@ Meteor.methods({
 	revisionsAnimeAdd: function(anime) {
 
 		// Ensure integerity of data
-		check(anime, AnimeSchema);
+		check(anime, AnimeRevisionsSchema);
 
 		// Get auto values
 		anime.slug = getSlug(anime.canonicalTitle);
@@ -39,7 +39,10 @@ Meteor.methods({
 	},
 	revisionsAnimeUpdate: function(anime) {
 
-		// If revision is an Addition, we need to check for uniqueness
+		// Ensure integerity of data
+		check(anime, AnimeRevisionsSchema);
+
+		// If revision is an Addition (updated), we need to check for uniqueness
 
 		// if anime._id exists than this anime already is in the database
 		// in which case this is a revision, else it's an addition (updated)
@@ -109,6 +112,7 @@ Meteor.methods({
 					var animeId = Anime.insert(animeObject);
 
 					if (animeId) {
+						console.log('we\'re about to upload the image');
 						Meteor.call("uploadImageFromUrl", animeObject.coverImage, 'anime', 'cover', animeId, function(error, result) {
 							if (error) {
 								throw new Meteor.Error(403, error.reason);

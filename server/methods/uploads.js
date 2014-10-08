@@ -71,7 +71,7 @@ Meteor.methods({
 
 	uploadImageFromUrl: function(url, contentDirectory, typeDirectory, contentId) {
 		var options;
-		var request = Npm.require('request');
+		var request = Meteor.npmRequire('request');
 
 		options = {
 			uri: url,
@@ -132,10 +132,11 @@ Meteor.methods({
 					} else {
 						console.log('Successfully uploaded data to ' + params.Bucket + "/" + params.Key);
 
-						// Temporary for now, this ensures the document is updated only if the 
+						// Temporary for now, this ensures the document is updated only if the
 						// image was successfully uploaded
-						if (contentDirectory === 'anime', typeDirectory === 'cover') {
-							Anime.update({_id: contentId}, {$set: {coverImage: imageName}});
+						if (contentDirectory === 'anime' && typeDirectory === 'cover') {
+							var modifiedNumber = Anime.update({_id: contentId}, {$set: {coverImage: imageName}});
+							console.log(modifiedNumber);
 						}
 
 					}
