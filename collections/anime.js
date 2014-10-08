@@ -368,5 +368,17 @@ AnimeRevisionsSchema = new SimpleSchema({
 		autoform: {
 			rows: 10
 		}
+	},
+	myAnimeListId: {
+		type: String,
+		optional: true
+	},
+	animeNewsNetworkId: {
+		type: String,
+		optional: true
+	},
+	anidbId: {
+		type: String,
+		optional: true
 	}
 });
