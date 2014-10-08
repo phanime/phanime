@@ -1,7 +1,11 @@
 <template name="reviewCard">
 
 	<div class="block">
-		<div class="img img-sm avatar" style="background-image: url('{{user.avatarImageUrl}}')"></div>
+		{{#with user}}
+		<a href="{{pathFor 'user'}}">
+			<div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
+		</a>
+		{{/with}}
 
 		<h4 class="thin-text" style="margin:0">{{user.username}}</h4>
 		<h4 class="thin-text">{{overallRating}}</h4> 
