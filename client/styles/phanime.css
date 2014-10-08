@@ -286,14 +286,15 @@ textarea {
 }
 
 .global-notice {
-	padding: 20px;
-	font-size: 30px;
+	padding: 15px;
+	font-size: 25px;
 	background-color: #ccc;
 	color: #fff;
+	text-align: center;
 }
 
 	.global-notice a {
-		color: #ccc;
+		color: #8bc34a;
 	}
 
 .footer {

@@ -37,6 +37,61 @@ Meteor.methods({
 
 
 	},
+	revisionsAnimeAddEdit: function(anime) {
+
+		// The edited version of the anime is sent
+		check(anime, AnimeRevisionsSchema);
+		var oldAnime = Anime.findOne({_id: anime._id});
+		var uniqueCondition;
+
+		// if the canonicalTitle of the anime was changed...
+		if (anime.canonicalTitle !== oldAnime.canonicalTitle) {
+
+			// We'll need to regenerate the slug since the title changed
+			anime.slug = getSlug(anime.canonicalTitle);
+
+			// Ensure uniqueness
+			var titleCheck = Anime.findOne({canonicalTitle: anime.canonicalTitle});
+			var slugCheck = Anime.findOne({slug: anime.slug});
+
+
+			if (titleCheck || slugCheck) {
+				uniqueCondition = false;
+				throw new Meteor.Error(403, "The canonical title of the anime was found in our database");
+
+			} else {
+				uniqueCondition = true;
+			}
+
+		} else {
+			uniqueCondition = true;
+		}
+
+		// We also want to know if the coverImageChanged
+
+		if (anime.coverImage !== oldAnime.coverImage) {
+			// First of all this means that now coverImage contains a URL
+			// additionally we'll now use the new url format 
+			anime.newImageURLFormat = true;
+		}
+
+		// We want the anime to be unique and the user to be logged in
+		// before we add in the revision
+		if (uniqueCondition && Meteor.user()) {
+
+			var revisionAnime = Revisions.createRevisionObject('Anime', 'Revision', Meteor.user()._id, Meteor.user().username, anime);
+
+			// Insert the document into the database
+			Revisions.insert(revisionAnime, function(error, _id) {
+				console.log(_id);
+			});
+
+		}
+
+
+
+
+	},
 	revisionsAnimeUpdate: function(anime) {
 
 		// Ensure integerity of data

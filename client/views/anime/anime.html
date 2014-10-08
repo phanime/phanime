@@ -3,6 +3,7 @@
 <div class="container main-content">
 
 	{{> reviewAddModal}}
+	{{> revisionAnimeEditModal}}
 
 	<div class="row">
 		<div class="col-sm-12 block">
@@ -11,7 +12,9 @@
 					<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
 				</div>
 				<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
-					<h1 style="margin-top:0">{{title}}</h1>
+					<h1 style="margin-top:0">
+						{{title}} {{#if currentUser}}<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#revisionAnimeEditModal">Edit</button>{{/if}}
+					</h1>
 
 					<ul class="anime-info">
 						{{#if type}}<li>{{type}}</li>{{/if}}

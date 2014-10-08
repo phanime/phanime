@@ -1,0 +1,13 @@
+<template name="revisionAnimeEditModal">
+
+	<div class="modal fade" id="revisionAnimeEditModal" tabindex="-1" role="dialog" aria-labelledby="Add Revision" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body">
+					{{> revisionsAnimeUpdateForm currentAnime=this meteorMethod="revisionsAnimeAddEdit" buttonText="Commit Revision"}}
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>

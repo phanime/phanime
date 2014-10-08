@@ -1,8 +1,9 @@
 <template name="revisionsAnimeUpdateForm">
 
-	{{#autoForm schema="AnimeRevisionsSchema" doc=currentAnime id="updateRevisionsAnime" type="method" meteormethod="revisionsAnimeUpdate"}}
+	{{#autoForm schema="AnimeRevisionsSchema" doc=currentAnime id="updateRevisionsAnime" type="method" meteormethod=meteorMethod}}
 		{{> afQuickField name='revisionId' type="hidden"}}
 		{{> afQuickField name='coverImage' placeholder="Please provide a URL of the image"}}
+		<h5 class="sub-text" style="margin-top: -10px">You can replace the text with an image URL</h5>
 		{{> afQuickField name='canonicalTitle' placeholder="The standardized title of this anime (romaji or english)"}}
 		{{> afQuickField name='romajiTitle' placeholder="Romanized version of the title"}}
 		{{> afQuickField name='englishTitle' placeholder="Official english version of the title"}}
@@ -34,7 +35,7 @@
 
 		<div class="row">
 			<div class="col-sm-12">
-				<button type="submit" class="btn btn-info btn-beside">Update Revision</button>
+				<button type="submit" class="btn btn-info btn-beside">{{buttonText}}</button>
 			</div>
 		</div>
 
