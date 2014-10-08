@@ -28,7 +28,7 @@ Template.animeCardProxy.titleProxy = function() {
 };
 
 
-Tmeplate.animeCardProxy.libraryEntryProxy = function() {
+Template.animeCardProxy.libraryEntryProxy = function() {
 
 	var anime = Template.instance().data;
 
