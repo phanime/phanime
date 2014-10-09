@@ -229,6 +229,7 @@ Meteor.methods({
 				}
 			}
 
+			// These are for edits of existing anime
 			if (revision.type === 'Revision') {
 				// let's check if we need to do a unique check
 				// unique check is only necessary if the canonicalTitle exists
