@@ -46,6 +46,13 @@ Template.revisionsQueueRow.reopenButton = function() {
 	}
 };
 
+Template.revisionsQueueRow.revisionUpdateFormType = function(contentType, type) {
+	var template = Template.instance();
+	var revision = template.data;
+
+	return revision.type === type && revision.contentType === contentType;
+}
+
 
 Template.revisionsQueueRow.events({
 

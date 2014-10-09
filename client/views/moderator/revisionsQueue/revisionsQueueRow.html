@@ -11,7 +11,13 @@
 	<tr>
 		<td colspan="5">
 			<div style="padding: 0 10px; max-height: 400px; overflow-y: auto; overflow-x: hidden">
-				{{> revisionsAnimeUpdateForm currentAnime=content meteorMethod="revisionsAnimeUpdate" buttonText="Update Revision"}}
+				{{#if revisionUpdateFormType 'Anime' 'Addition'}}
+					{{> revisionsAnimeUpdateForm currentAnime=content meteorMethod="revisionsAnimeUpdate" buttonText="Update Revision" formId="updateRevisionsAnime"}}
+				{{/if}}
+
+				{{#if revisionUpdateFormType 'Anime' 'Revision'}}
+					{{> revisionAnimeUpdateEdit currentAnime=content meteorMethod="revisionAnimeUpdateEdit" buttonText="Update Revision" formId="revisionAnimeUpdateEdit"}}
+				{{/if}}
 			</div>
 
 			<hr>

@@ -249,6 +249,10 @@ AnimeSchema = new SimpleSchema({
 
 
 AnimeRevisionsSchema = new SimpleSchema({
+	_id: {
+		type: String,
+		optional: true
+	},
 	revisionId: {
 		type: String,
 		label: '',

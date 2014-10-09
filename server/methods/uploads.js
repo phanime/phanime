@@ -114,10 +114,10 @@ Meteor.methods({
 
 			var s3 = new AWS.S3();
 
-			s3.createBucket({Bucket: 'phanime'}, Meteor.bindEnvironment(function() {
+			s3.createBucket({Bucket: 'phanimedev'}, Meteor.bindEnvironment(function() {
 
 				var params = {
-					Bucket: 'phanime', 
+					Bucket: 'phanimedev', 
 					Key: key, 
 					Body: new Buffer(body, 'binary'),
 					ACL: 'public-read',

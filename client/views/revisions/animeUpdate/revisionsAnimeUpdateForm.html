@@ -1,6 +1,7 @@
 <template name="revisionsAnimeUpdateForm">
 
-	{{#autoForm schema="AnimeRevisionsSchema" doc=currentAnime id="updateRevisionsAnime" type="method" meteormethod=meteorMethod}}
+	{{#autoForm schema="AnimeRevisionsSchema" doc=currentAnime id=formId type="method" meteormethod=meteorMethod}}
+		{{> afQuickField name='_id' type="hidden"}}
 		{{> afQuickField name='revisionId' type="hidden"}}
 		{{> afQuickField name='coverImage' placeholder="Please provide a URL of the image"}}
 		<h5 class="sub-text" style="margin-top: -10px">You can replace the text with an image URL</h5>
