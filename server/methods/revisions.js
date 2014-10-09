@@ -51,8 +51,11 @@ Meteor.methods({
 		var changedAttributesAnime = {};
 		// Let's add anime entries that changed
 		for (var key in anime) {
-			if (!_.isEqual(anime[key], oldAnime[key]))
-				changedAttributesAnime[key] = anime[key];
+			if (anime.hasOwnProperty(key)) {
+				if (!_.isEqual(anime[key], oldAnime[key])) {
+					changedAttributesAnime[key] = anime[key];
+				}
+			}
 		}
 
 		// Add the _id, that can't change but we'll need it for staying connected with the anime 
