@@ -225,6 +225,12 @@ Meteor.methods({
 						});
 					}
 
+					// Update the user's positive scoring
+					Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
+
+
+					// We also update the revision's status to Approved here
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
 
 					return animeId;
 				} else {
@@ -282,6 +288,13 @@ Meteor.methods({
 						});					
 					}
 
+					// Update the user's positive scoring
+					Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
+
+
+					// We also update the revision's status to Approved here
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+
 				} else {
 					throw new Meteor.Error(403, 'Anime is not unique');
 				}
@@ -289,15 +302,6 @@ Meteor.methods({
 
 
 		}
-
-		console.log('Shit got here');
-
-		// Update the user's positive scoring
-		Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
-
-
-		// We also update the revision's status to Approved here
-		Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
 	
 	},
 
