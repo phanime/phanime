@@ -6,13 +6,9 @@ Anime.helpers({
 		// If revisionId exists then we're using the new upload system
 		// so we should use animeId in the url
 
-		console.log("http://cdn.phanime.com/images/anime/cover/" + this._id  + "/" + this.coverImage);
-		console.log(this.newImageURLFormat);
 
 		if (this.newImageURLFormat) {
 			if (this.coverImage) {
-				console.log("got here");
-				console.log("http://cdn.phanime.com/images/anime/cover/" + this._id  + "/" + this.coverImage);
 				return "http://cdn.phanime.com/images/anime/cover/" + this._id  + "/" + this.coverImage;
 			} else {
 				return "http://cdn.phanime.com/images/site/na.gif";

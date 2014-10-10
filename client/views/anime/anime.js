@@ -21,7 +21,7 @@ Template.anime.rendered = function() {
 Template.anime.airingText = function() {
 
 
-	if (moment(this.startDate).year() && moment(this.endDate).year()) {
+	if (this.startDate !== undefined && this.endDate !== undefined && moment(this.startDate).year() && moment(this.endDate).year()) {
 	
 		// Both dates are defined, now we just need to figure out if the anime is airing / going to air / finished airing
 
@@ -34,7 +34,7 @@ Template.anime.airingText = function() {
 			return "Aired from";
 		}
 
-	} else if (!moment(this.endDate).year()) {
+	} else if (!moment(this.endDate).year() || this.endDate === undefined) {
 
 		// Now we should check if there is a this.endDate field and if it's just not null
 		if (this.endDate) {

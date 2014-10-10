@@ -9,5 +9,8 @@ UI.registerHelper("formatDateFromNow", function(date) {
 
 
 UI.registerHelper("formatDateUTC", function(date) {
-	return moment(date).utc().format("MMM Do, YYYY");
+	if (date)
+		return moment(date).utc().format("MMM Do, YYYY");
+	else
+		return undefined;
 });
