@@ -56,11 +56,11 @@ Meteor.methods({
 
 		if (totalWeightedRatings > 0) {
 			// Calculate the weighted average
-			console.log(totalWeightedRatings);
-			console.log(totalWeight);
+			// console.log(totalWeightedRatings);
+			// console.log(totalWeight);
 			averageRating = totalWeightedRatings/totalWeight;
 
-			console.log("Average Rating for " + animeId + " : " + averageRating);
+			// console.log("Average Rating for " + animeId + " : " + averageRating);
 			// Update the anime with calculated ratings
 			Anime.update({_id: animeId}, {$unset: {ratingCount: ""}, $set: {rating: averageRating, totalRatings: totalRatings, ratingCounts: ratingCounts, ratingUpdatedAt: new Date()}});
 

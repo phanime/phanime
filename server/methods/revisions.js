@@ -285,11 +285,12 @@ Meteor.methods({
 				} else {
 					throw new Meteor.Error(403, 'Anime is not unique');
 				}
-
 			}
 
 
 		}
+
+		console.log('Shit got here');
 
 		// Update the user's positive scoring
 		Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});

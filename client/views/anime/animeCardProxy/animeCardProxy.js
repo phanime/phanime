@@ -1,7 +1,7 @@
 Template.animeCardProxy.coverImageUrlProxy = function() {
 	var anime = Template.instance().data;
 
-	if (anime.revisionId) {
+	if (anime.newImageURLFormat) {
 		if (anime.coverImage) {
 			return "http://cdn.phanime.com/images/anime/cover/" + anime._id  + "/" + anime.coverImage;
 		} else {
