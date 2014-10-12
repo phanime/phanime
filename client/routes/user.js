@@ -23,12 +23,12 @@ UserController = RouteController.extend({
 
 
 	waitOn: function () {
-		return Meteor.subscribe('userWithProfilePosts', this.params.username);
+		return Meteor.subscribe('userWithProfilePosts', this.params.username.toLowerCase());
 	},
 
 	data: function (pause) {
 
-		var user = Meteor.users.findOne({username: this.params.username});
+		var user = Meteor.users.findOne({username: this.params.username.toLowerCase()});
 		if (this.ready()) {
 
 			if (user) {

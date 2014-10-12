@@ -20,11 +20,11 @@ UserLibraryController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('userWithLibraryEntries', this.params.username);
+		return Meteor.subscribe('userWithLibraryEntries', this.params.username.toLowerCase());
 	},
 
 	data: function () {
-		var user = Meteor.users.findOne({username: this.params.username});
+		var user = Meteor.users.findOne({username: this.params.username.toLowerCase()});
 		
 		if (this.ready()) {
 			
