@@ -19,7 +19,7 @@ Meteor.publishComposite('userWithProfilePosts', function(username) {
 						// Publish the poster as well if it wasn't a status update
 						find: function(profilePost, user) {
 							if (profilePost.statusUpdate === false) {
-								return Meteor.users.find({_id: profilePost.posterId}, {fields: {username: 1, profile: 1}});
+								return Meteor.users.find({_id: profilePost.posterId}, {fields: requireCollectionFields.user.defaultFields});
 							}
 						}
 					},
@@ -36,7 +36,7 @@ Meteor.publishComposite('userWithProfilePosts', function(username) {
 								find: function(comment, profilePost, user) {
 									// Publish users if it isn't published 
 									if (comment.userId !== user._id && comment.userId !== profilePost.posterId) {
-										return Meteor.users.find({_id: comment.userId}, {fields: {username: 1, profile: 1}});
+										return Meteor.users.find({_id: comment.userId}, {fields: requireCollectionFields.user.defaultFields});
 									}
 								}
 							}
@@ -80,7 +80,7 @@ Meteor.publishComposite('userWithActivity', function(username) {
 							if (activity.type === 'post') {
 
 								if (activity.post.type === 'profilePost') {
-									return Meteor.users.find({_id: activity.post.posterId});
+									return Meteor.users.find({_id: activity.post.posterId}, {fields: requireCollectionFields.user.defaultFields});
 								}
 
 							}
@@ -136,7 +136,7 @@ Meteor.publishComposite('userWithFollowers', function(username) {
 			{
 				find: function(user) {
 					if (user.followers) {
-						return Meteor.users.find({_id: {$in: user.followers}});
+						return Meteor.users.find({_id: {$in: user.followers}}, {fields: requireCollectionFields.user.defaultFields});
 					}
 				}
 			}
@@ -156,7 +156,7 @@ Meteor.publishComposite('userWithFollowing', function(username) {
 			{
 				find: function(user) {
 					if (user.following) { 
-						return Meteor.users.find({_id: {$in: user.following}});
+						return Meteor.users.find({_id: {$in: user.following}}, {fields: requireCollectionFields.user.defaultFields});
 					}
 				}
 			}

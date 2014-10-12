@@ -12,8 +12,8 @@ requireCollectionFields = {
 		imageAndName: {coverImage: 1, firstName: 1, lastName: 1}
 	},
 	user: {
-		defaultFields: {username: 1, emails: 1, profile: 1},
-		defaultWithRecommended: {username: 1, emails: 1, profile: 1, recommendedAnime: 1}
+		defaultFields: {username: 1, emails: 1, profile: 1, originalUsername: 1},
+		defaultWithRecommended: {username: 1, emails: 1, profile: 1, originalUsername: 1, recommendedAnime: 1}
 	}
 
 
