@@ -26,7 +26,7 @@ Meteor.methods({
 		// before we add in the revision
 		if (uniqueCondition && Meteor.user()) {
 
-			var revisionAnime = Revisions.createRevisionObject('Anime', 'Addition', Meteor.user()._id, Meteor.user().username, anime);
+			var revisionAnime = Revisions.createRevisionObject('Anime', 'Addition', Meteor.user()._id, Meteor.user().originalUsername, anime);
 
 			// Insert the document into the database
 			Revisions.insert(revisionAnime, function(error, _id) {
@@ -103,7 +103,7 @@ Meteor.methods({
 
 			console.log(changedAttributesAnime);
 
-			var revisionAnime = Revisions.createRevisionObject('Anime', 'Revision', Meteor.user()._id, Meteor.user().username, changedAttributesAnime);
+			var revisionAnime = Revisions.createRevisionObject('Anime', 'Revision', Meteor.user()._id, Meteor.user().originalUsername, changedAttributesAnime);
 
 			// Insert the document into the database
 			Revisions.insert(revisionAnime, function(error, _id) {
@@ -230,7 +230,7 @@ Meteor.methods({
 
 
 					// We also update the revision's status to Approved here
-					Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
 
 					return animeId;
 				} else {
@@ -293,7 +293,7 @@ Meteor.methods({
 
 
 					// We also update the revision's status to Approved here
-					Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
 
 				} else {
 					throw new Meteor.Error(403, 'Anime is not unique');
@@ -310,7 +310,7 @@ Meteor.methods({
 		Meteor.users.update({_id: revision.userId}, {$inc: {revisionDeclinedCount: 1}});
 
 		// Update the revision's status to declined
-		Revisions.update({_id: revision._id}, {$set: {status: "Declined", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+		Revisions.update({_id: revision._id}, {$set: {status: "Declined", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
 	},
 
 	revisionReopen: function(revision) {
@@ -326,7 +326,7 @@ Meteor.methods({
 		}
 
 		// Update the revision's status to declined
-		Revisions.update({_id: revision._id}, {$set: {status: "Open", descicionByUsername: Meteor.user().username, descionByUserId: Meteor.user()._id}});
+		Revisions.update({_id: revision._id}, {$set: {status: "Open", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
 
 	}
 });
