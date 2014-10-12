@@ -7,11 +7,19 @@ Accounts.validateNewUser(function(user) {
 
 	// Check user name
 	if (user.username && user.username.length >= 3 && user.username.length <= 30) {
-		// Check that username doesn't have any spaces 
+		// Check that username doesn't have any spaces
 		if (usernameRegex.test(user.username)) {
 			isGood = true;
 		} else {
 			throw new Meteor.Error(403, "Username can only contain alphanumeric characters and underscores");
+		}
+
+		// Meteor already does this check, but we might as well do it before to make it easy for the user 
+		// to correct the username 
+		if (!Meteor.users.findOne({username: user.username.toLowerCase()})) {
+			isGood = true;
+		} else {
+			throw new Meteor.Error(403, "Username already exists");
 		}
 		
 	} else {
@@ -22,7 +30,7 @@ Accounts.validateNewUser(function(user) {
 	// Check email
 	var emailRegex = /\S+@\S+\.\S+/;
 
-	if (user.emails[0].address && emailRegex.test(user.emails[0].address)) {
+	if (user.emails && user.emails[0].address && emailRegex.test(user.emails[0].address)) {
 		isGood = true;
 	} else {
 		isGood = false;
@@ -32,8 +40,6 @@ Accounts.validateNewUser(function(user) {
 
 	// Check signup code
 	var requestedInvite = RequestedInvites.findOne({_id: user.profile.signUpCode, used: false});
-
-	console.log(user.profile.signUpCode);
 
 	if (!requestedInvite) {
 		// So we either couldn't find a code, or it's already used in which case 
@@ -52,6 +58,7 @@ Accounts.validateNewUser(function(user) {
 		RequestedInvites.update({_id: user.profile.signUpCode}, {$set: {used: true}});
 
 		return true;
+
 	}
 
 

@@ -44,11 +44,14 @@ EasySearch.createSearchIndex('anime', {
 	'changeResults' : function (results) {
 		// We should attach libraryEntries to anime if the user exists
 
-		if (Meteor.userId()) {
-			results.results.forEach(function(anime) {
-				anime.libraryEntry = LibraryEntries.findOne({userId: Meteor.userId(), animeId: anime._id});
-			});
-		}
+		// if (Meteor.userId()) {
+		// 	results.results.forEach(function(anime) {
+		// 		anime.libraryEntry = LibraryEntries.findOne({userId: Meteor.userId(), animeId: anime._id});
+		// 	});
+		// }
+
+		var ids = _.pluck(results.results, "_id");
+
 
 		return results;
 	}

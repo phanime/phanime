@@ -134,7 +134,7 @@ RESTstop.add('libraryEntries/:_id', { require_login: true, method: 'PUT' }, func
 
 		var response = {libraryEntry: LibraryEntries.findOne({_id: this.params._id, userId: this.user._id })};
 
-		return restAPIHelpers.returns.responseJSON(response);
+		return restAPIHelpers.returns.responseJSON(response, 201);
 
 
 	} else {
@@ -294,16 +294,17 @@ RESTstop.add('libraryEntries/:_id', { require_login: true, method: 'DELETE' }, f
 				success: false,
 				message: 'Library Entry was not removed'
 		};
+
+		return restAPIHelpers.returns.responseJSON(response, 500);
 		
 	} else {
 		response = {
 				success: true,
 				message: 'Library entry successfully removed'
 		};
+
+		return restAPIHelpers.returns.responseJSON(response, 200);
 	}
 
-
-
-	return restAPIHelpers.returns.responseJSON(response);
 
 });

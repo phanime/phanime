@@ -83,8 +83,11 @@ restAPIHelpers = {
 				message: 'Resource not unique'
 			}];			
 		},
-		responseJSON: function(response) {
-			return [200, {'Content-Type': 'application/json'}, response];
+		responseJSON: function(response, responseCode) {
+			if (responseCode)
+				return [responseCode, {'Content-Type': 'application/json'}, response];
+			else
+				return [200, {'Content-Type': 'application/json'}, response];
 		}
 	}
 };

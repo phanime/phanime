@@ -29,7 +29,7 @@ Template.landing.invitesLeft = function() {
 
 	if (obj.ready()) {
 		var count = RequestedInvites.find({used: true}).count();
-		var left = 474 - count;
+		var left = 480 - count;
 
 		if (left > 1) {
 			return "<span>" + left + "</span>" + " invites";

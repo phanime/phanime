@@ -1,5 +1,13 @@
 Meteor.users.helpers({
 
+	displayName: function() {
+		if (!this.displayUsername) {
+			return this.originalUsername;
+		} else {
+			return this.displayUsername;
+		}
+	},
+
 	avatarImageUrl: function() {
 		if (this.profile && this.profile.avatarImage) {
 			return "http://cdn.phanime.com/images/users/avatar/" + this._id + "/" + this.profile.avatarImage;
