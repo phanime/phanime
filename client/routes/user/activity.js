@@ -5,12 +5,12 @@ UserActivityController = RouteController.extend({
 			var user = this.data();
 
 			SEO.set({
-				title: siteSettings.getFullTitle(user.username + "'s Activity"),
+				title: siteSettings.getFullTitle(user.displayName() + "'s Activity"),
 				meta: {
 					'description' : user.profile.about
 				},
 				og: {
-					'title' : siteSettings.getFullTitle(user.username + "'s Activity"),
+					'title' : siteSettings.getFullTitle(user.displayName() + "'s Activity"),
 					'description' : user.profile.about,
 					'type' : 'profile',
 					'image' : user.avatarImageUrl(),

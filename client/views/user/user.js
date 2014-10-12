@@ -56,7 +56,7 @@ Template.user.rendered = function() {
 				plotShadow: false
 			},
 			title: {
-				text: self.data.username + "'s top genres"
+				text: self.data.displayName() + "'s top genres"
 			},
 			tooltip: {
 				pointFormat: '<b>{point.percentage:.1f}%</b>'

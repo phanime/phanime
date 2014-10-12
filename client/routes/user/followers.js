@@ -5,12 +5,12 @@ UserFollowersController = RouteController.extend({
 			var user = this.data();
 
 			SEO.set({
-				title: siteSettings.getFullTitle(user.username + "'s Followers"),
+				title: siteSettings.getFullTitle(user.displayName() + "'s Followers"),
 				meta: {
 					'description' : user.profile.about
 				},
 				og: {
-					'title' : siteSettings.getFullTitle(user.username + "'s Library"),
+					'title' : siteSettings.getFullTitle(user.displayName() + "'s Library"),
 					'description' : user.profile.about,
 					'type' : 'profile',
 					'image' : user.avatarImageUrl(),

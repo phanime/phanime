@@ -3,7 +3,9 @@ Template.signIn.events({
 		event.preventDefault();
 		// Get input
 
-		var identification = $('#identification').val();
+		// We are using toLowerCase to ensure any version of the username will 
+		// log the user in.
+		var identification = $('#identification').val().toLowerCase();
 		var password = $('#password').val();
 
 
@@ -42,7 +44,7 @@ Template.signIn.events({
 					// eventually lead to the index route
 
 					
-					window.location = "http://community.phanime.com/session/sso?return_path=http://phanime.com/";
+					// window.location = "http://community.phanime.com/session/sso?return_path=http://phanime.com/";
 
 
 				}
