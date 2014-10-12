@@ -1,10 +1,12 @@
 Meteor.users.helpers({
 
 	displayName: function() {
-		if (!this.displayUsername) {
+		if (this.displayUsername) {
+			return this.displayUsername;
+		} else if (this.originalUsername) {
 			return this.originalUsername;
 		} else {
-			return this.displayUsername;
+			return this.username;
 		}
 	},
 
