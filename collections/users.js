@@ -24,10 +24,10 @@ Meteor.users.helpers({
 
 	},
 	isAdmin: function() {
-		return this.username === 'Maaz' || this.username === 'Lovabelle';
+		return this.username === 'maaz' || this.username === 'lovabelle';
 	},
 	isModerator: function() {
-		return this.username === 'Maaz' || this.username === 'Lovabelle';
+		return this.username === 'maaz' || this.username === 'lovabelle';
 	},
 	followerCount: function() {
 		if (this.followers)
