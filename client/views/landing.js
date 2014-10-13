@@ -1,3 +1,9 @@
+Template.landing.rendered = function() {
+
+	$('.blur-image').spoilerAlert({max: 12, partial: 12, unspoil: false});
+
+};
+
 Template.landing.landingImage = function() {
 
 		var gifs = [

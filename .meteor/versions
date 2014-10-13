@@ -47,13 +47,14 @@ logging@1.0.3
 maazalik:discourse-sso@0.2.0
 maazalik:highcharts@0.2.2
 maazalik:malihu-jquery-custom-scrollbar@0.0.1
+maazalik:spoiler-alert@1.0.0
 manuelschoebel:ms-seo@0.3.0
-matteodem:easy-search@1.1.4
+matteodem:easy-search@1.1.3
 meteor-platform@1.1.1
 meteor@1.1.1
 meteorhacks:async@1.0.0
 meteorhacks:kadira-binary-deps@1.2.0
-meteorhacks:kadira@2.11.9
+meteorhacks:kadira@2.11.6
 meteorhacks:npm@1.2.0
 minifiers@1.1.0
 minimongo@1.0.3
