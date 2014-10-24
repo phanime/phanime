@@ -1,10 +1,14 @@
 <template name="reviewCard">
 
-	<div class="block">
+	<div class="block reviewCard-wrapper">
 		{{#with user}}
 		<a href="{{pathFor 'user'}}">
 			<div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
 		</a>
+		{{/with}}
+
+		{{#with urlObject}}
+			<a class="review-link" href="{{pathFor 'animeReview'}}">Read review</a>
 		{{/with}}
 
 		<h4 class="thin-text" style="margin:0">{{user.displayName}}</h4>

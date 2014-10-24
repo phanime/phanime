@@ -1,0 +1,9 @@
+.reviewCard-wrapper {
+	position: relative;
+}
+
+.reviewCard-wrapper a.review-link {
+	position: absolute;
+	right: 20px;
+	color: #888;
+}
