@@ -10,6 +10,10 @@
 	margin-bottom: 30px;
 }
 
+.review-wrapper .summary-wrapper {
+	/*box-shadow: 1px 5px 2px rgba(0,0,0,0.5);*/
+}
+
 .review-wrapper .summary {
 	font-size: 16px;
 	font-style: italic;
@@ -23,11 +27,20 @@
 .review-wrapper .ratings {
 	text-align: center;
 	margin: 20px 0;
+	background-color: #EEE;
+	margin: -20px;
+	margin-top: 20px;
 }
 
 
 	.review-wrapper .ratings > .item-block {
-		font-size: 16px;		
+		font-size: 16px;
+		margin-top: 15px;
+		margin-bottom: 15px;		
+	}
+
+	.review-wrapper .ratings > .item-block:last-child {
+		color: #8bc34a;
 	}
 
 	.review-wrapper .ratings > .item-block > .rating-value {
