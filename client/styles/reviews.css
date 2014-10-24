@@ -1,0 +1,14 @@
+.review-wrapper {
+	color: #757575;
+}
+
+
+.review-wrapper > .summary {
+	font-size: 16px;
+	font-style: italic;
+	margin-bottom: 10px;
+}
+
+/*.review-wrapper > .content {
+	color: #757575;
+}*/

@@ -2,22 +2,24 @@ AnimeReviewController = RouteController.extend({
 	
 
 	onAfterAction: function () {
-		// if (this.ready()) {
-		// 	var review = this.data();
+		if (this.ready()) {
+			var review = Reviews.findOne({_id: this.params._id});
+			var anime = Anime.findOne({_id: review.animeId});
+			var user = Meteor.users.findOne({_id: review.userId});
 
-		// 	SEO.set({
-		// 		title: siteSettings.getFullTitle(character.fullName()),
-		// 		meta: {
-		// 			'description' : character.biography
-		// 		},
-		// 		og: {
-		// 			'title' : siteSettings.getFullTitle(character.fullName()),
-		// 			'description' : character.biography,
-		// 			'type' : 'review',
-		// 			'image' : character.coverImageUrl(),
-		// 		}
-		// 	});
-		// }
+			SEO.set({
+				title: siteSettings.getFullTitle(anime.canonicalTitle + " Review by " + user.displayName()),
+				meta: {
+					'description' : review.summary
+				},
+				og: {
+					'title' : siteSettings.getFullTitle(anime.canonicalTitle + " Review by " + user.displayName()),
+					'description' : review.summary,
+					'type' : 'review',
+					'image' : anime.coverImageUrl(),
+				}
+			});
+		}
 	},
 
 	waitOn: function () {
@@ -26,34 +28,13 @@ AnimeReviewController = RouteController.extend({
 
 	data: function () {
 
-		console.log("Finished");
-
-		// console.log(this.data())
-		// var character = Characters.findOne({_id: this.params._id});
-
-		// if (this.ready()) {
-
-		// 	if (character) {
-		// 		character.castings = Castings.find({characterId: character._id}).fetch();
-		// 		var animeIds = [];
-		// 		var peopleIds = [];
-		// 		character.castings.forEach(function(casting) {
-
-		// 			animeIds.push(casting.animeId);
-		// 			peopleIds.push(casting.personId);
-
-		// 		});
-
-		// 		character.anime = Anime.find({_id: {$in: animeIds}});
-		// 		character.people = People.find({_id: {$in: peopleIds}});
-
-		// 		return character;
-		// 	} else {
-		// 		this.render('fourOhFour');
-		// 	}
-
-		// }
-
+		if (this.ready()) {
+			var review = Reviews.findOne({_id: this.params._id});
+			review.anime = Anime.findOne({_id: review.animeId});
+			review.user = Meteor.users.findOne({_id: review.userId});
+		
+			return review;
+		}
 	}
 
 });
