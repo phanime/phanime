@@ -1,18 +1,64 @@
 <template name="animeReview">
 
-	<div class="container main-content">
+	<div class="container main-content review-wrapper">
 
 
-		<div class="block review-wrapper">
+		<h1 class="centered-text thin-text">
+			{{#with anime}}<a href="{{pathFor 'anime'}}">{{title}}</a>{{/with}} Review by 
+			{{#with user}}<a href="{{pathFor 'user'}}">{{displayName}}</a>{{/with}}
+		</h1>
 
-			<div class="summary">
+		<div class="block">
+
+			<div class="summary centered-text">
 				{{summary}}
 			</div>
 
-			<div class="content">
-				{{content}}
+			<div class="ratings row">
+
+				<div class="item-block col-sm-4 col-lg-2">
+					<span class="rating-value">{{animationRating}}</span>
+					<hr>
+					<span class="text">Animation</span>
+				</div>
+
+				<div class="item-block col-sm-4 col-lg-2">
+					<span class="rating-value">{{characterRating}}</span>
+					<hr>
+					<span class="text">Character Development</span>
+				</div>
+
+				<div class="item-block col-sm-4 col-lg-2">
+					<span class="rating-value">{{storyRating}}</span>
+					<hr>
+					<span class="text">Story</span>
+				</div>
+
+				<div class="item-block col-sm-4 col-lg-2">
+					<span class="rating-value">{{soundRating}}</span>
+					<hr>
+					<span class="text">Sound</span>
+				</div>
+
+				<div class="item-block col-sm-4 col-lg-2">
+					<span class="rating-value">{{enjoymentRating}}</span>
+					<hr>
+					<span class="text">Enjoyment</span>
+				</div>
+
+				<div class="item-block col-sm-4 col-lg-2">
+					<span class="rating-value">{{overallRating}}</span>
+					<hr>
+					<span class="text">Overall</span>
+				</div>
+
 			</div>
 
+			<hr>
+
+			<div class="content description">
+				{{content}}
+			</div>
 
 
 		</div>

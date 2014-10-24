@@ -2,13 +2,38 @@
 	color: #757575;
 }
 
+.review-wrapper a {
+	color: #888;
+}
 
-.review-wrapper > .summary {
+.review-wrapper > h1 {
+	margin-bottom: 30px;
+}
+
+.review-wrapper .summary {
 	font-size: 16px;
 	font-style: italic;
 	margin-bottom: 10px;
 }
 
-/*.review-wrapper > .content {
-	color: #757575;
-}*/
+.review-wrapper .content {
+	font-size: 14px;
+}
+
+.review-wrapper .ratings {
+	text-align: center;
+	margin: 20px 0;
+}
+
+
+	.review-wrapper .ratings > .item-block {
+		font-size: 16px;		
+	}
+
+	.review-wrapper .ratings > .item-block > .rating-value {
+		font-size: 20px;	
+	}
+
+	.review-wrapper .ratings > .item-block > hr {
+		width: 70%;
+	}
