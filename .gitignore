@@ -1,5 +1,9 @@
 # Ignore any local packages that are being developed
-/packages/
+/packages/*
+
+# Include these packages (as core)
+!/packages/npm-container/
+!/packages/maazalik:discourse-sso/
 
 # Ignore private site settings api keys
 /server/privateSiteSettings.js
