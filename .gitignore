@@ -3,7 +3,7 @@
 
 # Include these packages (as core)
 !/packages/npm-container/
-!/packages/maazalik:discourse-sso/
+!/packages/maazalik:spoiler-alert/
 
 # Ignore private site settings api keys
 /server/privateSiteSettings.js
