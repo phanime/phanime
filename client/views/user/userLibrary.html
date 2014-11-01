@@ -62,7 +62,7 @@
 							{{> UI.dynamic template="libraryEntryRow" data=this}}
 						{{else}}
 							<tr>
-								<td colspan="4"><h5 class="thin-text centered-text">{{../username}} is not watching any anime</h5></td>
+								<td colspan="4"><h5 class="thin-text centered-text">{{../displayName}} is not watching any anime</h5></td>
 							</tr>
 						{{/each}}
 
@@ -78,7 +78,7 @@
 							{{> UI.dynamic template="libraryEntryRow" data=this}}
 						{{else}}
 							<tr>
-								<td colspan="4"><h5 class="thin-text centered-text">{{../username}} hasn't completed any anime</h5></td>
+								<td colspan="4"><h5 class="thin-text centered-text">{{../displayName}} hasn't completed any anime</h5></td>
 							</tr>
 						{{/each}}
 
@@ -95,7 +95,7 @@
 							{{> UI.dynamic template="libraryEntryRow" data=this}}
 						{{else}}
 							<tr>
-								<td colspan="4"><h5 class="thin-text centered-text">{{../username}} has no plans to watch any anime</h5></td>
+								<td colspan="4"><h5 class="thin-text centered-text">{{../displayName}} has no plans to watch any anime</h5></td>
 							</tr>
 						{{/each}}
 
@@ -112,7 +112,7 @@
 							{{> UI.dynamic template="libraryEntryRow" data=this}}
 						{{else}}
 							<tr>
-								<td colspan="4"><h5 class="thin-text centered-text">{{../username}} hasn't put any anime on hold</h5></td>
+								<td colspan="4"><h5 class="thin-text centered-text">{{../displayName}} hasn't put any anime on hold</h5></td>
 							</tr>
 						{{/each}}
 
@@ -128,7 +128,7 @@
 							{{> UI.dynamic template="libraryEntryRow" data=this}}
 						{{else}}
 							<tr>
-								<td colspan="4"><h5 class="thin-text centered-text">{{../username}} hasn't dropped any anime</h5></td>
+								<td colspan="4"><h5 class="thin-text centered-text">{{../displayName}} hasn't dropped any anime</h5></td>
 							</tr>
 						{{/each}}
 
@@ -152,7 +152,7 @@
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
 					{{else}}
 						<div class="col-sm-12">
-							<h3 class="thin-text sub-text">{{../username}} is not watching any anime</h3>
+							<h3 class="thin-text sub-text">{{../displayName}} is not watching any anime</h3>
 						</div>
 					{{/each}}
 				</div>
@@ -169,7 +169,7 @@
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
 					{{else}}
 						<div class="col-sm-12">
-							<h3 class="thin-text sub-text">{{../username}} hasn't completed any anime</h3>
+							<h3 class="thin-text sub-text">{{../displayName}} hasn't completed any anime</h3>
 						</div>
 					{{/each}}
 				</div>
@@ -187,7 +187,7 @@
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
 					{{else}}
 						<div class="col-sm-12">
-							<h3 class="thin-text sub-text">{{../username}} has no plans to watch any anime</h3>
+							<h3 class="thin-text sub-text">{{../displayName}} has no plans to watch any anime</h3>
 						</div>
 					{{/each}}
 				</div>
@@ -204,7 +204,7 @@
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
 					{{else}}
 						<div class="col-sm-12">
-							<h3 class="thin-text sub-text">{{../username}} hasn't put any anime on hold</h3>
+							<h3 class="thin-text sub-text">{{../displayName}} hasn't put any anime on hold</h3>
 						</div>
 					{{/each}}
 				</div>
@@ -220,7 +220,7 @@
 						{{> UI.dynamic template="libraryEntryCard" data=this}}
 					{{else}}
 						<div class="col-sm-12">
-							<h3 class="thin-text sub-text">{{../username}} hasn't dropped any anime</h3>
+							<h3 class="thin-text sub-text">{{../displayName}} hasn't dropped any anime</h3>
 						</div>
 					{{/each}}
 				</div>
