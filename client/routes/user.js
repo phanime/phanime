@@ -28,6 +28,11 @@ UserController = RouteController.extend({
 
 	data: function (pause) {
 
+		// Meteor.call('getMALUserList', 'faeronsayn', function(err, result) {
+		// 	console.log(result);
+		// 	console.log
+		// });
+
 		var user = Meteor.users.findOne({username: this.params.username.toLowerCase()});
 		if (this.ready()) {
 
