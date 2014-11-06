@@ -71,6 +71,7 @@ npm-container@1.0.0
 observe-sequence@1.0.3
 ordered-dict@1.0.1
 percolatestudio:synced-cron@1.0.0
+phanime:mal-import@1.0.0
 raix:http-methods@1.0.0
 random@1.0.1
 reactive-dict@1.0.4
