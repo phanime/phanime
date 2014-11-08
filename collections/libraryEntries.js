@@ -106,7 +106,7 @@ LibraryEntries.allowedValuesChecker = {
 	highPriority: function(libraryEntry) {
 		return libraryEntry.highPriority === true || libraryEntry.highPriority === false;
 	},
-	rewatching: function(rewatching) {
+	rewatching: function(libraryEntry) {
 		return libraryEntry.rewatching === true || libraryEntry.rewatching === false;
 	},
 	updatedAt: function(libraryEntry) {
