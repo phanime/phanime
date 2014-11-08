@@ -13,29 +13,28 @@ LibraryEntries.verifyLibraryEntry = function(libraryEntry) {
 	var verificationCheck = true;
 
 	// Check that required fields exist
+	// console.log(libraryEntry);
 
 	if (libraryEntry.userId && libraryEntry.type && libraryEntry.animeId && libraryEntry.status) {
 
 		// Check required fields against schema as well as any additional fields
 		for (var key in libraryEntry) {
 
-			// If we get even one field that doesn't pass the validation
-			// we'll set verificationCheck to false and break out of the for .. in loop
-			if (LibraryEntries.allowedValuesCHecker[key](libraryEntry) === false) {
-				verificationCheck = false;
-				break;
+			// Ignore the anime helper that's added 
+			if (key !== 'anime') {
+
+				// If we get even one field that doesn't pass the validation
+				// we'll set verificationCheck to false and break out of the for .. in loop
+				if (LibraryEntries.allowedValuesChecker[key](libraryEntry) === false) {
+					verificationCheck = false;
+					break;
+				}
+
 			}
 
 		}
 
-
-		// Lets do a unique check before we create the libraryEntry 
-		// we'll set the verificationCheck to false if the entry is not 
-		// unique
-		if (LibraryEntries.generalHelper.uniqueEntry(libraryEntry) === false) {
-			verificationCheck = false;
-		}
-
+		// console.log(verificationCheck);
 		return verificationCheck;
 
 
@@ -49,12 +48,31 @@ LibraryEntries.verifyLibraryEntry = function(libraryEntry) {
 };
 
 LibraryEntries.allowedValuesChecker = {
+	_id: function(libraryEntry) {
+		// Assumption is that this is created by Meteor automatically
+		// since we can invoke this helper at any time before the creation
+		// of _id by meteor.
+		return true;
+	},
+	userId: function(libraryEntry) {
+		// Ensure the userId in the libraryEntry
+		// is equal to the userId of the logged in 
+		// user
+		if (libraryEntry.userId === Meteor.userId()) {
+			return true;
+		} else {
+			return false;
+		}
+	},
 	animeId: function(libraryEntry) {
 		if (Anime.findOne({_id: libraryEntry.animeId})) {
 			return true;
 		} else {
 			return false;
 		}
+	},
+	type: function(libraryEntry) {
+		return (libraryEntry.type === 'anime' || libraryEntry.type === 'manga'); 
 	},
 	status: function(libraryEntry) {
 		return ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped'].indexOf(libraryEntry.status) > -1;
@@ -69,16 +87,17 @@ LibraryEntries.allowedValuesChecker = {
 	},
 	episodesSeen: function(libraryEntry) {
 		var anime = Anime.findOne({_id: libraryEntry.animeId});
+		// console.log((libraryEntry.episodesSeen === null) || (libraryEntry.episodesSeen % 1 === 0) && (libraryEntry.episodesSeen >= 1 && libraryEntry.episodesSeen <= anime.totalEpisodes));
 		if (anime.totalEpisodes && anime.totalEpisodes > 0) {
 			// If anime total episodes exist then check that episodesSeen
 			// is an integer value as well as ensure that it's lower than 
 			// the total anime episodes value.
-			return (libraryEntry.episodesSeen % 1 === 0) && (libraryEntry.episodesSeen >= 1 && libraryEntry.episodesSeen <= anime.totalEpisodes);
+			return (libraryEntry.episodesSeen === null) || (libraryEntry.episodesSeen % 1 === 0) && (libraryEntry.episodesSeen >= 1 && libraryEntry.episodesSeen <= anime.totalEpisodes);
 		} else {
 			// if anime total episodes don't exist 
 			// then just check that episodes seen
 			// is an integer value and is greater than 1
-			return libraryEntry.episodesSeen % 1 === 0 && libraryEntry.episodesSeen >= 1;
+			return (libraryEntry.episodesSeen === null) || libraryEntry.episodesSeen % 1 === 0 && libraryEntry.episodesSeen >= 1;
 		}
 	},
 	privacy: function(libraryEntry) {
@@ -89,6 +108,12 @@ LibraryEntries.allowedValuesChecker = {
 	},
 	rewatching: function(rewatching) {
 		return libraryEntry.rewatching === true || libraryEntry.rewatching === false;
+	},
+	updatedAt: function(libraryEntry) {
+		return (libraryEntry.updatedAt !== undefined);
+	},
+	createdAt: function(libraryEntry) {
+		return (libraryEntry.createdAt !== undefined);
 	}
 };
 
@@ -120,12 +145,25 @@ LibraryEntries.allow({
 	insert: function(userId, libraryEntry) {
 		// the user must be logged in, and the library entry must be created by the user
 		// Additionally the library entry must pass validation
-		return (LibraryEntries.verifyLibraryEntry(libraryEntry) && (userId && libraryEntry.userId === userId);
+		// We'll do a unique check in insert function as well
+		return LibraryEntries.generalHelpers.uniqueEntry(libraryEntry) && (LibraryEntries.verifyLibraryEntry(libraryEntry) && (userId && libraryEntry.userId === userId));
 	},
-	update: function(userId, doc, fields, modifier) {
+	update: function(userId, libraryEntry, fields, modifier) {
 
 		// can only change your own library entries
-		return doc.userId === userId;
+		// validate fields to ensure that the libraryEntries
+		// still follow the schema
+
+		// temporary solution since the libraryEntry that's being sent in
+		// by meteor doesn't seem to have the updated fields set.. so we'll
+		// take the updated fields from the modifier and update their values 
+		// in the libraryEntry
+		for (var key in modifier['$set']) {
+			libraryEntry[key] = modifier['$set'][key];
+		}
+
+
+		return (LibraryEntries.verifyLibraryEntry(libraryEntry) && (libraryEntry.userId === userId));
 
 	},
 	remove: function(userId, doc) {
