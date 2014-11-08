@@ -117,9 +117,10 @@ LibraryEntries.generalHelpers = {
 
 LibraryEntries.allow({
 
-	insert: function(userId, doc) {
+	insert: function(userId, libraryEntry) {
 		// the user must be logged in, and the library entry must be created by the user
-		return (userId && doc.userId === userId);
+		// Additionally the library entry must pass validation
+		return (LibraryEntries.verifyLibraryEntry(libraryEntry) && (userId && libraryEntry.userId === userId);
 	},
 	update: function(userId, doc, fields, modifier) {
 
