@@ -13,7 +13,7 @@ Meteor.methods({
 			// This is an array of anime in the user's list
 			var anime = result.myanimelist.anime;
 
-			// console.log(result.myanimelist.anime);
+			console.log(result.myanimelist.anime);
 
 			anime.forEach(function(anime, index, array) {
 				var seriesTitle = anime.series_title[0];

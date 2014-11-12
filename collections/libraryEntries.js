@@ -18,20 +18,18 @@ LibraryEntries.verifyLibraryEntry = function(libraryEntry) {
 	if (libraryEntry.userId && libraryEntry.type && libraryEntry.animeId && libraryEntry.status) {
 
 		// Check required fields against schema as well as any additional fields
+
 		for (var key in libraryEntry) {
-
-			// Ignore the anime helper that's added 
-			if (key !== 'anime') {
-
+			// Only verify the exact object without any
+			// inherited properties
+			if (libraryEntry.hasOwnProperty(key)) {
 				// If we get even one field that doesn't pass the validation
 				// we'll set verificationCheck to false and break out of the for .. in loop
 				if (LibraryEntries.allowedValuesChecker[key](libraryEntry) === false) {
 					verificationCheck = false;
 					break;
 				}
-
 			}
-
 		}
 
 		// console.log(verificationCheck);
@@ -126,7 +124,7 @@ LibraryEntries.generalHelpers = {
 		}
 	},
 	schemaCheck: function(libraryEntry) {
-		var fields = ['_id', 'userId', 'animeId', 'status', 'comments', 'rating', 'episodesSeen', 'privacy', 'highPriority', 'rewatching', 'updatedAt', 'createdAt'];
+		var fields = ['_id', 'userId', 'type', 'animeId', 'status', 'comments', 'rating', 'episodesSeen', 'privacy', 'highPriority', 'rewatching', 'updatedAt', 'createdAt'];
 
 		for (var key in libraryEntry) {
 			if (fields.indexOf(key) === -1) {
