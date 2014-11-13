@@ -26,6 +26,7 @@ LibraryEntries.verifyLibraryEntry = function(libraryEntry) {
 				// If we get even one field that doesn't pass the validation
 				// we'll set verificationCheck to false and break out of the for .. in loop
 				if (LibraryEntries.allowedValuesChecker[key](libraryEntry) === false) {
+					console.log(key + " failed verification");
 					verificationCheck = false;
 					break;
 				}
@@ -176,6 +177,16 @@ LibraryEntries.allow({
 			libraryEntry[key] = modifier['$set'][key];
 		}
 
+		// For now, if libraryEntries don't have a createdAt field just add it 
+		if (!libraryEntry.createdAt)
+			libraryEntry.createdAt = new Date();
+
+		// if type doesn't exists add it 
+		if (!libraryEntry.type)
+			libraryEntry.type = 'anime';
+
+
+		console.log(LibraryEntries.verifyLibraryEntry(libraryEntry));
 
 		return (LibraryEntries.verifyLibraryEntry(libraryEntry) && (libraryEntry.userId === userId));
 

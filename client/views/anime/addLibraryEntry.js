@@ -46,11 +46,17 @@ Template.addLibraryEntry.events({
 			// But make sure the status is different
 			if (status !== currentEntry.status) {
 
-				LibraryEntries.update({_id: currentEntry._id}, {$set: {
+				var updateEntry = {
 					status: status, 
-					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null),
 					updatedAt: new Date(),
-				}});
+				}
+
+				if (anime.totalEpisodes > 0 && status === 'Completed')
+					updateEntry.episodesSeen = anime.totalEpisodes;
+
+
+				LibraryEntries.update({_id: currentEntry._id}, {$set: updateEntry});
+
 				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated to ' + status);
 			} else {
 				console.log('Statuses same, don\'t update');
@@ -67,16 +73,18 @@ Template.addLibraryEntry.events({
 				type: 'anime',
 				animeId: anime._id,
 				status: status,
-				episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null),
 				createdAt: new Date(),
+				updatedAt: new Date()
 			};
 
-			LibraryEntries.insert(currentEntry, function(error, result) {
-				console.log(error);
-				console.log(result);
-			});
 
-			// create a new entry with the specified status
+			if (anime.totalEpisodes > 0 && status === 'Completed')
+				currentEntry.episodesSeen = anime.totalEpisodes;
+
+			LibraryEntries.insert(currentEntry, function(error, result) {
+				if (error)
+					Notifications.error('Library Entry creation failed', error.reason);
+			});
 		}
 	}
 
