@@ -64,12 +64,13 @@ Router.map(function () {
 
 
 	/////////////////////////////////////////////////
-	///////////////////// User //////////////////////
+	/////////////////// Account /////////////////////
 	/////////////////////////////////////////////////
 
 	this.route('accountPersonalDetails', {path: '/account/personal-details', layoutTemplate: 'accountLayout'});
 	this.route('accountSecurity', {path: '/account/security', layoutTemplate: 'accountLayout'});
 	this.route('accountPreferences', {path: '/account/preferences', layoutTemplate: 'accountLayout'});
+	this.route('accountImports', {path: '/account/imports', layoutTemplate: 'accountLayout'});
 
 	/////////////////////////////////////////////////
 	/////////////////// Revisions ///////////////////

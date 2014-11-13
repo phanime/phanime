@@ -28,6 +28,11 @@ Meteor.methods({
 				"4":'Dropped'
 			};
 
+
+			// Loops through all the anime it finds and adds 
+			// them to your current library entries if they 
+			// exist, it will not update your current library
+			// entries!
 			anime.forEach(function(anime, index, array) {
 				var seriesTitle = anime.series_title[0];
 				var seriesId = anime.series_animedb_id[0];
@@ -114,7 +119,6 @@ Meteor.methods({
 
 				// 	});
 				// });
-
 			});
 
 
