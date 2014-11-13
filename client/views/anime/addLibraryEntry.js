@@ -27,8 +27,6 @@ Template.addLibraryEntry.events({
 		// need to examine this further, for now
 		// we'll do with the .join
 		var status = $(this).toArray().join('');
-		
-		console.log(Meteor.userId());
 
 		// Set the current library entry (could be undefined)
 		var currentEntry = template.data.libraryEntry;

@@ -186,8 +186,6 @@ LibraryEntries.allow({
 			libraryEntry.type = 'anime';
 
 
-		console.log(LibraryEntries.verifyLibraryEntry(libraryEntry));
-
 		return (LibraryEntries.verifyLibraryEntry(libraryEntry) && (libraryEntry.userId === userId));
 
 	},

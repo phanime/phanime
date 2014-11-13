@@ -1,7 +1,7 @@
 Meteor.methods({
 	
 
-	getMALUserList: function(username) {
+	getMALUserList: function(username, xmlContent) {
 
 		// The user must be logged in for this function
 		if (!Meteor.user())
@@ -9,24 +9,35 @@ Meteor.methods({
 
 		var xml2js = Npm.require('xml2js');
 		var parseString = xml2js.parseString;
-		var result = HTTP.call("GET", "http://myanimelist.net/malappinfo.php?u=" + username + "&status=all&type=anime");
-	
-		var list = result.content;
+		// var result = HTTP.call("GET", "http://myanimelist.net/malappinfo.php?u=" + username + "&status=all&type=anime");
 
-		// console.log(result.content);
+		// var list = result.content;
 
-		parseString(list, function(error, result) {
+		parseString(xmlContent, function(error, result) {
+
+			console.log(error);
+			if (result === undefined)
+				throw new Meteor.Error('mal-import-failed', 'Unable to get user\'s MAL list');
 			
 			// This is an array of anime in the user's list
 			var anime = result.myanimelist.anime;
 
+			// var statusMap = {
+			// 	"1":'Watching',
+			// 	"2":'Completed',
+			// 	"3":'On hold',
+			// 	"6":'Plan to watch',
+			// 	"4":'Dropped'
+			// };
+
+
 			var statusMap = {
-				"1":'Watching',
-				"2":'Completed',
-				"3":'On hold',
-				"6":'Plan to watch',
-				"4":'Dropped'
-			};
+				"Watching":'Watching',
+				"Completed":'Completed',
+				"On-Hold":'On hold',
+				"Plan to Watch":'Plan to watch',
+				"Dropped":'Dropped'				
+			}
 
 
 			// Loops through all the anime it finds and adds 
@@ -41,11 +52,11 @@ Meteor.methods({
 				var startDate = anime.my_start_date[0];
 				var finishDate = anime.my_finish_date[0];
 				var score = anime.my_score[0];
-				// status gives a number, we need to map this 
+				// status is slightly different, we need to map this 
 				// to a specific status
 				var status = anime.my_status[0];
 				var rewatching = anime.my_rewatching[0];
-				var lastUpdated = anime.my_last_updated[0];
+				var comments = anime.my_comments[0];
 
 
 				// Make a call here to phanime's database to check if the anime exists
@@ -72,6 +83,11 @@ Meteor.methods({
 					if (parseInt(episodesSeen) > 0)
 						libraryEntry.episodesSeen = parseInt(episodesSeen);
 
+					// we'll take a truncated version of the comments
+					// if they exist
+					if (comments.length > 0)
+						libraryEntry.comments = comments.substr(0, 140);
+
 					if (rewatching == 1) {
 						libraryEntry.rewatching = true;
 					} else {
@@ -97,9 +113,6 @@ Meteor.methods({
 					}
 
 				}
-
-
-
 				// If the anime doesn't exist then we should make a call to MyAnimeList's API to grab the anime 
 				// and add it to the database.
 				// var resultSearch = HTTP.call("GET", "http://myanimelist.net/api/anime/search.xml?q=" + seriesTitle, {auth: malAPIAuth.username + ":" + malAPIAuth.password});
@@ -120,8 +133,6 @@ Meteor.methods({
 				// 	});
 				// });
 			});
-
-
 		});
 	}
 
