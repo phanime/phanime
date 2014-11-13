@@ -45,6 +45,22 @@ LibraryEntries.verifyLibraryEntry = function(libraryEntry) {
 
 };
 
+LibraryEntries.buildEntry = function(libraryEntry) {
+
+
+	if (LibraryEntries.verifyLibraryEntry(libraryEntry) === true) {
+		libraryEntry.createdAt = new Date();
+		libraryEntry.updatedAt = new Date();
+	} else {
+		return false;
+	}
+
+
+	return libraryEntry;
+
+
+}
+
 LibraryEntries.allowedValuesChecker = {
 	_id: function(libraryEntry) {
 		// Assumption is that this is created by Meteor automatically
