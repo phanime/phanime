@@ -44,7 +44,7 @@ Template.signIn.events({
 					// eventually lead to the index route
 
 					
-					// window.location = "http://community.phanime.com/session/sso?return_path=http://phanime.com/";
+					window.location = "http://community.phanime.com/session/sso?return_path=http://phanime.com/";
 
 
 				}
