@@ -15,9 +15,12 @@ Meteor.methods({
 
 		parseString(xmlContent, function(error, result) {
 
-			console.log(error);
 			if (result === undefined)
 				throw new Meteor.Error('mal-import-failed', 'Unable to get user\'s MAL list');
+		
+
+			if (result.myanimelist === undefined || result.myanimelist.anime === undefined) 
+				throw new Meteor.Error('mal-import-failed', 'File format doesn\'t look right');
 			
 			// This is an array of anime in the user's list
 			var anime = result.myanimelist.anime;
@@ -45,6 +48,13 @@ Meteor.methods({
 			// exist, it will not update your current library
 			// entries!
 			anime.forEach(function(anime, index, array) {
+
+				// if a weird file was given or the file format doesn't match
+				// we'll throw an error
+				if (!anime.series_title || !anime.series_animedb_id || !anime.my_watched_episodes || !anime.my_start_date || !anime.my_finish_date || !anime.my_score || !anime.my_status || !anime.my_rewatching || !anime.my_comments)
+					throw new Meteor.Error('mal-import-failed', 'XML file format is different then expected');
+
+
 				var seriesTitle = anime.series_title[0];
 				var seriesId = anime.series_animedb_id[0];
 
