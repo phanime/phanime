@@ -1,7 +1,7 @@
 Meteor.methods({
 	
 
-	getMALUserList: function(username, xmlContent) {
+	getMALUserList: function(xmlContent) {
 
 		// The user must be logged in for this function
 		if (!Meteor.user())
