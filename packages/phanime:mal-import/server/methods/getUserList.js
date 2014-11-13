@@ -79,13 +79,13 @@ Meteor.methods({
 					}
 
 
-					console.log(libraryEntry);
+					// console.log(libraryEntry);
 					if (LibraryEntries.verifyLibraryEntry(libraryEntry) == true && LibraryEntries.generalHelpers.uniqueEntry(libraryEntry) == true) {
 						// Once the libraryEntry goes through the verification
 						// and is unique
 						var libraryEntryReady = LibraryEntries.buildEntry(libraryEntry);
 
-						console.log(libraryEntryReady);
+						// console.log(libraryEntryReady);
 
 						LibraryEntries.insert(libraryEntryReady, function(error, result) {
 							console.log(error);

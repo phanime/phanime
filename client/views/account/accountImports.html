@@ -1,7 +1,21 @@
 <template name="accountImports">
 
 	<div class="block" style="margin-top:0">
-		Test
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+				<div class="form-group">
+					<h3 class="sub-text">Import your MAL list</h3>
+				</div>
+				<div class="form-group">
+					<input id="malUsername" type="text" class="form-control" placeholder="MAL username" />
+				</div>
+				<div class="form-group">
+					<button id="importMal" class="btn btn-primary btn-md btn-transparent btn-full-width">Import MAL</button>
+				</div>
+
+				<p class="sub-text">Note: This function will only import anime entries from your MAL list. Additionally, it'll only add entries that have existing anime in phanime's database, it will ignore the rest. If an entry already exists in your phanime library, then it'll ignore that as well.</p>
+			</div>
+		</div>
 	</div>
 
 </template>
