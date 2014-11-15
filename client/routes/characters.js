@@ -7,6 +7,7 @@ CharactersController = RouteController.extend({
 				'description' : 'Explore the all the characters related to anime shows on phanime'
 			}
 		});
+		this.next();
 	},
 
 	waitOn: function () {

@@ -6,6 +6,8 @@ SignOutController = RouteController.extend({
 				Router.go('index');
 			}
 		});
+
+		this.next();
 	}
 
 });

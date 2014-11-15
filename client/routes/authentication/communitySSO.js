@@ -37,6 +37,9 @@ CommunitySSOController = RouteController.extend({
 			// If the user isn't logged in then we should copy the params and send them to the signIn route
 			Router.go('signIn', {}, {query: {sso: params.sso, sig: params.sig}}); 
 		}
+
+
+		this.next();
 	}
 
 });

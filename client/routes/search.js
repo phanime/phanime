@@ -4,6 +4,7 @@ SearchController = RouteController.extend({
 		SEO.set({
 			title: siteSettings.getFullTitle("Search")
 		});
+		this.next();
 	},
 
 	// waitOn: function () {

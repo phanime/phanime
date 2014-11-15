@@ -42,8 +42,6 @@ LibraryEntries.verifyLibraryEntry = function(libraryEntry) {
 		// Some of the required fields are missing, the libraryEntry object is not valid!
 		return false;
 	}
-
-
 };
 
 LibraryEntries.buildEntry = function(libraryEntry) {

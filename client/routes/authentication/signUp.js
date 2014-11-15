@@ -7,6 +7,8 @@ SignUpController = RouteController.extend({
 				'title' : siteSettings.getFullTitle("Sign Up"),
 			}
 		});
+
+		this.next();
 	}
 
 });

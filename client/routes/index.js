@@ -7,6 +7,7 @@ IndexController = RouteController.extend({
 				'description' : 'Phanime is a platform made specifically for anime fans'
 			}
 		});
+		this.next();
 	},	
 
 	waitOn: function () {

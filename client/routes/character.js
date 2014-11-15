@@ -1,9 +1,5 @@
 CharacterController = RouteController.extend({
 	
-	// onBeforeAction: function () {
-	// 	console.log('Thing are going well');
-	// },
-
 	onAfterAction: function () {
 		if (this.ready()) {
 			var character = this.data();

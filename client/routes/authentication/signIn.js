@@ -7,6 +7,8 @@ SignInController = RouteController.extend({
 				'title' : siteSettings.getFullTitle("Sign In"),
 			}
 		});
+
+		this.next();
 	},
 	data: function() {
 		return {

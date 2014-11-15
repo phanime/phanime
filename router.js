@@ -116,57 +116,67 @@ Router.map(function () {
 // I use an object that contains all before hooks
 var routerBeforeHooks = {
 
-	isLoggedIn: function(pause) {
+	isLoggedIn: function() {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
 			Router.go('signIn');
+		} else {
+			this.next();
 		}
 	},
 
-	isAlreadyLoggedIn: function(pause) {
+	isAlreadyLoggedIn: function() {
 		if (Meteor.user()) {
 			Router.go('index');
+		} else {
+			this.next();
 		}
 	},
 
-	isAdmin: function(pause) {
+	isAdmin: function() {
 		if (!(Meteor.loggingIn() || Meteor.user().isAdmin())) {
 			this.render('permissionDenied');
-			pause();
+		} else {
+			this.next();
 		}
 	},
-	isModerator: function(pause) {
+	isModerator: function() {
 		if (!(Meteor.loggingIn() || Meteor.user().isModerator())) {
 			this.render('permissionDenied');
-			pause();
+		} else {
+			this.next();
 		}
 	}, 
-	landingPage: function(pause) {
+	landingPage: function() {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
 			this.render('landing');
-			pause();
+		} else {
+			this.next();
 		}		
 	},
 
 	// remove the search template / set sesion variable to false
-	removeSearch: function(pause) {
+	removeSearch: function() {
 		Session.set('isSearchingGlobal', false);
+		this.next();
 	},
 
 	// We want to ensure that when a new page loads
 	// we have it scrolled all the way to the top
 	scrollUp: function() {
 		$('body, html').scrollTop(0);
+		this.next();
 	},
 	animateContentIn: function() {
 		$('.container.main-content').addClass("animated fadeIn fateInRight");
 		$('footer').removeClass("hide");
+		this.next();
 	}
 };
 
 
 var routerOnStopHooks = {
 	// remove the search template / set sesion variable to false
-	removeSearch: function(pause) {
+	removeSearch: function() {
 		Session.set('isSearchingGlobal', false);
 	}	
 }
