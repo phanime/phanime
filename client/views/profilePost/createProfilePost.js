@@ -45,5 +45,4 @@ Template.createProfilePost.events({
 
 		}
 	}
-
 });

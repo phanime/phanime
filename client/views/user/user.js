@@ -87,10 +87,10 @@ Template.user.rendered = function() {
 };
 
 
-Template.user.topGenresChartObject = function() {
+Template.user.helpers({
+	topGenresChartObject: function() {
+		var template = Template.instance();
+		return template.topGenresChartObject.get();
 
-
-	var template = Template.instance();
-	return template.topGenresChartObject.get();
-
-};
+	}
+});

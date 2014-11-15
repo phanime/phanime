@@ -6,114 +6,6 @@ Template.userLibrary.created = function() {
 };
 
 
-Template.userLibrary.activeLibraryView = function(libraryView) {
-	var template = Template.instance();
-	var currentLibraryView = template.libraryView.get();
-
-	if (currentLibraryView === libraryView) {
-		return 'active';
-	} else {
-		return '';
-	}	
-};
-
-Template.userLibrary.coverViewDisabled = function() {
-	var template = Template.instance();
-	var entries = template.data.libraryEntries;
-
-	// If we have more than 100 entries, then we shouldn't allow to switch to cover
-	if (entries.length > 100) {
-		return 'disabled';
-	} else {
-		return '';
-	}
-}
-
-Template.userLibrary.libraryViewCheck = function(libraryView) {
-	var template = Template.instance();
-	var currentLibraryView = template.libraryView.get();
-
-	return currentLibraryView === libraryView;
-
-};
-
-
-Template.userLibrary.activeStatusFilter = function(status) {
-	var template = Template.instance();
-	var statusFilter = template.statusFilter.get();
-
-	if (statusFilter === status) {
-		return 'active';
-	} else {
-		return '';
-	}
-};
-
-Template.userLibrary.statusFilterCheck = function(status) {
-	var template = Template.instance();
-	var statusFilter = template.statusFilter.get();
-
-	if (statusFilter === 'All') {
-		return true;
-	}
-
-	return statusFilter === status;
-};
-
-Template.userLibrary.recentlyAdded = function(template) {
-	if (this) {
-		return {
-			entries: LibraryEntries.find({userId: this._id}, {sort: {createdAt: -1}, limit: 6})
-		};
-	}
-};
-
-Template.userLibrary.watching = function(template) {
-	if (this) {
-		return {
-			entries: LibraryEntries.find({userId: this._id, status: 'Watching'}),
-			count: LibraryEntries.find({userId: this._id, status: 'Watching'}).count()
-		};
-	}
-};
-
-Template.userLibrary.completed = function() {
-	if (this) {
-		return {
-			entries: LibraryEntries.find({userId: this._id, status: 'Completed'}),
-			count: LibraryEntries.find({userId: this._id, status: 'Completed'}).count()
-		};
-	}	
-};
-
-Template.userLibrary.planToWatch = function() {
-	if (this) {
-		return {
-			entries: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}),
-			count: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}).count()
-		};
-	}
-};
-
-Template.userLibrary.onHold = function() {
-	if (this) {
-		return {
-			entries: LibraryEntries.find({userId: this._id, status: 'On hold'}),
-			count: LibraryEntries.find({userId: this._id, status: 'On hold'}).count()
-		};
-	}	
-};
-
-Template.userLibrary.dropped = function() {
-	if (this) {
-		return {
-			entries: LibraryEntries.find({userId: this._id, status: 'Dropped'}),
-			count: LibraryEntries.find({userId: this._id, status: 'Dropped'}).count()
-		};
-	}
-};
-
-
 Template.userLibrary.events({
 
 	'click .statusFilter > button' : function(event, template) {
@@ -127,5 +19,113 @@ Template.userLibrary.events({
 
 		template.libraryView.set(libraryView);
 	}
+});
 
+Template.userLibrary.helpers({
+	activeLibraryView: function(libraryView) {
+		var template = Template.instance();
+		var currentLibraryView = template.libraryView.get();
+
+		if (currentLibraryView === libraryView) {
+			return 'active';
+		} else {
+			return '';
+		}	
+	},
+
+	coverViewDisabled: function() {
+		var template = Template.instance();
+		var entries = template.data.libraryEntries;
+
+		// If we have more than 100 entries, then we shouldn't allow to switch to cover
+		if (entries.length > 100) {
+			return 'disabled';
+		} else {
+			return '';
+		}
+	},
+
+	libraryViewCheck: function(libraryView) {
+		var template = Template.instance();
+		var currentLibraryView = template.libraryView.get();
+
+		return currentLibraryView === libraryView;
+
+	},
+
+
+	activeStatusFilter: function(status) {
+		var template = Template.instance();
+		var statusFilter = template.statusFilter.get();
+
+		if (statusFilter === status) {
+			return 'active';
+		} else {
+			return '';
+		}
+	},
+
+	statusFilterCheck: function(status) {
+		var template = Template.instance();
+		var statusFilter = template.statusFilter.get();
+
+		if (statusFilter === 'All') {
+			return true;
+		}
+
+		return statusFilter === status;
+	},
+
+	recentlyAdded: function(template) {
+		if (this) {
+			return {
+				entries: LibraryEntries.find({userId: this._id}, {sort: {createdAt: -1}, limit: 6})
+			};
+		}
+	},
+
+	watching: function(template) {
+		if (this) {
+			return {
+				entries: LibraryEntries.find({userId: this._id, status: 'Watching'}),
+				count: LibraryEntries.find({userId: this._id, status: 'Watching'}).count()
+			};
+		}
+	},
+
+	completed: function() {
+		if (this) {
+			return {
+				entries: LibraryEntries.find({userId: this._id, status: 'Completed'}),
+				count: LibraryEntries.find({userId: this._id, status: 'Completed'}).count()
+			};
+		}	
+	},
+
+	planToWatch: function() {
+		if (this) {
+			return {
+				entries: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}),
+				count: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}).count()
+			};
+		}
+	},
+
+	onHold: function() {
+		if (this) {
+			return {
+				entries: LibraryEntries.find({userId: this._id, status: 'On hold'}),
+				count: LibraryEntries.find({userId: this._id, status: 'On hold'}).count()
+			};
+		}	
+	},
+
+	dropped: function() {
+		if (this) {
+			return {
+				entries: LibraryEntries.find({userId: this._id, status: 'Dropped'}),
+				count: LibraryEntries.find({userId: this._id, status: 'Dropped'}).count()
+			};
+		}
+	}
 });

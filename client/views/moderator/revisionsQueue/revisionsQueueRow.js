@@ -3,57 +3,6 @@ Template.revisionsQueueRow.created = function() {
 };
 
 
-Template.revisionsQueueRow.isExpanded = function() {
-	return Template.instance().isExpanded.get();
-};
-
-
-Template.revisionsQueueRow.approveButton = function() {
-
-	var template = Template.instance();
-	var revision = template.data;
-
-	if (revision.status === "Open" || revision.status === "Declined") {
-		return true;
-	} else {
-		return false;
-	}
-};
-
-
-Template.revisionsQueueRow.declineButton = function() {
-
-	var template = Template.instance();
-	var revision = template.data;
-
-	if (revision.status === "Open") {
-		return true;
-	} else {
-		return false;
-	}
-
-};
-
-
-Template.revisionsQueueRow.reopenButton = function() {
-	var template = Template.instance();
-	var revision = template.data;
-
-	if (revision.status === "Declined") {
-		return true;
-	} else {
-		return false;
-	}
-};
-
-Template.revisionsQueueRow.revisionUpdateFormType = function(contentType, type) {
-	var template = Template.instance();
-	var revision = template.data;
-
-	return revision.type === type && revision.contentType === contentType;
-}
-
-
 Template.revisionsQueueRow.events({
 
 	'click tr.queueRow' : function(event, template) {
@@ -118,4 +67,49 @@ Template.revisionsQueueRow.events({
 		});
 	}
 
+});
+
+Template.revisionsQueueRow.helpers({
+	isExpanded: function() {
+		return Template.instance().isExpanded.get();
+	},
+	approveButton: function() {
+
+		var template = Template.instance();
+		var revision = template.data;
+
+		if (revision.status === "Open" || revision.status === "Declined") {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	declineButton: function() {
+
+		var template = Template.instance();
+		var revision = template.data;
+
+		if (revision.status === "Open") {
+			return true;
+		} else {
+			return false;
+		}
+
+	},
+	reopenButton: function() {
+		var template = Template.instance();
+		var revision = template.data;
+
+		if (revision.status === "Declined") {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	revisionUpdateFormType: function(contentType, type) {
+		var template = Template.instance();
+		var revision = template.data;
+
+		return revision.type === type && revision.contentType === contentType;
+	}
 });

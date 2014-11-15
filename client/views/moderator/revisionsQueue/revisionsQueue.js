@@ -5,58 +5,6 @@ Template.revisionsQueue.created = function() {
 };
 
 
-Template.revisionsQueue.contentFilter = function(content) {
-
-	var template = Template.instance();
-	var currentContentFilter = template.currentContentFilter.get();
-
-	return content === currentContentFilter ? 'active' : '';
-	
-};
-
-Template.revisionsQueue.statusFilter = function(status) {
-
-	var template = Template.instance();
-	var currentStatusFilter = template.currentStatusFilter.get();
-
-	return status === currentStatusFilter ? 'active' : '';
-	
-};
-
-
-Template.revisionsQueue.revisions = function() {
-
-	var template = Template.instance();
-	var currentContentFilter = template.currentContentFilter.get();	
-	var currentStatusFilter = template.currentStatusFilter.get();
-
-	var filter = {
-		contentType: currentContentFilter,
-		status: currentStatusFilter
-	};
-
-	// We don't want to filter if it's all
-	if (filter.contentType === "All")
-		delete filter.contentType;
-
-	if (filter.status === "All")
-		delete filter.status;
-
-
-	var revisions = Revisions.find(filter, {sort: {createdAt: -1}}).fetch();
-	
-	revisions.forEach(function(revision) {
-		return revision.content.revisionId = revision._id;
-	});
-
-	return revisions;
-
-};
-
-
-
-
-
 Template.revisionsQueue.events({
 
 	'click .contentFilter > button' : function(event, template) {
@@ -66,4 +14,52 @@ Template.revisionsQueue.events({
 		template.currentStatusFilter.set($(event.target).text());
 	}
 
+});
+
+
+Template.revisionsQueue.helpers({
+	contentFilter: function(content) {
+
+		var template = Template.instance();
+		var currentContentFilter = template.currentContentFilter.get();
+
+		return content === currentContentFilter ? 'active' : '';
+		
+	},
+	statusFilter: function(status) {
+
+		var template = Template.instance();
+		var currentStatusFilter = template.currentStatusFilter.get();
+
+		return status === currentStatusFilter ? 'active' : '';
+		
+	},
+	revisions: function() {
+
+		var template = Template.instance();
+		var currentContentFilter = template.currentContentFilter.get();	
+		var currentStatusFilter = template.currentStatusFilter.get();
+
+		var filter = {
+			contentType: currentContentFilter,
+			status: currentStatusFilter
+		};
+
+		// We don't want to filter if it's all
+		if (filter.contentType === "All")
+			delete filter.contentType;
+
+		if (filter.status === "All")
+			delete filter.status;
+
+
+		var revisions = Revisions.find(filter, {sort: {createdAt: -1}}).fetch();
+		
+		revisions.forEach(function(revision) {
+			return revision.content.revisionId = revision._id;
+		});
+
+		return revisions;
+
+	}
 });
