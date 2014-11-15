@@ -7,11 +7,12 @@ Template.charactersAdd.events({
 	}
 });
 
-Template.charactersAdd.fileUrl = function() {
-	return Session.get('fileUrl');
-};
-
-Template.charactersAdd.destroyed = function() {
-	// Remove session fileUrl
-	Session.set('fileUrl', null);
-};
+Template.charactersAdd.helpers({
+	fileUrl: function() {
+		return Session.get('fileUrl');
+	},
+	destroyed: function() {
+		// Remove session fileUrl
+		Session.set('fileUrl', null);
+	}
+});

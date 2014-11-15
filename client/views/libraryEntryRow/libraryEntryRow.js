@@ -5,11 +5,13 @@ Template.libraryEntryRow.created = function() {
 };
 
 
-Template.libraryEntryRow.expanded = function() {
-	var template = Template.instance();
+Template.libraryEntryRow.helpers({
+	expanded: function() {
+		var template = Template.instance();
 
-	return template.expanded.get();
-};
+		return template.expanded.get();
+	}
+});
 
 
 Template.libraryEntryRow.events({

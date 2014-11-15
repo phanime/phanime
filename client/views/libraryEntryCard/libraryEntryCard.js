@@ -1,13 +1,3 @@
-Template.libraryEntryCard.watchStatuses = [
-	"Watching",
-	"Completed",
-	"Plan to watch",
-	"On hold",
-	"Dropped",
-	"Remove"
-];
-
-
 Template.libraryEntryCard.rendered = function() {
 	$('.entry-rating').rateit({
 		max: 10,
@@ -247,65 +237,77 @@ Template.libraryEntryCard.events({
 		}
 
 	}
-
-
 });
 
-Template.libraryEntryCard.entryPrivacyClass = function(privacy) {
 
-	if (privacy === true) {
-		return "fa-eye-slash";
-	} else {
-		return "fa-eye";
+
+Template.libraryEntryCard.helpers({
+
+	watchStatuses: [
+		"Watching",
+		"Completed",
+		"Plan to watch",
+		"On hold",
+		"Dropped",
+		"Remove"
+	],
+	
+	entryPrivacyClass: function(privacy) {
+
+		if (privacy === true) {
+			return "fa-eye-slash";
+		} else {
+			return "fa-eye";
+		}
+
+	},
+
+	entryRewatchingClass: function(rewatching) {
+		if (rewatching === true) {
+			return "fa-history";
+		} else {
+			return "fa-clock-o";
+		}
+	},
+
+
+	entryHighPriorityClass: function(highPriority) {
+		if (highPriority === true) {
+			return "fa-exclamation-circle";
+		} else {
+			return "fa-circle-o";
+		}
+	},
+
+
+
+	privacyToolText: function(privacy) {
+
+		if (privacy === true) {
+			return "Private";
+		} else {
+			return "Public";
+		}
+
+
+	},
+
+	rewatchingToolText: function(rewatching) {
+
+		if (rewatching === true) {
+			return "Rewatching";
+		} else {
+			return "First time";
+		}
+
+	},
+
+
+	highPriorityToolText: function(highPriority) {
+		if (highPriority === true) {
+			return "High Priority";
+		} else {
+			return "No priority";
+		}
 	}
-
-};
-
-Template.libraryEntryCard.entryRewatchingClass = function(rewatching) {
-	if (rewatching === true) {
-		return "fa-history";
-	} else {
-		return "fa-clock-o";
-	}
-};
-
-
-Template.libraryEntryCard.entryHighPriorityClass = function(highPriority) {
-	if (highPriority === true) {
-		return "fa-exclamation-circle";
-	} else {
-		return "fa-circle-o";
-	}
-};
-
-
-
-Template.libraryEntryCard.privacyToolText = function(privacy) {
-
-	if (privacy === true) {
-		return "Private";
-	} else {
-		return "Public";
-	}
-
-
-};
-
-Template.libraryEntryCard.rewatchingToolText = function(rewatching) {
-
-	if (rewatching === true) {
-		return "Rewatching";
-	} else {
-		return "First time";
-	}
-
-};
-
-
-Template.libraryEntryCard.highPriorityToolText = function(highPriority) {
-	if (highPriority === true) {
-		return "High Priority";
-	} else {
-		return "No priority";
-	}
-};
+});

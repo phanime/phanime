@@ -1,13 +1,3 @@
-Template.libraryEntryCardAdd.watchStatuses = [
-	"Watching",
-	"Completed",
-	"Plan to watch",
-	"On hold",
-	"Dropped",
-	"Remove"
-];
-
-
 Template.libraryEntryCardAdd.events({
 
 	// Change the status
@@ -42,3 +32,15 @@ Template.libraryEntryCardAdd.events({
 		}
 	}
 });
+
+Template.libraryEntryCardAdd.helpers({
+	watchStatuses: [
+		"Watching",
+		"Completed",
+		"Plan to watch",
+		"On hold",
+		"Dropped",
+		"Remove"
+	]
+});
+

@@ -1,3 +1,5 @@
-Template.animeExplore.animeCount = function() {
-	return Anime.find().count();
-}
+Template.animeExplore.helpers({
+	animeCount: function() {
+		return Anime.find().count();
+	}
+});
