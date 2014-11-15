@@ -24,7 +24,10 @@ Template.anime.destroyed = function() {
 
 Template.anime.helpers({
 	airingText: function() {
-		if (this.startDate !== undefined && this.endDate !== undefined && moment(this.startDate).year() && moment(this.endDate).year()) {
+		// We should check if startDate is equal to endDate 
+		if (this.startDate !== undefined && this.endDate !== undefined && this.startDate === this.endDate) {
+			return "Aired on";
+		} else if (this.startDate !== undefined && this.endDate !== undefined && moment(this.startDate).year() && moment(this.endDate).year()) {
 			// Both dates are defined, now we just need to figure out if the anime is airing / going to air / finished airing
 			// Currently airing
 			if (moment().isAfter(this.startDate) && moment().isBefore(this.endDate)) {
