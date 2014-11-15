@@ -1,22 +1,24 @@
-Template.addLibraryEntry.watchStatuses = function() {
-	var watchStatuses = [
-		"Watching",
-		"Completed",
-		"Plan to watch",
-		"On hold",
-		"Dropped",
-	];
+Template.addLibraryEntry.helpers({
+	watchStatuses: function() {
+		var watchStatuses = [
+			"Watching",
+			"Completed",
+			"Plan to watch",
+			"On hold",
+			"Dropped",
+		];
 
-	var currentEntry = this.libraryEntry;
+		var currentEntry = this.libraryEntry;
 
-	if (currentEntry) {
-		// if entry exists, then add remove option
-		watchStatuses.push("Remove");
+		if (currentEntry) {
+			// if entry exists, then add remove option
+			watchStatuses.push("Remove");
+		}
+
+		return watchStatuses;
+
 	}
-
-	return watchStatuses;
-
-};
+});
 
 
 Template.addLibraryEntry.events({
@@ -85,5 +87,4 @@ Template.addLibraryEntry.events({
 			});
 		}
 	}
-
 });

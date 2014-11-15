@@ -7,11 +7,12 @@ Template.animeAdd.events({
 	}
 });
 
-Template.animeAdd.fileUrl = function() {
-	return Session.get('fileUrl');
-};
-
-Template.animeAdd.destroyed = function() {
-	// Remove session fileUrl
-	Session.set('fileUrl', null);
-};
+Template.animeAdd.helpers({
+	fileUrl: function() {
+		return Session.get('fileUrl');
+	},
+	destroyed: function() {
+		// Remove session fileUrl
+		Session.set('fileUrl', null);
+	}
+});

@@ -1,3 +1,10 @@
+Template.header.created = function() {
+
+	// Init with 0 and then have it update in rendered
+	this.unreadAlertCount = new ReactiveVar(0);
+
+};
+
 Template.header.events({
 	'click #signOut': function(event) {
 		Meteor.logout();
@@ -17,41 +24,34 @@ Template.header.events({
 	}
 });
 
-Template.header.created = function() {
 
-	// Init with 0 and then have it update in rendered
-	this.unreadAlertCount = new ReactiveVar(0);
+Template.header.helpers({
 
-};
+	// We're setting these in 
+	alerts: function() {
+		var unreadAlertCount = Alerts.find({userId: Meteor.userId(), read: false}).count();
+		var alerts = Alerts.find({userId: Meteor.userId()}, {sort: {createdAt: -1}, limit: 10});
+		var template = Template.instance();
 
+		template.unreadAlertCount.set(unreadAlertCount);
 
+		return alerts;
 
-// We're setting these in 
-Template.header.alerts = function() {
-	var unreadAlertCount = Alerts.find({userId: Meteor.userId(), read: false}).count();
-	var alerts = Alerts.find({userId: Meteor.userId()}, {sort: {createdAt: -1}, limit: 10});
-	var template = Template.instance();
+	},
+	unreadAlertCount: function() {
+		var template = Template.instance();
+		return template.unreadAlertCount.get();
+	},
+	alertsClass: function() {
 
-	template.unreadAlertCount.set(unreadAlertCount);
+		var unreadAlertCount = Template.instance().unreadAlertCount.get();
 
-	return alerts;
+		if (unreadAlertCount === 0) {
+			return 'fa-bell-o';
+		} else {
+			return 'fa-bell';
+		}
 
-};
-
-Template.header.unreadAlertCount = function() {
-	var template = Template.instance();
-	return template.unreadAlertCount.get();
-};
-
-Template.header.alertsClass = function() {
-
-	var unreadAlertCount = Template.instance().unreadAlertCount.get();
-
-	if (unreadAlertCount === 0) {
-		return 'fa-bell-o';
-	} else {
-		return 'fa-bell';
 	}
 
-};
-
+});
