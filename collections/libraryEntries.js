@@ -1,32 +1,31 @@
-LibraryEntries = new Meteor.Collection("libraryEntries");
+SimpleSchema.debug = true;
 
-LibraryEntries.attachSchema(Schemas.LibraryEntries);
-
-var Schemas = {};
-
-Schemas.LibraryEntries = new SimpleSchema({
+LibraryEntriesSchema = new SimpleSchema({
 	userId: {
 		type: String,
 		custom: function() {
 			// Check that a user from this ID actually exists
-			if (Meteor.users.findOne({_id: this.value}))) {
+			if (Meteor.users.findOne({_id: this.value})) {
 				return true;
 			} else {
 				return "No user found with this userId";
 			}
 		},
+		denyUpdate: true,
 		optional: false
 	},
 	animeId: {
 		type: String,
 		custom: function() {
 			// Check that an anime from this ID actually exists
+			console.log(this.value);
 			if (Anime.findOne({_id: this.value})) {
 				return true;
 			} else {
 				return "No anime found with this animeId";
 			}
 		},
+		denyUpdate: true,
 		optional: false
 	},
 	type: {
@@ -36,7 +35,7 @@ Schemas.LibraryEntries = new SimpleSchema({
 	},
 	status: {
 		type: String,
-		allowedValues: ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped'],
+		allowedValues: ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped', 'Remove'],
 		optional: false
 	},
 	comments: {
@@ -56,16 +55,31 @@ Schemas.LibraryEntries = new SimpleSchema({
 		type: Number,
 		decimal: false,
 		min: 1,
-		max: function() {
+		custom: function() {
 			// this is how we're defining the max value
-			var anime = Anime.findOne({_id: libraryEntry.animeId});
+			// We'll need to do this in a roundabout way for now
+			// since we can't get a field's value if it wasn't updated
+			// together with episodesSeen
 
-			if (anime.totalEpisodes && anime.totalEpisodes > 1) {
-				return anime.totalEpisodes;
+			if (this.isUpdate) {
+				var libraryEntry = LibraryEntries.findOne({_id: this.docId});
+				var anime = Anime.findOne({_id: libraryEntry.animeId});
 			} else {
-				// We just return an arbitrarily large number if we can't find 
-				// the total episodes of the anime 
-				return 10000;
+				var anime = Anime.findOne({_id: this.field("animeId").value});
+			}
+
+			console.log(anime);
+
+			if (anime && anime.totalEpisodes && anime.totalEpisodes > 1) {
+				
+				if (this.value <= anime.totalEpisodes)
+					return true;
+				else 
+					return "Episodes seen value exceeds total episodes";
+			} else {
+				// if we can't find the total episodes of the anime 
+				// we'll just return true for verification 
+				return true;
 			}
 		},
 		optional: true
@@ -100,6 +114,7 @@ Schemas.LibraryEntries = new SimpleSchema({
 	updatedAt: {
 		type: Date,
 		autoValue: function() {
+			console.log(this.value);
 			if (this.isUpdate) {
 				return new Date();
 			}
@@ -109,48 +124,53 @@ Schemas.LibraryEntries = new SimpleSchema({
 	}
 });
 
+
+LibraryEntries = new Meteor.Collection("libraryEntries");
+
+LibraryEntries.attachSchema(LibraryEntriesSchema);
+
 LibraryEntries.helpers({
 	anime: function() {
 		return Anime.findOne({_id: this.animeId});
 	}
 });
 
-
-
 LibraryEntries.verifyLibraryEntry = function(libraryEntry) {
 
-	var verificationCheck = true;
+	// var verificationCheck = true;
 
-	// Check that required fields exist
-	// console.log(libraryEntry);
+	// // Check that required fields exist
+	// // console.log(libraryEntry);
 
-	if (libraryEntry.userId && libraryEntry.type && libraryEntry.animeId && libraryEntry.status) {
+	// if (libraryEntry.userId && libraryEntry.type && libraryEntry.animeId && libraryEntry.status) {
 
-		// Check required fields against schema as well as any additional fields
+	// 	// Check required fields against schema as well as any additional fields
 
-		for (var key in libraryEntry) {
-			// Only verify the exact object without any
-			// inherited properties
-			if (libraryEntry.hasOwnProperty(key)) {
-				// If we get even one field that doesn't pass the validation
-				// we'll set verificationCheck to false and break out of the for .. in loop
-				if (LibraryEntries.allowedValuesChecker[key](libraryEntry) === false) {
-					console.log(key + " failed verification");
-					verificationCheck = false;
-					break;
-				}
-			}
-		}
+	// 	for (var key in libraryEntry) {
+	// 		// Only verify the exact object without any
+	// 		// inherited properties
+	// 		if (libraryEntry.hasOwnProperty(key)) {
+	// 			// If we get even one field that doesn't pass the validation
+	// 			// we'll set verificationCheck to false and break out of the for .. in loop
+	// 			if (LibraryEntries.allowedValuesChecker[key](libraryEntry) === false) {
+	// 				console.log(key + " failed verification");
+	// 				verificationCheck = false;
+	// 				break;
+	// 			}
+	// 		}
+	// 	}
 
-		// console.log(verificationCheck);
-		return verificationCheck;
+	// 	// console.log(verificationCheck);
+	// 	return verificationCheck;
 
 
-	} else {
+	// } else {
 
-		// Some of the required fields are missing, the libraryEntry object is not valid!
-		return false;
-	}
+	// 	// Some of the required fields are missing, the libraryEntry object is not valid!
+	// 	return false;
+	// }
+
+	return true;
 };
 
 LibraryEntries.buildEntry = function(libraryEntry) {
