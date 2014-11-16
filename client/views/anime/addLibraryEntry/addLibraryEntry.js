@@ -47,8 +47,7 @@ Template.addLibraryEntry.events({
 			if (status !== currentEntry.status) {
 
 				var updateEntry = {
-					status: status, 
-					updatedAt: new Date(),
+					status: status
 				}
 
 				if (anime.totalEpisodes > 0 && status === 'Completed')
@@ -72,9 +71,7 @@ Template.addLibraryEntry.events({
 				userId: Meteor.userId(),
 				type: 'anime',
 				animeId: anime._id,
-				status: status,
-				createdAt: new Date(),
-				updatedAt: new Date()
+				status: status
 			};
 
 

@@ -112,24 +112,6 @@ RESTstop.add('libraryEntries/:_id', { require_login: true, method: 'PUT' }, func
 	// Ensure object keys are part of the schema and aren't random
 	if (restAPIHelpers.schemaCheck.libraryEntries(updatedLibraryEntry)) {
 
-		// We don't want to save the animeId, it can't be changed
-		if (updatedLibraryEntry.animeId) {
-			delete updatedLibraryEntry.animeId;
-		}
-
-		// We don't want to update the userId either, since it can't be changed
-		if (updatedLibraryEntry.userId) {
-			delete updatedLibraryEntry.userId
-		}
-
-		// We don't want to update the createdAt field
-		if (updatedLibraryEntry.createdAt) {
-			delete updatedLibraryEntry.createdAt;
-		}
-
-		// Update the date for when the library entry was updated
-		updatedLibraryEntry.updatedAt = new Date();
-
 		LibraryEntries.update({_id: this.params._id, userId: this.user._id}, {$set: updatedLibraryEntry});
 
 		var response = {libraryEntry: LibraryEntries.findOne({_id: this.params._id, userId: this.user._id })};
@@ -258,12 +240,6 @@ RESTstop.add('libraryEntries', { require_login: true, method: 'POST' }, function
 
 	// Ensure object keys are part of the schema and aren't random
 	if (restAPIHelpers.schemaCheck.libraryEntries(libraryEntry)) {
-
-		// Add library createdAt date
-		libraryEntry.createdAt = new Date();
-
-		// Add library updatedAt date
-		libraryEntry.updatedAt = new Date();
 
 		var libraryId = LibraryEntries.insert(libraryEntry);
 
