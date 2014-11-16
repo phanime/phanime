@@ -1,5 +1,114 @@
 LibraryEntries = new Meteor.Collection("libraryEntries");
 
+LibraryEntries.attachSchema(Schemas.LibraryEntries);
+
+var Schemas = {};
+
+Schemas.LibraryEntries = new SimpleSchema({
+	userId: {
+		type: String,
+		custom: function() {
+			// Check that a user from this ID actually exists
+			if (Meteor.users.findOne({_id: this.value}))) {
+				return true;
+			} else {
+				return "No user found with this userId";
+			}
+		},
+		optional: false
+	},
+	animeId: {
+		type: String,
+		custom: function() {
+			// Check that an anime from this ID actually exists
+			if (Anime.findOne({_id: this.value})) {
+				return true;
+			} else {
+				return "No anime found with this animeId";
+			}
+		},
+		optional: false
+	},
+	type: {
+		type: String,
+		allowedValues: ['anime', 'manga'],
+		optional: false
+	},
+	status: {
+		type: String,
+		allowedValues: ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped'],
+		optional: false
+	},
+	comments: {
+		type: String,
+		min: 1,
+		max: 140,
+		optional: true
+	},
+	rating: {
+		type: Number,
+		decimal: false,
+		min: 1,
+		max: 10,
+		optional: true
+	},
+	episodesSeen: {
+		type: Number,
+		decimal: false,
+		min: 1,
+		max: function() {
+			// this is how we're defining the max value
+			var anime = Anime.findOne({_id: libraryEntry.animeId});
+
+			if (anime.totalEpisodes && anime.totalEpisodes > 1) {
+				return anime.totalEpisodes;
+			} else {
+				// We just return an arbitrarily large number if we can't find 
+				// the total episodes of the anime 
+				return 10000;
+			}
+		},
+		optional: true
+	},
+	favourite: {
+		type: Boolean,
+		optional: true
+	},
+	privacy: {
+		type: Boolean,
+		optional: true
+	},
+	highPriority: {
+		type: Boolean,
+		optional: true
+	},
+	rewatching: {
+		type: Boolean,
+		optional: true
+	},
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isInsert) {
+				return new Date();
+			} else if (this.isUpsert) {
+				return {$setOnInsert: new Date()};
+			}
+		},
+		denyUpdate: true
+	},
+	updatedAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isUpdate) {
+				return new Date();
+			}
+		},
+		denyInsert: true,
+		optional: true
+	}
+});
+
 LibraryEntries.helpers({
 	anime: function() {
 		return Anime.findOne({_id: this.animeId});
@@ -56,8 +165,6 @@ LibraryEntries.buildEntry = function(libraryEntry) {
 
 
 	return libraryEntry;
-
-
 }
 
 LibraryEntries.allowedValuesChecker = {
@@ -149,7 +256,6 @@ LibraryEntries.generalHelpers = {
 
 		return true;
 	}
-
 };
 
 
@@ -193,6 +299,4 @@ LibraryEntries.allow({
 		return doc.userId === userId;
 
 	}
-
-
 });
