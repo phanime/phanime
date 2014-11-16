@@ -72,8 +72,6 @@ LibraryEntriesSchema = new SimpleSchema({
 				var anime = Anime.findOne({_id: this.field("animeId").value});
 			}
 
-			console.log(anime);
-
 			if (anime && anime.totalEpisodes && anime.totalEpisodes > 1) {
 				
 				if (this.value <= anime.totalEpisodes)
