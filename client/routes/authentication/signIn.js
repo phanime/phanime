@@ -12,8 +12,8 @@ SignInController = RouteController.extend({
 	},
 	data: function() {
 		return {
-			sso: this.params.sso,
-			sig: this.params.sig
+			sso: this.params.query.sso,
+			sig: this.params.query.sig
 		};
 	}
 

@@ -8,7 +8,7 @@ CommunitySSOController = RouteController.extend({
 		var user;
 		if (Meteor.user() || Meteor.loggingIn()) {
 			console.log(params);
-			if (params.sso && params.sig && Meteor.user()) {
+			if (params.query.sso && params.query.sig && Meteor.user()) {
 				user = Meteor.user();
 
 				// Temporary addition here since for some reason the server 
@@ -17,7 +17,7 @@ CommunitySSOController = RouteController.extend({
 
 				
 				// Temporary way to send the user to the right place after verification
-				Meteor.call('discourseSSO', params.sso, params.sig, user, function (error, result) {
+				Meteor.call('discourseSSO', params.query.sso, params.query.sig, user, function (error, result) {
 					if (result) {
 						// Since the user is logging in from main application and has no 
 						// idea that they are also being authenticated for discourse we 
@@ -35,7 +35,7 @@ CommunitySSOController = RouteController.extend({
 			}
 		} else {
 			// If the user isn't logged in then we should copy the params and send them to the signIn route
-			Router.go('signIn', {}, {query: {sso: params.sso, sig: params.sig}}); 
+			Router.go('signIn', {}, {query: {sso: params.query.sso, sig: params.query.sig}}); 
 		}
 
 
