@@ -21,10 +21,15 @@
 			</div>
 			
 		{{else}}
-			<h3>All invites are gone, Check back soon!</h3>
+			<h3>All invites are gone, follow us to stay updated! {{> facebookLikeButton}}</h3>
 		{{/if}}
 
 		<h6>or <a href="{{pathFor 'signIn'}}">sign-in</a></h6>
+	</div>
+
+
+	<div class="footer-block">
 
 	</div>
+
 </template>
