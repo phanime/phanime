@@ -37,10 +37,10 @@ Meteor.methods({
 		}
 
 		if (image) {
-			s3.createBucket({Bucket: 'phanime'}, function() {
+			s3.createBucket({Bucket: Meteor.settings.awsBucket}, function() {
 
 				var params = {
-					Bucket: 'phanime', 
+					Bucket: Meteor.settings.awsBucket, 
 					Key: key, 
 					Body: new Buffer(image, 'binary'),
 					ACL: 'public-read',
@@ -114,10 +114,10 @@ Meteor.methods({
 
 			var s3 = new AWS.S3();
 
-			s3.createBucket({Bucket: 'phanime'}, Meteor.bindEnvironment(function() {
+			s3.createBucket({Bucket: Meteor.settings.awsBucket}, Meteor.bindEnvironment(function() {
 
 				var params = {
-					Bucket: 'phanime', 
+					Bucket: Meteor.settings.awsBucket, 
 					Key: key, 
 					Body: new Buffer(body, 'binary'),
 					ACL: 'public-read',

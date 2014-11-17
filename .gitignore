@@ -9,6 +9,9 @@
 # Ignore private site settings api keys
 /server/privateSiteSettings.js
 
+# Ignore settings.json file
+/settings.json
+
 # Ignore start script
 /startScript
 

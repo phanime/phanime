@@ -45,7 +45,9 @@ Template.signIn.events({
 					// eventually lead to the index route
 
 					
-					window.location = "http://community.phanime.com/session/sso?return_path=http://phanime.com/";
+					if (Meteor.settings.public.enableDiscourseAuth === true) {
+						window.location = "http://community.phanime.com/session/sso?return_path=http://phanime.com/";
+					}
 
 
 				}
