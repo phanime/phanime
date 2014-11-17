@@ -36,10 +36,7 @@ Template.libraryEntryRowEdit.events({
 			// then we should delete their library entry
 			if (status === 'Remove') {
 				LibraryEntries.remove({_id: libraryEntry._id});
-			}
-
-			// But make sure the status is different
-			if (status !== libraryEntry.status) {
+			} else if (status !== libraryEntry.status) {
 
 				LibraryEntries.update({_id: libraryEntry._id}, {$set: {
 					status: status, 
