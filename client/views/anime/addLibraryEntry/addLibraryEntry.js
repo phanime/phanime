@@ -41,10 +41,7 @@ Template.addLibraryEntry.events({
 			// then we should delete their library entry
 			if (status === 'Remove') {
 				LibraryEntries.remove({_id: currentEntry._id});
-			}
-
-			// But make sure the status is different
-			if (status !== currentEntry.status) {
+			} else if (status !== currentEntry.status) {
 
 				var updateEntry = {
 					status: status

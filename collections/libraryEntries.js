@@ -1,5 +1,3 @@
-SimpleSchema.debug = true;
-
 LibraryEntriesSchema = new SimpleSchema({
 	userId: {
 		type: String,
@@ -30,7 +28,7 @@ LibraryEntriesSchema = new SimpleSchema({
 	},
 	status: {
 		type: String,
-		allowedValues: ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped', 'Remove'],
+		allowedValues: ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped'],
 		optional: false
 	},
 	comments: {
@@ -56,6 +54,8 @@ LibraryEntriesSchema = new SimpleSchema({
 			// We'll need to do this in a roundabout way for now
 			// since we can't get a field's value if it wasn't updated
 			// together with episodesSeen
+
+			console.log(this);
 
 			// check if the object being validated even has 
 			// episodesSeen set

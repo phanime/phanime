@@ -20,13 +20,15 @@ Template.libraryEntryCardAdd.events({
 				type: 'anime',
 				animeId: anime._id,
 				status: status,
-				episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : null),
-				createdAt: new Date(),
 			};
 
+			if (anime.totalEpisodes && anime.totalEpisodes > 1 && status === 'Completed')
+				currentEntry.episodesSeen = anime.totalEpisodes;
+
+
 			LibraryEntries.insert(currentEntry, function(error, result) {
-				console.log(error);
-				console.log(result);
+				if (error) 
+					Notifications.error('Library Entry creation failed', error.reason);
 			});
 			
 		}
@@ -39,8 +41,7 @@ Template.libraryEntryCardAdd.helpers({
 		"Completed",
 		"Plan to watch",
 		"On hold",
-		"Dropped",
-		"Remove"
+		"Dropped"
 	]
 });
 
