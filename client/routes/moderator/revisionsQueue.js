@@ -4,6 +4,8 @@ RevisionsQueueController = RouteController.extend({
 		SEO.set({
 			title: siteSettings.getFullTitle("Revisions Queue")
 		});
+		
+		this.next();
 	},
 
 	waitOn: function () {
