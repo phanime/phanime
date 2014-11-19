@@ -3,6 +3,15 @@
 
 		<div class="row">
 			<div class="col-sm-12 col-md-6 col-lg-6">
+
+				<div class="block">
+					<div class="title">About</div>
+					{{#if profile.about}}<li>{{profile.about}}</li>{{/if}}
+
+					{{#if profile.location}}<li><i class="fa fa-map-marker"></i> {{profile.location}}</li>{{/if}}
+					{{#if profile.website}}<li><i class="fa fa-external-link"></i> {{profile.website}}</li>{{/if}}
+				</div>
+
 				<div class="block">
 					{{#if topGenresChartObject}}
 						{{> highchartsHelper chartId="test" width="100%" height="100%" chartObject=topGenresChartObject}}
