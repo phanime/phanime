@@ -18,20 +18,11 @@ Template.animeAddButton.events({
 	'mouseleave #animeAddButton' : function(event, template) {
 		$(event.target).removeClass('animated pulse');
 	},
-
-	// 
 	'click #animeAddButton' : function(event, template) {
 		// We want to show the libraryEntryForm
-		template.isExpanded.set(true);
-		$('.libraryEntryForm').addClass('animated fadeInUp')
+		template.isExpanded.set(!template.isExpanded.get());
 		
-	},
-
-	'click #closeLibraryCard' : function(event, template) {
-
-		template.isExpanded.set(false);
 	}
-
 });
 
 

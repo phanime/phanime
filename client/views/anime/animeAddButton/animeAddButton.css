@@ -11,13 +11,17 @@
 	padding-top: 12px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); 
 	cursor: pointer;
-	z-index: 100;
+	z-index: 101;
 }
 
 	#animeAddButton > .fa {
 		font-size: 30px;
 		color: #fff;
 	}
+
+.libraryCardWrapperAnime {
+	display: block;
+}
 
 .libraryCardWrapperAnime > .libraryEntryForm {
 	position: fixed !important;
@@ -27,12 +31,13 @@
 	left: auto !important;
 	opacity: 1 !important;
 	text-align: center;
-	margin: 25px;
+	margin: 50px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); 
 	z-index: 100 !important;
 }
 
 #closeLibraryCard {
+	display: none;
 	position: fixed;
 	bottom: 0;
 	right: 5px;

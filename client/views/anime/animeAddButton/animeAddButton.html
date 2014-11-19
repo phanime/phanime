@@ -1,14 +1,16 @@
 <template name="animeAddButton">
 
-	{{#unless isExpanded}}
 	<div id="animeAddButton">
+	{{#if isExpanded}}
+		<i class="fa fa-times animated fadeIn"></i>
+	{{else}}
 		{{#if libraryEntry.status}}
 			<i class="fa fa-pencil"></i>
 		{{else}}
 			<i class="fa fa-plus"></i>
 		{{/if}}
+	{{/if}}
 	</div>
-	{{/unless}}
 
 
 	<div class="libraryCardWrapperAnime">
@@ -20,7 +22,6 @@
 			{{else}}
 				{{> libraryEntryCardAdd}}
 			{{/if}}
-			<div id="closeLibraryCard"><i class="fa fa-times-circle"></i></div>
 		{{/if}}
 	</div>
 
