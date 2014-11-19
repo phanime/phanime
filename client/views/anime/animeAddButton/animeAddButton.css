@@ -33,7 +33,7 @@
 }
 
 #closeLibraryCard {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	right: 5px;
 	margin: 25px;
