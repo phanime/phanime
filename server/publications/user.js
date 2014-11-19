@@ -167,6 +167,23 @@ Meteor.publishComposite('userWithFollowing', function(username) {
 });
 
 
+Meteor.publishComposite('userWithRevisions', function(username) {
+	return {
+		find: function() {
+			return Meteor.users.find({username: username});
+		},
+		children: [
+			{
+				find: function(user) {
+					return Revisions.find({userId: user._id});
+				}
+			}
+		]
+	};
+
+});
+
+
 Meteor.publish('userAlerts', function(userId) {
 	// Grab the currently logged in user's alerts
 	return Alerts.find({userId: this.userId});

@@ -61,6 +61,7 @@ Router.map(function () {
 	this.route('userFollowers', {path: '/users/:username/followers', layoutTemplate: 'userProfileLayout'});
 	this.route('userFollowing', {path: '/users/:username/following', layoutTemplate: 'userProfileLayout'});
 	this.route('userActivity', {path: '/users/:username/activity', layoutTemplate: 'userProfileLayout'});
+	this.route('userRevisions', {path: '/users/:username/revisions', layoutTemplate: 'userProfileLayout'});
 
 
 	/////////////////////////////////////////////////

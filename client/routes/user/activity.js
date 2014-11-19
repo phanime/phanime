@@ -3,7 +3,6 @@ UserActivityController = RouteController.extend({
 	onAfterAction: function () {
 		if (this.ready()) {
 			var user = this.data();
-			console.log(user.displayName());
 			SEO.set({
 				title: siteSettings.getFullTitle(user.displayName() + "'s Activity"),
 				meta: {

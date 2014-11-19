@@ -54,6 +54,7 @@ Template.revisionsQueue.helpers({
 
 
 		var revisions = Revisions.find(filter, {sort: {createdAt: -1}}).fetch();
+
 		
 		revisions.forEach(function(revision) {
 			return revision.content.revisionId = revision._id;
