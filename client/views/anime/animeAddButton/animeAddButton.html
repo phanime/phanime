@@ -1,0 +1,28 @@
+<template name="animeAddButton">
+
+	{{#unless isExpanded}}
+	<div id="animeAddButton">
+		{{#if libraryEntry.status}}
+			<i class="fa fa-pencil"></i>
+		{{else}}
+			<i class="fa fa-plus"></i>
+		{{/if}}
+	</div>
+	{{/unless}}
+
+
+	<div class="libraryCardWrapperAnime">
+		{{#if isExpanded}}
+			{{#if libraryEntry.status}}
+				{{#with libraryEntry}}
+					{{> libraryEntryCardEdit}}
+				{{/with}}
+			{{else}}
+				{{> libraryEntryCardAdd}}
+			{{/if}}
+			<div id="closeLibraryCard"><i class="fa fa-times-circle"></i></div>
+		{{/if}}
+	</div>
+
+
+</template>
