@@ -110,12 +110,18 @@ Meteor.methods({
 						// libraryEntry is unique
 						// verification will be done on insert
 
+						// Let's do the validation before as well 
+						if (LibraryEntries.simpleSchema().namedContext().validate(libraryEntry) === false) {
+							throw new Meteor.Error('insert-library-entry-failed', "We were unable to add " + localAnimeObject.canonicalTitle + " to your library. Phanime's database likely has conflicting information. Please update this anime in our database if the information is incorrect. Thanks!");
+						}
 
 						LibraryEntries.insert(libraryEntry, function(error, result) {
-							console.log(error);
-							console.log(result);
-							if (error) 
+							if (error) {
+								console.log(libraryEntry);
+								console.log(localAnimeObject.canonicalTitle);
+								console.log(error);
 								throw new Meteor.Error('insert-library-entry-failed', error);
+							}
 						});
 
 					}

@@ -21,7 +21,7 @@ Template.accountImports.events({
 				if (!error)
 					Notifications.success('Import Successful', 'We were able to successfully import your MAL list');
 				else 
-					Notifications.error('Import Failed', error.reason);
+					Notifications.error('Import Failed', error.reason, {timeout: 8000});
 			});
 		}
 		reader.readAsText(file);
