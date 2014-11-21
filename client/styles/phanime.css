@@ -890,6 +890,15 @@ textarea {
 			padding-bottom: 10px;
 		}
 
+ul.profile-summary-list {
+	margin: 0;
+	list-style: none;
+	padding:0;
+
+}
+	ul.profile-summary-list > li {
+		padding: 5px 0;
+	}
 
 .user-card {
 	position: relative;
