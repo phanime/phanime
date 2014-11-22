@@ -13,6 +13,9 @@ Meteor.methods({
 
 		// var list = result.content;
 
+		// We'll grab all the errors in here that we'll return to the user after.
+		var failedImports = [];
+
 		parseString(xmlContent, function(error, result) {
 
 			if (result === undefined)
@@ -25,13 +28,6 @@ Meteor.methods({
 			// This is an array of anime in the user's list
 			var anime = result.myanimelist.anime;
 
-			// var statusMap = {
-			// 	"1":'Watching',
-			// 	"2":'Completed',
-			// 	"3":'On hold',
-			// 	"6":'Plan to watch',
-			// 	"4":'Dropped'
-			// };
 
 
 			var statusMap = {
@@ -40,8 +36,7 @@ Meteor.methods({
 				"On-Hold":'On hold',
 				"Plan to Watch":'Plan to watch',
 				"Dropped":'Dropped'				
-			}
-
+			};
 
 			// Loops through all the anime it finds and adds 
 			// them to your current library entries if they 
@@ -105,14 +100,26 @@ Meteor.methods({
 					}
 
 
-					// console.log(libraryEntry);
 					if (LibraryEntries.generalHelpers.uniqueEntry(libraryEntry) === true) {
 						// libraryEntry is unique
 						// verification will be done on insert
+						// we'll also do verification before to track
+						// all the failed imports
+
+
+
+						console.log(LibraryEntries.simpleSchema().namedContext().invalidKeys());
 
 						// Let's do the validation before as well 
 						if (LibraryEntries.simpleSchema().namedContext().validate(libraryEntry) === false) {
-							throw new Meteor.Error('insert-library-entry-failed', "We were unable to add " + localAnimeObject.canonicalTitle + " to your library. Phanime's database likely has conflicting information. Please update this anime in our database if the information is incorrect. Thanks!");
+							// if validation failed, we should continue on with adding the entries, but we should push the invalid keys object into an array.
+							var invalidKeys = LibraryEntries.simpleSchema().namedContext().invalidKeys();
+							invalidKeys.push(localAnimeObject.canonicalTitle);
+
+							console.log(invalidKeys);
+							failedImports.push(invalidKeys);
+
+							// throw new Meteor.Error('insert-library-entry-failed', "We were unable to add " + localAnimeObject.canonicalTitle + " to your library. Phanime's database likely has conflicting information. Please update this anime in our database if the information is incorrect. Thanks!");
 						}
 
 						LibraryEntries.insert(libraryEntry, function(error, result) {
@@ -120,7 +127,7 @@ Meteor.methods({
 								console.log(libraryEntry);
 								console.log(localAnimeObject.canonicalTitle);
 								console.log(error);
-								throw new Meteor.Error('insert-library-entry-failed', error);
+								// throw new Meteor.Error('insert-library-entry-failed', error);
 							}
 						});
 
@@ -148,6 +155,9 @@ Meteor.methods({
 				// });
 			});
 		});
+
+
+		return failedImports;
 	}
 
 

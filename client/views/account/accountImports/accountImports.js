@@ -18,6 +18,8 @@ Template.accountImports.events({
 			Meteor.call('getMALUserList', content, function(error, result) {
 				// Give the user some type of indication if an error occurred 
 				// or if the import was successful
+
+				console.log(result);
 				if (!error)
 					Notifications.success('Import Successful', 'We were able to successfully import your MAL list');
 				else 

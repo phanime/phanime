@@ -40,4 +40,6 @@ maazalik:spoiler-alert
 phanime:mal-import
 aldeed:collection2
 multiply:iron-router-progress
-
+velocity:core
+velocity:html-reporter
+mike:mocha
