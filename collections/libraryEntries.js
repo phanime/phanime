@@ -106,6 +106,9 @@ LibraryEntriesSchema = new SimpleSchema({
 				return new Date();
 			} else if (this.isUpsert) {
 				return {$setOnInsert: new Date()};
+			} else if (this.value === null || this.value === undefined) {
+				// this is more for the times where validation needs to happen without "inserting"
+				return new Date();
 			}
 		},
 		denyUpdate: true

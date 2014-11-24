@@ -1,12 +1,12 @@
 Template.accountImports.created = function() {
-	this.importErrors = new ReactiveVar(null);
+	this.importSummary = new ReactiveVar(null);
 };
 
 
 Template.accountImports.helpers({
 
-	importErrors: function() {
-		return Template.instance().importErrors.get();
+	importSummary: function() {
+		return Template.instance().importSummary.get();
 	}
 
 });
@@ -30,12 +30,18 @@ Template.accountImports.events({
 			Meteor.call('getMALUserList', content, function(error, result) {
 				// Give the user some type of indication if an error occurred 
 				// or if the import was successful
-				template.importErrors.set(result);
-				
-				if (!error)
-					Notifications.success('Import Successful', 'We were able to successfully import your MAL list');
-				else 
+				template.importSummary.set(result);
+				console.log(result);
+
+				if (!error) {
+					if (result.failedImports.length == 0) {
+						Notifications.success('Import Successful', 'We were able to successfully import your MAL list');
+					} else {
+						Notifications.error('Import Failed', 'We failed to import ' + result.failedImports.length + ' entries from your list. Please look at the report generated.', {timeout: 8000});
+					}
+				} else {
 					Notifications.error('Import Failed', error.reason, {timeout: 8000});
+				}
 			});
 		}
 		reader.readAsText(file);

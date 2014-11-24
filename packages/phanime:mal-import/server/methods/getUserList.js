@@ -16,6 +16,13 @@ Meteor.methods({
 		// We'll grab all the errors in here that we'll return to the user after.
 		var failedImports = [];
 		var notFoundAnime = [];
+		var importStats = {
+			successfullyImported: 0,
+			failedImports: 0,
+			notFound: 0,
+			total: 0,
+			alreadyInYourLibrary: 0
+		};
 
 		parseString(xmlContent, function(error, result) {
 
@@ -50,6 +57,8 @@ Meteor.methods({
 				if (!anime.series_title || !anime.series_animedb_id || !anime.my_watched_episodes || !anime.my_start_date || !anime.my_finish_date || !anime.my_score || !anime.my_status || !anime.my_rewatching || !anime.my_comments)
 					throw new Meteor.Error('mal-import-failed', 'XML file format is different then expected');
 
+				// increment import total stats 
+				importStats.total++;
 
 				var seriesTitle = anime.series_title[0];
 				var seriesId = anime.series_animedb_id[0];
@@ -107,13 +116,15 @@ Meteor.methods({
 						// we'll also do verification before to track
 						// all the failed imports
 
-
-
 						console.log(LibraryEntries.simpleSchema().namedContext().invalidKeys());
 
+						// we need to make sure we clean the object before we validate it
+						LibraryEntries.simpleSchema().clean(libraryEntry);
 						// Let's do the validation before as well 
 						if (LibraryEntries.simpleSchema().namedContext().validate(libraryEntry) === false) {
 							// if validation failed, we should continue on with adding the entries, but we should push the invalid keys object into an array.
+							importStats.failedImports++;
+
 							var invalidKeys = LibraryEntries.simpleSchema().namedContext().invalidKeys();
 							var invalidKeysObject = {
 								invalidKeys: invalidKeys,
@@ -124,22 +135,29 @@ Meteor.methods({
 							failedImports.push(invalidKeysObject);
 
 							// throw new Meteor.Error('insert-library-entry-failed', "We were unable to add " + localAnimeObject.canonicalTitle + " to your library. Phanime's database likely has conflicting information. Please update this anime in our database if the information is incorrect. Thanks!");
+						} else {
+							LibraryEntries.insert(libraryEntry, function(error, result) {
+								if (error) {
+									console.log(libraryEntry);
+									console.log(localAnimeObject.canonicalTitle);
+									console.log(error);
+									// throw new Meteor.Error('insert-library-entry-failed', error);
+								} else {
+									// increment the counter here
+									importStats.successfullyImported++;
+								}
+							});
 						}
 
-						LibraryEntries.insert(libraryEntry, function(error, result) {
-							if (error) {
-								console.log(libraryEntry);
-								console.log(localAnimeObject.canonicalTitle);
-								console.log(error);
-								// throw new Meteor.Error('insert-library-entry-failed', error);
-							}
-						});
-
+					} else {
+						// already in your library (increment that counter)
+						importStats.alreadyInYourLibrary++;
 					}
 
 				} else {
 					// We should at least let the user know that these are the anime that we couldn't import.
 					// because they weren't found in our database
+					importStats.notFound++;
 					var invalidAnime = {
 						canonicalTitle: seriesTitle,
 						invalidKeys: [{
@@ -175,7 +193,8 @@ Meteor.methods({
 
 		return {
 			failedImports: failedImports,
-			notFoundAnime: notFoundAnime
+			notFoundAnime: notFoundAnime,
+			importStats: importStats
 		};
 	}
 
