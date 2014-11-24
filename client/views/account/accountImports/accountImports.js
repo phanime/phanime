@@ -1,10 +1,22 @@
+Template.accountImports.created = function() {
+	this.importErrors = new ReactiveVar(null);
+};
+
+
+Template.accountImports.helpers({
+
+	importErrors: function() {
+		return Template.instance().importErrors.get();
+	}
+
+});
+
 Template.accountImports.events({
 	
 	'click #importMal' : function(event, template) {
 		var username = $('#malUsername').val();
 		var file = $('#uploadXMLFile')[0].files[0];
 
-		console.log(file);
 
 
 		// We let the user know that we've started the import
@@ -18,8 +30,8 @@ Template.accountImports.events({
 			Meteor.call('getMALUserList', content, function(error, result) {
 				// Give the user some type of indication if an error occurred 
 				// or if the import was successful
-
-				console.log(result);
+				template.importErrors.set(result);
+				
 				if (!error)
 					Notifications.success('Import Successful', 'We were able to successfully import your MAL list');
 				else 

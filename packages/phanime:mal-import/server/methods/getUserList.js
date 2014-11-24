@@ -114,10 +114,12 @@ Meteor.methods({
 						if (LibraryEntries.simpleSchema().namedContext().validate(libraryEntry) === false) {
 							// if validation failed, we should continue on with adding the entries, but we should push the invalid keys object into an array.
 							var invalidKeys = LibraryEntries.simpleSchema().namedContext().invalidKeys();
-							invalidKeys.push(localAnimeObject.canonicalTitle);
-
+							var invalidKeysObject = {
+								invalidKeys: invalidKeys,
+								canonicalTitle: localAnimeObject.canonicalTitle
+							};
 							console.log(invalidKeys);
-							failedImports.push(invalidKeys);
+							failedImports.push(invalidKeysObject);
 
 							// throw new Meteor.Error('insert-library-entry-failed', "We were unable to add " + localAnimeObject.canonicalTitle + " to your library. Phanime's database likely has conflicting information. Please update this anime in our database if the information is incorrect. Thanks!");
 						}
