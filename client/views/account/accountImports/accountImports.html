@@ -19,7 +19,7 @@
 				{{#if importErrors}}
 					<h3 class="sub-text">Failed to import:</h3>
 					<div class="well">
-						{{#each importErrors}}
+						{{#each importErrors.failedImports}}
 							<h4>{{canonicalTitle}}</h4>
 							<ul>
 							{{#each invalidKeys}}
@@ -28,8 +28,28 @@
 							</ul>
 
 							<hr>
+						{{else}}
+							<h4>Successfully imported all entries with anime found in our database</h4>
 						{{/each}}
 					</div>
+
+
+					<h3 class="sub-text">Anime not found:</h3>
+					<div class="well">
+						{{#each importErrors.notFoundAnime}}
+							<h4>{{canonicalTitle}}</h4>
+							<ul>
+							{{#each invalidKeys}}
+								<li>{{name}}: {{type}}</li>
+							{{/each}}
+							</ul>
+
+							<hr>
+						{{else}}
+							<h4>We matched all anime in your list to the ones in our database.</h4>
+						{{/each}}
+					</div>
+
 				{{/if}}
 			</div>
 		</div>

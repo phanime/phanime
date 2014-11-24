@@ -15,6 +15,7 @@ Meteor.methods({
 
 		// We'll grab all the errors in here that we'll return to the user after.
 		var failedImports = [];
+		var notFoundAnime = [];
 
 		parseString(xmlContent, function(error, result) {
 
@@ -118,6 +119,7 @@ Meteor.methods({
 								invalidKeys: invalidKeys,
 								canonicalTitle: localAnimeObject.canonicalTitle
 							};
+
 							console.log(invalidKeys);
 							failedImports.push(invalidKeysObject);
 
@@ -135,6 +137,18 @@ Meteor.methods({
 
 					}
 
+				} else {
+					// We should at least let the user know that these are the anime that we couldn't import.
+					// because they weren't found in our database
+					var invalidAnime = {
+						canonicalTitle: seriesTitle,
+						invalidKeys: [{
+							name: "Not found",
+							type: "We couldn't find this anime in our database. Hence, it was not imported."
+						}]
+					};
+
+					notFoundAnime.push(invalidAnime);
 				}
 				// If the anime doesn't exist then we should make a call to MyAnimeList's API to grab the anime 
 				// and add it to the database.
@@ -159,7 +173,10 @@ Meteor.methods({
 		});
 
 
-		return failedImports;
+		return {
+			failedImports: failedImports,
+			notFoundAnime: notFoundAnime
+		};
 	}
 
 
