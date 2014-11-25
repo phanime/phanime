@@ -15,7 +15,7 @@ Template.forgotPassword.events({
 				if (error) {
 					Notifications.error('Failed', error.reason);
 				} else {
-					Notifications.success('Email sent', "We've sent an email to the email address you provided: " + usernameOrEmail);
+					Notifications.success('Email sent', "We've sent an email to " + usernameOrEmail + " with further instructions!", {timeout: 8000});
 				}
 			});
 
