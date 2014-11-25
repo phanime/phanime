@@ -8,7 +8,7 @@ Accounts.emailTemplates.resetPassword.html = function (user, url) {
 	message += '<h1>phanime</h1><br>';
 	message += "<div>Hello " + user.originalUsername + ",</div><br>"
 	message += "<div>To reset your password, simply click the link below.</div>"
-	message += "<h3><a href=" + url + ">reset password</h3>";
+	message += "<h3><a href=" + url + ">reset password</a></h3>";
 	message += "<div>If you've received this email in error or didn't request a password reset, you can simply ignore it.</div>";
 	message += "<br><br>";
 	message += "<div>Sincerely,</div>";
