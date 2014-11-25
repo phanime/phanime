@@ -100,6 +100,8 @@ Router.map(function () {
 	this.route('signIn', {path: 'sign-in'});
 	this.route('signOut', {path: 'sign-out'});
 	this.route('signUp', {path: 'sign-up'});
+	this.route('forgotPassword', {path: 'forgot-password'});
+	this.route('resetPassword', {path: 'reset-password/:token'});
 
 	// Discourse community sso auth medium
 	this.route('communitySSO', {path: '/community/sso'});
@@ -185,9 +187,12 @@ var routerOnStopHooks = {
 
 // Run these global routes first
 Router.onBeforeAction('loading');
-Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {except: ['signIn', 'signUp', 'index', 'communitySSO']});
-// If the user is already logged in, then they shouldn't be able to visit the signIn or signUp pages
-Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp']});
+
+// These routes don't require login
+Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {except: ['signIn', 'signUp', 'index', 'communitySSO', 'forgotPassword', 'resetPassword']});
+
+// If the user is already logged in, then they shouldn't be able to visit the following routes
+Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp', 'forgotPassword', 'resetPassword']});
 
 // Render the landing page if the user isn't logged in on index
 Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});

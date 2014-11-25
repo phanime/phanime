@@ -6,7 +6,7 @@ Accounts.validateNewUser(function(user) {
 	var usernameRegex = /^[a-zA-Z0-9_]+$/;
 
 	// Check user name
-	if (user.username && user.username.length >= 3 && user.username.length <= 30) {
+	if (user.username && user.username.length >= 3 && user.username.length <= 20) {
 		// Check that username doesn't have any spaces
 		if (usernameRegex.test(user.username)) {
 			isGood = true;
