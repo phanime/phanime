@@ -6,6 +6,11 @@ if (!(typeof MochaWeb === 'undefined')){
 			before(function() {
 				// setup environment by creating a user
 
+				// let's clear up any previous data we might have had
+				Meteor.users.remove({});
+				Anime.remove({});
+				RequestedInvites.remove({});
+
 				RequestedInvites.insert({used: false});
 
 				var user = {
@@ -23,11 +28,12 @@ if (!(typeof MochaWeb === 'undefined')){
 				var anime = {
 					canonicalTitle: "Test Anime Title",
 					type: "TV",
-					language: ["Subbed"],
+					languageVersion: ["Subbed"],
 					ageRating: "R - 17+ (violence & profanity)",
-					genres: ["Adventure"]
+					genres: ["Adventure"],
+					status: "Complete"
 				};
-
+				
 				Anime.insert(anime);
 			});
 			describe("create", function(){

@@ -1,113 +1,3 @@
-Anime = new Meteor.Collection("anime");
-
-Anime.helpers({
-
-	coverImageUrl: function() {
-		// If revisionId exists then we're using the new upload system
-		// so we should use animeId in the url
-
-
-		if (this.newImageURLFormat) {
-			if (this.coverImage) {
-				return "http://cdn.phanime.com/images/anime/cover/" + this._id  + "/" + this.coverImage;
-			} else {
-				return "http://cdn.phanime.com/images/site/na.gif";
-			}
-		} else {
-			if (this.coverImage) {
-				return "http://cdn.phanime.com/images/anime/cover/" + this.coverImage;
-			} else {
-				return "http://cdn.phanime.com/images/site/na.gif";
-			}
-		}		
-	},
-	title: function() {
-		// For the time being we just choose
-		// the standard title
-		return this.canonicalTitle;
-	},
-	libraryEntry: function() {
-		return LibraryEntries.findOne({animeId: this._id, userId: Meteor.userId()});
-	}
-
-});
-
-EasySearch.createSearchIndex('anime', {
-	'use' : 'mongo-db',
-	'field' : ['canonicalTitle', 'englishTitle', 'romajiTitle', 'titleSynonyms'],
-	'collection' : Anime,
-	'limit' : 20,
-	'query' : function(searchString) {
-		var query = EasySearch.getSearcher('mongo-db').defaultQuery(this, searchString);
-		return query;
-	},
-	'changeResults' : function (results) {
-		// We should attach libraryEntries to anime if the user exists
-
-		// if (Meteor.userId()) {
-		// 	results.results.forEach(function(anime) {
-		// 		anime.libraryEntry = LibraryEntries.findOne({userId: Meteor.userId(), animeId: anime._id});
-		// 	});
-		// }
-
-		var ids = _.pluck(results.results, "_id");
-
-
-		return results;
-	}
-});
-
-AnimePages = new Meteor.Pagination(Anime, {
-	router: 'iron-router',
-	routerTemplate: 'animeExplore',
-	homeRoute: '/anime/explore/',
-	route: '/anime/explore/page/',
-	perPage: 30,
-	itemTemplate: 'animeCardProxy',
-	routerLayout: 'defaultLayout',
-	sort: {canonicalTitle: 1},
-	templateName: 'animeSpecificExplore',
-	/*infiniteItemsLimit: 30,*/
-
-});
-
-
-Anime.createAnimeObject = function(anime) {
-
-	// We're just going to add some default fields 
-	anime.createdAt = new Date();
-	anime.updatedAt = new Date();
-	anime.slug = getSlug(anime.canonicalTitle);
-
-	return anime;
-
-}
-
-Anime.allow({
-
-	insert: function(userId, doc) {
-		
-		// We need to ensure that there is only one anime per canonicalTitle 
-		var titleCheck = Anime.findOne({canonicalTitle: doc.canonicalTitle});
-		var slugCheck = Anime.findOne({slug: doc.slug});
-
-		var uniqueCondition;
-
-		// console.log(titleCheck);
-		// console.log(slugCheck);
-
-		if (titleCheck || slugCheck) {
-			uniqueCondition = false;
-		} else {
-			uniqueCondition = true;
-		}
-
-		return uniqueCondition;
-
-	}
-});
-
-
 AnimeSchema = new SimpleSchema({
 	canonicalTitle: {
 		type: String,
@@ -120,23 +10,23 @@ AnimeSchema = new SimpleSchema({
 	romajiTitle: {
 		type: String,
 		label: "Romaji Title",
-		optional: true,
 		min: 1,
-		max: 500 // sanity check max value 
+		max: 500, // sanity check max value 
+		optional: true	
 	},
 	englishTitle: {
 		type: String,
 		label: "English Title",
-		optional: true,
 		min: 1, 
-		max: 500 // sanity check max value 
+		max: 500, // sanity check max value 
+		optional: true
 	},
 	japaneseTitle: {
 		type: String,
 		label: "Japanese Title",
-		optional: true,
 		min: 1, 
-		max: 500 // sanity check max value 
+		max: 500, // sanity check max value 
+		optional: true
 	},
 	slug: {
 		type: String,
@@ -147,13 +37,14 @@ AnimeSchema = new SimpleSchema({
 		},
 		autoValue: function() {
 			// Let's grab the document
-			var anime = Anime.findOne({_id: this.docId});
-
-			if (this.isInsert) {
-				return getSlug(anime.canonicalTitle);
-			} else if (this.isUpsert) {
-				return getSlug(anime.canonicalTitle);
+			var canonicalTitle;
+			if (this.isUpdate) {
+				canonicalTitle = Anime.findOne({_id: this.docId}).canonicalTitle;
+			} else {
+				canonicalTitle = this.field("canonicalTitle").value;
 			}
+
+			return getSlug(canonicalTitle);
 		}
 	},
 	coverImage: {
@@ -280,6 +171,108 @@ AnimeSchema = new SimpleSchema({
 	}
 });
 
+Anime = new Meteor.Collection("anime");
+
+Anime.attachSchema(AnimeSchema);
+
+Anime.helpers({
+
+	coverImageUrl: function() {
+		// If revisionId exists then we're using the new upload system
+		// so we should use animeId in the url
+		if (this.newImageURLFormat) {
+			if (this.coverImage) {
+				return "http://cdn.phanime.com/images/anime/cover/" + this._id  + "/" + this.coverImage;
+			} else {
+				return "http://cdn.phanime.com/images/site/na.gif";
+			}
+		} else {
+			if (this.coverImage) {
+				return "http://cdn.phanime.com/images/anime/cover/" + this.coverImage;
+			} else {
+				return "http://cdn.phanime.com/images/site/na.gif";
+			}
+		}		
+	},
+	title: function() {
+		// For the time being we just choose
+		// the standard title
+		return this.canonicalTitle;
+	},
+	libraryEntry: function() {
+		return LibraryEntries.findOne({animeId: this._id, userId: Meteor.userId()});
+	}
+});
+
+Anime.allow({
+
+	insert: function(userId, doc) {
+		
+		// We need to ensure that there is only one anime per canonicalTitle 
+		var titleCheck = Anime.findOne({canonicalTitle: doc.canonicalTitle});
+		var slugCheck = Anime.findOne({slug: doc.slug});
+
+		var uniqueCondition;
+
+		// console.log(titleCheck);
+		// console.log(slugCheck);
+
+		if (titleCheck || slugCheck) {
+			uniqueCondition = false;
+		} else {
+			uniqueCondition = true;
+		}
+		return uniqueCondition;
+	}
+});
+
+EasySearch.createSearchIndex('anime', {
+	'use' : 'mongo-db',
+	'field' : ['canonicalTitle', 'englishTitle', 'romajiTitle', 'titleSynonyms'],
+	'collection' : Anime,
+	'limit' : 20,
+	'query' : function(searchString) {
+		var query = EasySearch.getSearcher('mongo-db').defaultQuery(this, searchString);
+		return query;
+	},
+	'changeResults' : function (results) {
+		// We should attach libraryEntries to anime if the user exists
+
+		// if (Meteor.userId()) {
+		// 	results.results.forEach(function(anime) {
+		// 		anime.libraryEntry = LibraryEntries.findOne({userId: Meteor.userId(), animeId: anime._id});
+		// 	});
+		// }
+		var ids = _.pluck(results.results, "_id");
+		return results;
+	}
+});
+
+AnimePages = new Meteor.Pagination(Anime, {
+	router: 'iron-router',
+	routerTemplate: 'animeExplore',
+	homeRoute: '/anime/explore/',
+	route: '/anime/explore/page/',
+	perPage: 30,
+	itemTemplate: 'animeCardProxy',
+	routerLayout: 'defaultLayout',
+	sort: {canonicalTitle: 1},
+	templateName: 'animeSpecificExplore',
+	/*infiniteItemsLimit: 30,*/
+
+});
+
+
+Anime.createAnimeObject = function(anime) {
+
+	// We're just going to add some default fields 
+	anime.createdAt = new Date();
+	anime.updatedAt = new Date();
+	anime.slug = getSlug(anime.canonicalTitle);
+
+	return anime;
+
+}
 
 AnimeRevisionsSchema = new SimpleSchema({
 	_id: {

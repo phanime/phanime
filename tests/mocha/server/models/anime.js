@@ -7,9 +7,10 @@ if (!(typeof MochaWeb === 'undefined')){
 				var anime = {
 					canonicalTitle: "Test Anime Title",
 					type: "TV",
-					language: ["Subbed"],
+					languageVersion: ["Subbed"],
 					ageRating: "R - 17+ (violence & profanity)",
-					genres: ["Adventure"]
+					genres: ["Adventure"],
+					status: "Complete"
 				};
 
 				before(function() {
