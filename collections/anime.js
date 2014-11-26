@@ -104,21 +104,7 @@ Anime.allow({
 
 		return uniqueCondition;
 
-	},
-	// update: function(userId, doc, fields, modifier) {
-
-	// 	// can only change your own library entries
-	// 	return doc.userId === userId;
-
-	// },
-	// remove: function(userId, doc) {
-
-	// 	// can only remove entries that you own
-	// 	return doc.userId === userId;
-
-	// }
-
-
+	}
 });
 
 
@@ -126,41 +112,60 @@ AnimeSchema = new SimpleSchema({
 	canonicalTitle: {
 		type: String,
 		label: "Canonical Title",
+		index: 1, 
+		unique: true,
+		min: 1,
+		max: 500 // sanity check max value 
 	},
 	romajiTitle: {
 		type: String,
 		label: "Romaji Title",
 		optional: true,
+		min: 1,
+		max: 500 // sanity check max value 
 	},
 	englishTitle: {
 		type: String,
 		label: "English Title",
 		optional: true,
+		min: 1, 
+		max: 500 // sanity check max value 
 	},
 	japaneseTitle: {
 		type: String,
 		label: "Japanese Title",
 		optional: true,
+		min: 1, 
+		max: 500 // sanity check max value 
 	},
 	slug: {
 		type: String,
 		label: "Slug",
 		autoform: {
 			disabled: true,
-			value: null			
+			value: null				
 		},
-		optional: true,
+		autoValue: function() {
+			// Let's grab the document
+			var anime = Anime.findOne({_id: this.docId});
+
+			if (this.isInsert) {
+				return getSlug(anime.canonicalTitle);
+			} else if (this.isUpsert) {
+				return getSlug(anime.canonicalTitle);
+			}
+		}
 	},
 	coverImage: {
 		type: String,
-		optional: true,
+		optional: true
 	},
 	bannerImage: {
 		type: String,
 		autoform: {
 			disabled: true,
 		},
-		optional: true,
+		optional: true
 	},
 	type: {
 		type: String,
@@ -188,7 +193,8 @@ AnimeSchema = new SimpleSchema({
 	},
 	startDate: {
 		type: Date,
-		optional: true,
+		optional: true
+		// Do a check that this is less than endDate if endDate is defined
 	},
 	endDate: {
 		type: Date,
@@ -213,42 +219,64 @@ AnimeSchema = new SimpleSchema({
 		}
 	},
 	genres: {
-		type: [String]
+		type: [String],
+		optional: true
 	},
 	themes: {
-		type: [String]
+		type: [String],
+		optional: true
 	},
 	studios: {
-		type: [String]
+		type: [String],
+		optional: true
 	},
 	seasonNumber: {
 		type: Number,
-		optional: true,
 		min: 0,
+		optional: true
 	},
 	totalEpisodes: {
 		type: Number,
-		optional: true,
 		min: 0,
+		max: 1000, // sanity check max value
+		optional: true
 	},
 	episodeDuration: {
 		type: Number,
-		optional: true,
 		min: 0,
+		max: 5000, // sanity check max value
+		optional: true
 	},
 	titleSynonyms: {
 		type: String,
-		optional: true,
 		autoform: {
 			rows: 5
-		}
+		},
+		optional: true
 	},
 	description: {
 		type: String,
-		optional: true,
 		autoform: {
 			rows: 10
-		}
+		},
+		min: 0,
+		max: 10000, // sanity check max value 
+		optional: true
+	},
+	myAnimeListId: {
+		type: String,
+		label: "MyAnimeList ID",
+		optional: true
+	},
+	animeNewsNetworkId: {
+		type: String,
+		label: "AnimeNewsNetwork ID",
+		optional: true
+	},
+	anidbId: {
+		type: String,
+		label: "aniDB ID",
+		optional: true
 	}
 });
 
