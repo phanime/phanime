@@ -168,6 +168,34 @@ AnimeSchema = new SimpleSchema({
 		type: String,
 		label: "aniDB ID",
 		optional: true
+	},
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isInsert) {
+				return new Date();
+			} else if (this.isUpsert) {
+				return {$setOnInsert: new Date()};
+			} else {
+				this.unset();
+			}
+			//  else if ((this.value === null || this.value === undefined) && !this.isUpdate) {
+			// 	// this is more for the times where validation needs to happen without "inserting"
+			// 	return new Date();
+			// }
+		},
+		denyUpdate: true,
+		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the createdAt value will still be generated on insert.
+	},
+	updatedAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isUpdate) {
+				return new Date();
+			}
+		},
+		denyInsert: true,
+		optional: true
 	}
 });
 

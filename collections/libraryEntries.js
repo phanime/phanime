@@ -7,8 +7,7 @@ LibraryEntriesSchema = new SimpleSchema({
 				return "No user found with this userId";
 			}
 		},
-		denyUpdate: true,
-		optional: false
+		denyUpdate: true
 	},
 	animeId: {
 		type: String,
@@ -18,18 +17,15 @@ LibraryEntriesSchema = new SimpleSchema({
 				return "No anime found with this animeId";
 			}
 		},
-		denyUpdate: true,
-		optional: false
+		denyUpdate: true
 	},
 	type: {
 		type: String,
-		allowedValues: ['anime', 'manga'],
-		optional: false
+		allowedValues: ['anime', 'manga']
 	},
 	status: {
 		type: String,
-		allowedValues: ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped'],
-		optional: false
+		allowedValues: ['Watching', 'Completed', 'Plan to watch', 'On hold', 'Dropped']
 	},
 	comments: {
 		type: String,
@@ -106,12 +102,16 @@ LibraryEntriesSchema = new SimpleSchema({
 				return new Date();
 			} else if (this.isUpsert) {
 				return {$setOnInsert: new Date()};
-			} else if (this.value === null || this.value === undefined) {
-				// this is more for the times where validation needs to happen without "inserting"
-				return new Date();
+			} else {
+				this.unset();
 			}
+			//  else if ((this.value === null || this.value === undefined) && !this.isUpdate) {
+			// 	// this is more for the times where validation needs to happen without "inserting"
+			// 	return new Date();
+			// }
 		},
-		denyUpdate: true
+		denyUpdate: true,
+		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the createdAt value will still be generated on insert.
 	},
 	updatedAt: {
 		type: Date,

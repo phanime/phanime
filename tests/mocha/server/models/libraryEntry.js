@@ -33,7 +33,7 @@ if (!(typeof MochaWeb === 'undefined')){
 					genres: ["Adventure"],
 					status: "Complete"
 				};
-				
+
 				Anime.insert(anime);
 			});
 			describe("create", function(){
@@ -69,8 +69,6 @@ if (!(typeof MochaWeb === 'undefined')){
 			describe("update", function(){
 				before(function() {
 					// Let's grab the user we created
-					console.log(Meteor.users.find().fetch());
-					console.log(Anime.find().fetch());
 					var userId = Meteor.users.findOne()._id;
 					var animeId = Anime.findOne()._id;
 					var libraryEntry = {
@@ -84,7 +82,7 @@ if (!(typeof MochaWeb === 'undefined')){
 				it("should have an updatedAt field", function() {
 					var entry = LibraryEntries.findOne();
 					entry.status = 'Plan to watch';
-					LibraryEntries.update({_id: entry._id}, {$set: entry});
+					LibraryEntries.update({_id: entry._id}, {$set: {status: "Plan to watch"}});
 					var entry = LibraryEntries.findOne();
 
 					expect(entry).to.be.an('object');
@@ -98,6 +96,27 @@ if (!(typeof MochaWeb === 'undefined')){
 					LibraryEntries.remove({});
 				});
 			});
+
+			describe("validateBefore", function() {
+				it("shouldn't check for createdAt field", function() {
+					var libraryEntry = {
+						userId: Meteor.users.findOne()._id, // we could also use this.userId here I guess...
+						animeId: Anime.findOne()._id,
+						type: 'anime',
+						status: "Watching",
+					};
+
+					// we need to make sure we clean the object before we validate it
+					LibraryEntries.simpleSchema().clean(libraryEntry);
+					var validation = LibraryEntries.simpleSchema().namedContext().validate(libraryEntry);
+					var invalidKeys = LibraryEntries.simpleSchema().namedContext().invalidKeys();
+					if (invalidKeys.length > 0)
+						chai.assert(validation === true, "Validation before insert of library entry failed: " + invalidKeys[0].name + " is " + invalidKeys[0].type);
+
+				});			
+			});
+
+
 			after(function() {
 				// clean up all the documents we created
 				Meteor.users.remove({});
