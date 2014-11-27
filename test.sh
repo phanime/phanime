@@ -3,4 +3,4 @@ set -e
 
 curl https://install.meteor.com | /bin/sh
 
-meteor --test
+../node_modules/velocity-ci/velocity-ci.js
