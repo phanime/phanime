@@ -28,12 +28,13 @@
 
 				{{> createProfilePost}}
 
-				{{#each profilePosts}}
-					{{> profilePostCard}}
-				{{else}}
-					<h3 class="thin-text">There are no messages on {{username}}'s profile yet.</h3>
-				{{/each}}
-
+				{{#momentum plugin='slide-height'}}
+					{{#each profilePosts}}
+						{{> profilePostCard}}
+					{{else}}
+						<h3 class="thin-text">There are no messages on {{username}}'s profile yet.</h3>
+					{{/each}}
+				{{/momentum}}
 			</div>
 		</div>
 
