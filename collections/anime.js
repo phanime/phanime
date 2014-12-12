@@ -35,14 +35,19 @@ AnimeSchema = new SimpleSchema({
 			disabled: true,
 			value: null				
 		},
+		index: 1,
+		unique: true,
 		autoValue: function() {
 			// Let's grab the document
 			var canonicalTitle;
+
 			if (this.isUpdate) {
 				canonicalTitle = Anime.findOne({_id: this.docId}).canonicalTitle;
 			} else {
 				canonicalTitle = this.field("canonicalTitle").value;
 			}
+
+			console.log(canonicalTitle);
 
 			return getSlug(canonicalTitle);
 		}

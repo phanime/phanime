@@ -72,10 +72,15 @@ Meteor.methods({
 			var slugCheck = Anime.findOne({slug: changedAttributesAnime.slug});
 
 
-			if (titleCheck || slugCheck) {
+			// These checks are mainly done to give good errors to the user
+			// Checks will be done against the database when the anime is actually 
+			// being submitted
+			if (titleCheck) {
 				uniqueCondition = false;
 				throw new Meteor.Error(403, "The canonical title of the anime was found in our database");
-
+			} else if (slugCheck) {
+				uniqueCondition = false;
+				throw new Meteor.Error(403, "The slug generated seems to be colliding with another slug, please report this issue to a staff member.");
 			} else {
 				uniqueCondition = true;
 			}
@@ -191,7 +196,7 @@ Meteor.methods({
 				// revision.content contains the anime object
 
 				// We'll just throw it in the createAnimeObject method to generate the default fields
-				var animeObject = Anime.createAnimeObject(revision.content);
+				var animeObject = revision.content;
 
 				// If coverImage exists we should add in the new url image format field
 				if (animeObject.coverImage) {
@@ -244,11 +249,8 @@ Meteor.methods({
 				// unique check is only necessary if the canonicalTitle exists
 				var uniqueCondition;
 				if (revision.content.canonicalTitle) {
-					// Ensure uniqueness
-					revision.content.slug = getSlug(revision.content.canonicalTitle);
 
 					var titleCheck = Anime.findOne({canonicalTitle: revision.content.canonicalTitle});
-					var slugCheck = Anime.findOne({slug: revision.content.slug});
 
 					var uniqueCondition;
 
