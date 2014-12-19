@@ -46,24 +46,24 @@ if (!(typeof MochaWeb === 'undefined')){
 				});
 
 
-				it("check uniqueness of canonicalTitle", function(){
+				// it("check uniqueness of canonicalTitle", function(){
 
-					// we're going to essentially insert an anime with the same title
-					var anime = {
-						canonicalTitle: "Test Anime Title",
-						type: "Movie",
-						languageVersion: ["Dubbed", "Subbed"],
-						ageRating: "R - 17+ (violence & profanity)",
-						genres: ["Adventure", "Action"],
-						status: "Complete"
-					};
+				// 	// we're going to essentially insert an anime with the same title
+				// 	var anime = {
+				// 		canonicalTitle: "Test Anime Title",
+				// 		type: "Movie",
+				// 		languageVersion: ["Dubbed", "Subbed"],
+				// 		ageRating: "R - 17+ (violence & profanity)",
+				// 		genres: ["Adventure", "Action"],
+				// 		status: "Complete"
+				// 	};
 
-					// Unique check
-					chai.assert.throws(Anime.insert(anime), "Test Anime Title already exists (uniqueness passes)");
+				// 	// Unique check
+				// 	chai.assert.throws(Anime.insert(anime), "Test Anime Title already exists (uniqueness passes)");
 
 
 
-				});
+				// });
 
 				after(function() {
 					Anime.remove({});
