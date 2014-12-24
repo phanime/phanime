@@ -26,6 +26,7 @@ deps@1.0.6
 dfischer:phantomjs@1.0.4
 ejson@1.0.5
 email@1.0.5
+ephemer:reactive-datatables@1.0.3
 fastclick@1.0.2
 follower-livedata@1.0.3
 gadicohen:phantomjs@0.0.2

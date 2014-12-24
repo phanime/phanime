@@ -53,7 +53,7 @@ Meteor.publishComposite('userWithProfilePosts', function(username) {
 });
 
 
-Meteor.publishComposite('userWithActivity', function(username) {
+Meteor.publishComposite('userWithActivity', function(username, limit) {
 	return {
 		find: function() {
 			return Meteor.users.find({username: username});
@@ -61,7 +61,7 @@ Meteor.publishComposite('userWithActivity', function(username) {
 		children: [
 			{
 				find: function(user) {
-					return Activity.find({userId: user._id});
+					return Activity.find({userId: user._id}, {limit: limit});
 				},
 				children: [
 					{
@@ -74,19 +74,7 @@ Meteor.publishComposite('userWithActivity', function(username) {
 								}
 							}
 						}
-					},
-					{
-						find: function(activity, user) {
-							if (activity.type === 'post') {
-
-								if (activity.post.type === 'profilePost') {
-									return Meteor.users.find({_id: activity.post.posterId}, {fields: requireCollectionFields.user.defaultFields});
-								}
-
-							}
-						}
 					}
-
 				]
 			}
 		]
@@ -105,9 +93,9 @@ Meteor.publishComposite('userWithLibraryEntries', function(username) {
 					
 					// If user's profile is not current profile we don't publish private entries
 					if (user._id !== this.userId) {
-						return LibraryEntries.find({userId: user._id, status: 'Watching', privacy: {$ne: true}}, {sort: {createdAt: -1}, limit: 6});
+						return LibraryEntries.find({userId: user._id, privacy: {$ne: true}}, {sort: {createdAt: -1}});
 					} else {
-						return LibraryEntries.find({userId: user._id, status: 'Watching'}, {sort: {createdAt: -1}, limit: 6});
+						return LibraryEntries.find({userId: user._id}, {sort: {createdAt: -1}});
 					}
 				},
 				children: [

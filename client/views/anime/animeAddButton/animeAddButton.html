@@ -1,15 +1,15 @@
 <template name="animeAddButton">
 
 	{{#unless isExpanded}}
+	{{#if libraryEntry.status}}
 	<div id="animeFavourite" class="animated fadeInRight">
-		{{#if libraryEntry.status}}
 			{{#if libraryEntry.favourite}}
 				<i class="fa fa-heart animated fadeIn"></i>
 			{{else}}
 				<i class="fa fa-heart-o animated fadeIn"></i>
 			{{/if}}
-		{{/if}}
 	</div>
+	{{/if}}
 	{{/unless}}
 
 	<div id="animeAddButton">

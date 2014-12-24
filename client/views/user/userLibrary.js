@@ -21,6 +21,10 @@ Template.userLibrary.events({
 	}
 });
 
+dataTableData = function() {
+	return LibraryEntries.find().fetch();
+}
+
 Template.userLibrary.helpers({
 	activeLibraryView: function(libraryView) {
 		var template = Template.instance();
@@ -83,7 +87,47 @@ Template.userLibrary.helpers({
 			};
 		}
 	},
-
+	reactiveDataFunction: function() {
+		return dataTableData;
+	},
+	optionsObject: {
+		columns: [{
+			title: 'Title',
+			data: function(row, type, set, meta) {
+				return Anime.findOne({_id: row.animeId}).title();
+			},
+			className: 'titleColumn'
+		},
+		{
+			title: 'Status',
+			data: function(row, type, set, meta) {
+				return row.status;
+			},
+			className: 'nameColumn'
+		},
+		{
+			title: 'Score',
+			data: function(row, type, set, meta) {
+				return row.score;
+			},
+			className: 'scoreColumn'
+		},
+		{
+			title: 'Progress',
+			data: function(row, type, set, meta) {
+				var anime = Anime.findOne({_id: row.animeId});
+				return row.episodesSeen + "/" + anime.totalEpisodes;
+			},
+			className: 'progressColumn'
+		},
+		{
+			title: 'Type',
+			data: function(row, type, set, meta) {
+				return Anime.findOne({_id: row.animeId}).type;
+			}, 
+			className: 'typeColumn'
+		}]
+	},
 	watching: function(template) {
 		if (this) {
 			return {

@@ -1,5 +1,14 @@
 UserActivityController = RouteController.extend({
-
+	increment: 20,
+	limit: function() {
+		if (Session.get('activityItemsLimit')) {
+			return Session.get('activityItemsLimit');
+		} else {
+			// Default to return 20 items initially
+			Session.set('activityItemsLimit', 20);
+			return Session.get('activityItemsLimit');
+		}
+	},
 	onAfterAction: function () {
 		if (this.ready()) {
 			var user = this.data();
@@ -19,7 +28,7 @@ UserActivityController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('userWithActivity', this.params.username.toLowerCase());
+		return Meteor.subscribe('userWithActivity', this.params.username.toLowerCase(), this.limit());
 	},
 
 	data: function () {

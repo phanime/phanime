@@ -138,5 +138,18 @@ Activity.helpers({
 
 		return icon;
 	}
+});
+
+
+ActivityPages = new Meteor.Pagination(Activity, {
+	router: 'iron-router',
+	routerTemplate: 'userActivity',
+	homeRoute: 'userActivity',
+	perPage: 30,
+	itemTemplate: 'activityCard',
+	routerLayout: 'userProfileLayout',
+	sort: {createdAt: -1},
+	templateName: 'userActivitySpecific',
+	/*infiniteItemsLimit: 30,*/
 
 });
