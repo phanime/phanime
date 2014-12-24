@@ -216,6 +216,7 @@ Router.onStop(routerOnStopHooks.removeSearch);
 // Router.onBeforeAction(routerBeforeHooks.loadingIndicator, routerBeforeHooks.isLoggedIn, routerBeforeHooks.scrollUp);
 
 Router.configure({
+	fastRender: true,
 	layoutTemplate: 'defaultLayout',
 	// notFoundTemplate: 'fourOhFour',
 	loadingTemplate: 'loading',

@@ -47,3 +47,5 @@ percolate:momentum-iron-router
 dburles:spacebars-tohtml
 
 meteorhacks:fast-render
+dfischer:phantomjs
+service-configuration

@@ -23,6 +23,7 @@ dburles:collection-helpers@1.0.1
 dburles:spacebars-tohtml@1.0.0
 ddp@1.0.13
 deps@1.0.6
+dfischer:phantomjs@1.0.4
 ejson@1.0.5
 email@1.0.5
 fastclick@1.0.2
