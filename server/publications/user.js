@@ -105,9 +105,9 @@ Meteor.publishComposite('userWithLibraryEntries', function(username) {
 					
 					// If user's profile is not current profile we don't publish private entries
 					if (user._id !== this.userId) {
-						return LibraryEntries.find({userId: user._id, privacy: {$ne: true}});
+						return LibraryEntries.find({userId: user._id, status: 'Watching', privacy: {$ne: true}}, {sort: {createdAt: -1}, limit: 6});
 					} else {
-						return LibraryEntries.find({userId: user._id});
+						return LibraryEntries.find({userId: user._id, status: 'Watching'}, {sort: {createdAt: -1}, limit: 6});
 					}
 				},
 				children: [

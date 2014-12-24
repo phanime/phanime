@@ -87,7 +87,7 @@ Template.userLibrary.helpers({
 	watching: function(template) {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'Watching'}),
+				entries: LibraryEntries.find({userId: this._id, status: 'Watching'}, {sort: {createdAt: -1}, limit: 6}),
 				count: LibraryEntries.find({userId: this._id, status: 'Watching'}).count()
 			};
 		}
@@ -96,7 +96,7 @@ Template.userLibrary.helpers({
 	completed: function() {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'Completed'}),
+				entries: LibraryEntries.find({userId: this._id, status: 'Completed'}, {sort: {createdAt: -1}, limit: 6}),
 				count: LibraryEntries.find({userId: this._id, status: 'Completed'}).count()
 			};
 		}	
@@ -105,7 +105,7 @@ Template.userLibrary.helpers({
 	planToWatch: function() {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}),
+				entries: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}, {sort: {createdAt: -1}, limit: 6}),
 				count: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}).count()
 			};
 		}
@@ -114,7 +114,7 @@ Template.userLibrary.helpers({
 	onHold: function() {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'On hold'}),
+				entries: LibraryEntries.find({userId: this._id, status: 'On hold'}, {sort: {createdAt: -1}, limit: 6}),
 				count: LibraryEntries.find({userId: this._id, status: 'On hold'}).count()
 			};
 		}	
@@ -123,7 +123,7 @@ Template.userLibrary.helpers({
 	dropped: function() {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'Dropped'}),
+				entries: LibraryEntries.find({userId: this._id, status: 'Dropped'}, {sort: {createdAt: -1}, limit: 6}),
 				count: LibraryEntries.find({userId: this._id, status: 'Dropped'}).count()
 			};
 		}
