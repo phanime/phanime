@@ -1,13 +1,25 @@
 <template name="animeAddButton">
 
+	{{#unless isExpanded}}
+	<div id="animeFavourite" class="animated fadeInRight">
+		{{#if libraryEntry.status}}
+			{{#if libraryEntry.favourite}}
+				<i class="fa fa-heart animated fadeIn"></i>
+			{{else}}
+				<i class="fa fa-heart-o animated fadeIn"></i>
+			{{/if}}
+		{{/if}}
+	</div>
+	{{/unless}}
+
 	<div id="animeAddButton">
 	{{#if isExpanded}}
 		<i class="fa fa-times animated fadeIn"></i>
 	{{else}}
 		{{#if libraryEntry.status}}
-			<i class="fa fa-pencil"></i>
+			<i class="fa fa-pencil animated fadeIn"></i>
 		{{else}}
-			<i class="fa fa-plus"></i>
+			<i class="fa fa-plus animated fadeIn"></i>
 		{{/if}}
 	{{/if}}
 	</div>

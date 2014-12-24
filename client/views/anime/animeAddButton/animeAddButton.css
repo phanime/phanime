@@ -46,3 +46,26 @@
 	z-index: 101;
 	cursor: pointer;
 }
+
+
+#animeFavourite {
+	position: fixed;
+	bottom: 0;
+	right: 75px;
+	margin: 25px;
+	height: 50px;
+	width: 50px;
+	border-radius: 300px;
+	background-color: rgb(255, 144, 144);
+	color: rgb(255, 220, 226);
+	padding: 12px;
+	padding-top: 14px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+	cursor: pointer;
+	z-index: 102;
+
+}
+
+	#animeFavourite > .fa {
+		font-size: 25px;
+	}
