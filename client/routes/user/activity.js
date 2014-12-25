@@ -34,31 +34,13 @@ UserActivityController = RouteController.extend({
 
 	data: function () {
 		var user = Meteor.users.findOne({username: this.params.username.toLowerCase()});
-		// if (this.ready()) {
-
-		// 	if (user) {
-
-
-		// 		user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
-
-
-		// 		user.activity.forEach(function(activity) {
-		// 			if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
-					
-		// 				activity.libraryEntry.anime = Anime.findOne({_id: activity.libraryEntry.contentId});
-					
-		// 			}
-
-		// 		});
-
-		// 		return user;
-		// 	} else {
-		// 		this.render('fourOhFour');
-		// 	}
-
-		// }
-
-		return user;
+		if (this.ready()) {
+			if (user) {
+				return user;
+			} else {
+				this.render('fourOhFour');
+			}
+		}
 	}
 
 });

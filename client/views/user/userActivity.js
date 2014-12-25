@@ -8,7 +8,7 @@ Template.userActivity.created = function() {
 
 	this.autorun(function() {
 		var limit = self.limit.get();
-		console.log("Asking for " + limit + " activities");
+		// console.log("Asking for " + limit + " activities");
 
 		var subscription = Meteor.subscribe('userWithActivity', self.data.username, limit);
 
@@ -16,10 +16,10 @@ Template.userActivity.created = function() {
 		if (subscription.ready()) {
 			self.loaded.set(limit);
 			self.ready.set(true);
-			console.log("Activities are ready");
+			// console.log("Activities are ready");
 		} else {
 			self.ready.set(false);
-			console.log("Activities aren't ready yet");
+			// console.log("Activities aren't ready yet");
 		}
 	});
 
@@ -46,7 +46,19 @@ Template.userActivity.events({
 Template.userActivity.helpers({
 
 	activities: function() {
-		return Template.instance().activities();
+		// Need to attach the respective anime to their entries
+		var activities = Template.instance().activities().fetch();
+
+		activities.forEach(function(activity) {
+			if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
+			
+				activity.libraryEntry.anime = Anime.findOne({_id: activity.libraryEntry.contentId});
+			
+			}
+
+		});
+
+		return activities;
 	},
 	isReady: function() {
 		return Template.instance().ready.get();

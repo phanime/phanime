@@ -52,19 +52,6 @@ Meteor.publishComposite('userWithProfilePosts', function(username) {
 
 });
 
-
-// Meteor.publish('userActivity', function(username, limit) {
-// 	var user = Meteor.users.findOne({username: username});
-
-
-// 	return [
-// 		Meteor.users.find({username: username}),
-// 		Activity.find({userId: user._id}, {sort: {createdAt: -1}, limit: limit})
-// 	];
-// });
-
-
-
 Meteor.publishComposite('userWithActivity', function(username, limit) {
 	return {
 		find: function() {
