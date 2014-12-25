@@ -27,7 +27,7 @@ Activity.helpers({
 
 				case "episodesSeen": 
 
-					friendlyText = user.username + ' watched episode ' + this.libraryEntry.newValue;
+					friendlyText = user.displayName() + ' watched episode ' + this.libraryEntry.newValue;
 
 					break;
 				case "status":
@@ -35,19 +35,19 @@ Activity.helpers({
 					switch (this.libraryEntry.newValue) {
 
 						case "Watching":
-							friendlyText = user.username + " is currently watching";
+							friendlyText = user.displayName() + " is currently watching";
 							break;
 						case "Completed":
-							friendlyText = user.username + " has completed";
+							friendlyText = user.displayName() + " has completed";
 							break;
 						case "Plan to watch":
-							friendlyText = user.username + " plans to watch";
+							friendlyText = user.displayName() + " plans to watch";
 							break;
 						case "On hold":
-							friendlyText = user.username + " has put on hold";
+							friendlyText = user.displayName() + " has put on hold";
 							break;
 						case "Dropped":
-							friendlyText = user.username + " has dropped";
+							friendlyText = user.displayName() + " has dropped";
 							break;
 					} 
 					break;
@@ -55,9 +55,9 @@ Activity.helpers({
 				case "highPriority":
 
 					if (this.libraryEntry.newValue === true) {
-						friendlyText = user.username + " has set to high priority";
+						friendlyText = user.displayName() + " has set to high priority";
 					} else {
-						friendlyText = user.username + " has removed from high priority";
+						friendlyText = user.displayName() + " has removed from high priority";
 					}
 
 					break;
@@ -65,9 +65,9 @@ Activity.helpers({
 				case "rewatching":
 
 					if (this.libraryEntry.newValue === true) {
-						friendlyText = user.username + " is rewatching";
+						friendlyText = user.displayName() + " is rewatching";
 					} else {
-						friendlyText = user.username + " is watching first time";
+						friendlyText = user.displayName() + " is watching first time";
 					}
 
 					break;
@@ -141,15 +141,15 @@ Activity.helpers({
 });
 
 
-ActivityPages = new Meteor.Pagination(Activity, {
-	router: 'iron-router',
-	routerTemplate: 'userActivity',
-	homeRoute: 'userActivity',
-	perPage: 30,
-	itemTemplate: 'activityCard',
-	routerLayout: 'userProfileLayout',
-	sort: {createdAt: -1},
-	templateName: 'userActivitySpecific',
-	/*infiniteItemsLimit: 30,*/
+// ActivityPages = new Meteor.Pagination(Activity, {
+// 	router: 'iron-router',
+// 	routerTemplate: 'userActivity',
+// 	homeRoute: 'userActivity',
+// 	perPage: 30,
+// 	itemTemplate: 'activityCard',
+// 	routerLayout: 'userProfileLayout',
+// 	sort: {createdAt: -1},
+// 	templateName: 'userActivitySpecific',
+// 	/*infiniteItemsLimit: 30,*/
 
-});
+// });

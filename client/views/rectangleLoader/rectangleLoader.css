@@ -1,0 +1,49 @@
+.rectangleLoader {
+  margin: 105px auto;
+  width: 40px;
+  height: 10px;
+  font-size: 10px;
+}
+.rectangleLoader > div {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin-bottom: 0.6em;
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+.rectangleLoader .rect2 {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+.rectangleLoader .rect3 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% {
+    -webkit-transform: scaleX(0.8);
+    background-color: #2e5865;
+    box-shadow: 0 0 0 rgba(10, 10, 10, 0.1);
+  }
+  20% {
+    -webkit-transform: scaleX(1);
+    background-color: #00b192;
+    box-shadow: 0 5px 6px rgba(10, 10, 10, 0.4);
+  }
+}
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    background-color: #2e5865;
+    transform: scaleX(0.8);
+    -webkit-transform: scaleX(0.8);
+    box-shadow: 0 0 0 rgba(10, 10, 10, 0.1);
+  }
+  20% {
+    background-color: #00b192;
+    transform: scaleY(1);
+    -webkit-transform: scaleX(1);
+    box-shadow: 0 5px 6px rgba(10, 10, 10, 0.4);
+  }
+}

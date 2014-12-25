@@ -52,7 +52,6 @@ Meteor.publishComposite('userWithProfilePosts', function(username) {
 
 });
 
-
 Meteor.publishComposite('userWithActivity', function(username, limit) {
 	return {
 		find: function() {
@@ -61,7 +60,7 @@ Meteor.publishComposite('userWithActivity', function(username, limit) {
 		children: [
 			{
 				find: function(user) {
-					return Activity.find({userId: user._id}, {limit: limit});
+					return Activity.find({userId: user._id}, {sort: {createdAt: -1}, limit: limit});
 				},
 				children: [
 					{
