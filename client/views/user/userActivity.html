@@ -4,13 +4,16 @@
 		<h2 class="centered-text sub-text">Activity Timeline</h2>
 
 		<section id="cd-timeline" class="cd-container">
-			{{#each activity}}
+			{{#each activities}}
 				{{#if libraryEntry}}
 					{{> activityCard}}
 				{{/if}}
 			{{else}}
 				<h3 class="thin-text">There is no activity for {{username}}.</h3>
 			{{/each}}
+
+			<button id="activityLoadMore" type="button" class="btn btn-primary btn-lg">Load More</button>
+
 		</section> <!-- cd-timeline -->
 	</div>
 

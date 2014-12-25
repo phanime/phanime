@@ -1,14 +1,14 @@
 UserActivityController = RouteController.extend({
-	increment: 20,
-	limit: function() {
-		if (Session.get('activityItemsLimit')) {
-			return Session.get('activityItemsLimit');
-		} else {
-			// Default to return 20 items initially
-			Session.set('activityItemsLimit', 20);
-			return Session.get('activityItemsLimit');
-		}
-	},
+	// increment: 20,
+	// limit: function() {
+	// 	if (Session.get('activityItemsLimit')) {
+	// 		return Session.get('activityItemsLimit');
+	// 	} else {
+	// 		// Default to return 20 items initially
+	// 		Session.set('activityItemsLimit', 20);
+	// 		return Session.get('activityItemsLimit');
+	// 	}
+	// },
 	onAfterAction: function () {
 		if (this.ready()) {
 			var user = this.data();
@@ -28,34 +28,37 @@ UserActivityController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('userWithActivity', this.params.username.toLowerCase(), this.limit());
+		// We send the limit as 20 because we want it to be intially to be 20;
+		return Meteor.subscribe('userWithActivity', this.params.username.toLowerCase(), 20);
 	},
 
 	data: function () {
 		var user = Meteor.users.findOne({username: this.params.username.toLowerCase()});
-		if (this.ready()) {
+		// if (this.ready()) {
 
-			if (user) {
-
-
-				user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
+		// 	if (user) {
 
 
-				user.activity.forEach(function(activity) {
-					if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
+		// 		user.activity = Activity.find({userId: user._id}, {sort: {createdAt: -1}}).fetch();
+
+
+		// 		user.activity.forEach(function(activity) {
+		// 			if (activity.type === 'libraryEntry' && activity.libraryEntry.type === 'anime') {
 					
-						activity.libraryEntry.anime = Anime.findOne({_id: activity.libraryEntry.contentId});
+		// 				activity.libraryEntry.anime = Anime.findOne({_id: activity.libraryEntry.contentId});
 					
-					}
+		// 			}
 
-				});
+		// 		});
 
-				return user;
-			} else {
-				this.render('fourOhFour');
-			}
+		// 		return user;
+		// 	} else {
+		// 		this.render('fourOhFour');
+		// 	}
 
-		}
+		// }
+
+		return user;
 	}
 
 });
