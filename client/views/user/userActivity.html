@@ -5,16 +5,22 @@
 
 		<section id="cd-timeline" class="cd-container">
 			{{#each activities}}
-				{{#if libraryEntry}}
-					{{> activityCard}}
-				{{/if}}
+				{{> activityCard}}
 			{{else}}
 				<h3 class="thin-text">There is no activity for {{username}}.</h3>
 			{{/each}}
+		</section> 
 
-			<button id="activityLoadMore" type="button" class="btn btn-primary btn-lg">Load More</button>
+		{{#unless isReady}}
+			{{> rectangleLoader}}
+		{{/unless}}
 
-		</section> <!-- cd-timeline -->
+		{{#if isReady}}
+			{{#if hasMoreActivities}}
+				<button id="activityLoadMore" type="button" class="btn btn-primary btn-lg btn-full-width">Load More</button>
+			{{/if}}
+		{{/if}}
+
 	</div>
 
 </template>
