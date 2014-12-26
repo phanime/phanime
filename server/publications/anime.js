@@ -119,12 +119,6 @@ Meteor.publishComposite("animeBySlug", function(animeSlug) {
 });
 
 
-// Publish multiple anime
-
-Meteor.publish('animes', function() {
-	return Anime.find();
-});
-
 
 
 // Anime Search

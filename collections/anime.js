@@ -283,19 +283,19 @@ EasySearch.createSearchIndex('anime', {
 
 
 // Pages seems to be causing spiderable not to work properly
-AnimePages = new Meteor.Pagination(Anime, {
-	router: 'iron-router',
-	routerTemplate: 'animeExplore',
-	homeRoute: '/anime/explore/',
-	route: '/anime/explore/page/',
-	perPage: 30,
-	itemTemplate: 'animeCardProxy',
-	routerLayout: 'defaultLayout',
-	sort: {canonicalTitle: 1},
-	templateName: 'animeSpecificExplore',
-	/*infiniteItemsLimit: 30,*/
+// AnimePages = new Meteor.Pagination(Anime, {
+// 	router: 'iron-router',
+// 	routerTemplate: 'animeExplore',
+// 	homeRoute: '/anime/explore/',
+// 	route: '/anime/explore/page/',
+// 	perPage: 30,
+// 	itemTemplate: 'animeCardProxy',
+// 	routerLayout: 'defaultLayout',
+// 	sort: {canonicalTitle: 1},
+// 	templateName: 'animeSpecificExplore',
+// 	/*infiniteItemsLimit: 30,*/
 
-});
+// });
 
 
 Anime.createAnimeObject = function(anime) {

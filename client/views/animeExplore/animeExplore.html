@@ -1,59 +1,22 @@
 <template name="animeExplore">
 
-	{{> animeSpecificExplore}}
-
-</template>
-
-<template name="animeSpecificExplore">
-
-<div class="container main-content">
-
-	{{> pagesNav}}
-
-	<div class="row">
-		{{> pages}}
-	</div>
-
-	{{> pagesNav}}
-
-</div>
-
-</template>
-
-
-
-<template name="animeExploreBackup">
-
 	<div class="container main-content">
-
-		<h1 class="thin-text">We currently have {{animeCount}} anime in our database</h1>
-
-
-		<div class="search-input">
-			{{> esInput index="anime" classes="form-control input-lg" placeholder="Search..." }}
-		</div>
-
-		{{#ifEsIsSearching index="anime"}}
-			<h2 class="thin-text">Loading...</h2>
-		{{else}}
-			<div class="row">
-				{{#esEach index="anime"}}
-					{{> UI.dynamic template="animeCard" data=this}}
-				{{/esEach}}
-			</div>
-		{{/ifEsIsSearching}}
-
-		{{#ifEsHasNoResults index="anime"}}
-		   <h2 class="thin-text">No results found!</h2>
-		{{/ifEsHasNoResults}}
-
-		<hr style="border-top: 2px solid #D5D5D5">
-
 		<div class="row">
-			{{#each this}}
+			{{#each anime}}
 				{{> UI.dynamic template="animeCard" data=this}}
 			{{/each}}
 		</div>
+	
+		{{#unless isReady}}
+			{{> rectangleLoader}}
+		{{/unless}}
+
+		{{#if isReady}}
+			{{#if hasMoreAnime}}
+				<button id="loadMore" type="button" class="btn btn-primary btn-lg btn-full-width" style='margin-top: 20px;'><h4>Load More</h4></button>
+			{{/if}}
+		{{/if}}
+
 	</div>
 
 </template>
