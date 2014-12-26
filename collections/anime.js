@@ -281,6 +281,8 @@ EasySearch.createSearchIndex('anime', {
 	}
 });
 
+
+// Pages seems to be causing spiderable not to work properly
 AnimePages = new Meteor.Pagination(Anime, {
 	router: 'iron-router',
 	routerTemplate: 'animeExplore',
