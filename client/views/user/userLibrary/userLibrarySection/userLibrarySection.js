@@ -45,14 +45,17 @@ Template.userLibrarySection.created = function() {
 
 Template.userLibrarySection.rendered = function() {
 	var template = Template.instance();
-	$(window).scroll(function() {
-		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-			// add two rows if in cover mode
-			var increment = 12;
-			template.limit.set(template.limit.get() + increment);
-			console.log("Load more plz?");
-		}
-	});
+
+	// Only do the scrolling business if we can get more entries
+	// if (template.libraryEntries().count() >= template.limit.get()) {
+	// 	$(window).scroll(function() {
+	// 		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+	// 			// add two rows if in cover mode
+	// 			var increment = 12;
+	// 			template.limit.set(template.limit.get() + increment);
+	// 		}
+	// 	});
+	// }
 }
 
 
@@ -63,6 +66,8 @@ Template.userLibrarySection.events({
 		
 		// Let's check if status is different, if it is, then we need to reset loaded and limit reactiveVars 
 		if (status !== template.statusFilter.get()) {
+			template.limit.set(18);
+			template.loaded.set(0);
 			template.statusFilter.set(status);
 		}
 	},
@@ -71,6 +76,12 @@ Template.userLibrarySection.events({
 		var libraryView = $(event.target).text();
 
 		template.libraryView.set(libraryView);
+	},
+	'click #loadMore' : function(event, template) {
+		// Two rows of the cover view
+		var increment = 12;
+		template.limit.set(template.limit.get() + increment);
+
 	}
 });
 
@@ -108,9 +119,18 @@ Template.userLibrarySection.helpers({
 		var template = Template.instance();
 		var loaded = template.loaded.get();
 
+
 		// If we have more than 100 entries, then we shouldn't allow to switch to cover
 		if (loaded > 100) {
+			// We should check if we're in cover mode
+			// if we are, then we should switch to list view
+			template.libraryView.set('List');
+
+			// We'll also notify the user of the change
+			// Notifications.info('Library View Changed', "We've switched your library view mode to 'List' to keep your library feeling snappy.");
+
 			return 'disabled';
+
 		} else {
 			return '';
 		}
