@@ -1,8 +1,69 @@
 <template name="userLibrarySection">
 
-{{selectedStatus}}
-{{selectedLibraryView}}
-{{sortField}}
-{{sortOrder}}
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="btn-group statusFilter">
+				<button type="button" class="btn btn-default {{activeStatusFilter 'Watching'}}">Watching</button>
+				<button type="button" class="btn btn-default {{activeStatusFilter 'Completed'}}">Completed</button>
+				<button type="button" class="btn btn-default {{activeStatusFilter 'Plan to watch'}}">Plan to watch</button>
+				<button type="button" class="btn btn-default {{activeStatusFilter 'On hold'}}">On hold</button>
+				<button type="button" class="btn btn-default {{activeStatusFilter 'Dropped'}}">Dropped</button>
+			</div>
+
+
+			<div class="btn-group btn-beside libraryView">
+				<button type="button" class="btn btn-default {{coverViewDisabled}} {{activeLibraryView 'Cover'}}">Cover</button>
+				<button type="button" class="btn btn-default {{activeLibraryView 'List'}}">List</button>
+			</div>
+
+		</div>
+	</div>
+
+
+	{{#if libraryViewCheck 'Cover'}}
+		<h1 class="thin-text sub-text">{{selectedStatus}}</h1>
+
+		<div class="row">
+			{{#each libraryEntries}}
+				{{> UI.dynamic template="libraryEntryCard" data=this}}
+			{{else}}
+				<div class="col-sm-12">
+					<h3 class="thin-text sub-text">{{user.displayName}} has no anime with {{selectedStatus}} status</h3>
+				</div>
+			{{/each}}
+		</div>
+	{{/if}}
+
+
+	{{#if libraryViewCheck 'List'}}
+		<div class="table-responsive">
+			<table class="table table-striped block table-hover">
+				<thead>
+					<tr>
+						<td>Title</td>
+						<td>Score</td>
+						<td>Progress</td>
+						<td>Type</td>
+					</tr>
+
+				</thead>
+
+
+				<tbody>
+					<tr>
+						<td colspan="4"><h5 class="centered-text">{{selectedStatus}}</h5></td>
+					</tr>
+
+					{{#each libraryEntries}}
+						{{> UI.dynamic template="libraryEntryRow" data=this}}
+					{{else}}
+						<tr>
+							<td colspan="4"><h5 class="thin-text centered-text">{{user.displayName}} has no anime with {{selectedStatus}} status</h5></td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	{{/if}}
 
 </template>
