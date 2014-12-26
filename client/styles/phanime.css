@@ -1140,6 +1140,9 @@ ul.profile-summary-list {
 			border-color: #558b2f;
 		}
 
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
+	outline: 0px;
+}
 /*--- Inputs ---*/
 
 input.form-control, select.form-control, textarea.form-control {
