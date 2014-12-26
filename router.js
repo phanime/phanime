@@ -189,7 +189,7 @@ var routerOnStopHooks = {
 Router.onBeforeAction('loading');
 
 // These routes don't require login
-Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {except: ['signIn', 'signUp', 'index', 'communitySSO', 'forgotPassword', 'resetPassword']});
+Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {only: ['accountPersonalDetails', 'accountPreferences', 'accountSecurity', 'accountImports', 'revisionsAnimeAdd', 'revisionsQueue']});
 
 // If the user is already logged in, then they shouldn't be able to visit the following routes
 Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp', 'forgotPassword', 'resetPassword']});
