@@ -14,7 +14,9 @@
 					{{> libraryEntryCardEdit}}
 				{{/with}}
 			{{else}}
-				{{> libraryEntryCardAdd}}
+				{{#if currentUser}}
+					{{> libraryEntryCardAdd}}
+				{{/if}}
 			{{/if}}				
 
 		</div>
