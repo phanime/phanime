@@ -21,10 +21,6 @@ Template.userLibrary.events({
 	}
 });
 
-dataTableData = function() {
-	return LibraryEntries.find().fetch();
-}
-
 Template.userLibrary.helpers({
 	activeLibraryView: function(libraryView) {
 		var template = Template.instance();
@@ -87,51 +83,11 @@ Template.userLibrary.helpers({
 			};
 		}
 	},
-	reactiveDataFunction: function() {
-		return dataTableData;
-	},
-	optionsObject: {
-		columns: [{
-			title: 'Title',
-			data: function(row, type, set, meta) {
-				return Anime.findOne({_id: row.animeId}).title();
-			},
-			className: 'titleColumn'
-		},
-		{
-			title: 'Status',
-			data: function(row, type, set, meta) {
-				return row.status;
-			},
-			className: 'nameColumn'
-		},
-		{
-			title: 'Score',
-			data: function(row, type, set, meta) {
-				return row.score;
-			},
-			className: 'scoreColumn'
-		},
-		{
-			title: 'Progress',
-			data: function(row, type, set, meta) {
-				var anime = Anime.findOne({_id: row.animeId});
-				return row.episodesSeen + "/" + anime.totalEpisodes;
-			},
-			className: 'progressColumn'
-		},
-		{
-			title: 'Type',
-			data: function(row, type, set, meta) {
-				return Anime.findOne({_id: row.animeId}).type;
-			}, 
-			className: 'typeColumn'
-		}]
-	},
+
 	watching: function(template) {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'Watching'}, {sort: {createdAt: -1}, limit: 6}),
+				entries: LibraryEntries.find({userId: this._id, status: 'Watching'}),
 				count: LibraryEntries.find({userId: this._id, status: 'Watching'}).count()
 			};
 		}
@@ -140,7 +96,7 @@ Template.userLibrary.helpers({
 	completed: function() {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'Completed'}, {sort: {createdAt: -1}, limit: 6}),
+				entries: LibraryEntries.find({userId: this._id, status: 'Completed'}),
 				count: LibraryEntries.find({userId: this._id, status: 'Completed'}).count()
 			};
 		}	
@@ -149,7 +105,7 @@ Template.userLibrary.helpers({
 	planToWatch: function() {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}, {sort: {createdAt: -1}, limit: 6}),
+				entries: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}),
 				count: LibraryEntries.find({userId: this._id, status: 'Plan to watch'}).count()
 			};
 		}
@@ -158,7 +114,7 @@ Template.userLibrary.helpers({
 	onHold: function() {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'On hold'}, {sort: {createdAt: -1}, limit: 6}),
+				entries: LibraryEntries.find({userId: this._id, status: 'On hold'}),
 				count: LibraryEntries.find({userId: this._id, status: 'On hold'}).count()
 			};
 		}	
@@ -167,7 +123,7 @@ Template.userLibrary.helpers({
 	dropped: function() {
 		if (this) {
 			return {
-				entries: LibraryEntries.find({userId: this._id, status: 'Dropped'}, {sort: {createdAt: -1}, limit: 6}),
+				entries: LibraryEntries.find({userId: this._id, status: 'Dropped'}),
 				count: LibraryEntries.find({userId: this._id, status: 'Dropped'}).count()
 			};
 		}
