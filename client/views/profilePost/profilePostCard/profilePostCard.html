@@ -21,7 +21,9 @@
 			{{> UI.dynamic template="commentCard" data=this}}
 		{{/each}}	
 
-		{{> createComment}}
+		{{#if currentUser}}
+			{{> createComment}}
+		{{/if}}
 	</div>
 
 

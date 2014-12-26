@@ -17,10 +17,12 @@
 
 				{{#unless isUserIdCurrentUser _id}}
 
-					{{#if isCurrentUserAFollower followers}}
-						<button style="margin-left:210px" id="unfollow" type="button" class="btn btn-default follow-button unfollow">Unfollow</button>
-					{{else}}
-						<button style="margin-left:210px" id="follow" type="button" class="btn btn-default follow-button follow">Follow</button>
+					{{#if currentUser}}
+						{{#if isCurrentUserAFollower followers}}
+							<button style="margin-left:210px" id="unfollow" type="button" class="btn btn-default follow-button unfollow">Unfollow</button>
+						{{else}}
+							<button style="margin-left:210px" id="follow" type="button" class="btn btn-default follow-button follow">Follow</button>
+						{{/if}}
 					{{/if}}
 
 				{{/unless}}
