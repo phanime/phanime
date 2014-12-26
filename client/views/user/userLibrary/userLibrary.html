@@ -35,6 +35,10 @@
 
 		<hr>
 
+
+		{{> userLibrarySection selectedStatus=activeStatusFilter selectedLibraryView=activeLibraryView sortField="canonicalTitle" sortOrder="asc"}}
+		
+
 		{{#if libraryViewCheck 'List'}}
 		<div class="table-responsive">
 			<table class="table table-striped block table-hover">

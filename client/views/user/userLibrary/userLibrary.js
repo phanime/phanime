@@ -22,6 +22,12 @@ Template.userLibrary.events({
 });
 
 Template.userLibrary.helpers({
+	selectedStatusFilter: function() {
+		return Template.instance().statusFilter.get();
+	},
+	selectedLibraryView: function() {
+		return Template.instance().libraryView.get();
+	},
 	activeLibraryView: function(libraryView) {
 		var template = Template.instance();
 		var currentLibraryView = template.libraryView.get();
