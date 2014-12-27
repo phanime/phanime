@@ -18,13 +18,11 @@
 					{{> createProfilePost}}
 				{{/if}}
 				
-				{{#momentum plugin='growl'}}
-					{{#each profilePosts}}
-						{{> profilePostCard}}
-					{{else}}
-						<h3 class="thin-text">There are no messages on {{username}}'s profile yet.</h3>
-					{{/each}}
-				{{/momentum}}
+				{{#each profilePosts}}
+					{{> profilePostCard}}
+				{{else}}
+					<h3 class="thin-text">There are no messages on {{username}}'s profile yet.</h3>
+				{{/each}}
 			</div>
 		</div>
 

@@ -1,30 +1,31 @@
 <template name="profilePostCard">
 
-	<div class="block">
-		<div class="row">
-			<div class="col-sm-12">
-				{{#with poster}}
-					<a href="{{pathFor 'user'}}"><div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}');"></div></a>
-					<h4 style="margin:0">{{displayName}}</h4>
-				{{/with}}
-				<h6 class="thin-text" style="margin:0">{{formatDateFromNow createdAt}}</h6>
+	<div class="animated flipInX">
+		<div class="block">
+			<div class="row">
+				<div class="col-sm-12">
+					{{#with poster}}
+						<a href="{{pathFor 'user'}}"><div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}');"></div></a>
+						<h4 style="margin:0">{{displayName}}</h4>
+					{{/with}}
+					<h6 class="thin-text" style="margin:0">{{formatDateFromNow createdAt}}</h6>
+				</div>
+			</div>
+			<div class="description">
+				{{content}}
 			</div>
 		</div>
-		<div class="description">
-			{{content}}
+
+		<div class="block comment-list">
+			<div class="expand-comments-list sub-text">{{expandCommentsText}}</div>
+			{{#each commentsList}}
+				{{> UI.dynamic template="commentCard" data=this}}
+			{{/each}}	
+
+			{{#if currentUser}}
+				{{> createComment}}
+			{{/if}}
 		</div>
 	</div>
-
-	<div class="block comment-list">
-		<div class="expand-comments-list sub-text">{{expandCommentsText}}</div>
-		{{#each commentsList}}
-			{{> UI.dynamic template="commentCard" data=this}}
-		{{/each}}	
-
-		{{#if currentUser}}
-			{{> createComment}}
-		{{/if}}
-	</div>
-
 
 </template>
