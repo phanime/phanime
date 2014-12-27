@@ -375,13 +375,20 @@ textarea {
 	color: #949494;
 }
 
-	.btn.btn-transparent:hover {
+	.btn.btn-transparent.white {
+		border-color: #fff;
+		color: #fff;
+	}
+
+	.btn.btn-transparent:hover,
+	.btn.btn-transparent.white:hover {
 		background-color: transparent;
 		border-color: #8bc34a;
 		color: #8bc34a;
 	}
 
-	.btn.btn-transparent:focus {
+	.btn.btn-transparent:focus,
+	.btn.btn-transparent.white:focus {
 		background-color: transparent;
 		border-color: #8bc34a;
 		color: #8bc34a;
