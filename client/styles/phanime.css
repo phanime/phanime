@@ -870,14 +870,10 @@ textarea {
 	padding: 5px 0;
 }
 
-	.profile-nav {
-		margin-left: 200px !important;
+	.profile-nav .navbar-nav > li > a {
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
-
-		.profile-nav .navbar-nav > li > a {
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
 
 ul.profile-summary-list {
 	margin: 0;
