@@ -800,37 +800,6 @@ textarea {
 	margin-bottom: 2px;
 }
 
-
-/*-----------------------------*/
-/*---------- VIDEO ------------*/
-/*-----------------------------*/
-
-.video-container {
-	background-color: #000;
-	padding: 20px 0;
-}
-
-.player-wrapper {
-	position: relative;
-	display: block;
-	padding-bottom: 56.25%;
-	left: 0;
-	width: 100%;
-	-webkit-transition: all 0.7s ease;
-	-moz-transition: all 0.7s ease;
-	-o-transition: all 0.7s ease;
-	transition: all 0.7s ease;	
-}
-
-.player-wrapper iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-}
-
-
 /*---------------------------------*/
 /*---------- Character ------------*/
 /*---------------------------------*/
@@ -842,15 +811,15 @@ textarea {
 /*---------- USER  ------------*/
 /*-----------------------------*/
 .fancy-heading .container .user-important {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	padding: 20px;	
+	padding: 40px 20px;
 }
 
+	.fancy-heading .banner-gradient {
+		background-color: rgba(0,0,0,0.5);
+	}
+
 	.user-important .user-avatar {
-		position: absolute;
-		bottom: -70px;
+		display: inline-block;
 		border: 5px solid #fff;
 		background-color: #fff;
 		box-shadow: 0 0 3px rgba(0,0,0,0.5);
@@ -858,15 +827,35 @@ textarea {
 		background-position: center center;
 		height: 190px;
 		width: 190px;
+		border-radius: 300px;
 	}
 
+	.user-important .user-summary {
+		margin-left: 210px;
+		position: absolute;
+		top: 15%;
+		max-width: 500px;
+	}
+
+		.user-important .user-summary #editProfile,
+		.user-important .user-summary #saveProfile {
+			position: relative;
+			top: -7px;
+			margin-left: 10px;
+			color: #fff;
+			border-color: #fff;
+		}
+
 	.user-important .username {
-		padding-left: 210px;
+		display: inline-block;
 	}
 
 .follow-button {
 	background-color: transparent;
 	color: #fff;
+	position: relative;
+	top: -7px;
+	margin-left: 10px;
 }
 
 	.follow-button:hover {
@@ -881,14 +870,10 @@ textarea {
 	padding: 5px 0;
 }
 
-	.profile-nav {
-		margin-left: 200px !important;
+	.profile-nav .navbar-nav > li > a {
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
-
-		.profile-nav .navbar-nav > li > a {
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
 
 ul.profile-summary-list {
 	margin: 0;
