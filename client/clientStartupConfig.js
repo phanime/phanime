@@ -13,7 +13,6 @@ Meteor.startup(function () {
 
 Accounts.onResetPasswordLink(function(token, done) {
 
-	console.log(token);
 	Router.go('resetPassword', {token: token});
 
 

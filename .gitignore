@@ -2,9 +2,9 @@
 /packages/*
 
 # Include these packages (as core)
-!/packages/npm-container/
-!/packages/maazalik:spoiler-alert/
-!/packages/phanime:mal-import/
+	!/packages/npm-container/
+	!/packages/maazalik:spoiler-alert/
+	!/packages/phanime:mal-import/
 
 # Ignore private site settings api keys
 /server/privateSiteSettings.js
@@ -33,3 +33,6 @@
 .Trashes
 Thumbs.db
 ehthumbs.db
+
+# We should ignore all bower_components
+/public/bower_components/
