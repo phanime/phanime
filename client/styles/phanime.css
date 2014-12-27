@@ -834,9 +834,11 @@ textarea {
 		margin-left: 210px;
 		position: absolute;
 		top: 15%;
+		max-width: 500px;
 	}
 
-		.user-important .user-summary #editProfile {
+		.user-important .user-summary #editProfile,
+		.user-important .user-summary #saveProfile {
 			position: relative;
 			top: -7px;
 			margin-left: 10px;
