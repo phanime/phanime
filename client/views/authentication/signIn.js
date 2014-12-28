@@ -1,5 +1,5 @@
 Template.signIn.events({
-	'click button': function(event, template) {
+	'click #signInButton': function(event, template) {
 		event.preventDefault();
 		// Get input
 

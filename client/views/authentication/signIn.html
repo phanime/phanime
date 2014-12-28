@@ -6,17 +6,21 @@
 
 			<div class="col-sm-12 block">
 
-				<div class="form-group" style="margin-bottom: 40px;">
+				<div class="form-group">
 					<h3 class="thin-text centered-text">Sign In</h3>
 				</div>
 
 				<form role="form">
 					<div class="form-group">
-						<input id="identification" type="text" class="form-control" placeholder="Username or email">
+						<paper-input-decorator style="width: 100%;" label="Username or Email" floatingLabel>
+							<input id="identification" is="core-input">
+						</paper-input-decorator>
 					</div>
 
 					<div class="form-group">
-						<input id="password" type="password" class="form-control" placeholder="Password">
+						<paper-input-decorator style="width: 100%;" label="Password" floatingLabel>
+							<input id="password" type="password" is="core-input">
+						</paper-input-decorator>
 					</div>
 
 					<div class="form-group">
@@ -26,7 +30,7 @@
 
 					<div class="form-group">
 
-						<button type="submit" class="btn btn-default btn-lg btn-full-width">Sign In</button>
+						<button type="button" id="signInButton" class="btn btn-default btn-lg btn-full-width btn-transparent">Sign In</button>
 
 					</div>
 
