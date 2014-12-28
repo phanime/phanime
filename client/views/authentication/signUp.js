@@ -21,6 +21,8 @@ Template.signUp.events({
 			password: password
 		}
 
+		Notifications.info('Account Creation in Progress', 'We are validating your registration, give us a second');
+
 		Accounts.createUser(user, function(error) {
 			
 			if (error) {
