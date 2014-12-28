@@ -1,0 +1,13 @@
+<template name="verifyEmail">
+
+	<div class="container main-content">
+
+		<div class="block centered-text">
+			<h4><span class="sub-text">We've sent an email to your email address</span> {{#each currentUser.emails}} {{address}} {{/each}}. <span class="sub-text">Please verify your email address, it'll only take a few seconds.</span></h4>
+
+			<a style="margin-top: 30px; margin-bottom: 20px;" class="btn btn-primary btn-lg btn-transparent">Resend Email</a>
+		</div>
+
+	</div>
+
+</template>

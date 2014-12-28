@@ -97,11 +97,14 @@ Router.map(function () {
 
 	// Related routes
 
+
 	this.route('signIn', {path: 'sign-in'});
 	this.route('signOut', {path: 'sign-out'});
 	this.route('signUp', {path: 'sign-up'});
 	this.route('forgotPassword', {path: 'forgot-password'});
 	this.route('resetPassword', {path: 'reset-password/:token'});
+
+	this.route('verifyEmail', {path: 'verify-email'});
 
 	// Discourse community sso auth medium
 	this.route('communitySSO', {path: '/community/sso'});

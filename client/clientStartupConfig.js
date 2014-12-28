@@ -28,6 +28,7 @@ Accounts.onEmailVerificationLink(function(token, done) {
 			Notifications.error("Email verification failed", error.reason);
 		} else {
 			// No error, we are done
+			Notifications.success("Email verified", "Your email address was successfully verified");
 			done();
 		}
 	});
