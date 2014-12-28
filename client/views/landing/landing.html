@@ -3,33 +3,24 @@
 		<div class="landing-page blur-image" style="background-image: url('{{landingImage}}');"></div>
 	</div>
 
+
 	<div class="invite-block">
 		<h1>Discover Anime like Never Before</h1>
-		{{#if invitesLeft}}
-			<h3>We've got {{{invitesLeft}}} still left!</h3>
-
-			<div class="input-group input-lg row">
-				<div class="col-sm-7">
-					<input id="requestEmail" type="email" placeholder="Enter your email" class="form-control">
-				</div>
-
-				<div class="col-sm-5">
-				<span class="input-group-btn">
-					<button id="requestInvite" class="btn btn-default btn-fancy" type="button">Request Invite</button>
-				</span>
-				</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<a href="{{pathFor 'signIn'}}" class="btn btn-default btn-lg btn-full-width btn-transparent white">Sign In</a>
 			</div>
-			
-		{{else}}
-			<h3>All invites are gone, follow us to stay updated! {{> facebookLikeButton}}</h3>
-		{{/if}}
 
-		<h6>or <a href="{{pathFor 'signIn'}}">sign-in</a></h6>
+			<div class="col-sm-6">
+				<a href="{{pathFor 'signUp'}}" class="btn btn-default btn-lg btn-full-width btn-transparent white">Register</a>
+			</div>
+		</div>
+
 	</div>
 
 
 	<div class="footer-block">
-
+		{{> facebookLikeButton}}
 	</div>
 
 </template>
