@@ -38,28 +38,32 @@ Accounts.validateNewUser(function(user) {
 	}
 
 
+	////// We no longer do any signup code checks since the app is no longer in closed beta
+
+
 	// Check signup code
-	var requestedInvite = RequestedInvites.findOne({_id: user.profile.signUpCode, used: false});
+	// var requestedInvite = RequestedInvites.findOne({_id: user.profile.signUpCode, used: false});
 
-	if (!requestedInvite) {
-		// So we either couldn't find a code, or it's already used in which case 
-		throw new Meteor.Error(403, 'Sign Up Code is invalid or already in use! Please request one on the front page or provide a valid Sign Up Code.');
-		isGood = false;
-	} else {
-		isGood = true;
-	}
+	// if (!requestedInvite) {
+	// 	// So we either couldn't find a code, or it's already used in which case 
+	// 	throw new Meteor.Error(403, 'Sign Up Code is invalid or already in use! Please request one on the front page or provide a valid Sign Up Code.');
+	// 	isGood = false;
+	// } else {
+	// 	isGood = true;
+	// }
 
 
+	return isGood;
+	
+	// if (isGood === true) {
 
-	if (isGood === true) {
+	// 	// Seems like all validation checked out, so we're about to create the account
+	// 	// we should set the signUpCode to used
+	// 	// RequestedInvites.update({_id: user.profile.signUpCode}, {$set: {used: true}});
 
-		// Seems like all validation checked out, so we're about to create the account
-		// we should set the signUpCode to used
-		RequestedInvites.update({_id: user.profile.signUpCode}, {$set: {used: true}});
+	// 	return true;
 
-		return true;
-
-	}
+	// }
 
 
 });

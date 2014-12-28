@@ -17,3 +17,18 @@ Accounts.onResetPasswordLink(function(token, done) {
 
 
 });
+
+
+Accounts.onEmailVerificationLink(function(token, done) {
+	// Let's call Accounts.verifyEmail to verify that the token is indeed valid
+	Accounts.verifyEmail(token, function(error) {
+		if (error) {
+			// We need to handle this some how?
+
+			Notifications.error("Email verification failed", error.reason);
+		} else {
+			// No error, we are done
+			done();
+		}
+	});
+});

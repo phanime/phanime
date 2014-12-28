@@ -15,28 +15,26 @@
 
 				<form role="form">
 					<div class="form-group">
-						<label for="username" class="thin-text">Username</label>
-						<input id="username" type="text" class="form-control">
+						<paper-input-decorator style="width: 100%;" label="Username" floatingLabel>
+							<input id="username" is="core-input">
+						</paper-input-decorator>
 					</div>
 
 					<div class="form-group">
-						<label for="email" class="thin-text">Email</label>
-						<input id="email" type="email" class="form-control">
+						<paper-input-decorator style="width: 100%;" label="Email" floatingLabel>
+							<input id="email" type="email" is="core-input">
+						</paper-input-decorator>
 					</div>
 
 					<div class="form-group">
-						<label for="password" class="thin-text">Password</label>
-						<input id="password" type="password" class="form-control">
-					</div>
-
-					<div class="form-group">
-						<label for="code" class="thin-text">Code</label>
-						<input id="code" type="text" class="form-control">
+						<paper-input-decorator style="width: 100%;" label="Password" floatingLabel>
+							<input id="password" type="password" is="core-input">
+						</paper-input-decorator>
 					</div>
 
 					<div class="form-group">
 
-						<button type="submit" class="btn btn-default btn-lg btn-full-width thin-text">Register</button>
+						<button type="button" id="signUpButton" class="btn btn-default btn-lg btn-full-width btn-transparent">Register</button>
 
 					</div>
 
