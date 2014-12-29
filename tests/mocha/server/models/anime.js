@@ -5,7 +5,7 @@ if (!(typeof MochaWeb === 'undefined')){
 		describe("Anime", function(){
 			describe("create", function(){
 				var anime = {
-					canonicalTitle: "Test Anime Title",
+					canonicalTitle: "Test Anime Title645564",
 					type: "TV",
 					languageVersion: ["Subbed"],
 					ageRating: "R - 17+ (violence & profanity)",
@@ -74,7 +74,7 @@ if (!(typeof MochaWeb === 'undefined')){
 				before(function() {
 
 					var anime = {
-						canonicalTitle: "Test Anime Title",
+						canonicalTitle: "This is an anime title!",
 						type: "TV",
 						languageVersion: ["Subbed"],
 						ageRating: "R - 17+ (violence & profanity)",

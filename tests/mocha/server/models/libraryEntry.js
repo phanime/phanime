@@ -74,6 +74,7 @@ if (!(typeof MochaWeb === 'undefined')){
 					var userId = Meteor.users.findOne()._id;
 					var animeId = Anime.findOne()._id;
 					var libraryEntry = {
+						canonicalTitle: Anime.findOne().canonicalTitle,
 						userId: userId,
 						animeId: animeId,
 						type: 'anime',
@@ -102,6 +103,7 @@ if (!(typeof MochaWeb === 'undefined')){
 			describe("validateBefore", function() {
 				it("shouldn't check for createdAt field", function() {
 					var libraryEntry = {
+						canonicalTitle: Anime.findOne().canonicalTitle,
 						userId: Meteor.users.findOne()._id, // we could also use this.userId here I guess...
 						animeId: Anime.findOne()._id,
 						type: 'anime',
