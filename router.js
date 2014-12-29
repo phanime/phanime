@@ -8,9 +8,6 @@ Router.map(function () {
 
 	// Defined for compatibilty with pages 
 	this.route('animeExplore', {path: '/anime/explore'});
-
-	this.route('animeAdd', {path: '/anime/add'});
-
 	this.route('anime', {path: '/anime/:slug'});
 
 	/////////////////////////////////////////////////
@@ -19,7 +16,7 @@ Router.map(function () {
 
 	this.route('characters');
 	this.route('character', {path: 'characters/:_id/:fullNameSlug'});
-	this.route('charactersAdd', {path: 'characters/add'});
+	// Add will be moved to revisions/characters/add
 
 
 	/////////////////////////////////////////////////
@@ -28,23 +25,30 @@ Router.map(function () {
 
 	this.route('people', {layoutTemplate: 'defaultLayout'});
 	this.route('person', {path: '/people/:_id/:fullNameSlug'});
-	this.route('peopleAdd', {path: 'people/add'});
+	// Add will be moved to revisions/people/add
 
 	/////////////////////////////////////////////////
 	//////////////////// Studios ////////////////////
 	/////////////////////////////////////////////////
-	this.route('studiosAdd', {path: 'studios/add'});
-
+	// Add will be moved to revisions/studios/add
 
 	/////////////////////////////////////////////////
 	/////////////////// Castings ////////////////////
 	/////////////////////////////////////////////////
-	this.route('castingsAdd', {path: 'castings/add'});
+	// Add will be moved inside another add 
 
 	/////////////////////////////////////////////////
 	///////////////// staffMembers //////////////////
 	/////////////////////////////////////////////////
-	this.route('staffMembersAdd', {path: 'staff-members/add'});
+	// Add will be moved inside another add 
+
+
+
+	/////////////////////////////////////////////////
+	///////////////// customLists ///////////////////
+	/////////////////////////////////////////////////
+	this.route('customListsCreate', {path: '/custom-lists/create'});
+	this.route('customList', {path: '/custom-lists/:_id/:slug'});
 
 	/////////////////////////////////////////////////
 	/////////////////// Reviews /////////////////////
