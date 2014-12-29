@@ -19,6 +19,10 @@ LibraryEntriesSchema = new SimpleSchema({
 		},
 		denyUpdate: true
 	},
+	// This will correspond to an anime title or a manga title
+	canonicalTitle: {
+		type: String
+	},
 	type: {
 		type: String,
 		allowedValues: ['anime', 'manga']

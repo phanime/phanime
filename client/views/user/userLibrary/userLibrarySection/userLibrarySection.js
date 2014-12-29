@@ -12,6 +12,7 @@ Template.userLibrarySection.created = function() {
 	self.libraryView = new ReactiveVar('List');
 	self.sortField = new ReactiveVar('updatedAt');
 	self.sortOrder = new ReactiveVar('desc');
+	self.libraryEntries = new ReactiveVar();
 
 
 	self.autorun(function() {
@@ -26,21 +27,22 @@ Template.userLibrarySection.created = function() {
 		if (subscription.ready()) {
 			self.loaded.set(limit);
 			self.ready.set(true);
-			console.log('Subscription ready');
 		} else {
 			self.ready.set(false);
 		}
 
+		// Create the sort object
+		var sortObj = {};
+		sortObj[self.sortField.get()] = (self.sortOrder.get() === 'asc') ? 1 : -1;
+
+
+		self.libraryEntries.set(LibraryEntries.find({userId: data.user._id, status: self.statusFilter.get()}, {sort: sortObj, limit: self.loaded.get()}));
+		// self.libraryEntries = function() {
+		// 	return LibraryEntries.find({userId: data.user._id, status: self.statusFilter.get()}, {sort: sortObj, limit: self.loaded.get()});
+		// }
+
 	});
 
-	// Create the sort object
-	var sortObj = {};
-	sortObj[self.sortField.get()] = (self.sortOrder.get() === 'asc') ? 1 : -1;
-
-
-	self.libraryEntries = function() {
-		return LibraryEntries.find({userId: data.user._id, status: self.statusFilter.get()}, {sort: sortObj, limit: self.loaded.get()});
-	}
 }
 
 Template.userLibrarySection.rendered = function() {
@@ -77,6 +79,22 @@ Template.userLibrarySection.events({
 
 		template.libraryView.set(libraryView);
 	},
+	'click .sortField' : function(event, template) {
+		var sortField = $(event.target).attr('data-sortField');
+		console.log(sortField);
+
+		template.sortField.set(sortField);
+	},
+	'click .sortOrder' : function(event, template) {
+		var sortOrder = $(event.target).text();
+
+		if (sortOrder === 'asc') {
+			template.sortOrder.set('desc');
+		} else {
+			template.sortOrder.set('asc');
+		}
+
+	},
 	'click #loadMore' : function(event, template) {
 		// Two rows of the cover view
 		var increment = 12;
@@ -88,22 +106,34 @@ Template.userLibrarySection.events({
 Template.userLibrarySection.helpers({
 
 	libraryEntries: function() {
-		return Template.instance().libraryEntries();
+		return Template.instance().libraryEntries.get();
 	},
+	// Exposing reactive variables to the template
 	isReady: function() {
 		return Template.instance().ready.get();
 	},
 	hasMorelibraryEntries: function() {
-		return Template.instance().libraryEntries().count() >= Template.instance().limit.get();
+		return Template.instance().libraryEntries.get().count() >= Template.instance().limit.get();
 	},
-
-
 	selectedStatus: function() {
 		return Template.instance().statusFilter.get();
 	},
 	selectedLibraryView: function() {
 		return Template.instance().libraryView.get();
 	},
+	selectedSortOrder: function() {
+		return Template.instance().sortOrder.get();
+	},
+	selectedSortField: function() {
+		var sortField = Template.instance().sortField.get();
+		if (sortField === 'canonicalTitle') {
+			return "Alphabetical";
+		} else if (sortField === 'updatedAt') {
+			return "Last Updated";
+		}
+	},
+
+
 	activeLibraryView: function(libraryView) {
 		var template = Template.instance();
 		var currentLibraryView = template.libraryView.get();
