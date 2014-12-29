@@ -14,7 +14,7 @@ Meteor.publishComposite('userLibrarySection', function(username, selectedStatus,
 					// If user's profile is not current profile we don't publish private entries
 					if (user._id !== this.userId) {
 						var libraryEntries = LibraryEntries.find({userId: user._id, status: selectedStatus, privacy: {$ne: true}}, {sort: sortObj, limit: limit});
-						console.log(libraryEntries.fetch());
+						return libraryEntries;
 					} else {
 						return LibraryEntries.find({userId: user._id, status: selectedStatus}, {sort: sortObj, limit: limit});
 					}
