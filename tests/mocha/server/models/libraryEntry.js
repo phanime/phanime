@@ -41,7 +41,9 @@ if (!(typeof MochaWeb === 'undefined')){
 					// Let's grab the user we created
 					var userId = Meteor.users.findOne()._id;
 					var animeId = Anime.findOne()._id;
+					var canonicalTitle = Anime.findOne().canonicalTitle;
 					var libraryEntry = {
+						canonicalTitle: canonicalTitle,
 						userId: userId,
 						animeId: animeId,
 						type: 'anime',

@@ -16,6 +16,7 @@ Template.libraryEntryCardAdd.events({
 		if (!libraryEntry) {
 
 			var currentEntry = {
+				canonicalTitle: anime.canonicalTitle,
 				userId: Meteor.userId(),
 				type: 'anime',
 				animeId: anime._id,
