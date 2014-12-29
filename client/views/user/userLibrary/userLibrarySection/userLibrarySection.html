@@ -1,7 +1,7 @@
 <template name="userLibrarySection">
 
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-lg-8 col-md-7 col-sm-12">
 			<div class="btn-group statusFilter">
 				<button type="button" class="btn btn-default {{activeStatusFilter 'Watching'}}">Watching</button>
 				<button type="button" class="btn btn-default {{activeStatusFilter 'Completed'}}">Completed</button>
@@ -28,6 +28,10 @@
 
 			<button type="button" class="btn btn-default sortOrder">{{selectedSortOrder}}</button>
 
+		</div>
+
+		<div class="col-lg-4 col-md-5 col-sm-12">
+			<input id="searchLibrary" class="form-control" placeholder="Search {{user.displayName}}'s library">
 		</div>
 	</div>
 

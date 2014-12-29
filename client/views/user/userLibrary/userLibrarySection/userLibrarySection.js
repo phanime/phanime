@@ -6,6 +6,7 @@ Template.userLibrarySection.created = function() {
 	self.loaded = new ReactiveVar(0);
 	self.limit = new ReactiveVar(18);
 	self.ready = new ReactiveVar(false);
+	self.query = new ReactiveVar('');
 
 	// These reactiveVars determine the data we want and in which order
 	self.statusFilter = new ReactiveVar('Watching');
@@ -43,6 +44,23 @@ Template.userLibrarySection.created = function() {
 
 	});
 
+	// Searching autorun function
+	self.autorun(function() {
+		var query = self.query.get();
+
+		if (query !== '') {
+			var subscription = Meteor.subscribe('userLibrarySearch', data.user, query);
+			// Work around, we want to remove all of the libraryEntries 
+			self.statusFilter.set('Search');
+
+			if (subscription.ready()) {
+				self.libraryEntries.set(LibraryEntries.find({userId: data.user._id, canonicalTitle: new RegExp(query)}));
+				self.ready.set(true);
+			} else {
+				self.ready.set(false);
+			}
+		}
+	});
 }
 
 Template.userLibrarySection.rendered = function() {
@@ -99,6 +117,27 @@ Template.userLibrarySection.events({
 		// Two rows of the cover view
 		var increment = 12;
 		template.limit.set(template.limit.get() + increment);
+
+	},
+	'keydown #searchLibrary' : function(event, template) {
+		
+		// 13 is for Enter
+		if (event.which === 13) {
+			// Now we want to check if anything exists in searchLibrary
+			var query = $('#searchLibrary').val().trim();
+
+			if (query) {
+				// we want to first reset our query just incase 
+				// the user decides to search for the exact same thing 
+				// which will not trigger a re-run.
+				template.query.set('');
+
+
+				template.statusFilter.set('Search');
+				template.query.set(query);
+			}
+
+		}
 
 	}
 });
