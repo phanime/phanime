@@ -85,6 +85,7 @@ Meteor.methods({
 
 					// Initialize the object with the required fields
 					var libraryEntry = {
+						canonicalTitle: localAnimeObject.canonicalTitle,
 						userId: Meteor.userId(), // we could also use this.userId here I guess...
 						animeId: localAnimeObject._id,
 						type: 'anime',
