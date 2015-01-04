@@ -47,8 +47,9 @@ Router.map(function () {
 	/////////////////////////////////////////////////
 	///////////////// customLists ///////////////////
 	/////////////////////////////////////////////////
-	this.route('customListsCreate', {path: '/custom-lists/create'});
 	this.route('customList', {path: '/custom-lists/:_id/:slug'});
+	this.route('customListEdit', {path: '/custom-lists/:_id/:slug/edit'});
+	this.route('customListsCreate', {path: '/custom-lists/create'});
 
 	/////////////////////////////////////////////////
 	/////////////////// Reviews /////////////////////

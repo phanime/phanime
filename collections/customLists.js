@@ -3,12 +3,22 @@ CustomLists = new Meteor.Collection("customLists");
 CustomListsSchema = new SimpleSchema({
 	type: {
 		type: String,
-		allowedValues: ['anime', 'manga', 'character', 'people']
+		allowedValues: ['anime', 'manga', 'characters', 'people']
 	},
 	title: {
 		type: String,
 		min: 1,
 		max: 100 // Not sure what we should set as a hard limit
+	},
+	userId: {
+		type: String,
+		custom: function() {
+			// Check that a user from this ID actually exists
+			if (!Meteor.users.findOne({_id: this.value})) {
+				return "No user found with this userId";
+			}
+		},
+		denyUpdate: true
 	},
 	slug: {
 		type: String,
@@ -31,8 +41,8 @@ CustomListsSchema = new SimpleSchema({
 	},
 	entries: {
 		type: [Object],
-		minCount: 1,
-		maxCount: 100 // We may need more then this... Any limit that we have should be a strict one (We want to keep the documents small in size)
+		maxCount: 100, // We may need more then this... Any limit that we have should be a strict one (We want to keep the documents small in size)
+		optional: true
 	},
 	"entries.$.contentId": {
 		type: String
@@ -89,3 +99,26 @@ CustomListsSchema = new SimpleSchema({
 
 
 CustomLists.attachSchema(CustomListsSchema);
+
+
+CustomLists.allow({
+
+	insert: function(userId, customList) {
+		// the user must be logged in, and the custom list must be created by the user
+		return (userId && customList.userId === userId);
+	},
+	update: function(userId, customList, fields, modifier) {
+
+		// can only change your own lists
+
+
+		return (customList.userId === userId);
+
+	},
+	remove: function(userId, doc) {
+
+		// can only remove lists that you own
+		return doc.userId === userId;
+
+	}
+});

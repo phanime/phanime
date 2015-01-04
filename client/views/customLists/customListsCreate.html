@@ -2,7 +2,59 @@
 
 	<div class="container main-content">
 		<div class="block">
+			<h2>Create a custom list</h2>
+			<h5 class="sub-text">Share a list of characters, people, and anime with others</h5>
 
+			<hr>
+
+			<div class="form-group">
+				<h4>What kind of list are you making:</h4>
+				<paper-radio-group selected="anime" id="listType">
+					<paper-radio-button name="anime" label="Anime"></paper-radio-button>
+					<paper-radio-button name="character" label="Character"></paper-radio-button>
+					<paper-radio-button name="people" label="People"></paper-radio-button>
+				</paper-radio-group>
+			</div>
+
+			<div class="form-group">
+				<h4>Name your list:</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<paper-input-decorator label="e.g.: The 15 best anime shows..." style="width: 100%;">
+						    <input is="core-input" id="listTitle">
+						</paper-input-decorator>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<h4>Describe your list: <span class="sub-text">(recommended)</span></h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<paper-autogrow-textarea>
+							<textarea id="listDescription" style="width:100%"></textarea>
+						</paper-autogrow-textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div center horizontal layout>
+					<div flex style="display: inline-block; width: 150px;">Private</div> 
+					<paper-toggle-button id="listPrivacy"></paper-toggle-button>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div center horizontal layout>
+					<div flex style="display: inline-block; width: 150px;">Disable Comments</div> 
+					<paper-toggle-button id="listDisableComments"></paper-toggle-button>
+				</div>
+			</div>
+
+			<button type="button" id="createCustomListBtn" class="btn btn-default btn-transparent btn-md">Create my list</button>
+
+			<ul id="entries"></ul>
 		</div>
 	</div>
 

@@ -1,3 +1,5 @@
+Anime = new Meteor.Collection("anime");
+
 AnimeSchema = new SimpleSchema({
 	canonicalTitle: {
 		type: String,
@@ -203,8 +205,6 @@ AnimeSchema = new SimpleSchema({
 		optional: true
 	}
 });
-
-Anime = new Meteor.Collection("anime");
 
 Anime.attachSchema(AnimeSchema);
 
