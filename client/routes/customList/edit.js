@@ -16,7 +16,6 @@ CustomListEditController = RouteController.extend({
 				}
 			});
 		}
-		this.next();
 	},
 
 	waitOn: function () {

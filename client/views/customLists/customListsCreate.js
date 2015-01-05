@@ -37,32 +37,4 @@ Template.customListsCreate.events({
 });
 
 
-Template.customListsCreate.helpers({
-	entries: function() {
-		return [
-			{
-				contentId: "123123",
-				sortOrder: 3,
-				comment: "Sasdfup"
-			},
-			{
-				contentId: "12312323",
-				sortOrder: 2,
-				comment: "Suasdfp"
-			},
-			{
-				contentId: "12312123",
-				sortOrder: 1,
-				comment: "Supasdf"
-			},
-			{
-				contentId: "12314223",
-				sortOrder: 4,
-				comment: "Supfw324213"
-			}
-		]
-	}
-});
-
-
 
