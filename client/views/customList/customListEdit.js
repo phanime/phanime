@@ -2,7 +2,7 @@ Template.customListEdit.created = function() {
 	var self = this;
 	self.query = new ReactiveVar('');
 	self.ready = new ReactiveVar(true);
-	self.entries = new ReactiveVar();
+	self.searchResults = new ReactiveVar();
 
 	// Searching autorun function
 	self.autorun(function() {
@@ -17,13 +17,13 @@ Template.customListEdit.created = function() {
 				console.log("Subscription ready");
 				switch(self.data.type) {
 					case "anime":
-						self.entries.set(Anime.find({canonicalTitle: new RegExp(query)}));
+						self.searchResults.set(Anime.find({canonicalTitle: new RegExp(query)}));
 						break;
 					case "characters":
-						self.entries.set(Characters.find({firstName: new RegExp(query)}));
+						self.searchResults.set(Characters.find({firstName: new RegExp(query)}));
 						break;
 					case "people":
-						self.entries.set(People.find({firstName: new RegExp(query)}));
+						self.searchResults.set(People.find({firstName: new RegExp(query)}));
 						break;					
 				}
 				self.ready.set(true);
@@ -56,6 +56,23 @@ Template.customListEdit.events({
 				template.query.set(query);
 			}
 		}
+	},
+
+	'click .anime-card' : function(event, template) {
+
+		var anime = this;
+		var customList = template.data;
+
+		// We need to make sure our current customList does not have this already
+		if (_.pluck(customList.entries, 'contentId').indexOf(anime._id) === -1) {
+			// We want to add this specific anime to the customList
+			var entry = {
+				contentId: anime._id,
+				sortOrder: 100
+			};
+			CustomLists.update({_id: customList._id}, {$push: {entries: entry}});
+		}
+
 	}
 
 });
@@ -64,30 +81,7 @@ Template.customListEdit.helpers({
 	ready: function() {
 		return Template.instance().ready.get();
 	},
-	entries: function() {
-
-		return Template.instance().entries.get();
-		// return [
-		// 	{
-		// 		contentId: "123123",
-		// 		sortOrder: 3,
-		// 		comment: "Sasdfup"
-		// 	},
-		// 	{
-		// 		contentId: "12312323",
-		// 		sortOrder: 2,
-		// 		comment: "Suasdfp"
-		// 	},
-		// 	{
-		// 		contentId: "12312123",
-		// 		sortOrder: 1,
-		// 		comment: "Supasdf"
-		// 	},
-		// 	{
-		// 		contentId: "12314223",
-		// 		sortOrder: 4,
-		// 		comment: "Supfw324213"
-		// 	}
-		// ]
+	searchResults: function() {
+		return Template.instance().searchResults.get();
 	}
 });

@@ -54,7 +54,7 @@ CustomListsSchema = new SimpleSchema({
 		max: 100, // This max should match with the entries maxCount
 	},
 	"entries.$.comment": {
-		type: Number,
+		type: String,
 		min: 1,
 		max: 500,
 		optional: true
