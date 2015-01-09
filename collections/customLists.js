@@ -42,7 +42,17 @@ CustomListsSchema = new SimpleSchema({
 	entries: {
 		type: [Object],
 		maxCount: 100, // We may need more then this... Any limit that we have should be a strict one (We want to keep the documents small in size)
-		optional: true
+		// optional: true,
+		custom: function() {
+			// We want to ensure each object within this array is unique, we'll ensure this by
+			// ensuring the contentId of each object is unique with respect to this array
+			// we essentially want entries to act like a set.
+
+			console.log(this.value);
+			console.log(_.uniq(this.value));
+
+			return this.value !== _.uniq(this.value) ? 1 : "Duplicate entries found";
+		}
 	},
 	"entries.$.contentId": {
 		type: String
@@ -120,5 +130,23 @@ CustomLists.allow({
 		// can only remove lists that you own
 		return doc.userId === userId;
 
+	}
+});
+
+
+CustomLists.helpers({
+
+	entriesContent: function() {
+		// Let's grab all the id's 
+		var ids = _.pluck(this.entries, 'id');
+
+		switch (this.type) {
+			case "anime":
+				return Anime.find({_id: {$in: ids}});
+			case "characters":
+				return Characters.find({_id: {$in: ids}});
+			case "people":
+				return People.find({_id: {$in: ids}});			
+		}
 	}
 });
