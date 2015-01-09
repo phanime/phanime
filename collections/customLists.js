@@ -136,9 +136,9 @@ CustomLists.allow({
 
 CustomLists.helpers({
 
-	entriesContent: function() {
-		// Let's grab all the id's 
-		var ids = _.pluck(this.entries, 'id');
+	entriesDoc: function() {
+		// Let's grab all the id's
+		var ids = _.pluck(this.entries, 'contentId');
 
 		switch (this.type) {
 			case "anime":
@@ -146,7 +146,7 @@ CustomLists.helpers({
 			case "characters":
 				return Characters.find({_id: {$in: ids}});
 			case "people":
-				return People.find({_id: {$in: ids}});			
+				return People.find({_id: {$in: ids}});
 		}
 	}
 });

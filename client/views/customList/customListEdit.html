@@ -6,8 +6,8 @@
 			<h5 class="sub-text">{{description}}</h5>
 
 			<ul id="entries">
-			{{#each entries}}
-				<li>{{contentId}}</li>
+			{{#each entriesDoc}}
+				<li>{{canonicalTitle}}</li>
 			{{/each}}
 			</ul>
 
@@ -23,7 +23,7 @@
 				{{> rectangleLoader}}
 			{{/unless}}
 
-	
+
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="well">
