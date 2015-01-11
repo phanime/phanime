@@ -19,7 +19,7 @@ Template.createComment.events({
 				};
 
 
-				Comments.insert(comment, function(error, result) {
+				Comments.insert(comment, function(error, _id) {
 					if (!error) {
 						// Clear comment area
 						$(event.target).val('');

@@ -30,9 +30,9 @@ Template.profilePostCard.helpers({
 			comments.reverse();
 		}
 
-		comments.forEach(function(comment) {
-			comment.user = Meteor.users.findOne({_id: comment.userId});
-		});
+		// comments.forEach(function(comment) {
+		// 	comment.user = Meteor.users.findOne({_id: comment.userId});
+		// });
 
 		return comments;
 

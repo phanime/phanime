@@ -18,6 +18,24 @@ Meteor.publishComposite("customList", function(_id) {
 				}
 
 			}
+		},
+		{
+			find: function(customList) {
+				return Meteor.users.find({_id: customList.userId}, {fields: requireCollectionFields.user.defaultFields});
+			}
+		},
+		{
+			find: function(customList) {
+				return Comments.find({contentId: customList._id}, {sort: {createdAt: -1}});
+			},
+			children: [{
+				find: function(comment, customList) {
+					// Only publish the users that haven't already been published (everone except current user, and author in this case)
+					if (comment.userId !== this.userId && comment.userId !== customList.userId) {
+						return Meteor.users.find({_id: comment.userId}, {fields: requireCollectionFields.user.defaultFields});
+					}
+				}
+			}]
 		}]
 	};
 });

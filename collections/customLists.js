@@ -132,7 +132,10 @@ CustomLists.allow({
 
 
 CustomLists.helpers({
-
+	comments: function() {
+		// We show the most recent comment at the top for now.
+		return Comments.find({contentId: this._id, type: 'customList'}, {sort: {createdAt: -1}});
+	},
 	entriesWithContent: function() {
 		// Let's grab all the id's
 		var ids = _.pluck(this.entries, 'contentId');

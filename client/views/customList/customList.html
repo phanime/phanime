@@ -24,6 +24,13 @@
             <h4 class="sub-text">Comments are disabled for this list</h4>
           {{else}}
             {{> createComment commentType="customList" textForGuests="Please login to post a comment" parent=this}}
+            <div class="comment-list">
+            {{#each comments}}
+              {{> commentCard}}
+            {{else}}
+              <h4 class="sub-text">No comments yet, be the first!</h4>
+            {{/each}}
+            </div>
           {{/if}}
         </div>
       </div>
