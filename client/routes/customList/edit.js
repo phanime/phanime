@@ -19,7 +19,7 @@ CustomListEditController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('customList', this.params._id);
+		return Meteor.subscribe('customListEdit', this.params._id);
 	},
 
 	data: function () {
