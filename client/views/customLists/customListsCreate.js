@@ -28,7 +28,14 @@ Template.customListsCreate.events({
 				console.log(_id);
 				// This is where we'll redirect the user to the edit version
 				// of the list so they can add entries
-				// Router.go('')
+
+				// Since we don't have access to the just created customList, we can use the customListObj
+				// as our document, since the insert went through, the fields should be the same after we clean the
+				// object to get it's auto generated values and add the _id field to it
+				CustomListsSchema.clean(customListObj);
+				customListObj._id = _id;
+				debugger;
+				Router.go('customListEdit', customListObj);
 			} else {
 				Notifications.error("Custom list not created", error.message);
 			}

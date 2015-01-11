@@ -6,7 +6,7 @@ Router.map(function () {
 	///////////////////// Anime /////////////////////
 	/////////////////////////////////////////////////
 
-	// Defined for compatibilty with pages 
+	// Defined for compatibilty with pages
 	this.route('animeExplore', {path: '/anime/explore'});
 	this.route('anime', {path: '/anime/:slug'});
 
@@ -35,12 +35,12 @@ Router.map(function () {
 	/////////////////////////////////////////////////
 	/////////////////// Castings ////////////////////
 	/////////////////////////////////////////////////
-	// Add will be moved inside another add 
+	// Add will be moved inside another add
 
 	/////////////////////////////////////////////////
 	///////////////// staffMembers //////////////////
 	/////////////////////////////////////////////////
-	// Add will be moved inside another add 
+	// Add will be moved inside another add
 
 
 
@@ -156,13 +156,13 @@ var routerBeforeHooks = {
 		} else {
 			this.next();
 		}
-	}, 
+	},
 	landingPage: function() {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
 			this.render('landing');
 		} else {
 			this.next();
-		}		
+		}
 	},
 
 	// remove the search template / set sesion variable to false
@@ -189,7 +189,7 @@ var routerOnStopHooks = {
 	// remove the search template / set sesion variable to false
 	removeSearch: function() {
 		Session.set('isSearchingGlobal', false);
-	}	
+	}
 }
 
 
@@ -207,11 +207,11 @@ Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 
 // Router.onBeforeAction(routerBeforeHooks.removeSearch);
 
-// These routes need admin permissions 
+// These routes need admin permissions
 Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'charactersAdd', 'peopleAdd', 'studiosAdd', 'staffMembersAdd', 'castingsAdd']});
 
 
-// These routes need moderator permissions 
+// These routes need moderator permissions
 Router.onBeforeAction(routerBeforeHooks.isModerator, {only: ['revisionsQueue']});
 
 
