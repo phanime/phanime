@@ -60,8 +60,8 @@ CustomListsSchema = new SimpleSchema({
 	},
 	"entries.$.sortOrder": {
 		type: Number,
-		min: 1,
-		max: 100, // This max should match with the entries maxCount
+		min: 0,
+		max: 99, // This max should be 1 less than the entries maxCount
 	},
 	"entries.$.comment": {
 		type: String,
@@ -136,17 +136,50 @@ CustomLists.allow({
 
 CustomLists.helpers({
 
-	entriesDoc: function() {
+	entriesWithContent: function() {
 		// Let's grab all the id's
 		var ids = _.pluck(this.entries, 'contentId');
 
 		switch (this.type) {
 			case "anime":
-				return Anime.find({_id: {$in: ids}});
+				var anime = Anime.find({_id: {$in: ids}}).fetch();
+				var self = this;
+				anime.forEach(function(anime) {
+					self.entries.forEach(function(entry) {
+						if(entry.contentId === anime._id) {
+							entry.content = anime;
+						}
+					});
+				});
+
+				break;
+
 			case "characters":
-				return Characters.find({_id: {$in: ids}});
+			 	var characters = Characters.find({_id: {$in: ids}});
+				var self = this;
+				characters.forEach(function(character) {
+					self.entries.forEach(function(entry) {
+						if(entry.contentId === character._id) {
+							entry.content = character;
+						}
+					});
+				});
+				break;
 			case "people":
-				return People.find({_id: {$in: ids}});
+				var people = People.find({_id: {$in: ids}});
+				var self = this;
+				people.forEach(function(person) {
+					self.entries.forEach(function(entry) {
+						if(entry.contentId === person._id) {
+							entry.content = person;
+						}
+					});
+				});
+				break;
 		}
+
+		// console.log(this.entries);
+
+		return _.sortBy(this.entries, function(entry) { return entry.sortOrder});
 	}
 });

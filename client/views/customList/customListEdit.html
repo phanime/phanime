@@ -6,8 +6,8 @@
 			<h5 class="sub-text">{{description}}</h5>
 
 			<ul id="entries">
-			{{#each entriesDoc}}
-				<li>{{canonicalTitle}}</li>
+			{{#each entriesWithContent}}
+				<li data-contentId="{{content._id}}">{{content.canonicalTitle}}</li>
 			{{/each}}
 			</ul>
 
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 
-			<button type="button" class="btn btn-transparent btn-default btn-md">Add</button>
+			<button type="button" id="saveBtn" class="btn btn-transparent btn-default btn-md">Save & view</button>
 
 
 

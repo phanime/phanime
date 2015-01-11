@@ -13,6 +13,7 @@ Template.customListsCreate.events({
 			type: type,
 			userId: Meteor.userId(),
 			title: title,
+			entries: [],
 			disableComments: JSON.parse(disableComments),
 			privacy: JSON.parse(privacy)
 		};
@@ -25,16 +26,13 @@ Template.customListsCreate.events({
 		CustomLists.insert(customListObj, function(error, _id) {
 			if (!error) {
 				console.log(_id);
-				// This is where we'll redirect the user to the edit version 
+				// This is where we'll redirect the user to the edit version
 				// of the list so they can add entries
 				// Router.go('')
 			} else {
 				Notifications.error("Custom list not created", error.message);
 			}
-		}); 
+		});
 	}
 
 });
-
-
-

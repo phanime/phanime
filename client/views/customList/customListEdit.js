@@ -11,7 +11,7 @@ Template.customListEdit.created = function() {
 		console.log(self.data);
 		if (query !== '') {
 			var subscription = Meteor.subscribe('customListContentSearch', query, self.data.type);
-			// Work around, we want to remove all of the libraryEntries 
+			// Work around, we want to remove all of the libraryEntries
 
 			if (subscription.ready()) {
 				console.log("Subscription ready");
@@ -24,7 +24,7 @@ Template.customListEdit.created = function() {
 						break;
 					case "people":
 						self.searchResults.set(People.find({firstName: new RegExp(query)}));
-						break;					
+						break;
 				}
 				self.ready.set(true);
 			} else {
@@ -36,8 +36,44 @@ Template.customListEdit.created = function() {
 
 Template.customListEdit.rendered = function() {
 	var entries = document.getElementById('entries');
+	var customList = Template.currentData();
 	var sortable = Sortable.create(entries, {
 		animation: 150,
+		onSort: function(evt) {
+			var item = evt.item;
+			var entries = customList.entries;
+			var temp = entries[evt.oldIndex];
+
+		// 	debugger;
+		// 	// if the new index is higher than the old one, then we shift everything in that sub-array down by one
+		// 	if (evt.newIndex > evt.oldIndex) {
+		// 		debugger;
+		// 		for (var i = evt.oldIndex; i < evt.newIndex; i++) {
+		// 			console.log(entries[i].contentId + " moved to " + entries[i+1].contentId);
+		// 			// Let's move everything down by one
+		// 			entries[i] = entries[i+1];
+		// 			// Update the sortOrder
+		// 			entries[i].sortOrder = i;
+		// 		}
+		//
+		// 		debugger;
+		//
+		// 	} else if (evt.newIndex < evt.oldIndex) {
+		// 		debugger;
+		// 		for(var i = evt.newIndex; i < evt.oldIndex; i++) {
+		// 			// Let's move everything up by one
+		// 			entries[i+1] = entries[i];
+		// 			// Update the order;
+		// 			entries[i+1].sortOrder = i+1;
+		// 		}
+		// 	}
+		//
+		// 	entries[evt.newIndex] = temp;
+		// 	entries[evt.newIndex].sortOrder = evt.newIndex;
+		//
+		// 	console.log(entries);
+		//
+		}
 	});
 }
 
@@ -45,11 +81,11 @@ Template.customListEdit.rendered = function() {
 Template.customListEdit.events({
 
 	'keydown #search' : function(event, template) {
-		
+
 		// If the enter key is pressed, then do a search
 		if (event.which === 13) {
 			var query = $('#search').val();
-			
+
 			if (query) {
 				console.log(query);
 				template.query.set('');
@@ -72,6 +108,27 @@ Template.customListEdit.events({
 			};
 			CustomLists.update({_id: customList._id}, {$push: {entries: entry}});
 		}
+
+	},
+	'click #saveBtn' : function(event, template) {
+		// We need to iterate over the list and update our entries
+		var customList = template.data;
+		var entries = customList.entries;
+		$('#entries > li').each(function(index) {
+			// console.log(index + " " + $(this).attr('data-contentId'));
+			var curContentId = $(this).attr('data-contentId');
+			for (var i = 0; i < entries.length; i++) {
+				if (curContentId === entries[i].contentId) {
+					// We need to update it's sortOrder property
+					entries[i].sortOrder = index;
+					// We also don't want to loop through the whole array if we've found our item
+					break;
+				}
+			}
+		});
+
+		console.log(entries);
+		CustomLists.update({_id: customList._id}, {$set: {entries: entries}});
 
 	}
 
