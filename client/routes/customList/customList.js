@@ -1,7 +1,7 @@
 CustomListController = RouteController.extend({
-	
+
 	onAfterAction: function () {
-	
+
 		if (this.ready()) {
 			var customList = this.data();
 
@@ -16,8 +16,6 @@ CustomListController = RouteController.extend({
 				}
 			});
 		}
-
-		this.next();
 	},
 
 	waitOn: function () {

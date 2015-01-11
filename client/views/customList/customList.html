@@ -1,0 +1,34 @@
+<template name="customList">
+
+  <div class="container main-content">
+    <div class="block">
+      <div class="row">
+        <div class="col-sm-9">
+          <h3>{{title}}</h3>
+          <h5 class="sub-text">{{description}}</h5>
+
+          <hr>
+
+          <ul id="entries">
+            {{#each entriesWithContent}}
+              <li data-contentId="{{content._id}}">{{content.canonicalTitle}}</li>
+            {{else}}
+              <h4 class="sub-text">This list has no entries, maybe the author is still working on it. Check back later!</h4>
+            {{/each}}
+          </ul>
+
+
+          <hr>
+
+          {{#if disableComments}}
+            <h4 class="sub-text">Comments are disabled for this list</h4>
+          {{else}}
+            {{> createComment commentType="customList" textForGuests="Please login to post a comment" parent=this}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</template>
