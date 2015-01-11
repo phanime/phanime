@@ -48,9 +48,6 @@ CustomListsSchema = new SimpleSchema({
 			// ensuring the contentId of each object is unique with respect to this array
 			// we essentially want entries to act like a set.
 
-			console.log(this.value);
-			console.log(_.uniq(this.value));
-
 			return this.value !== _.uniq(this.value) ? 1 : "Duplicate entries found";
 		}
 	},
@@ -178,8 +175,8 @@ CustomLists.helpers({
 				break;
 		}
 
-		// console.log(this.entries);
+		// The sorting is already done before we did a save, so we don't have to sort here;
+		return this.entries;
 
-		return _.sortBy(this.entries, function(entry) { return entry.sortOrder});
 	}
 });

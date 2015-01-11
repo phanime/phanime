@@ -104,7 +104,7 @@ Template.customListEdit.events({
 			// We want to add this specific anime to the customList
 			var entry = {
 				contentId: anime._id,
-				sortOrder: 100
+				sortOrder: customList.entries.length > 0 ? customList.entries.length : 0
 			};
 			CustomLists.update({_id: customList._id}, {$push: {entries: entry}});
 		}
@@ -127,9 +127,10 @@ Template.customListEdit.events({
 			}
 		});
 
-		console.log(entries);
-		CustomLists.update({_id: customList._id}, {$set: {entries: entries}});
 
+		console.log(entries);
+		var sortedEntries = _.sortBy(entries, function(entry) { return entry.sortOrder; });
+		CustomLists.update({_id: customList._id}, {$set: {entries: sortedEntries}});
 	}
 
 });
