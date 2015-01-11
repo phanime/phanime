@@ -19,7 +19,8 @@ CustomListController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('customList', this.params._id);
+		var limit = 20;
+		return Meteor.subscribe('customList', this.params._id, limit);
 	},
 
 	data: function () {

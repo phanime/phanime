@@ -1,4 +1,4 @@
-Meteor.publishComposite("customList", function(_id) {
+Meteor.publishComposite("customList", function(_id, limit) {
 
 	return {
 		find: function() {
@@ -26,7 +26,7 @@ Meteor.publishComposite("customList", function(_id) {
 		},
 		{
 			find: function(customList) {
-				return Comments.find({contentId: customList._id}, {sort: {createdAt: -1}});
+				return Comments.find({contentId: customList._id}, {sort: {createdAt: -1}, limit: limit});
 			},
 			children: [{
 				find: function(comment, customList) {
