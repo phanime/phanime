@@ -9,9 +9,11 @@
 
 					<hr>
 
-					<ul id="entries">
+					<ul class="no-list-style" id="entries">
 						{{#each entriesWithContent}}
-							<li data-contentId="{{content._id}}">{{content.canonicalTitle}}</li>
+							{{#if ../isTypeAnime}}
+								{{> animeCardCustomList entry=this customList=..}}
+							{{/if}}
 						{{else}}
 							<h4 class="sub-text">This list has no entries, maybe the author is still working on it. Check back later!</h4>
 						{{/each}}

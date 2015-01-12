@@ -39,6 +39,7 @@ Template.customListEdit.rendered = function() {
 	var customList = Template.currentData();
 	var sortable = Sortable.create(entries, {
 		animation: 150,
+		handle: ".sort-handle"
 	});
 }
 
@@ -82,10 +83,16 @@ Template.customListEdit.events({
 		$('#entries > li').each(function(index) {
 			// console.log(index + " " + $(this).attr('data-contentId'));
 			var curContentId = $(this).attr('data-contentId');
+			var curComment = $(this).find('.entry-comment').val().trim();
 			for (var i = 0; i < entries.length; i++) {
 				if (curContentId === entries[i].contentId) {
 					// We need to update it's sortOrder property
 					entries[i].sortOrder = index;
+
+					// We'll also add the comment, if it exists
+					if (curComment.length > 0) {
+						entries[i].comment = curComment;
+					}
 					// We also don't want to loop through the whole array if we've found our item
 					break;
 				}

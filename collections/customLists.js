@@ -183,6 +183,14 @@ CustomLists.helpers({
 
 		// The sorting is already done before we did a save, so we don't have to sort here;
 		return this.entries;
-
+	},
+	isTypeAnime: function() {
+		return this.type === "anime";
+	},
+	isTypeCharacters: function() {
+		return this.type === 'characters';
+	},
+	isTypePeople: function() {
+		return this.type === 'people';
 	}
 });

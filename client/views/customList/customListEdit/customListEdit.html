@@ -8,11 +8,21 @@
 						<h3>{{title}}</h3>
 						<h5 class="sub-text">{{description}}</h5>
 
-						<ul id="entries">
-						{{#each entriesWithContent}}
-							<li data-contentId="{{content._id}}">{{content.canonicalTitle}}</li>
-						{{/each}}
-						</ul>
+						<div class="row">
+							<div class="col-sm-9">
+								<ul class="no-list-style" id="entries">
+									{{#each entriesWithContent}}
+										{{#if ../isTypeAnime}}
+											{{> animeCardCustomList isEditMode="true" entry=this customList=..}}
+										{{/if}}
+									{{/each}}
+								</ul>
+							</div>
+
+							<div class="col-sm-3">
+								{{> Template.dynamic template="userCard" data=user}}
+							</div>
+						</div>
 
 						<div class="row">
 							<div class="col-sm-6">
