@@ -132,6 +132,9 @@ CustomLists.allow({
 
 
 CustomLists.helpers({
+	user: function() {
+		return Meteor.users.findOne({_id: this.userId});
+	},
 	comments: function() {
 		// We show the most recent comment at the top for now.
 		return Comments.find({contentId: this._id, type: 'customList'}, {sort: {createdAt: -1}});

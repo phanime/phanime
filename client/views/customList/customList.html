@@ -4,7 +4,7 @@
 		<div class="block">
 			<div class="row">
 				<div class="col-sm-9">
-					<h3>{{title}}</h3>
+					<h3>{{title}} {{#if isUserIdCurrentUser userId}} <a class="btn btn-transparent" href="{{pathFor 'customListEdit'}}">Edit</a> {{/if}}</h3> 
 					<h5 class="sub-text">{{description}}</h5>
 
 					<hr>
@@ -44,6 +44,9 @@
 
 						</div>
 					{{/if}}
+				</div>
+				<div class="col-sm-3">
+					{{> Template.dynamic template="userCard" data=user}}
 				</div>
 			</div>
 		</div>
