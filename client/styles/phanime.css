@@ -80,12 +80,17 @@ html, body {
 }
 
 ::selection {
-	color: #fff; 
+	color: #fff;
 	background: #575757;
 }
 
 textarea {
 	resize: vertical;
+}
+
+ul.no-list-style {
+	list-style: none;
+	padding: 0;
 }
 
 .thin-text {
@@ -120,7 +125,7 @@ textarea {
 	background-color: #fff;
 	border-bottom-width: 2px;
 	margin: 10px 0 20px 0;
-	padding: 20px 20px;	
+	padding: 20px 20px;
 }
 	.block .title {
 		margin-top: -20px;
@@ -131,7 +136,7 @@ textarea {
 		margin-bottom: 20px;
 	}
 
-	.block h1:first-of-type, 
+	.block h1:first-of-type,
 	.block h2:first-of-type,
 	.block h3:first-of-type {
 		margin-top: 0;
@@ -196,7 +201,7 @@ textarea {
 	border: 1px solid transparent;
 	border-radius: 4px;
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.05);
-	box-shadow: 0 1px 3px rgba(0,0,0,.05);	
+	box-shadow: 0 1px 3px rgba(0,0,0,.05);
 }
 
 .box-teal {
@@ -206,7 +211,7 @@ textarea {
 		padding: 10px 15px;
 		border-bottom: 1px solid;
 	}
-	
+
 	.box-teal > .box-heading {
 		color: #fff;
 		background-color: #009688;
@@ -355,7 +360,7 @@ textarea {
 		background-position: center center;
 		border-radius: 5px;
 		float: left;
-		margin-right: 10px;		
+		margin-right: 10px;
 	}
 		.img.cover.no-float {
 			float: none;
@@ -418,7 +423,7 @@ textarea {
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;	
+	transition: all 0.3s ease-in-out;
 }
 
 	.global-add-entry-handler:hover {
@@ -553,7 +558,7 @@ textarea {
 		-webkit-transition: all 0.3s ease-in-out;
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
-		transition: all 0.3s ease-in-out;		
+		transition: all 0.3s ease-in-out;
 	}
 
 		.invite-block .btn-fancy:hover {
@@ -572,7 +577,7 @@ textarea {
 	max-width: 650px;
 	margin: auto;
 	max-height: 250px;
-	color: #fff;	
+	color: #fff;
 }
 
 /*-----------------------------*/
@@ -590,7 +595,7 @@ textarea {
 		-webkit-transition: all 0.3s ease-in-out;
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
-		transition: all 0.3s ease-in-out;	
+		transition: all 0.3s ease-in-out;
 	}
 
 	.navbar-phan .navbar-nav > li > a:hover,
@@ -602,22 +607,22 @@ textarea {
 		color: #ffffff;
 	}
 
-	.navbar-phan .navbar-brand:hover, 
+	.navbar-phan .navbar-brand:hover,
 	.navbar-phan .navbar-brand:focus {
 		color: #ffffff;
 	}
 
 
 	/* --- Dropdown related ---*/
-	.navbar-phan .navbar-nav > .open > a, 
-	.navbar-phan .navbar-nav > .open > a:hover, 
+	.navbar-phan .navbar-nav > .open > a,
+	.navbar-phan .navbar-nav > .open > a:hover,
 	.navbar-phan .navbar-nav > .open > a:focus {
 		color: #ffffff;
 		background-color: #8bc34a;
 		-webkit-transition: all 0.0s ease-in-out;
 		-moz-transition: all 0.0s ease-in-out;
 		-o-transition: all 0.0s ease-in-out;
-		transition: all 0.0s ease-in-out;	
+		transition: all 0.0s ease-in-out;
 	}
 
 	.navbar-phan .navbar-nav > li > .dropdown-menu {
@@ -628,8 +633,8 @@ textarea {
 		.navbar-default .navbar-nav .open .dropdown-menu > li > a {
 			color: #CCCCCC;
 		}
-	
-		.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, 
+
+		.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
 		.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
 			color: #ffffff;
 		}
@@ -655,10 +660,10 @@ textarea {
 			font-size: 24px;
 		}
 
-		.navbar-phan .navbar-toggle:hover, 
+		.navbar-phan .navbar-toggle:hover,
 		.navbar-phan .navbar-toggle:focus {
 			background-color: transparent;
-			
+
 		}
 
 	}
@@ -697,7 +702,7 @@ textarea {
 		-webkit-transition: all 0.33s ease-in-out;
 		-moz-transition: all 0.33s ease-in-out;
 		-o-transition: all 0.33s ease-in-out;
-		transition: all 0.33s ease-in-out;	
+		transition: all 0.33s ease-in-out;
 	}
 
 .fancy-heading .container .anime-important {
@@ -739,7 +744,7 @@ textarea {
 		-webkit-transition: all 0.25s ease-in-out;
 		-moz-transition: all 0.25s ease-in-out;
 		-o-transition: all 0.25s ease-in-out;
-		transition: all 0.25s ease-in-out;			
+		transition: all 0.25s ease-in-out;
 	}
 
 	.genresList a:hover {
@@ -770,7 +775,7 @@ textarea {
 		-webkit-transition: all 0.25s ease-in-out;
 		-moz-transition: all 0.25s ease-in-out;
 		-o-transition: all 0.25s ease-in-out;
-		transition: all 0.25s ease-in-out;			
+		transition: all 0.25s ease-in-out;
 	}
 
 	.themesList a:hover {
@@ -901,7 +906,7 @@ ul.profile-summary-list {
 	background-position: center top;
 	color: #fff;
 	text-shadow: 0 0 3px rgba(0,0,0,.8);
-	z-index: 0;	
+	z-index: 0;
 }
 
 .create-profilePost {
@@ -942,7 +947,7 @@ ul.profile-summary-list {
 		-webkit-transition: all 0.4s ease;
 		-moz-transition: all 0.4s ease;
 		-o-transition: all 0.4s ease;
-		transition: all 0.4s ease;	
+		transition: all 0.4s ease;
 	}
 
 	.create-profilePost button {
@@ -962,10 +967,10 @@ ul.profile-summary-list {
 }
 
 .comment-list .create-comment {
-	padding: 10px 0; 
+	padding: 10px 0;
 	background-color: #F5F5F5;
 }
-	.comment-list .create-comment .textarea-container {
+	.create-comment .textarea-container {
 		margin-left: 60px;
 	}
 
@@ -979,7 +984,7 @@ ul.profile-summary-list {
 	padding: 10px 20px;
 	border-bottom: 1px solid #DDD;
 }
-	
+
 	.comment-list .comment-card .content {
 		margin-left: 60px;
 	}
@@ -1010,7 +1015,7 @@ ul.profile-summary-list {
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;	
+	transition: all 0.3s ease-in-out;
 }
 
 .anime-card .progress {
@@ -1119,11 +1124,11 @@ ul.profile-summary-list {
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;		
+	transition: all 0.3s ease-in-out;
 }
 	.btn-primary {
 		background-color: #8bc34a;
-		color: #fff;	
+		color: #fff;
 		border-color: #7cb342;
 	}
 
@@ -1151,7 +1156,7 @@ input.form-control, select.form-control, textarea.form-control {
 input.form-control.input-inline {
 	width: auto;
 	display: inline;
-} 
+}
 
 
 table > thead {
@@ -1164,4 +1169,3 @@ table > thead {
 		width: 1360px;
 	}
 }
-

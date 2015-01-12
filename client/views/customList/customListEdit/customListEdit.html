@@ -1,0 +1,67 @@
+<template name="customListEdit">
+
+	<div class="container main-content">
+		<div class="block">
+			{{#if isUserIdCurrentUser userId}}
+				<div class="row">
+					<div class="col-sm-12">
+						<h3>{{title}}</h3>
+						<h5 class="sub-text">{{description}}</h5>
+
+						<div class="row">
+							<div class="col-sm-9">
+								<ul class="no-list-style" id="entries">
+									{{#each entriesWithContent}}
+										{{#if ../isTypeAnime}}
+											{{> animeCardCustomList isEditMode="true" entry=this customList=..}}
+										{{/if}}
+									{{/each}}
+								</ul>
+							</div>
+
+							<div class="col-sm-3">
+								{{> Template.dynamic template="userCard" data=user}}
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<paper-input-decorator label="Search for {{type}}" style="width: 100%;" floatingLabel>
+									<input is="core-input" id="search">
+								</paper-input-decorator>
+							</div>
+						</div>
+
+						{{#unless ready}}
+							{{> rectangleLoader}}
+						{{/unless}}
+
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="well">
+									<div class="row">
+										{{#each searchResults}}
+											<div class="custom-list-wrapper" data-content-id="{{_id}}">
+												{{> animeCard}}
+											</div>
+										{{/each}}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<button type="button" id="saveBtn" class="btn btn-transparent btn-default btn-md">Save & view</button>
+					</div>
+			
+
+				</div>
+			{{else}}
+				<h3 class="sub-text">You can only edit your own lists</h3>
+			{{/if}}
+
+
+
+		</div>
+	</div>
+</template>

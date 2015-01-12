@@ -20,10 +20,10 @@
 			<div class="expand-comments-list sub-text">{{expandCommentsText}}</div>
 			{{#each commentsList}}
 				{{> UI.dynamic template="commentCard" data=this}}
-			{{/each}}	
+			{{/each}}
 
 			{{#if currentUser}}
-				{{> createComment}}
+				{{> createComment commentType="profilePost" textForGuests="" parent=this}}
 			{{/if}}
 		</div>
 	</div>

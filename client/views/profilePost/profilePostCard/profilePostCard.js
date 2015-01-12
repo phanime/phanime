@@ -29,11 +29,7 @@ Template.profilePostCard.helpers({
 			comments = Comments.find({contentId: profilePost._id, type: 'profilePost'}, {sort: {createdAt: -1}, limit: 3}).fetch();
 			comments.reverse();
 		}
-
-		comments.forEach(function(comment) {
-			comment.user = Meteor.users.findOne({_id: comment.userId});
-		});
-
+		
 		return comments;
 
 	},
