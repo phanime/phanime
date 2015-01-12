@@ -1,0 +1,36 @@
+<template name="animeCardCustomList">
+
+	{{#with entry.content}}
+		<li class="anime-card-custom-list-item" data-contentId="{{_id}}">
+			<div class="row">
+				<div class="col-sm-4 col-md-3 col-lg-2">
+					<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
+				</div>
+
+				<div class="col-sm-8 col-md-9 col-lg-10">
+					<h3>{{incrementByOne ../entry.sortOrder}}. {{canonicalTitle}}</h3>
+					<ul class="anime-info">
+						{{#if type}}<li>{{type}}</li>{{/if}}
+						{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
+						{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
+						{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
+						<li>{{airingText}} {{formatDateUTC startDate}} to {{#if isMomentDatePresent endDate}} {{formatDateUTC endDate}}{{else}} - {{/if}}</li>
+					</ul>
+					
+					{{#if ../isEditMode}}
+						<textarea class="entry-comment form-control" value="{{../entry.comment}}" placeholder="Add a comment... (optional)"></textarea>
+					{{else}}
+						<div class="description thin-text">{{description}}</div>
+						{{#if ../entry.comment}}
+							<hr>
+							<div class="sub-text">"{{../entry.comment}}" - {{../customList.user.displayName}}</div>
+						{{/if}}
+					{{/if}}
+				</div>
+			</div>
+			{{#if ../isEditMode}}
+				<div class="sort-handle"><i class="fa fa-bars"></i></div>
+			{{/if}}
+		</li>
+	{{/with}}
+</template>

@@ -6,11 +6,8 @@ Router.map(function () {
 	///////////////////// Anime /////////////////////
 	/////////////////////////////////////////////////
 
-	// Defined for compatibilty with pages 
+	// Defined for compatibilty with pages
 	this.route('animeExplore', {path: '/anime/explore'});
-
-	this.route('animeAdd', {path: '/anime/add'});
-
 	this.route('anime', {path: '/anime/:slug'});
 
 	/////////////////////////////////////////////////
@@ -19,7 +16,7 @@ Router.map(function () {
 
 	this.route('characters');
 	this.route('character', {path: 'characters/:_id/:fullNameSlug'});
-	this.route('charactersAdd', {path: 'characters/add'});
+	// Add will be moved to revisions/characters/add
 
 
 	/////////////////////////////////////////////////
@@ -28,23 +25,31 @@ Router.map(function () {
 
 	this.route('people', {layoutTemplate: 'defaultLayout'});
 	this.route('person', {path: '/people/:_id/:fullNameSlug'});
-	this.route('peopleAdd', {path: 'people/add'});
+	// Add will be moved to revisions/people/add
 
 	/////////////////////////////////////////////////
 	//////////////////// Studios ////////////////////
 	/////////////////////////////////////////////////
-	this.route('studiosAdd', {path: 'studios/add'});
-
+	// Add will be moved to revisions/studios/add
 
 	/////////////////////////////////////////////////
 	/////////////////// Castings ////////////////////
 	/////////////////////////////////////////////////
-	this.route('castingsAdd', {path: 'castings/add'});
+	// Add will be moved inside another add
 
 	/////////////////////////////////////////////////
 	///////////////// staffMembers //////////////////
 	/////////////////////////////////////////////////
-	this.route('staffMembersAdd', {path: 'staff-members/add'});
+	// Add will be moved inside another add
+
+
+
+	/////////////////////////////////////////////////
+	///////////////// customLists ///////////////////
+	/////////////////////////////////////////////////
+	this.route('customList', {path: '/custom-lists/:_id/:slug'});
+	this.route('customListEdit', {path: '/custom-lists/:_id/:slug/edit'});
+	this.route('customListsCreate', {path: '/custom-lists/create'});
 
 	/////////////////////////////////////////////////
 	/////////////////// Reviews /////////////////////
@@ -151,13 +156,13 @@ var routerBeforeHooks = {
 		} else {
 			this.next();
 		}
-	}, 
+	},
 	landingPage: function() {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
 			this.render('landing');
 		} else {
 			this.next();
-		}		
+		}
 	},
 
 	// remove the search template / set sesion variable to false
@@ -184,15 +189,15 @@ var routerOnStopHooks = {
 	// remove the search template / set sesion variable to false
 	removeSearch: function() {
 		Session.set('isSearchingGlobal', false);
-	}	
+	}
 }
 
 
 // Run these global routes first
 Router.onBeforeAction('loading');
 
-// These routes don't require login
-Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {only: ['accountPersonalDetails', 'accountPreferences', 'accountSecurity', 'accountImports', 'revisionsAnimeAdd', 'revisionsQueue']});
+// These routes require login
+Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {only: ['accountPersonalDetails', 'accountPreferences', 'accountSecurity', 'accountImports', 'revisionsAnimeAdd', 'revisionsQueue', 'customListsCreate', 'customListEdit']});
 
 // If the user is already logged in, then they shouldn't be able to visit the following routes
 Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp', 'forgotPassword', 'resetPassword']});
@@ -202,11 +207,11 @@ Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 
 // Router.onBeforeAction(routerBeforeHooks.removeSearch);
 
-// These routes need admin permissions 
+// These routes need admin permissions
 Router.onBeforeAction(routerBeforeHooks.isAdmin, {only: ['animeAdd', 'charactersAdd', 'peopleAdd', 'studiosAdd', 'staffMembersAdd', 'castingsAdd']});
 
 
-// These routes need moderator permissions 
+// These routes need moderator permissions
 Router.onBeforeAction(routerBeforeHooks.isModerator, {only: ['revisionsQueue']});
 
 

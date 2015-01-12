@@ -1,0 +1,15 @@
+.anime-card-custom-list-item {
+	position: relative;
+	background-color: #fff;
+	border-bottom: 1px solid #EDEDED;
+	padding: 20px 0;
+}
+
+	.anime-card-custom-list-item .sort-handle {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		font-size: 30px;
+		cursor: pointer;
+		color: #ccc;
+	}

@@ -1,0 +1,58 @@
+<template name="customList">
+
+	<div class="container main-content">
+		<div class="block">
+			<div class="row">
+				<div class="col-sm-9">
+					<h3>{{title}} {{#if isUserIdCurrentUser userId}} <a class="btn btn-transparent" href="{{pathFor 'customListEdit'}}">Edit</a> {{/if}}</h3> 
+					<h5 class="sub-text">{{description}}</h5>
+
+					<hr>
+
+					<ul class="no-list-style" id="entries">
+						{{#each entriesWithContent}}
+							{{#if ../isTypeAnime}}
+								{{> animeCardCustomList entry=this customList=..}}
+							{{/if}}
+						{{else}}
+							<h4 class="sub-text">This list has no entries, maybe the author is still working on it. Check back later!</h4>
+						{{/each}}
+					</ul>
+
+
+					<hr>
+
+					{{#if disableComments}}
+						<h4 class="sub-text">Comments are disabled for this list</h4>
+					{{else}}
+						{{> createComment commentType="customList" textForGuests="Please login to post a comment" parent=this}}
+						<div class="comment-list">
+						{{#each comments}}
+							{{> commentCard}}
+						{{else}}
+							<h4 class="sub-text">No comments yet, be the first!</h4>
+						{{/each}}
+
+						{{#unless isReady}}
+							{{> rectangleLoader}}
+						{{/unless}}
+
+						{{#if isReady}}
+							{{#if hasMoreComments}}
+								<button id="loadMore" type="button" class="btn btn-primary btn-lg btn-full-width" style="margin-top: 10px"><h4>Load More</h4></button>
+							{{/if}}
+						{{/if}}
+
+
+						</div>
+					{{/if}}
+				</div>
+				<div class="col-sm-3">
+					{{> Template.dynamic template="userCard" data=user}}
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</template>
