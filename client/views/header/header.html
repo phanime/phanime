@@ -30,13 +30,24 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					{{#if currentUser.isModerator}}
-						<li><a title="Revisions Queue" href="{{pathFor 'revisionsQueue'}}"><i class="fa fa-files-o"></i></a></li>
+						<li>
+							<a title="Revisions Queue" href="{{pathFor 'revisionsQueue'}}">
+								<i class="fa fa-files-o">
+									<span class="counter">{{#if getPublishedCount 'openRevisions'}}{{getPublishedCount 'openRevisions'}}{{/if}}</span>
+								</i>
+							</a>
+						</li>
 					{{/if}}
 
 					{{#if currentUser}}
 						<li><a id="searchGlobal"><i style="cursor: pointer" class="fa fa-search"></i></a></li>
 						<li class="dropdown content-dropdown-wrapper">
-							<a href="#" id="alertsToggle" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{alertsClass}}"></i><span>{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span></a>
+						
+							<a href="#" id="alertsToggle" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="fa {{alertsClass}}">
+									<span class="counter">{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span>
+								</i>
+							</a>
 
 							<div class="dropdown-menu content-dropdown">
 								

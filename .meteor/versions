@@ -110,6 +110,7 @@ spiderable@1.0.6
 srp@1.0.2
 standard-app-packages@1.0.4
 templating@1.0.10
+tmeasday:publish-counts@0.3.4
 tracker@1.0.4
 ui@1.0.5
 underscore@1.0.2
