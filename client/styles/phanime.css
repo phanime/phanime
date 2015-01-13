@@ -154,11 +154,13 @@ ul.no-list-style {
 		max-height: 300px;
 	}
 
-.content-dropdown-wrapper > a {
+/************* Counter styling in nav-bar *************/
+
+ul.nav > li> a {
 	position: relative;
 }
 
-	.content-dropdown-wrapper > a span {
+	ul.nav > li > a span.counter {
 		position: absolute;
 		background-color: #83BD40;
 		color: #fff;
@@ -167,12 +169,13 @@ ul.no-list-style {
 		padding: 4px 5px;
 		line-height: 10px;
 		font-size: 11px;
-		border-radius: 50px;
+		border-radius: 50px;		
 	}
 
-	.content-dropdown-wrapper > a span:empty {
-		padding: 0;
-	}
+		ul.nav > li > a span.counter:empty {
+			padding: 0;
+		}
+
 
 .content-dropdown {
 	padding: 10px;

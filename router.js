@@ -230,7 +230,12 @@ Router.configure({
 	loadingTemplate: 'loading',
 	waitOn: function () {
 		if (Meteor.user()) {
-			return Meteor.subscribe('userAlerts');
+			var subscriptions = [Meteor.subscribe('userAlerts')];
+			if (Meteor.user().isModerator()) {
+				subscriptions.push(Meteor.subscribe('moderatorOpenRevisionCount'));
+			}
+
+			return subscriptions;
 		}
 	}
 });

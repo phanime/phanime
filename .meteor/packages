@@ -52,3 +52,4 @@ service-configuration
 ephemer:reactive-datatables
 ecwyne:polymer-elements
 rubaxa:sortable
+tmeasday:publish-counts
