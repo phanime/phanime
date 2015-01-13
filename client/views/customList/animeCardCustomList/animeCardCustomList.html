@@ -10,7 +10,7 @@
 				</div>
 
 				<div class="col-sm-8 col-md-9 col-lg-10">
-					<h3>{{incrementByOne ../entry.sortOrder}}. {{canonicalTitle}}</h3>
+					<h3 class="content-title">{{incrementByOne ../entry.sortOrder}}. {{canonicalTitle}}</h3>
 					<ul class="anime-info">
 						{{#if type}}<li>{{type}}</li>{{/if}}
 						{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
@@ -31,6 +31,7 @@
 				</div>
 			</div>
 			{{#if ../isEditMode}}
+				<div class="remove-handle"><i class="fa fa-times"></i></div>
 				<div class="sort-handle"><i class="fa fa-bars"></i></div>
 			{{/if}}
 		</li>

@@ -76,6 +76,17 @@ Template.customListEdit.events({
 		}
 
 	},
+	'click .remove-handle' : function(event, template) {
+		var content = this;
+		var customList = template.data;
+		var entries = _.filter(customList.entries, function(entry) {
+			// when we get to the entry with contentId of content._id the return statement will be 
+			// false and it will not be included in our returned array, essentially removing it.
+			return entry.contentId !== content._id;
+		});
+		// Let's remove the array element 
+		CustomLists.update({_id: customList._id}, {$set: {entries: entries}});
+	},
 	'click #saveBtn' : function(event, template) {
 		// We need to iterate over the list and update our entries
 		var customList = template.data;
@@ -98,9 +109,7 @@ Template.customListEdit.events({
 				}
 			}
 		});
-
-
-		console.log(entries);
+		
 		var sortedEntries = _.sortBy(entries, function(entry) { return entry.sortOrder; });
 		CustomLists.update({_id: customList._id}, {$set: {entries: sortedEntries}}, function(error, num) {
 			if (!error) {
