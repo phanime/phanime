@@ -222,7 +222,7 @@ Meteor.methods({
 					// We only want to initiate the image upload if 
 					// there was an image url provided
 					if (animeId && animeObject.coverImage) {
-						console.log('we\'re about to upload the image');
+						console.log('We\'re about to upload the image');
 						Meteor.call("uploadImageFromUrl", animeObject.coverImage, 'anime', 'cover', animeId, function(error, result) {
 							if (error) {
 								throw new Meteor.Error(403, error.reason);
