@@ -225,6 +225,7 @@ Router.onStop(routerOnStopHooks.removeSearch);
 
 Router.configure({
 	fastRender: true,
+	trackPageView: true,
 	layoutTemplate: 'defaultLayout',
 	// notFoundTemplate: 'fourOhFour',
 	loadingTemplate: 'loading',
