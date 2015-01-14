@@ -270,16 +270,18 @@ Meteor.methods({
 					// if coverImage exists, then we should also 
 					// add that we'll be using the new url format for
 					// the image
-					if (revision.content.coverImage) 
+					if (revision.content.coverImage) {
 						revision.content.newImageURLFormat = true;
-
-
-					console.log(revision.content);
+					}
 
 					// We update before, since uploadImageFromUrl will also be doing an anime update of it's own
 					Anime.update({_id: revision.content._id}, {$set: revision.content});
 
+
 					// Check if we have coverImage, if we do, we assume it's a url and then try to upload it
+					console.log(revision.content.coverImage);
+					console.log(revision.content._id);
+					console.log(revision);
 					if (revision.content.coverImage && revision.content._id) {
 
 						console.log('we\'re about to upload the image');
@@ -291,11 +293,11 @@ Meteor.methods({
 					}
 
 					// Update the user's positive scoring
-					Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
+					// Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
 
 
 					// We also update the revision's status to Approved here
-					Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+					// Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
 
 				} else {
 					throw new Meteor.Error(403, 'Anime is not unique');
