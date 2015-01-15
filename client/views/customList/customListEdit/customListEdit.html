@@ -7,7 +7,9 @@
 					<div class="col-sm-12">
 						<h3>{{title}}</h3>
 						<h5 class="sub-text">{{description}}</h5>
+						
 						<hr>
+
 						<div class="row">
 							<div class="col-sm-9">
 								<ul class="no-list-style" id="entries">
@@ -32,28 +34,29 @@
 									<input is="core-input" id="search">
 								</paper-input-decorator>
 							</div>
+							<div class="col-sm-6">
+								<button type="button" id="saveBtn" class="btn btn-transparent btn-default btn-lg btn-full-width">Save & view</button>
+							</div>
 						</div>
 
-						{{#unless ready}}
-							{{> rectangleLoader}}
-						{{/unless}}
 
 
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="well">
+									{{#unless ready}}
+										{{> rectangleLoader}}
+									{{/unless}}
 									<div class="row">
 										{{#each searchResults}}
 											<div class="custom-list-wrapper" data-content-id="{{_id}}">
-												{{> animeCard}}
+												{{> animeCardClean anime=this cssStyle='cursor: pointer;'}}
 											</div>
 										{{/each}}
 									</div>
 								</div>
 							</div>
 						</div>
-
-						<button type="button" id="saveBtn" class="btn btn-transparent btn-default btn-md">Save & view</button>
 					</div>
 			
 
