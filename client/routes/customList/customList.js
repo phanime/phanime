@@ -4,10 +4,11 @@ CustomListController = RouteController.extend({
 
 		if (this.ready()) {
 			var customList = this.data();
-
+			var condition = customList.privacy === false || (customList.privacy === true && Meteor.userId() === customList.userId);
 			// This is mainly to hide any type of information from users
-			var title = customList.privacy ? 'Private' : customList.title;
-			var description = customList.privacy ? 'Private' : customList.description;
+			var title = condition ? customList.title : 'Private';
+			var description = condition ? customList.description : 'Private';
+			
 			SEO.set({
 				title: siteSettings.getFullTitle(title),
 				meta: {
