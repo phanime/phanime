@@ -7,7 +7,7 @@
 					<div class="col-sm-12">
 						<h3>{{title}}</h3>
 						<h5 class="sub-text">{{description}}</h5>
-
+						<hr>
 						<div class="row">
 							<div class="col-sm-9">
 								<ul class="no-list-style" id="entries">
@@ -16,7 +16,7 @@
 											{{> animeCardCustomList isEditMode="true" entry=this customList=..}}
 										{{/if}}
 									{{else}}
-										<h3 class="sub-text">There are no {{../type}} in this list, search below and click on one to add it.</h3>
+										<h3 style="margin-top: 30px" class="centered-text sub-text">There are no {{../type}} in this list, search below and click on one to add it.</h3>
 									{{/each}}
 								</ul>
 							</div>
