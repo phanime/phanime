@@ -1,4 +1,4 @@
-Template.customList.created = function() {
+Template.customListMain.created = function() {
 	var customList = Template.currentData();
 	var self = this;
 
@@ -24,7 +24,7 @@ Template.customList.created = function() {
 
 };
 
-Template.customList.events({
+Template.customListMain.events({
 	'click #loadMore' : function(event, template) {
 		// Two rows of the cover view
 		var increment = 20;
@@ -33,7 +33,7 @@ Template.customList.events({
 	}
 });
 
-Template.customList.helpers({
+Template.customListMain.helpers({
 	// Exposing reactive variables to the template
 	isReady: function() {
 		return Template.instance().ready.get();
