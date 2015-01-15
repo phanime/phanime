@@ -31,6 +31,7 @@ ejson@1.0.5
 email@1.0.5
 ephemer:reactive-datatables@1.0.3
 fastclick@1.0.2
+flowkey:hotkeys@1.1.1
 follower-livedata@1.0.3
 gadicohen:phantomjs@0.0.2
 geojson-utils@1.0.2
@@ -78,6 +79,7 @@ mizzao:user-status@0.6.3
 mobile-status-bar@1.0.2
 mongo@1.0.11
 mongo-livedata@1.0.7
+mousetrap:mousetrap@1.4.6
 mrt:moment@2.6.0
 multiply:iron-router-progress@1.0.1
 npm-bcrypt@0.7.7
