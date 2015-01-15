@@ -5,14 +5,17 @@ CustomListController = RouteController.extend({
 		if (this.ready()) {
 			var customList = this.data();
 
+			// This is mainly to hide any type of information from users
+			var title = customList.privacy ? 'Private' : customList.title;
+			var description = customList.privacy ? 'Private' : customList.description;
 			SEO.set({
-				title: siteSettings.getFullTitle(customList.title),
+				title: siteSettings.getFullTitle(title),
 				meta: {
-					'description' : customList.description
+					'description' : description
 				},
 				og: {
-					'title' : siteSettings.getFullTitle(customList.title),
-					'description' : customList.description
+					'title' : siteSettings.getFullTitle(title),
+					'description' : description
 				}
 			});
 		}
