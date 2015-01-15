@@ -53,5 +53,5 @@ ephemer:reactive-datatables
 ecwyne:polymer-elements
 rubaxa:sortable
 tmeasday:publish-counts
-reywood:iron-router-ga
 flowkey:hotkeys
+datariot:ganalytics

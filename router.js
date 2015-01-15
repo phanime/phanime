@@ -126,6 +126,10 @@ Router.map(function () {
 ////////////////
 // I use an object that contains all before hooks
 var routerBeforeHooks = {
+	logPageViews: function() {
+		GAnalytics.pageview();
+		this.next();
+	},
 
 	isLoggedIn: function() {
 		if (!(Meteor.loggingIn() || Meteor.user())) {
@@ -196,6 +200,9 @@ var routerOnStopHooks = {
 // Run these global routes first
 Router.onBeforeAction('loading');
 
+// Log page views
+Router.onBeforeAction(routerBeforeHooks.logPageViews);
+
 // These routes require login
 Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {only: ['accountPersonalDetails', 'accountPreferences', 'accountSecurity', 'accountImports', 'revisionsAnimeAdd', 'revisionsQueue', 'customListsCreate', 'customListEdit']});
 
@@ -225,7 +232,6 @@ Router.onStop(routerOnStopHooks.removeSearch);
 
 Router.configure({
 	fastRender: true,
-	trackPageView: true,
 	layoutTemplate: 'defaultLayout',
 	// notFoundTemplate: 'fourOhFour',
 	loadingTemplate: 'loading',
@@ -235,7 +241,6 @@ Router.configure({
 			if (Meteor.user().isModerator()) {
 				subscriptions.push(Meteor.subscribe('moderatorOpenRevisionCount'));
 			}
-
 			return subscriptions;
 		}
 	}
