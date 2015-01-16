@@ -13,13 +13,15 @@ Meteor.methods({
 
 		animes.forEach(function(anime) {
 
-			anime.genres.forEach(function(genre) {
-				if (topGenres[genre]) {
-					topGenres[genre]++;
-				} else {
-					topGenres[genre] = 1;
-				}
-			});
+			if (anime.genres && anime.genres.length > 0) {
+				anime.genres.forEach(function(genre) {
+					if (topGenres[genre]) {
+						topGenres[genre]++;
+					} else {
+						topGenres[genre] = 1;
+					}
+				});
+			}
 
 		});
 

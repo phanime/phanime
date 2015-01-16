@@ -6,7 +6,8 @@ Package.describe({
 });
 
 Npm.depends({
-	'xml2js': '0.4.4'
+	'xml2js': '0.4.4',
+	'moment': '2.9.0'
 });
 
 Package.onUse(function(api) {
