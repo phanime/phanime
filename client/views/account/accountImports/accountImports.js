@@ -1,5 +1,6 @@
 Template.accountImports.created = function() {
 	this.importSummary = new ReactiveVar(null);
+	this.importStarted = new ReactiveVar(false);
 };
 
 
@@ -20,7 +21,8 @@ Template.accountImports.events({
 
 
 		// We let the user know that we've started the import
-		Notifications.info('Import Started', "We've started importing your MAL list, this could take a few moments.");
+		Notifications.info('Import Started', "We've started importing your MAL list, this could take a few minutes.");
+		template.importStarted.set(true);
 
 		var reader = new FileReader();
 		reader.onload = function(e) {
@@ -31,8 +33,7 @@ Template.accountImports.events({
 				// Give the user some type of indication if an error occurred 
 				// or if the import was successful
 				template.importSummary.set(result);
-				console.log(result);
-
+				template.importStarted.set(false);
 				if (!error) {
 					if (result.failedImports.length == 0) {
 						Notifications.success('Import Successful', 'We were able to successfully import your MAL list');
@@ -48,4 +49,10 @@ Template.accountImports.events({
 
 	} 
 
+});
+
+Template.accountImports.helpers({
+	'importStarted' : function() {
+		return Template.instance().importStarted.get();
+	}
 });

@@ -15,6 +15,15 @@
 
 				<p class="sub-text">Note: This function will only import anime entries from your MAL list. Additionally, it'll only add entries that have existing anime in phanime's database, it will ignore the rest. If an entry already exists in your phanime library, then it'll ignore that as well.</p>
 
+
+				<hr>
+
+				{{#if importStarted}}
+					<p class="sub-text">If you have a lot of library entries, this could take a while. You can go to your <a href="{{pathFor 'userLibrary'}}" target="_blank">library</a> and see it populate live while you wait. Keep this page open if you'd like to see the import summary once the import finishes.</p>
+				{{/if}}
+
+				<hr>
+
 				{{#if importSummary}}
 				<h3 class="sub-text centered-text">Import Summary</h3>
 				<div class="row">
@@ -42,6 +51,7 @@
 
 
 				<hr> 
+
 
 				{{#if importSummary}}
 					<h3 class="sub-text">Failed to import: {{importSummary.importStats.failedImports}}</h3>
