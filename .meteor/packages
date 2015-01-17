@@ -15,7 +15,6 @@ alisalaah:moment-tz-data
 dburles:collection-helpers
 spiderable
 dandv:jquery-rateit
-mizzao:bootstrap-3
 percolatestudio:synced-cron
 rosh93:aws-sdk
 alethes:pages
@@ -48,9 +47,9 @@ dburles:spacebars-tohtml
 meteorhacks:fast-render
 dfischer:phantomjs
 service-configuration
-ephemer:reactive-datatables
-ecwyne:polymer-elements
 rubaxa:sortable
 tmeasday:publish-counts
 flowkey:hotkeys
 datariot:ganalytics
+d0minikk:materialize-meteor
+mizzao:bootstrap-3

@@ -18,6 +18,7 @@ check@1.0.3
 chrismbeckett:fontawesome4@4.2.2
 chuangbo:cookie@1.1.0
 coffeescript@1.0.5
+d0minikk:materialize-meteor@1.94.2
 dandv:jquery-rateit@1.0.22_2
 datariot:ganalytics@0.2.1
 dburles:collection-helpers@1.0.1
@@ -26,11 +27,8 @@ dburles:spacebars-tohtml@1.0.0
 ddp@1.0.13
 deps@1.0.6
 dfischer:phantomjs@1.0.4
-ecwyne:polymer@1.0.3
-ecwyne:polymer-elements@1.0.4
 ejson@1.0.5
 email@1.0.5
-ephemer:reactive-datatables@1.0.3
 fastclick@1.0.2
 flowkey:hotkeys@1.1.1
 follower-livedata@1.0.3

@@ -11,22 +11,21 @@
 				</div>
 
 				<form role="form">
-					<div class="form-group">
-						<paper-input-decorator style="width: 100%;" label="Username or Email" floatingLabel>
-							<input id="identification" is="core-input">
-						</paper-input-decorator>
-					</div>
 
-					<div class="form-group">
-						<paper-input-decorator style="width: 100%;" label="Password" floatingLabel>
-							<input id="password" type="password" is="core-input">
-						</paper-input-decorator>
-					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="mdi-action-account-circle prefix"></i>
+							<input id="identification" type="text" class="validate">
+							<label for="identification">Username or Email</label>
+						</div>
 
-					<div class="form-group">
-						<a href="{{pathFor 'forgotPassword'}}">Forgot your password?</a>
-					</div>
+						<div class="input-field col s12">
+							<i class="mdi-communication-vpn-key prefix"></i>
+							<input id="password" type="password" class="validate">
+							<label for="password">Password</label>
+						</div>
 
+					</div>
 
 					<div class="form-group">
 

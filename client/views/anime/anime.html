@@ -1,9 +1,10 @@
 <template name="anime">
 
 <div class="container main-content">
-
-	{{> reviewAddModal}}
-	{{> revisionAnimeEditModal}}
+	{{#if currentUser}}
+		{{> reviewAddModal}}
+		{{> revisionAnimeEditModal}}
+	{{/if}}
 
 	<div class="row">
 		<div class="col-sm-12 block">
@@ -142,7 +143,7 @@
 				<div class="block">
 					<h1 class="thin-text">Reviews</h1>
 					{{#if currentUser}}
-						<button class="btn btn-primary" data-toggle="modal" data-target="#reviewAddModal">Write Review</button>
+						<a class="waves-effect waves-light btn modal-trigger" href="#reviewAddModal">Write Review</a>
 					{{/if}}
 				</div>
 			

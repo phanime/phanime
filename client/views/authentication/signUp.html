@@ -14,27 +14,30 @@
 				</div>
 
 				<form role="form">
-					<div class="form-group">
-						<paper-input-decorator style="width: 100%;" label="Username" floatingLabel>
-							<input id="username" is="core-input">
-						</paper-input-decorator>
+
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="mdi-action-account-circle prefix"></i>
+							<input id="username" type="text" class="validate">
+							<label for="username">Username</label>
+						</div>
+
+						<div class="input-field col s12">
+							<i class="mdi-communication-email prefix"></i>
+							<input id="email" type="email" class="validate">
+							<label for="email">Email</label>
+						</div>
+
+						<div class="input-field col s12">
+							<i class="mdi-communication-vpn-key prefix"></i>
+							<input id="password" type="password" class="validate">
+							<label for="password">Password</label>
+						</div>
 					</div>
 
 					<div class="form-group">
-						<paper-input-decorator style="width: 100%;" label="Email" floatingLabel>
-							<input id="email" type="email" is="core-input">
-						</paper-input-decorator>
-					</div>
 
-					<div class="form-group">
-						<paper-input-decorator style="width: 100%;" label="Password" floatingLabel>
-							<input id="password" type="password" is="core-input">
-						</paper-input-decorator>
-					</div>
-
-					<div class="form-group">
-
-						<button type="button" id="signUpButton" class="btn btn-default btn-lg btn-full-width btn-transparent">Register</button>
+						<button type="button" id="signUpButton" class="btn waves-effect btn-default btn-lg btn-full-width btn-transparent">Register</button>
 
 					</div>
 

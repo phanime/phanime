@@ -15,6 +15,10 @@ Template.anime.rendered = function() {
 		}
 	});
 
+	// Ensuring jQuery initialization of modals
+
+	$('.modal-trigger').leanModal();
+
 };
 
 Template.anime.destroyed = function() {
