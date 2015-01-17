@@ -72,7 +72,8 @@ AnimeSchema = new SimpleSchema({
 			"OVA",
 			"Movie",
 			"Special",
-			"ONA"
+			"ONA",
+			"Music" // This is for MAL compatibility
 		],
 		autoform: {
 			firstOption: "Select Type of Anime"
@@ -136,7 +137,7 @@ AnimeSchema = new SimpleSchema({
 	totalEpisodes: {
 		type: Number,
 		min: 0,
-		max: 1000, // sanity check max value
+		max: 5000, // sanity check max value
 		optional: true
 	},
 	episodeDuration: {
@@ -213,6 +214,15 @@ AnimeSchema = new SimpleSchema({
 		},
 		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the value will still be generated on insert.
 
+	},
+	importFromMyAnimeList: {
+		type: Boolean,
+		optional: true
+	},
+	myAnimeListScore: {
+		type: Number,
+		decimal: true,
+		optional: true
 	}
 });
 

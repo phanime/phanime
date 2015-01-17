@@ -43,7 +43,6 @@ multiply:iron-router-progress
 velocity:core
 velocity:html-reporter
 mike:mocha
-percolate:momentum-iron-router
 dburles:spacebars-tohtml
 
 meteorhacks:fast-render
@@ -53,5 +52,5 @@ ephemer:reactive-datatables
 ecwyne:polymer-elements
 rubaxa:sortable
 tmeasday:publish-counts
-reywood:iron-router-ga
 flowkey:hotkeys
+datariot:ganalytics
