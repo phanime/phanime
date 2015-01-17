@@ -24,7 +24,8 @@ Package.onUse(function(api) {
 
 	// Additions to the server
 	api.addFiles([
-		'server/methods/getUserList.js'
+		'server/methods/getUserList.js',
+		'server/methods/updateAnimeWithMALId.js'
 	], ['server']);
 
 
