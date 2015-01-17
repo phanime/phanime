@@ -37,8 +37,6 @@ AnimeSchema = new SimpleSchema({
 			disabled: true,
 			value: null				
 		},
-		index: 1,
-		unique: true,
 		autoValue: function() {
 			// Let's grab the document
 			var canonicalTitle;
