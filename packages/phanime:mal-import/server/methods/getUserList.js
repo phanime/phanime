@@ -161,6 +161,7 @@ Meteor.methods({
 					console.log(seriesTitle + "was not found, so we are going to call MAL api");
 					// If the anime doesn't exist then we should make a call to MyAnimeList's API to grab the anime 
 					// and add it to the database.
+
 					var resultSearch = HTTP.call("GET", "http://myanimelist.net/api/anime/search.xml?q=" + seriesTitle, {auth: Meteor.settings.malAPIAuth.username + ":" + Meteor.settings.malAPIAuth.password});
 
 					var animes = resultSearch.content;
@@ -173,9 +174,9 @@ Meteor.methods({
 
 					parseString(animes, function(error, result) {
 						var animeReturned = result.anime.entry;
-						// console.log(result);
-						// console.log(animeReturned);
-						animeReturned.forEach(function(anime) {
+						
+						for(var i = 0; i < animeReturned.length; i++) {
+							var anime = animeReturned[i];
 							var malAnimeId = anime.id[0];
 
 							if (malAnimeId === seriesId) {
@@ -254,10 +255,11 @@ Meteor.methods({
 										}
 									});
 								}	
-
-							}
-
-						});
+								// We don't care about the rest if we've found a match
+								// so we'll end this loop	
+								break;
+							}							
+						}
 					});
 				}
 			});
