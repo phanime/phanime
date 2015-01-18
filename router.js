@@ -225,6 +225,8 @@ Router.onBeforeAction(routerBeforeHooks.isModerator, {only: ['revisionsQueue']})
 // Removes the search right before the route changes (typically)
 Router.onStop(routerOnStopHooks.removeSearch);
 
+
+
 // Router.onBeforeAction('dataNotFound');
 
 // Global hooks that every page needs

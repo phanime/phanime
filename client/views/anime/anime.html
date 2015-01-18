@@ -7,55 +7,65 @@
 	{{/if}}
 
 	<div class="row">
-		<div class="col-sm-12 block">
-			<div class="row">
-				<div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
-					<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
-				</div>
-				<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
-					<h1 style="margin-top:0">
-						{{title}} {{#if currentUser}}<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#revisionAnimeEditModal">Edit</button>{{/if}}
-					</h1>
-
-					<ul class="anime-info">
-						{{#if type}}<li>{{type}}</li>{{/if}}
-						{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
-						{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
-						{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
-						<li>{{airingText}} {{formatDateUTC startDate}} to {{#if isMomentDatePresent endDate}} {{formatDateUTC endDate}}{{else}} - {{/if}}</li>
-					</ul>
-
-					<div class="description thin-text">{{description}}</div>
-
-					<div class="genresList">
-						{{#if genres}}
-							<h4 class="thin-text inline-text">Genres: </h4>
-							{{#each genres}}
-								<a>{{this}}</a>
-							{{/each}}
-						{{/if}}
+		<div class="col s12">
+			<div class="block" style="margin-bottom: 0">
+				<div class="row">
+					<div class="hide-on-small-only col s12 m4 l2">
+						<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
 					</div>
+					<div class="col s12 m8 l10">
+						<h5 style="margin-top:0">
+							{{title}}
+						</h5>
 
-					<div class="themesList">
-						{{#if themes}}
-							<h4 class="thin-text inline-text">Themes:</h4>
-							{{#each themes}}
-								<a>{{this}}</a>
-							{{/each}}
-						{{/if}}
+						<ul class="anime-info">
+							{{#if type}}<li>{{type}}</li>{{/if}}
+							{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
+							{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
+							{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
+							<li>{{airingText}} {{formatDateUTC startDate}} to {{#if isMomentDatePresent endDate}} {{formatDateUTC endDate}}{{else}} - {{/if}}</li>
+						</ul>
+
+						<div class="description thin-text">{{description}}</div>
+
 					</div>
-
 				</div>
 			</div>
-
 		</div>
-
 	</div>
 
 	<div class="row">
-		<div class="col-sm-6 col-md-4">
-			<div class="col-sm-12 block green">
-				<h2 class="thin-text">Rating Overview</h2>
+		<div class="col s8 m10">
+			<div class="tagList">
+				{{#if genres}}
+					{{#each genres}}
+						<a class="genre">{{this}}</a>
+					{{/each}}
+				{{/if}}
+
+				{{#if themes}}
+					{{#each themes}}
+						<a class="theme">{{this}}</a>
+					{{/each}}
+				{{/if}}
+			</div>
+		</div>
+
+		<div class="col s12 m2">
+			<div class="right">
+				{{#if currentUser}}
+					<a class="btn waves-effect waves-light light-green modal-trigger" href="#revisionAnimeEditModal">
+						Edit  <i class="mdi-content-create right"></i>
+					</a>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12 m6 l4">
+			<div class="block">
+				<h5 class="thin-text">Rating Overview</h5>
 
 				{{#if rating}}
 					<div class="row">
@@ -76,110 +86,107 @@
 						</div>
 					</div>
 				{{else}}
-					No rating available
+					<p class="thin-text">No rating available</p>
 				{{/if}}
 			</div>
 		</div>
 
-		<div class="col-sm-6 col-md-4">
-			<div id="test" class="block green scroll-ready">
-				<h2 class="thin-text">Casting</h2>
+		<div class="col s12 m6 l4">
+			<div class="block scroll-ready">
+				<h5 class="thin-text">Casting</h5>
 
 					<div class="blaze-wrapper">
 					{{#each castings}}
 						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
-							<div class="col-sm-6">
+							<div class="col m6">
 								{{#with character}}
 								<a href="{{pathFor 'character'}}">{{fullName}}</a>: {{../role}}
 								{{/with}}
 							</div>
 
-							<div class="col-sm-6">
+							<div class="col m6">
 								{{#with person}}
 								<a href="{{pathFor 'person'}}"> {{fullName}}</a>: {{../language}}
 								{{/with}}
 							</div>
 						</div>
 					{{else}}
-						<h4 class="thin-text">No castings found</h4>
+						<p class="thin-text">No castings found</p>
 					{{/each}}
 					</div>
 
 			</div>
 		</div>
 
-		<div class="col-sm-6 col-md-4">
-			<div class="col-sm-12 block green scroll-ready">
-				<h2 class="thin-text">Staff Members</h2>
+		<div class="col s12 m6 l4">
+			<div class="block scroll-ready">
+				<h5 class="thin-text">Staff Members</h5>
 					<div class="blaze-wrapper">
 					{{#each staffMembers}}
 						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
-							<div class="col-sm-6">
+							<div class="col m6">
 								{{#with person}}
 									<a href="{{pathFor 'person'}}">{{fullName}}</a>
 								{{/with}}
 							</div>
 
-							<div class="col-sm-6">
+							<div class="col m6">
 								{{staffPosition}}
 							</div>
 						</div>
 					{{else}}
-						<h4 class="thin-text">No staff members found</h4>
+						<p class="thin-text">No staff members found</p>
 					{{/each}}
 					</div>
 
 			</div>
 		</div>
-
-
 	</div>
 
 
 	<div class="row">
 
-		<div class="col-sm-5 col-md-4">
+		<div class="col s12 m5 l4">
 
-				<div class="block">
-					<h1 class="thin-text">Reviews</h1>
+			<div class="block">
+				<div class="row">
+					<h5 class="thin-text left">Reviews</h5>
 					{{#if currentUser}}
-						<a class="waves-effect waves-light btn modal-trigger" href="#reviewAddModal">Write Review</a>
+						<a class="waves-effect waves-light btn modal-trigger right" href="#reviewAddModal">Write Review</a>
 					{{/if}}
 				</div>
-			
-				{{#each reviews}}
-					{{> UI.dynamic template="reviewCard" data=this}}
-				{{/each}}
+			</div>
+		
+			{{#each reviews}}
+				{{> UI.dynamic template="reviewCard" data=this}}
+			{{/each}}
 			
 		</div>
 
-		<div class="col-sm-7 col-md-8">
+		<div class="col s12 m7 l8">
 			
-			<div class="block green scroll-ready">
-				<h2 class="thin-text">Episodes</h2>
+			<div class="block scroll-ready">
+				<h5 class="thin-text">Episodes</h5>
 
+				<table class="bordered">
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>Episode Title</td>
+							<td>Air Date</td>
+						</tr>
+					</thead>
 
-				<div class="table-responsive">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<td>#</td>
-								<td>Episode Title</td>
-								<td>Air Date</td>
+					<tbody>
+						{{#each episodes}}
+							<tr class="thin-text">
+								<td>{{episodeNumber}}</td>
+								<td>{{#if episodeTitle}} {{episodeTitle}} {{else}} -- {{/if}}</td>
+								<td>{{#if isMomentDatePresent airDate}} {{formatDateUTC airDate}} {{else}} -- {{/if}}</td>
 							</tr>
-						</thead>
-
-						<tbody>
-							{{#each episodes}}
-								<tr class="thin-text">
-									<td>{{episodeNumber}}</td>
-									<td>{{#if episodeTitle}} {{episodeTitle}} {{else}} -- {{/if}}</td>
-									<td>{{#if isMomentDatePresent airDate}} {{formatDateUTC airDate}} {{else}} -- {{/if}}</td>
-								</tr>
-							{{/each}}
-						</tbody>
-					</table>
-				</div>
+						{{/each}}
+					</tbody>
+				</table>
 			
 			</div>
 			

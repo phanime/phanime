@@ -1,89 +1,99 @@
 <template name="accountImports">
 
 	<div class="block" style="margin-top:0">
+
 		<div class="row">
-			<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
-				<div class="form-group">
-					<h3 class="sub-text">Import your MAL list</h3>
-				</div>
-				<div class="form-group">
+			<div class="col s12">
+				<h3 class="sub-text centered-text">Import your MAL list</h3>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col l6 m12">
+				<p class="centered-text">
 					<input type="file" id="uploadXMLFile" class="form-control upload-xml">
-				</div>
+				</p>
+
+
 				<div class="form-group">
-					<button id="importMal" class="btn btn-primary btn-md btn-transparent btn-full-width">Import Anime List</button>
+					<button id="importMal" class="btn light-green btn-full-width">Import Anime List</button>
 				</div>
 
 				<p class="sub-text">Note: This function will only import anime entries from your MAL list. Additionally, it'll only add entries that have existing anime in phanime's database, it will ignore the rest. If an entry already exists in your phanime library, then it'll ignore that as well.</p>
 
 
 				{{#if importStarted}}
-					<hr>
+					<div class="divider"></div>
 					{{#with currentUser}}
-						<p class="sub-text">If you have a lot of library entries, this could take a while. <h4>You can go to your <a href="{{pathFor 'userLibrary'}}" target="_blank">library</a> and see it populate live while you wait.</h4> Keep this page open if you'd like to see the import summary once the import finishes.</p>
+						<p class="sub-text">If you have a lot of library entries, this could take a while. <h5>You can go to your <a href="{{pathFor 'userLibrary'}}" target="_blank">library</a> and see it populate live while you wait.</h5> Keep this page open if you'd like to see the import summary once the import finishes.</p>
 					{{/with}}
-					<hr>
+					<div class="divider"></div>
 				{{/if}}
+			</div>
+
+			<div class="col l6 m12">
 				{{#if importSummary}}
-				<h3 class="sub-text centered-text">Import Summary</h3>
-				<div class="row">
-					<div class="col-sm-3">
-						<h4 class="centered-text">{{importSummary.importStats.successfullyImported}}</h4>
-						<div class="sub-text centered-text">Imported</div>
+					<h4 class="sub-text centered-text">Import Summary</h4>
+					<div class="row">
+						<div class="col l3">
+							<h5 class="centered-text">{{importSummary.importStats.successfullyImported}}</h5>
+							<div class="sub-text centered-text">Imported</div>
+						</div>
+
+						<div class="col l3">
+							<h5 class="centered-text">{{importSummary.importStats.failedImports}}</h5>
+							<div class="sub-text centered-text">Failed</div>
+						</div>
+
+						<div class="col l3">
+							<h5 class="centered-text">{{importSummary.importStats.notFound}}</h5>
+							<div class="sub-text centered-text">Not Found</div>
+						</div>
+
+						<div class="col l3">
+							<h5 class="centered-text">{{importSummary.importStats.alreadyInYourLibrary}}</h5>
+							<div class="sub-text centered-text">Already Exists</div>
+						</div>
 					</div>
 
-					<div class="col-sm-3">
-						<h4 class="centered-text">{{importSummary.importStats.failedImports}}</h4>
-						<div class="sub-text centered-text">Failed</div>
-					</div>
+					<div class="divider"></div>
+					<div class="section">
+						<h5 class="sub-text">Failed to import: {{importSummary.importStats.failedImports}}</h5>
+						<div class="well">
+							{{#each importSummary.failedImports}}
+								<h6>{{canonicalTitle}}</h6>
+								<ul>
+								{{#each invalidKeys}}
+									<li>{{name}}: {{type}}</li>
+								{{/each}}
+								</ul>
 
-					<div class="col-sm-3">
-						<h4 class="centered-text">{{importSummary.importStats.notFound}}</h4>
-						<div class="sub-text centered-text">Not Found</div>
-					</div>
-
-					<div class="col-sm-3">
-						<h4 class="centered-text">{{importSummary.importStats.alreadyInYourLibrary}}</h4>
-						<div class="sub-text centered-text">Already Exists</div>
-					</div>
-				</div>
-				{{/if}} 
-
-
-				{{#if importSummary}}
-					<hr>
-					<h3 class="sub-text">Failed to import: {{importSummary.importStats.failedImports}}</h3>
-					<div class="well">
-						{{#each importSummary.failedImports}}
-							<h4>{{canonicalTitle}}</h4>
-							<ul>
-							{{#each invalidKeys}}
-								<li>{{name}}: {{type}}</li>
+								<hr>
+							{{else}}
+								<h6>Successfully imported all entries with anime found in our database</h6>
 							{{/each}}
-							</ul>
-
-							<hr>
-						{{else}}
-							<h4>Successfully imported all entries with anime found in our database</h4>
-						{{/each}}
-					</div>
+						</div>
 
 
-					<h3 class="sub-text">Anime not found: {{importSummary.importStats.notFound}}</h3>
-					<div class="well">
-						{{#each importSummary.notFoundAnime}}
-							<h4>{{canonicalTitle}}</h4>
-							<ul>
-							{{#each invalidKeys}}
-								<li>{{name}}: {{type}}</li>
+						<h5 class="sub-text">Anime not found: {{importSummary.importStats.notFound}}</h5>
+						<div class="well">
+							{{#each importSummary.notFoundAnime}}
+								<h6>{{canonicalTitle}}</h6>
+								<ul>
+								{{#each invalidKeys}}
+									<li>{{name}}: {{type}}</li>
+								{{/each}}
+								</ul>
+
+								<hr>
+							{{else}}
+								<h6>We matched all anime in your list to the ones in our database.</h6>
 							{{/each}}
-							</ul>
-
-							<hr>
-						{{else}}
-							<h4>We matched all anime in your list to the ones in our database.</h4>
-						{{/each}}
+						</div>
 					</div>
 
+				{{else}}
+					<h5 class="thin-text centered-text">Your import summary will appear here</h5>
 				{{/if}}
 			</div>
 		</div>

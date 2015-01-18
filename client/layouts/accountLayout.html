@@ -7,16 +7,16 @@
 	<div class="container main-content">
 
 		<div class="row">
-			<div class="col-sm-4 col-md-3 col-lg-2">
-				<div class="list-group">
-					<a href="{{pathFor 'accountPersonalDetails'}}" class="list-group-item">Personal Details</a>
-					<a href="{{pathFor 'accountSecurity'}}" class="list-group-item">Security</a>
-					<a href="{{pathFor 'accountPreferences'}}" class="list-group-item">Preferences</a>
-					<a href="{{pathFor 'accountImports'}}" class="list-group-item">Imports</a>
+			<div class="col s12 m5 l2">
+				<div class="collection">
+					<a href="{{pathFor 'accountPersonalDetails'}}" class="collection-item">Personal Details</a>
+					<a href="{{pathFor 'accountSecurity'}}" class="collection-item">Security</a>
+					<a href="{{pathFor 'accountPreferences'}}" class="collection-item">Preferences</a>
+					<a href="{{pathFor 'accountImports'}}" class="collection-item">Imports</a>
 				</div>
 			</div>
 
-			<div class="col-sm-8 col-md-9 col-sm-10">
+			<div class="col s12 m7 l10">
 				{{> yield}}
 			</div>
 		</div>

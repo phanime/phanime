@@ -138,7 +138,10 @@ ul.no-list-style {
 
 	.block h1:first-of-type,
 	.block h2:first-of-type,
-	.block h3:first-of-type {
+	.block h3:first-of-type,
+	.block h4:first-of-type,
+	.block h5:first-of-type,
+	.block h6:first-of-type {
 		margin-top: 0;
 	}
 
@@ -727,66 +730,38 @@ ul.no-list-style {
 		cursor: pointer;
 	}
 
-.genresList {
-	margin-top: 10px;
+.tagList a {
+	display: inline-block;
+	text-decoration: none;
+	border-radius: 2px;
+	padding: 3px 5px;
+	margin: 5px 3px;
+	border: 1px solid #8bc34a;
+	color: #575757;
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
 }
 
-	.genresList a {
-		display: inline-block;
-/*		border: 1px solid rgba(255,255,255,.5);
-		color: #fff;*/
-
-		border: 1px solid #8bc34a;
-		color: #575757;
-		text-decoration: none;
-		border-radius: 2px;
-
-		padding: 3px 5px;
-		margin: 5px 3px;
-/*		text-shadow: 0 0 3px rgba(0,0,0,0.8);*/
-		-webkit-transition: all 0.25s ease-in-out;
-		-moz-transition: all 0.25s ease-in-out;
-		-o-transition: all 0.25s ease-in-out;
-		transition: all 0.25s ease-in-out;
-	}
-
-	.genresList a:hover {
-		background-color: #8bc34a;
-		color: #fff;
-/*		text-shadow: none;
-		border: 1px solid #fff;
-		box-shadow: 0 0 10px rgba(255, 255, 255, 0.80);*/
-	}
-
-
-.themesList {
-	margin-top: 10px;
+.tagList a.genre {
+	border-color: #8bc34a;
+	color: #575757;
 }
 
-	.themesList a {
-		display: inline-block;
-/*		border: 1px solid rgba(255,255,255,.5);
-		color: #fff;*/
-
-		border: 1px solid #8bc34a;
-		color: #575757;
-		text-decoration: none;
-
-		padding: 3px 5px;
-		margin: 5px 3px;
-/*		text-shadow: 0 0 3px rgba(0,0,0,0.8);*/
-		-webkit-transition: all 0.25s ease-in-out;
-		-moz-transition: all 0.25s ease-in-out;
-		-o-transition: all 0.25s ease-in-out;
-		transition: all 0.25s ease-in-out;
-	}
-
-	.themesList a:hover {
+	.tagList a.genre:hover {
 		background-color: #8bc34a;
 		color: #fff;
-/*		text-shadow: none;
-		border: 1px solid #fff;
-		box-shadow: 0 0 10px rgba(255, 255, 255, 0.80);*/
+	}
+
+.tagList a.theme {
+	border-color: #949494;
+	color: #949494;
+}
+
+	.tagList a.theme:hover {
+		border-color: #8bc34a;
+		color: #8bc34a;
 	}
 
 .anime-info {

@@ -4,7 +4,10 @@ Template.libraryEntryCardEdit.rendered = function() {
 		step: 1
 	});
 
-	$('.fa.entry').tooltip();
+	$('.tooltipped').tooltip({delay: "1"});
+
+	// $('.dropdown-button').dropdown();
+	$('select').material_select();
 
 	// $('.entry-rating').tooltip();
 
@@ -13,43 +16,45 @@ Template.libraryEntryCardEdit.rendered = function() {
 Template.libraryEntryCardEdit.events({
 
 	// Change the status
-	'click .status-item' : function(event, template) {
+	'change select.status-selector' : function(event, template) {
+		console.log("Triggered");
+		var status = $(event.target).val();
 
-		var status = $(event.target).text();
 		
+		console.log(status);
 
-		// Set the current library entry
-		var libraryEntry = template.data;
-		var anime = libraryEntry.anime();
-		if (libraryEntry) {
-			// libraryEntry exists for the current user
+		// // Set the current library entry
+		// var libraryEntry = template.data;
+		// var anime = libraryEntry.anime();
+		// if (libraryEntry) {
+		// 	// libraryEntry exists for the current user
 
-			// If the user has selected remove as status
-			// then we should delete their library entry
-			if (status === 'Remove') {
-				LibraryEntries.remove({_id: libraryEntry._id});
-			} else if (status !== libraryEntry.status) {
+		// 	// If the user has selected remove as status
+		// 	// then we should delete their library entry
+		// 	if (status === 'Remove') {
+		// 		LibraryEntries.remove({_id: libraryEntry._id});
+		// 	} else if (status !== libraryEntry.status) {
 
-				LibraryEntries.update({_id: libraryEntry._id}, {$set: {
-					status: status, 
-					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : libraryEntry.episodesSeen),
-					updatedAt: new Date(),
-				}});
+		// 		LibraryEntries.update({_id: libraryEntry._id}, {$set: {
+		// 			status: status, 
+		// 			episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : libraryEntry.episodesSeen),
+		// 			updatedAt: new Date(),
+		// 		}});
 
-				var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'status', status);
+		// 		var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'status', status);
 
-				// Generate an activity for this action
-				Meteor.call('createActivity', 'libraryEntry', Meteor.user()._id, libraryEntryActivity, function(error, result) {
-					// console.log(error);
-					// console.log(result);
-				});
+		// 		// Generate an activity for this action
+		// 		Meteor.call('createActivity', 'libraryEntry', Meteor.user()._id, libraryEntryActivity, function(error, result) {
+		// 			// console.log(error);
+		// 			// console.log(result);
+		// 		});
 
-				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated');
+		// 		//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated');
 
-			} else {
-				console.log('Statuses same, don\'t update');
-			}
-		}
+		// 	} else {
+		// 		console.log('Statuses same, don\'t update');
+		// 	}
+		// }
 	},
 
 	// Change the rating
@@ -157,7 +162,7 @@ Template.libraryEntryCardEdit.events({
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {privacy: privacy, updatedAt: new Date()}});
 
 			// Fix the tooltip text update it to the newest 
-			$('.libraryEntryIcons.entry-privacy').attr('title', toolTitle).tooltip('fixTitle');
+			// $('.libraryEntryIcons.entry-privacy').attr('title', toolTitle).tooltip('fixTitle');
 
 
 		} else if (icon.hasClass('entry-rewatching')) {
@@ -173,7 +178,7 @@ Template.libraryEntryCardEdit.events({
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {rewatching: rewatching, updatedAt: new Date()}});
 
 			// Fix the tooltip text update it to the newest 
-			$('.libraryEntryIcons.entry-rewatching').attr('title', toolTitle).tooltip('fixTitle');
+			// $('.libraryEntryIcons.entry-rewatching').attr('title', toolTitle).tooltip('fixTitle');
 
 			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'rewatching', rewatching);
 
@@ -197,7 +202,7 @@ Template.libraryEntryCardEdit.events({
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {highPriority: highPriority, updatedAt: new Date()}});
 
 			// Fix the tooltip text update it to the newest 
-			$('.libraryEntryIcons.entry-highPriority').attr('title', toolTitle).tooltip('fixTitle');
+			// $('.libraryEntryIcons.entry-highPriority').attr('title', toolTitle).tooltip('fixTitle');
 
 			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'highPriority', highPriority);
 
