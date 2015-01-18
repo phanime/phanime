@@ -428,7 +428,8 @@ AnimeRevisionsSchema = new SimpleSchema({
 		}
 	},
 	genres: {
-		type: [String]
+		type: [String],
+		optional: true
 	},
 	themes: {
 		type: [String],
