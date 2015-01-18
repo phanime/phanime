@@ -15,7 +15,8 @@ Template.revisionsQueueRow.events({
 
 		var revision = template.data;
 
-		// Approving the revision basically means we'll be adding the updated data to our database
+		console.log(revision);
+		// // Approving the revision basically means we'll be adding the updated data to our database
 		Meteor.call('revisionApproved', revision, function(error, contentId) {
 
 			if (error) {
@@ -42,14 +43,6 @@ Template.revisionsQueueRow.events({
 
 
 		});
-
-		// Meteor.call('uploadImageFromUrl', revision.content.coverImage, 'anime', 'cover', 'somerandomID', function(error, result) {
-
-		// 	console.log(error);
-		// 	console.log(result);
-
-		// });
-
 	},
 	'click .reopenRevision' : function(event, template) {
 

@@ -12,7 +12,16 @@ Template.revisionsQueue.events({
 	},
 	'click .statusFilter > button' : function(event, template) {
 		template.currentStatusFilter.set($(event.target).text());
-	}
+	},
+
+	// 'click .import-trigger' : function(event, template) {
+	// 	console.log('Triggered');
+		
+	// 	Meteor.call('updateAnimeWithMALId', function(error, result) {
+	// 		console.log(error);
+	// 		console.log(result);
+	// 	});
+	// }
 
 });
 
