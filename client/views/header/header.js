@@ -5,6 +5,11 @@ Template.header.created = function() {
 
 };
 
+Template.header.rendered = function() {
+	// We'll initialize the sidenav here
+	$(".button-collapse").sideNav();
+}
+
 Template.header.events({
 	'click #signOut': function(event) {
 		Meteor.logout();

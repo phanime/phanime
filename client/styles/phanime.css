@@ -156,7 +156,7 @@ ul.no-list-style {
 
 /************* Counter styling in nav-bar *************/
 
-ul.nav > li> a {
+/*ul.nav > li> a {
 	position: relative;
 }
 
@@ -175,7 +175,7 @@ ul.nav > li> a {
 		ul.nav > li > a span.counter:empty {
 			padding: 0;
 		}
-
+*/
 
 .content-dropdown {
 	padding: 10px;
@@ -587,7 +587,7 @@ ul.nav > li> a {
 /*---------- NAVBAR -----------*/
 /*-----------------------------*/
 
-.navbar-phan {
+/*.navbar-phan {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 	border-bottom: none;
 	background-color: #575757;
@@ -614,10 +614,10 @@ ul.nav > li> a {
 	.navbar-phan .navbar-brand:focus {
 		color: #ffffff;
 	}
-
+*/
 
 	/* --- Dropdown related ---*/
-	.navbar-phan .navbar-nav > .open > a,
+/*	.navbar-phan .navbar-nav > .open > a,
 	.navbar-phan .navbar-nav > .open > a:hover,
 	.navbar-phan .navbar-nav > .open > a:focus {
 		color: #ffffff;
@@ -669,7 +669,7 @@ ul.nav > li> a {
 
 		}
 
-	}
+	}*/
 
 /*-----------------------------*/
 /*---------- ANIME ------------*/
