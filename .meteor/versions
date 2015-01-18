@@ -26,8 +26,6 @@ dburles:spacebars-tohtml@1.0.0
 ddp@1.0.13
 deps@1.0.6
 dfischer:phantomjs@1.0.4
-ecwyne:polymer@1.0.3
-ecwyne:polymer-elements@1.0.4
 ejson@1.0.5
 email@1.0.5
 ephemer:reactive-datatables@1.0.3
