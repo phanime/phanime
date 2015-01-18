@@ -13,7 +13,6 @@ Template.revisionsQueue.events({
 	'click .statusFilter > button' : function(event, template) {
 		template.currentStatusFilter.set($(event.target).text());
 	}
-
 });
 
 

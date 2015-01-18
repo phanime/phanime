@@ -4,6 +4,7 @@ Template.reviewCard.urlObject = function() {
 	var anime = Anime.findOne({_id: review.animeId});
 
 	return {
+		animeId: anime._id,
 		slug: anime.slug,
 		_id: review._id
 	};

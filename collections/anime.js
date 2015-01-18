@@ -41,7 +41,7 @@ AnimeSchema = new SimpleSchema({
 			// Let's grab the document
 			var canonicalTitle;
 
-			if (this.isUpdate) {
+			if (this.isUpdate && !this.field("canonicalTitle").value) {
 				canonicalTitle = Anime.findOne({_id: this.docId}).canonicalTitle;
 			} else {
 				canonicalTitle = this.field("canonicalTitle").value;
@@ -75,7 +75,8 @@ AnimeSchema = new SimpleSchema({
 		],
 		autoform: {
 			firstOption: "Select Type of Anime"
-		}
+		},
+		optional: true
 	},
 	status: {
 		type: String,
@@ -86,7 +87,8 @@ AnimeSchema = new SimpleSchema({
 		],
 		autoform: {
 			firstOption: "Select Anime Status"
-		}
+		},
+		optional: true
 	},
 	startDate: {
 		type: Date,
@@ -387,7 +389,8 @@ AnimeRevisionsSchema = new SimpleSchema({
 		],
 		autoform: {
 			firstOption: "Select Type of Anime"
-		}
+		},
+		optional: true
 	},
 	status: {
 		type: String,
@@ -428,7 +431,8 @@ AnimeRevisionsSchema = new SimpleSchema({
 		}
 	},
 	genres: {
-		type: [String]
+		type: [String],
+		optional: true
 	},
 	themes: {
 		type: [String],

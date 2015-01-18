@@ -22,11 +22,11 @@ AnimeController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('animeBySlug', this.params.slug);
+		return Meteor.subscribe('anime', this.params._id);
 	},
 
 	data: function () {
-		var anime = Anime.findOne({slug: this.params.slug});
+		var anime = Anime.findOne({_id: this.params._id});
 
 
 		// Add episodes once the subscription is ready
