@@ -173,92 +173,94 @@ Meteor.methods({
 					};
 
 					parseString(animes, function(error, result) {
-						var animeReturned = result.anime.entry;
 						
-						for(var i = 0; i < animeReturned.length; i++) {
-							var anime = animeReturned[i];
-							var malAnimeId = anime.id[0];
+						if (result) {
+							var animeReturned = result.anime.entry;
+							for(var i = 0; i < animeReturned.length; i++) {
+								var anime = animeReturned[i];
+								var malAnimeId = anime.id[0];
 
-							if (malAnimeId === seriesId) {
-								// Series matched, let's get more information
+								if (malAnimeId === seriesId) {
+									// Series matched, let's get more information
 
-								var animeObj = {
-									canonicalTitle: anime.title[0], 
-									romajiTitle: anime.title[0], // MAL seems to always put the romaji version as their main title
-									englishTitle: anime.english[0],
-									type: anime.type[0],
-									status: animeStatusMap[anime.status[0]],
-									// Dates we'll likely cause an issue, but we'll see what happens
-									startDate: moment(anime.start_date[0]).toDate(),
-									endDate: moment(anime.end_date[0]).toDate(),
-									totalEpisodes: anime.episodes[0],
-									languageVersion: ['Subbed'], // Assume that it's subbed
-									ageRating: "NR - Not Rated",
-									titleSynonyms: anime.synonyms[0],
-									description: sanitizeDescription(anime.synopsis[0]),
-									newImageURLFormat: true,
-									myAnimeListScore: parseFloat(anime.score[0]),
-									importFromMyAnimeList: true,
-									myAnimeListId: malAnimeId
-								};
-
-								console.log(animeObj);
-								var animeId = Anime.insert(animeObj);
-
-
-								var coverImageUrl = anime.image[0]; // We'll need to upload this to our server and then update
-
-
-								if (animeId && coverImageUrl) {
-									console.log('We\'re about to upload the image');
-									Meteor.call("uploadImageFromUrl", coverImageUrl, 'anime', 'cover', animeId, function(error, result) {
-										if (error) {
-											throw new Meteor.Error(403, error.reason);
-										} else {
-											console.log('Upload was successful');
-										}
-									});
-								}
-
-
-								// We'll add animeId to the libraryEntry object
-								libraryEntry.animeId = animeId;
-								libraryEntry.canonicalTitle = animeObj.canonicalTitle;
-
-								// We should now create a library entry for this person 
-								LibraryEntries.simpleSchema().clean(libraryEntry);
-								// Let's do the validation before as well 
-								if (LibraryEntries.simpleSchema().namedContext().validate(libraryEntry) === false) {
-									// if validation failed, we should continue on with adding the entries, but we should push the invalid keys object into an array.
-									importStats.failedImports++;
-
-									var invalidKeys = LibraryEntries.simpleSchema().namedContext().invalidKeys();
-									var invalidKeysObject = {
-										invalidKeys: invalidKeys,
-										canonicalTitle: localAnimeObject.canonicalTitle
+									var animeObj = {
+										canonicalTitle: anime.title[0], 
+										romajiTitle: anime.title[0], // MAL seems to always put the romaji version as their main title
+										englishTitle: anime.english[0],
+										type: anime.type[0],
+										status: animeStatusMap[anime.status[0]],
+										// Dates we'll likely cause an issue, but we'll see what happens
+										startDate: moment(anime.start_date[0]).toDate(),
+										endDate: moment(anime.end_date[0]).toDate(),
+										totalEpisodes: anime.episodes[0],
+										languageVersion: ['Subbed'], // Assume that it's subbed
+										ageRating: "NR - Not Rated",
+										titleSynonyms: anime.synonyms[0],
+										description: sanitizeDescription(anime.synopsis[0]),
+										newImageURLFormat: true,
+										myAnimeListScore: parseFloat(anime.score[0]),
+										importFromMyAnimeList: true,
+										myAnimeListId: malAnimeId
 									};
 
-									// console.log(invalidKeys);
-									failedImports.push(invalidKeysObject);
+									console.log(animeObj);
+									var animeId = Anime.insert(animeObj);
 
-									// throw new Meteor.Error('insert-library-entry-failed', "We were unable to add " + localAnimeObject.canonicalTitle + " to your library. Phanime's database likely has conflicting information. Please update this anime in our database if the information is incorrect. Thanks!");
-								} else {
-									LibraryEntries.insert(libraryEntry, function(error, result) {
-										if (error) {
-											console.log(libraryEntry);
-											console.log(localAnimeObject.canonicalTitle);
-											console.log(error);
-											// throw new Meteor.Error('insert-library-entry-failed', error);
-										} else {
-											// increment the counter here
-											importStats.successfullyImported++;
-										}
-									});
-								}	
-								// We don't care about the rest if we've found a match
-								// so we'll end this loop	
-								break;
-							}							
+
+									var coverImageUrl = anime.image[0]; // We'll need to upload this to our server and then update
+
+
+									if (animeId && coverImageUrl) {
+										console.log('We\'re about to upload the image');
+										Meteor.call("uploadImageFromUrl", coverImageUrl, 'anime', 'cover', animeId, function(error, result) {
+											if (error) {
+												throw new Meteor.Error(403, error.reason);
+											} else {
+												console.log('Upload was successful');
+											}
+										});
+									}
+
+
+									// We'll add animeId to the libraryEntry object
+									libraryEntry.animeId = animeId;
+									libraryEntry.canonicalTitle = animeObj.canonicalTitle;
+
+									// We should now create a library entry for this person 
+									LibraryEntries.simpleSchema().clean(libraryEntry);
+									// Let's do the validation before as well 
+									if (LibraryEntries.simpleSchema().namedContext().validate(libraryEntry) === false) {
+										// if validation failed, we should continue on with adding the entries, but we should push the invalid keys object into an array.
+										importStats.failedImports++;
+
+										var invalidKeys = LibraryEntries.simpleSchema().namedContext().invalidKeys();
+										var invalidKeysObject = {
+											invalidKeys: invalidKeys,
+											canonicalTitle: localAnimeObject.canonicalTitle
+										};
+
+										// console.log(invalidKeys);
+										failedImports.push(invalidKeysObject);
+
+										// throw new Meteor.Error('insert-library-entry-failed', "We were unable to add " + localAnimeObject.canonicalTitle + " to your library. Phanime's database likely has conflicting information. Please update this anime in our database if the information is incorrect. Thanks!");
+									} else {
+										LibraryEntries.insert(libraryEntry, function(error, result) {
+											if (error) {
+												console.log(libraryEntry);
+												console.log(localAnimeObject.canonicalTitle);
+												console.log(error);
+												// throw new Meteor.Error('insert-library-entry-failed', error);
+											} else {
+												// increment the counter here
+												importStats.successfullyImported++;
+											}
+										});
+									}	
+									// We don't care about the rest if we've found a match
+									// so we'll end this loop	
+									break;
+								}							
+							}
 						}
 					});
 				}
