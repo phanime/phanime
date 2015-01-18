@@ -25,7 +25,10 @@
 						<div class="description thin-text">{{description}}</div>
 						{{#if ../entry.comment}}
 							<hr>
-							<div class="sub-text">"{{../entry.comment}}" - {{../customList.user.displayName}}</div>
+							<blockquote>
+  								<p>{{../entry.comment}}</p>
+  								<footer><cite title="Source Title">{{../customList.user.displayName}}</cite></footer>
+  							</blockquote>
 						{{/if}}
 					{{/if}}
 				</div>
