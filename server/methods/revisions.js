@@ -61,9 +61,6 @@ Meteor.methods({
 		// if the canonicalTitle of the anime was changed...
 		if (changedAttributesAnime.canonicalTitle) {
 
-			// We'll need to regenerate the slug since the title changed
-			changedAttributesAnime.slug = getSlug(anime.canonicalTitle);
-
 			// Ensure uniqueness
 			var titleCheck = Anime.findOne({canonicalTitle: changedAttributesAnime.canonicalTitle});
 
