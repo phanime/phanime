@@ -14,14 +14,14 @@ Template.revisionsQueue.events({
 		template.currentStatusFilter.set($(event.target).text());
 	},
 
-	// 'click .import-trigger' : function(event, template) {
-	// 	console.log('Triggered');
+	'click .import-trigger' : function(event, template) {
+		console.log('Triggered');
 		
-	// 	Meteor.call('updateAnimeWithMALId', function(error, result) {
-	// 		console.log(error);
-	// 		console.log(result);
-	// 	});
-	// }
+		Meteor.call('updateAnimeWithMALId', function(error, result) {
+			console.log(error);
+			console.log(result);
+		});
+	}
 
 });
 

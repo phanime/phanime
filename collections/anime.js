@@ -41,7 +41,7 @@ AnimeSchema = new SimpleSchema({
 			// Let's grab the document
 			var canonicalTitle;
 
-			if (this.isUpdate) {
+			if (this.isUpdate && !this.field("canonicalTitle").value) {
 				canonicalTitle = Anime.findOne({_id: this.docId}).canonicalTitle;
 			} else {
 				canonicalTitle = this.field("canonicalTitle").value;
