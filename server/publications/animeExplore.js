@@ -1,8 +1,8 @@
-Meteor.publishComposite("animeExplore", function(limit) {
+Meteor.publishComposite("animeExplore", function(limit, filterObject, sortObject) {
 
 	return {
 		find: function() {
-			return Anime.find({}, {sort: {canonicalTitle: 1}, limit: limit});
+			return Anime.find(filterObject, {sort: sortObject, limit: limit});
 		},
 		children: [{
 			// This is a pretty bad way of grabbing all the libraryentries that are affiliated with the 

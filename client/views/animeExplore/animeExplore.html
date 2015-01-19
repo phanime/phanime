@@ -1,9 +1,29 @@
 <template name="animeExplore">
 
 	<div class="container main-content">
+
+		<div class="row">
+			<div class="col-sm-6 col-md-5 col-lg-4">
+				<div class="btn-group">
+					<button type="button" id="noneDate" class="btn btn-default {{dateCurrentlyActive 'None'}}">None</button>
+					<button type="button" id="currentlyAiring" class="btn btn-default {{dateCurrentlyActive 'Currently Airing'}}">Currently Airing</button>
+					<button type="button" id="upcomingAnime" class="btn btn-default {{dateCurrentlyActive 'Upcoming'}}">Upcoming</button>
+				</div>
+			</div>
+
+			<div class="col-sm-6 col-md-7 col-lg-8">
+				<select id="selectGenre" name="genres[]" multiple placeholder="Select some genres"></select>
+			</div>
+
+		</div>
+
+		<hr class="background-hr">
+
 		<div class="row">
 			{{#each anime}}
 				{{> UI.dynamic template="animeCard" data=this}}
+			{{else}}
+				<h3 class="sub-text">We couldn't find any anime with the currently applied filters</h3>
 			{{/each}}
 		</div>
 	
