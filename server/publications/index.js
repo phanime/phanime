@@ -1,7 +1,7 @@
 Meteor.publishComposite('indexCurrentUser', function() {
 	return {
 		find: function() {
-			return Meteor.users.find({_id: this.userId});
+			return Meteor.users.find({_id: this.userId}, {fields: requireCollectionFields.user.defaultWithRecommended});
 		},
 		children: [
 
