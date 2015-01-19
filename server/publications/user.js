@@ -1,7 +1,7 @@
 Meteor.publishComposite('userWithProfilePosts', function(username) {
 	return {
 		find: function() {
-			return Meteor.users.find({username: username});
+			return Meteor.users.find({username: username}, {fields: requireCollectionFields.user.removeServices});
 		},
 		children: [
 			{
