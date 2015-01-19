@@ -2,9 +2,9 @@
 	<div class="block">
 		<div class="row">
 			<div class="col-sm-9">
-				<h3>{{title}} {{#if isUserIdCurrentUser userId}} <a class="btn btn-transparent" href="{{pathFor 'customListEdit'}}">Edit</a> {{/if}}</h3> 
-				<h5 class="sub-text">{{description}}</h5>
-
+				<h3>{{title}} {{#if isUserIdCurrentUser userId}} <a class="btn btn-transparent btn-sm" href="{{pathFor 'customListEdit'}}">Edit</a> {{/if}}</h3> 
+				<h5 class="sub-text description">{{description}}</h5>
+				<h5 class="sub-text">Created: {{formatDateFromNow createdAt}} | Last Updated: {{formatDateFromNow updatedAt}}</h5>
 				<hr>
 
 				<ul class="no-list-style" id="entries">
@@ -16,6 +16,8 @@
 						<h4 class="sub-text">This list has no entries, maybe the author is still working on it. Check back later!</h4>
 					{{/each}}
 				</ul>
+
+				<hr>
 
 				{{#if disableComments}}
 					<h4 class="sub-text">Comments are disabled for this list</h4>
