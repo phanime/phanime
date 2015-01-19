@@ -86,8 +86,8 @@ Template.animeExplore.events({
 		var filterObject = template.filterObject.get();
 
 		// We'll remove the $or because it's for currently airing 
-		if (filterObject.$or)
-			delete filterObject.$or;
+		if (filterObject.$and)
+			delete filterObject.$and;
 
 		filterObject.startDate = {
 			$gte: new Date()
@@ -99,18 +99,26 @@ Template.animeExplore.events({
 	},
 	'click #currentlyAiring' : function(event, template) {
 		// Currently airing anime would either not have endDate field or it's value will be greater than 
-		// today's date
+		// today's date and will have their start date before today's value
 		var filterObject = template.filterObject.get();
 		// We'll have to remove any other date conditions on here first 
 		if (filterObject.startDate)
 			delete filterObject.startDate;
 
-		filterObject.$or = [{
-			endDate: {$gte: new Date()}
-		}, 
+		filterObject.$and = [{
+			$or: [{
+				endDate: {$gte: new Date()}
+			},
+			{
+				endDate: {$exists: false}
+			}]
+		},
 		{
-			endDate: {$exists: false}
-		}]
+			startDate: {
+				$lt: new Date()
+			}
+		}];
+
 
 		template.dateCurrentlyActive.set("Currently Airing");
 		template.filterObject.set(filterObject);
@@ -123,8 +131,8 @@ Template.animeExplore.events({
 		if (filterObject.startDate)
 			delete filterObject.startDate;
 
-		if (filterObject.$or) 
-			delete filterObject.$or
+		if (filterObject.$and) 
+			delete filterObject.$and;
 
 		template.dateCurrentlyActive.set("None");
 		template.filterObject.set(filterObject);
