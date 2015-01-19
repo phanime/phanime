@@ -29,6 +29,8 @@ CommunitySSOController = RouteController.extend({
 						// most of the times ends up throwing a timeout on discourse's end 
 						// so this will be a temp fix for now.
 						$('#communitySSO').attr('href', result);
+						
+						// window.location.replace(result);
 						// window.location = result;
 					}
 				});				

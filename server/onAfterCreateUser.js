@@ -3,10 +3,6 @@
 
 Meteor.users.find({"emails.0.verified": false}, {fields: {_id: 1}, limit: 1, sort:{createdAt: -1}}).observe({
 	added: function(user) {
-		console.log(user._id);
 		Accounts.sendVerificationEmail(user._id);
-	}, 
-	removed: function(user) {
-		console.log(user._id);
 	}
 });
