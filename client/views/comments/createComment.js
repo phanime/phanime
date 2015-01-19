@@ -18,12 +18,13 @@ Template.createComment.events({
 					createdAt: new Date(),
 				};
 
+				// We clear the comment;
+				$(event.target).val('');
 
 				Comments.insert(comment, function(error, _id) {
-					if (!error) {
-						// Clear comment area
-						$(event.target).val('');
-					} else {
+					if (error) {
+						// Put the value of the comment back if things didn't workout
+						$(event.target).val(commentContent);
 						Notifications.error('Comment creation failed!', error.reason);
 					}
 				});
