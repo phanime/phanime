@@ -1,8 +1,9 @@
 <template name="userCustomLists">
 
 	<div class="container main-content">
-
-
+		{{#each customLists}}
+			{{> customListCard}}
+		{{/each}}
 	</div>
 
 </template>

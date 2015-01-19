@@ -23,9 +23,9 @@ Template.createComment.events({
 
 				Comments.insert(comment, function(error, _id) {
 					if (error) {
-						// Put the value of the comment back if things didn't workout
-						$(event.target).val(commentContent);
 						Notifications.error('Comment creation failed!', error.reason);
+					} else {
+						$(event.target).val('');
 					}
 				});
 
