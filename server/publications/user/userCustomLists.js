@@ -6,7 +6,12 @@ Meteor.publishComposite('userCustomLists', function(username) {
 		children: [
 			{
 				find: function(user) {
-					return CustomLists.find({userId: user._id}, {sort: {createdAt: -1}});
+					if (user._id !== this.userId) {
+						return CustomLists.find({userId: user._id, privacy: {$ne: true}}, {sort: {createdAt: -1}});
+					} else {
+						return CustomLists.find({userId: user._id}, {sort: {createdAt: -1}});
+					}
+					
 				}
 			}
 		]
