@@ -12,45 +12,39 @@
 			<div class="progress" style="width: {{getPercentage episodesSeen anime.totalEpisodes}}"></div>
 
 			{{#if isUserIdCurrentUser userId}}
-			<div class="libraryEntryForm">						
-
-				<div class="form-group">
-					<button class="btn btn-default dropdown-toggle change-entry-status-btn" type="button" id="watchStatus" data-toggle="dropdown">
-						{{status}}
-						<span class="caret"></span>
-					</button>
-
-					<ul class="dropdown-menu" style="left:auto; width: 180px; margin-top: -10px; top: 55px;" role="menu" aria-labelledby="watchStatus">
-						{{#each watchStatuses}}
-							<li><a class="status-item" style="cursor: pointer" data-status="{{this}}">{{this}}</a></li>
-						{{/each}}
-					</ul>
-				</div>							
-
-				<div class="form-group">
-					<div title="1" class="entry-rating" id="rating_{{_id}}" data-rateit-value="{{rating}}"></div>
-				</div>
-
-				<div class="form-group">
-					<input type="number" class="form-control input-sm input-inline entry-episodesSeen" placeholder="#" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
-					<div class="entry-episodes"> / {{anime.totalEpisodes}}</div>
-				</div>
-
-				<div class="icon-group">
-					<i data-toggle="tooltip" data-placement="left" title="{{rewatchingToolText rewatching}}" class="fa entry libraryEntryIcons entry-rewatching {{entryRewatchingClass rewatching}}"></i>
-					<i data-toggle="tooltip" data-placement="top" title="{{highPriorityToolText highPriority}}" class="fa entry libraryEntryIcons entry-highPriority {{entryHighPriorityClass highPriority}}"></i>
-					<i data-toggle="tooltip" data-placement="right" title="{{privacyToolText privacy}}" class="fa entry libraryEntryIcons entry-privacy {{entryPrivacyClass privacy}}"></i>
-				</div>
-
-				<textarea class="form-control entry-comments" placeholder="Personal comments" value="{{comments}}" maxlength="140" rows="3"></textarea>
-
-				<div class="thin-text centered" style="margin-top: 3px">
-					{{#with anime}}<a href="{{pathFor 'anime'}}">Go to Anime <i class="fa fa-arrow-circle-right"></i></a>{{/with}}
-				</div>
-
-			</div>
-			{{else}}
 				{{> libraryEntryCardEdit}}
+			{{else}}
+				<div class="libraryEntryForm">						
+
+					<div class="form-group">
+						<button class="btn btn-default change-entry-status-btn" type="button">
+							{{status}}
+						</button>
+					</div>							
+
+					<div class="form-group">
+						<div class="entry-rating" id="rating_{{_id}}" data-rateit-readonly="true" data-rateit-value="{{rating}}"></div>
+					</div>
+
+					<div class="form-group">
+						<div class="entry-episodes"> <span>{{hyphenNotExist episodesSeen}}</span> / {{anime.totalEpisodes}}</div>
+					</div>
+
+					<div class="icon-group">
+						<i data-toggle="tooltip" data-placement="left" title="{{rewatchingToolText rewatching}}" class="fa entry entry-rewatching {{entryRewatchingClass rewatching}}"></i>
+						<i data-toggle="tooltip" data-placement="top" title="{{highPriorityToolText highPriority}}" class="fa entry entry-highPriority {{entryHighPriorityClass highPriority}}"></i>
+						<i data-toggle="tooltip" data-placement="right" title="{{privacyToolText privacy}}" class="fa entry entry-privacy {{entryPrivacyClass privacy}}"></i>
+					</div>
+
+					<div class="comments">
+						{{comments}}
+					</div>
+
+					<div class="thin-text centered" style="margin-top: 3px">
+						{{#with anime}}<a href="{{pathFor 'anime'}}">Go to Anime <i class="fa fa-arrow-circle-right"></i></a>{{/with}}
+					</div>
+
+				</div>
 			{{/if}}
 
 		</div>
