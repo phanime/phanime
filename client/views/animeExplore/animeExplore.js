@@ -111,6 +111,9 @@ Template.animeExplore.events({
 			},
 			{
 				endDate: {$exists: false}
+			},
+			{
+				endDate: "0000-00-00" // For the dates that are still represented as strings
 			}]
 		},
 		{
