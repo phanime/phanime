@@ -224,7 +224,7 @@ Meteor.methods({
 					}
 
 					// Update the user's positive scoring
-					Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
+					Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: 1}});
 
 
 					// We also update the revision's status to Approved here
@@ -295,7 +295,7 @@ Meteor.methods({
 					}
 
 					// Update the user's positive scoring
-					Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
+					Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: 1}});
 
 
 					// We also update the revision's status to Approved here
@@ -328,7 +328,7 @@ Meteor.methods({
 			Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: -1}});
 		}
 
-		// Update the revision's status to declined
+		// Update the revision's status to Open
 		Revisions.update({_id: revision._id}, {$set: {status: "Open", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
 
 	}

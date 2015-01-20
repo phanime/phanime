@@ -1,6 +1,12 @@
 Template.userSummary.created = function() {
 	this.isEditing = new ReactiveVar(false);
-}
+};
+
+Template.userSummary.rendered = function() {
+
+	$('.tooltipped').tooltip();
+
+};
 
 Template.userSummary.events({
 	'click #editProfile' : function(event, template) {
@@ -28,4 +34,4 @@ Template.userSummary.helpers({
 	isEditing: function() {
 		return Template.instance().isEditing.get();
 	}
-})
+});
