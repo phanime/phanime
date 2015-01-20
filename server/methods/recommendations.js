@@ -20,14 +20,17 @@ Meteor.methods({
 			// We also don't want to recommend anime that are similar to the ones 
 			// the user has dropped, so we shouldn't look at their dropped anime
 			if (libraryEntry.rating >= 7 || libraryEntry.status !== 'Dropped') {
-				var potentialAnime = Anime.find({genres: {$in: anime.genres}, _id: {$nin: animeIdsAlready}}, {fields: {_id: 1}}).fetch();
-				
-				potentialAnime.forEach(function(anime) {
-					if (recommendedAnime[anime._id])
-						recommendedAnime[anime._id] += 10;
-					else 
-						recommendedAnime[anime._id] = 10;
-				});
+
+				if (anime && anime.genres) {
+					var potentialAnime = Anime.find({genres: {$in: anime.genres}, _id: {$nin: animeIdsAlready}}, {fields: {_id: 1}}).fetch();
+					
+					potentialAnime.forEach(function(anime) {
+						if (recommendedAnime[anime._id])
+							recommendedAnime[anime._id] += 10;
+						else 
+							recommendedAnime[anime._id] = 10;
+					});
+				}
 
 			}
 
