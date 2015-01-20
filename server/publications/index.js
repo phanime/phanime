@@ -59,7 +59,7 @@ Meteor.publishComposite('indexCurrentUser', function() {
 			},
 			{
 				find: function(user) {
-					return LibraryEntries.find({userId: user._id, $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {limit: 6});
+					return LibraryEntries.find({userId: user._id, $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {sort: {updatedAt: -1}, limit: 6});
 				},
 				children: [
 					{
