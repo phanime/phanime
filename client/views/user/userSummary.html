@@ -32,22 +32,16 @@
 
 					{{/if}}
 					{{#if isEditing}}
-						<paper-input-decorator style="width: 100%; margin-top: -40px;" placeholder="Tell us about yourself">
-						    <input id="profileAboutInput" is="core-input" value="{{profile.about}}">
-						</paper-input-decorator>
+					    <input id="profileAboutInput" placeholder="Tell us about yourself" class="form-control" value="{{profile.about}}">
 						<div class="row">
 							<div class="col-sm-6">
 								<i style="margin-right: 10px" class="fa fa-map-marker"></i>
-								<paper-input-decorator style="width: 100%; margin-top: -40px;" placeholder="Location">
-								    <input id="profileLocationInput" is="core-input" value="{{profile.location}}">
-								</paper-input-decorator>
+							    <input id="profileLocationInput" placeholder="Location" class="form-control" value="{{profile.location}}">
 							</div>
 
 							<div class="col-sm-6">
 								<i class="fa fa-globe"></i>
-								<paper-input-decorator style="width: 100%; margin-top: -40px;" placeholder="Website">
-								    <input id="profileWebsiteInput" is="core-input" value="{{profile.website}}">
-								</paper-input-decorator>
+							    <input id="profileWebsiteInput" placeholder="Website" class="form-control" value="{{profile.website}}">
 							</div>
 						</div>
 					{{else}}
