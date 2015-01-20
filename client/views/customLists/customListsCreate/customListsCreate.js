@@ -4,18 +4,23 @@ Template.customListsCreate.events({
 		var title = $('#listTitle').val().trim();
 		var description = $('#listDescription').val().trim();
 		var type = "anime";
-		var privacy = $('#listPrivacy').attr('aria-pressed');
-		var disableComments = $('#listDisableComments').attr('aria-pressed');
+		var privacy = $('#listPrivacy').is(":checked");
+		var disableComments = $('#listDisableComments').is(":checked");
 
 		console.log(privacy + " " + disableComments);
+
+		if (!(title.length > 0) || !type) {
+			Notifications.error("Fill out the required fields", "Title and type of list are required!");
+			return;
+		}
 
 		var customListObj = {
 			type: type,
 			userId: Meteor.userId(),
 			title: title,
 			entries: [],
-			disableComments: JSON.parse(disableComments),
-			privacy: JSON.parse(privacy)
+			disableComments: disableComments,
+			privacy: privacy
 		};
 
 		// Add the description of the list if it exists
@@ -34,7 +39,6 @@ Template.customListsCreate.events({
 				// object to get it's auto generated values and add the _id field to it
 				CustomListsSchema.clean(customListObj);
 				customListObj._id = _id;
-				debugger;
 				Router.go('customListEdit', customListObj);
 			} else {
 				Notifications.error("Custom list not created", error.message);

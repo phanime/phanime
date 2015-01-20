@@ -29,13 +29,15 @@
 						</div>
 
 						<div class="row">
-							<div class="col-sm-6">
-								<paper-input-decorator label="Search for {{type}}" style="width: 100%;" floatingLabel>
-									<input is="core-input" id="search">
-								</paper-input-decorator>
+							<div class="col-sm-6 col-md-8">
+								<div class="form-group">
+									<input type="text" class="form-control" id="search" placeholder="Search for {{type}} and press enter">
+								</div>
 							</div>
-							<div class="col-sm-6">
-								<button type="button" id="saveBtn" class="btn btn-transparent btn-default btn-lg btn-full-width">Save & view</button>
+							<div class="col-sm-6 col-md-4">
+								<div class="form-group">
+									<button type="button" id="saveBtn" class="btn btn-transparent btn-default btn-md btn-full-width">Save & view</button>
+								</div>
 							</div>
 						</div>
 
@@ -58,8 +60,6 @@
 							</div>
 						</div>
 					</div>
-			
-
 				</div>
 			{{else}}
 				<h3 class="sub-text">You can only edit your own lists</h3>

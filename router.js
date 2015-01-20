@@ -8,7 +8,7 @@ Router.map(function () {
 
 	// Defined for compatibilty with pages
 	this.route('animeExplore', {path: '/anime/explore'});
-	this.route('anime', {path: '/anime/:slug'});
+	this.route('anime', {path: '/anime/:_id/:slug'});
 
 	/////////////////////////////////////////////////
 	////////////////// Character ////////////////////
@@ -55,7 +55,7 @@ Router.map(function () {
 	/////////////////// Reviews /////////////////////
 	/////////////////////////////////////////////////
 
-	this.route('animeReview', {path: '/anime/:slug/reviews/:_id'});
+	this.route('animeReview', {path: '/anime/:animeId/:slug/reviews/:_id'});
 
 	/////////////////////////////////////////////////
 	///////////////////// User //////////////////////
@@ -67,7 +67,8 @@ Router.map(function () {
 	this.route('userFollowing', {path: '/users/:username/following', layoutTemplate: 'userProfileLayout'});
 	this.route('userActivity', {path: '/users/:username/activity', layoutTemplate: 'userProfileLayout'});
 	this.route('userRevisions', {path: '/users/:username/revisions', layoutTemplate: 'userProfileLayout'});
-
+	this.route('userCustomLists', {path: '/users/:username/custom-lists', layoutTemplate: 'userProfileLayout'});
+	
 
 	/////////////////////////////////////////////////
 	/////////////////// Account /////////////////////

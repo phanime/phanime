@@ -54,16 +54,33 @@
 						<h3 style="margin-top: 2px;">
 						{{#if profile.about}}<p class="description">{{profile.about}}</p>{{/if}}
 						{{#if profile.location}}
-							<core-tooltip label="{{profile.location}}" large class="fancy" tabindex="0"><i style="margin-right: 10px" class="fa fa-map-marker"></i></core-tooltip>
+							<i data-toggle="tooltip" data-placement="bottom" title="{{profile.location}}" style="margin-right: 10px" class="tooltipped fa fa-map-marker"></i>
 						{{/if}}
 
 						{{#if profile.website}}
 							<a href="{{profile.website}}">
-								<core-tooltip label="{{profile.website}}" large class="fancy">
-									<i class="fa fa-globe"></i>
-								</core-tooltip>
+								<i data-toggle="tooltip" data-placement="bottom" title="{{profile.website}}" class="tooltipped fa fa-globe"></i>
 							</a>
 						{{/if}}
+
+							<div style="display: inline; margin-left: 10px">
+								<span data-toggle="tooltip" data-placement="bottom" title="Revisions Approved" class="tooltipped">
+									{{#if revisionApprovedCount}}
+										{{revisionApprovedCount}}
+									{{else}}
+										0
+									{{/if}}
+								</span>
+								/
+								<span data-toggle="tooltip" data-placement="bottom" title="Revisions Declined" class="tooltipped">
+									{{#if revisionDeclinedCount}}
+										{{revisionDeclinedCount}}
+									{{else}}
+										0
+									{{/if}}
+								</span>
+							</div>
+
 						</h3>
 					{{/if}}
 				</div>
@@ -88,6 +105,7 @@
 					<li class="{{activeRoute 'userFollowers'}}"><a href="{{pathFor 'userFollowers'}}">Followers ({{followerCount}})</a></li>
 					<li class="{{activeRoute 'userFollowing'}}"><a href="{{pathFor 'userFollowing'}}">Following ({{followingCount}})</a></li>
 					<li class="{{activeRoute 'userRevisions'}}"><a href="{{pathFor 'userRevisions'}}">Revisions</a></li>
+					<li class="{{activeRoute 'userCustomLists'}}"><a href="{{pathFor 'userCustomLists'}}">Custom lists</a></li>
 				</ul>				
 			</div>
 		</div>

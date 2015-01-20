@@ -13,7 +13,8 @@ requireCollectionFields = {
 	},
 	user: {
 		defaultFields: {username: 1, emails: 1, profile: 1, originalUsername: 1},
-		defaultWithRecommended: {username: 1, emails: 1, profile: 1, originalUsername: 1, recommendedAnime: 1}
+		defaultWithRecommended: {username: 1, emails: 1, profile: 1, originalUsername: 1, recommendedAnime: 1},
+		removeServices: {services: 0}
 	}
 
 

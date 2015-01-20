@@ -19,7 +19,6 @@ Template.accountImports.events({
 		var file = $('#uploadXMLFile')[0].files[0];
 
 
-
 		// We let the user know that we've started the import
 		Notifications.info('Import Started', "We've started importing your MAL list, this could take a few minutes.");
 		template.importStarted.set(true);

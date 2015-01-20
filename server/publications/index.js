@@ -1,7 +1,7 @@
 Meteor.publishComposite('indexCurrentUser', function() {
 	return {
 		find: function() {
-			return Meteor.users.find({_id: this.userId});
+			return Meteor.users.find({_id: this.userId}, {fields: requireCollectionFields.user.defaultWithRecommended});
 		},
 		children: [
 
@@ -59,7 +59,7 @@ Meteor.publishComposite('indexCurrentUser', function() {
 			},
 			{
 				find: function(user) {
-					return LibraryEntries.find({userId: user._id, $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {limit: 6});
+					return LibraryEntries.find({userId: user._id, $or : [{status: 'Watching'}, {status: 'Plan to watch'}]}, {sort: {updatedAt: -1}, limit: 6});
 				},
 				children: [
 					{

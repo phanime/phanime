@@ -37,13 +37,11 @@ AnimeSchema = new SimpleSchema({
 			disabled: true,
 			value: null				
 		},
-		index: 1,
-		unique: true,
 		autoValue: function() {
 			// Let's grab the document
 			var canonicalTitle;
 
-			if (this.isUpdate) {
+			if (this.isUpdate && !this.field("canonicalTitle").value) {
 				canonicalTitle = Anime.findOne({_id: this.docId}).canonicalTitle;
 			} else {
 				canonicalTitle = this.field("canonicalTitle").value;
@@ -77,7 +75,8 @@ AnimeSchema = new SimpleSchema({
 		],
 		autoform: {
 			firstOption: "Select Type of Anime"
-		}
+		},
+		optional: true
 	},
 	status: {
 		type: String,
@@ -88,7 +87,8 @@ AnimeSchema = new SimpleSchema({
 		],
 		autoform: {
 			firstOption: "Select Anime Status"
-		}
+		},
+		optional: true
 	},
 	startDate: {
 		type: Date,
@@ -112,6 +112,7 @@ AnimeSchema = new SimpleSchema({
 			"PG-13 - Teens 13 or older",
 			"R - 17+ (violence & profanity)",
 			"R+ - Mild Nudity",
+			"Rx - Hentai"
 		],
 		autoform: {
 			firstOption: "Select Age Rating"
@@ -389,7 +390,8 @@ AnimeRevisionsSchema = new SimpleSchema({
 		],
 		autoform: {
 			firstOption: "Select Type of Anime"
-		}
+		},
+		optional: true
 	},
 	status: {
 		type: String,
@@ -424,13 +426,15 @@ AnimeRevisionsSchema = new SimpleSchema({
 			"PG-13 - Teens 13 or older",
 			"R - 17+ (violence & profanity)",
 			"R+ - Mild Nudity",
+			"Rx - Hentai"
 		],
 		autoform: {
 			firstOption: "Select Age Rating"
 		}
 	},
 	genres: {
-		type: [String]
+		type: [String],
+		optional: true
 	},
 	themes: {
 		type: [String],

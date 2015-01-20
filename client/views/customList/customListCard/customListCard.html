@@ -1,0 +1,9 @@
+<template name="customListCard">
+
+	<div class="block">
+		<a href="{{pathFor 'customList'}}"><h3>{{title}}</h3></a>
+		<h5 class="sub-text">Created: {{formatDateFromNow createdAt}} | Last Updated: {{formatDateFromNow updatedAt}}</h5>
+		<p class="description">{{description}}</p>
+	</div>
+
+</template>

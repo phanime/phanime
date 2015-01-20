@@ -24,7 +24,7 @@
 						<li>{{airingText}} {{formatDateUTC startDate}} to {{#if isMomentDatePresent endDate}} {{formatDateUTC endDate}}{{else}} - {{/if}}</li>
 					</ul>
 
-					<div class="description thin-text">{{description}}</div>
+					<div class="description thin-text">{{#if description}}{{description}}{{else}}No description available.{{/if}}</div>
 
 					<div class="genresList">
 						{{#if genres}}

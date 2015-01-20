@@ -58,19 +58,11 @@ Meteor.methods({
 			}
 		}
 
-		// Add the _id, that can't change but we'll need it for staying connected with the anime 
-		changedAttributesAnime._id = oldAnime._id;
-
 		// if the canonicalTitle of the anime was changed...
 		if (changedAttributesAnime.canonicalTitle) {
 
-			// We'll need to regenerate the slug since the title changed
-			changedAttributesAnime.slug = getSlug(anime.canonicalTitle);
-
 			// Ensure uniqueness
 			var titleCheck = Anime.findOne({canonicalTitle: changedAttributesAnime.canonicalTitle});
-			var slugCheck = Anime.findOne({slug: changedAttributesAnime.slug});
-
 
 			// These checks are mainly done to give good errors to the user
 			// Checks will be done against the database when the anime is actually 
@@ -78,9 +70,6 @@ Meteor.methods({
 			if (titleCheck) {
 				uniqueCondition = false;
 				throw new Meteor.Error(403, "The canonical title of the anime was found in our database");
-			} else if (slugCheck) {
-				uniqueCondition = false;
-				throw new Meteor.Error(403, "The slug generated seems to be colliding with another slug, please report this issue to a staff member.");
 			} else {
 				uniqueCondition = true;
 			}
@@ -99,7 +88,11 @@ Meteor.methods({
 
 		if (_.isEmpty(changedAttributesAnime)) {
 			throw new Meteor.Error(403, "Nothing was changed, revision not committed");
-		}
+		} 
+
+		console.log(changedAttributesAnime);
+		// Add the _id, that can't change but we'll need it for staying connected with the anime 
+		changedAttributesAnime._id = oldAnime._id;
 
 		// We want the anime to be unique and the user to be logged in
 		// and ensure the we actually had some changed attributes
@@ -160,9 +153,6 @@ Meteor.methods({
 		// Checks don't work properly currently, since 
 		// we are sending a subset of the anime document
 
-		// Ensure integrity of data 
-		// check(anime, AnimeRevisionsSchema);
-
 
 		// currently, you can only update a revision if you're a moderator
 		if (Meteor.user().isModerator()) {
@@ -186,6 +176,9 @@ Meteor.methods({
 		// they cannot approve revisions
 		if (!Meteor.user().isModerator())
 			throw new Meteor.Error(403, "Only moderators are allowed to approve revisions");
+
+
+		console.log(revision.content);
 
 		// Anime Additions should work
 		if (revision.contentType === 'Anime') {
@@ -231,7 +224,7 @@ Meteor.methods({
 					}
 
 					// Update the user's positive scoring
-					Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
+					Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: 1}});
 
 
 					// We also update the revision's status to Approved here
@@ -254,7 +247,7 @@ Meteor.methods({
 
 					var uniqueCondition;
 
-					if (titleCheck || slugCheck) {
+					if (titleCheck) {
 						uniqueCondition = false;
 					} else {
 						uniqueCondition = true;
@@ -274,18 +267,27 @@ Meteor.methods({
 						revision.content.newImageURLFormat = true;
 					}
 
+					// Let's remove the revisionId/_id if they are in there 
+					if (revision.content.revisionId) 
+						delete revision.content.revisionId;
+
+					var contentId = revision.content._id;
+
+					if (revision.content._id)
+						delete revision.content._id;
+
 					// We update before, since uploadImageFromUrl will also be doing an anime update of it's own
-					Anime.update({_id: revision.content._id}, {$set: revision.content});
+					Anime.update({_id: contentId}, {$set: revision.content});
 
 
 					// Check if we have coverImage, if we do, we assume it's a url and then try to upload it
 					console.log(revision.content.coverImage);
-					console.log(revision.content._id);
+					console.log(contentId);
 					console.log(revision);
-					if (revision.content.coverImage && revision.content._id) {
+					if (revision.content.coverImage && contentId) {
 
 						console.log('we\'re about to upload the image');
-						Meteor.call("uploadImageFromUrl", revision.content.coverImage, 'anime', 'cover', revision.content._id, function(error, result) {
+						Meteor.call("uploadImageFromUrl", revision.content.coverImage, 'anime', 'cover', contentId, function(error, result) {
 							if (error) {
 								throw new Meteor.Error(403, error.reason);
 							}
@@ -293,18 +295,15 @@ Meteor.methods({
 					}
 
 					// Update the user's positive scoring
-					// Meteor.users.update({_id: revision.userId}, {$inc: {revisionsApprovedCount: 1}});
+					Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: 1}});
 
 
 					// We also update the revision's status to Approved here
-					// Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
-
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
 				} else {
 					throw new Meteor.Error(403, 'Anime is not unique');
 				}
 			}
-
-
 		}
 	
 	},
@@ -329,7 +328,7 @@ Meteor.methods({
 			Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: -1}});
 		}
 
-		// Update the revision's status to declined
+		// Update the revision's status to Open
 		Revisions.update({_id: revision._id}, {$set: {status: "Open", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
 
 	}
