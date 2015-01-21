@@ -228,7 +228,24 @@ Meteor.methods({
 
 
 					// We also update the revision's status to Approved here
-					Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
+
+					// We'll also send an alert to the user
+					Alerts.insert({
+						event: "revisionApproved",
+						userId: revision.userId,
+						properties: {
+							decisionByUsername: Meteor.user().originalUsername,
+							decisionByUserId: Meteor.user()._id,
+							contentType: 'Anime',
+							contentId: revision.content._id 
+						},
+						createdAt: new Date(),
+						read: false
+					}, function(error, _id) {
+						if (error)
+							throw new Meteor.Error('403', error.reason);
+					});
 
 					return animeId;
 				} else {
@@ -299,7 +316,26 @@ Meteor.methods({
 
 
 					// We also update the revision's status to Approved here
-					Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
+
+					// We'll also send an alert to the user
+					Alerts.insert({
+						event: "revisionApproved",
+						userId: revision.userId,
+						properties: {
+							decisionByUsername: Meteor.user().originalUsername,
+							decisionByUserId: Meteor.user()._id,
+							contentType: 'Anime',
+							contentId: revision.content._id 
+						},
+						createdAt: new Date(),
+						read: false
+					}, function(error, _id) {
+						if (error)
+							throw new Meteor.Error('403', error.reason);
+					});
+
+
 				} else {
 					throw new Meteor.Error(403, 'Anime is not unique');
 				}
@@ -313,7 +349,26 @@ Meteor.methods({
 		Meteor.users.update({_id: revision.userId}, {$inc: {revisionDeclinedCount: 1}});
 
 		// Update the revision's status to declined
-		Revisions.update({_id: revision._id}, {$set: {status: "Declined", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+		Revisions.update({_id: revision._id}, {$set: {status: "Declined", updatedAt: new Date(), decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
+
+		// We'll also send an alert to the user
+		Alerts.insert({
+			event: "revisionDeclined",
+			userId: revision.userId,
+			properties: {
+				decisionByUsername: Meteor.user().originalUsername,
+				decisionByUserId: Meteor.user()._id,
+				contentType: revision.contentType,
+				contentId: revision.content._id 
+			},
+			createdAt: new Date(),
+			read: false
+		}, function(error, _id) {
+			if (error)
+				throw new Meteor.Error('403', error.reason);
+		});
+
+
 	},
 
 	revisionReopen: function(revision) {
@@ -329,7 +384,24 @@ Meteor.methods({
 		}
 
 		// Update the revision's status to Open
-		Revisions.update({_id: revision._id}, {$set: {status: "Open", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+		Revisions.update({_id: revision._id}, {$set: {status: "Open", updatedAt: new Date(), decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
+
+		// We'll also send an alert to the user
+		Alerts.insert({
+			event: "revisionReopen",
+			userId: revision.userId,
+			properties: {
+				decisionByUsername: Meteor.user().originalUsername,
+				decisionByUserId: Meteor.user()._id,
+				contentType: revision.contentType,
+				contentId: revision.content._id 
+			},
+			createdAt: new Date(),
+			read: false
+		}, function(error, _id) {
+			if (error)
+				throw new Meteor.Error('403', error.reason);
+		});
 
 	}
 });
