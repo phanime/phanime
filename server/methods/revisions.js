@@ -238,7 +238,7 @@ Meteor.methods({
 							decisionByUsername: Meteor.user().originalUsername,
 							decisionByUserId: Meteor.user()._id,
 							contentType: 'Anime',
-							contentId: revision.content._id 
+							contentId: animeId
 						},
 						createdAt: new Date(),
 						read: false
@@ -326,7 +326,7 @@ Meteor.methods({
 							decisionByUsername: Meteor.user().originalUsername,
 							decisionByUserId: Meteor.user()._id,
 							contentType: 'Anime',
-							contentId: revision.content._id 
+							contentId: contentId
 						},
 						createdAt: new Date(),
 						read: false
@@ -388,7 +388,7 @@ Meteor.methods({
 
 		// We'll also send an alert to the user
 		Alerts.insert({
-			event: "revisionReopen",
+			event: "revisionReopened",
 			userId: revision.userId,
 			properties: {
 				decisionByUsername: Meteor.user().originalUsername,
