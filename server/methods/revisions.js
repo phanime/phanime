@@ -237,8 +237,10 @@ Meteor.methods({
 						properties: {
 							decisionByUsername: Meteor.user().originalUsername,
 							decisionByUserId: Meteor.user()._id,
-							contentType: 'Anime',
-							contentId: animeId
+							contentType: revision.contentType,
+							contentId: animeId,
+							revisionType: revision.type,
+							animeTitle: animeObject.canonicalTitle
 						},
 						createdAt: new Date(),
 						read: false
@@ -325,8 +327,9 @@ Meteor.methods({
 						properties: {
 							decisionByUsername: Meteor.user().originalUsername,
 							decisionByUserId: Meteor.user()._id,
-							contentType: 'Anime',
-							contentId: contentId
+							contentType: revision.contentType,
+							contentId: animeId,
+							revisionType: revision.type,
 						},
 						createdAt: new Date(),
 						read: false
