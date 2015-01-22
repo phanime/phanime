@@ -40,10 +40,14 @@ Alerts.helpers({
 
 				if (this.properties.contentType === 'Anime') {
 
-					// Need to come up with a better solution
-					var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
 					var decisionByProfileUrl = Router.routes['user'].path({username: this.properties.decisionByUsername.toLowerCase()});
-					userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>approved</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+					if (this.properties.revisionType === 'Addition') {
+						var animeTitle = this.properties.animeTitle;
+						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>approved</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+					} else {
+						var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
+						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>approved</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+					}
 
 				}
 
@@ -53,10 +57,14 @@ Alerts.helpers({
 
 				if (this.properties.contentType === 'Anime') {
 
-					// Need to come up with a better solution
-					var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
 					var decisionByProfileUrl = Router.routes['user'].path({username: this.properties.decisionByUsername.toLowerCase()});
-					userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>declined</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+					if (this.properties.revisionType === 'Addition') {
+						var animeTitle = this.properties.animeTitle;
+						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>declined</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+					} else {
+						var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
+						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>declined</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+					}
 
 				}
 
@@ -66,11 +74,14 @@ Alerts.helpers({
 
 				if (this.properties.contentType === 'Anime') {
 
-					// Need to come up with a better solution
-					var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
 					var decisionByProfileUrl = Router.routes['user'].path({username: this.properties.decisionByUsername.toLowerCase()});
-					userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>re-opened</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
-
+					if (this.properties.revisionType === 'Addition') {
+						var animeTitle = this.properties.animeTitle;
+						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>re-opened</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+					} else {
+						var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
+						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>re-opened</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+					}
 				}
 
 				break;

@@ -240,7 +240,7 @@ Meteor.methods({
 							contentType: revision.contentType,
 							contentId: animeId,
 							revisionType: revision.type,
-							animeTitle: animeObject.canonicalTitle
+							animeTitle: revision.content.canonicalTitle ? revision.content.canonicalTitle : null
 						},
 						createdAt: new Date(),
 						read: false
@@ -300,9 +300,6 @@ Meteor.methods({
 
 
 					// Check if we have coverImage, if we do, we assume it's a url and then try to upload it
-					console.log(revision.content.coverImage);
-					console.log(contentId);
-					console.log(revision);
 					if (revision.content.coverImage && contentId) {
 
 						console.log('we\'re about to upload the image');
@@ -320,6 +317,8 @@ Meteor.methods({
 					// We also update the revision's status to Approved here
 					Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
 
+					debugger;
+
 					// We'll also send an alert to the user
 					Alerts.insert({
 						event: "revisionApproved",
@@ -328,8 +327,9 @@ Meteor.methods({
 							decisionByUsername: Meteor.user().originalUsername,
 							decisionByUserId: Meteor.user()._id,
 							contentType: revision.contentType,
-							contentId: animeId,
+							contentId: contentId,
 							revisionType: revision.type,
+							animeTitle: revision.content.canonicalTitle ? revision.content.canonicalTitle : null
 						},
 						createdAt: new Date(),
 						read: false
@@ -362,7 +362,9 @@ Meteor.methods({
 				decisionByUsername: Meteor.user().originalUsername,
 				decisionByUserId: Meteor.user()._id,
 				contentType: revision.contentType,
-				contentId: revision.content._id 
+				contentId: revision.content._id,
+				revisionType: revision.type,
+				animeTitle: revision.content.canonicalTitle ? revision.content.canonicalTitle : null
 			},
 			createdAt: new Date(),
 			read: false
@@ -397,7 +399,9 @@ Meteor.methods({
 				decisionByUsername: Meteor.user().originalUsername,
 				decisionByUserId: Meteor.user()._id,
 				contentType: revision.contentType,
-				contentId: revision.content._id 
+				contentId: revision.content._id,
+				revisionType: revision.type,
+				animeTitle: revision.content.canonicalTitle ? revision.content.canonicalTitle : null
 			},
 			createdAt: new Date(),
 			read: false
