@@ -51,7 +51,7 @@ CommentsSchema = new SimpleSchema({
 		},
 		denyInsert: true,
 		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the value will still be generated on update.
-	},
+	}
 });
 
 

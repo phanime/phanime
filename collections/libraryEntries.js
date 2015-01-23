@@ -111,10 +111,6 @@ LibraryEntriesSchema = new SimpleSchema({
 			} else {
 				this.unset();
 			}
-			//  else if ((this.value === null || this.value === undefined) && !this.isUpdate) {
-			// 	// this is more for the times where validation needs to happen without "inserting"
-			// 	return new Date();
-			// }
 		},
 		denyUpdate: true,
 		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the createdAt value will still be generated on insert.

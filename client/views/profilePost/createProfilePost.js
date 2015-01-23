@@ -21,9 +21,12 @@ Template.createProfilePost.events({
 				statusUpdate = false;
 			}
 
-			var profilePost = ProfilePosts.postFields(statusUpdate, user._id, Meteor.userId(), content);
-
-
+			var profilePost = {
+				statusUpdate: statusUpdate,
+				userId: user._id,
+				posterId: Meteor.userId(),
+				content: content
+			};
 
 			ProfilePosts.insert(profilePost, function(error, result) {
 				if (!error) {
@@ -39,6 +42,8 @@ Template.createProfilePost.events({
 							// Nothing of interest to put here really.
 						});
 					}
+				} else {
+					Notifications.error('Profile post creation failed', error.reason);
 				}
 			});
 
