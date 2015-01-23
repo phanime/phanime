@@ -229,7 +229,6 @@ ul.nav > li> a {
 	position: relative;
 	background-image: url('http://www.wallpaperhd.co/Anime-HD-Wallpapers-2/images/Anime%20HD%20Wallpaper%2022.jpg');
 	background-size: cover;
-	background-attachment: fixed;
 	background-position: center center;
 	background-color: rgba(0, 0, 0, 0);
 	box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.66);
