@@ -1,3 +1,5 @@
+LibraryEntries = new Meteor.Collection("libraryEntries");
+
 LibraryEntriesSchema = new SimpleSchema({
 	userId: {
 		type: String,
@@ -128,9 +130,6 @@ LibraryEntriesSchema = new SimpleSchema({
 		optional: true
 	}
 });
-
-
-LibraryEntries = new Meteor.Collection("libraryEntries");
 
 LibraryEntries.attachSchema(LibraryEntriesSchema);
 

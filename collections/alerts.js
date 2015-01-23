@@ -1,5 +1,65 @@
 Alerts = new Meteor.Collection('alerts');
 
+AlertsSchema = new SimpleSchema({
+	event: {
+		type: String,
+		allowedValues: [
+			"userFollow",
+			"userProfilePost",
+			"revisionApproved",
+			"revisionDeclined",
+			"revisionReopened"
+		]
+	},
+	userId: {
+		type: String,
+		custom: function() {
+			console.log("Checking user exists for alert");
+			// Check that a user from this ID actually exists
+			if (!Meteor.users.findOne({_id: this.value})) {
+				return "No user found with this userId";
+			}
+		},
+		denyUpdate: true
+	},
+	properties: {
+		type: Object,
+		blackbox: true
+	},
+	read: {
+		type: Boolean,
+		defaultValue: false
+	},
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isInsert) {
+				return new Date();
+			} else if (this.isUpsert) {
+				return {$setOnInsert: new Date()};
+			} else {
+				this.unset();
+			}
+		},
+		denyUpdate: true,
+		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the createdAt value will still be generated on insert.
+	},
+	updatedAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isUpdate) {
+				return new Date();
+			}
+		},
+		denyInsert: true,
+		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the value will still be generated on update.
+	}
+
+});
+
+Alerts.attachSchema(AlertsSchema);
+
+
 Alerts.allow({
 	insert: function(userId, doc) {
 		// We want the notifications to be send only through
