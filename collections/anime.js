@@ -434,6 +434,33 @@ AnimeRevisionsSchema = new SimpleSchema({
 	},
 	genres: {
 		type: [String],
+		autoform: {
+			type: "selectize",
+			afFieldInput: {
+				multiple: true,
+				selectizeOptions: {
+					placeholder: "Select a few genres",
+					valueField: "name",
+					labelField: "name",
+					searchField: "name",
+					options: [],
+					load: function(query, callback) {
+							console.log(query);
+
+						if (!query) {
+							// Only make the call if query is empty.. so essentially on initialization
+							Meteor.call('getGenres', function(error, result) {
+								if (!error) {
+									callback(result.map(function(x) { return {name: x.name}}));
+								}
+							});
+						}
+
+					},
+					preload: true
+				}
+			}
+		},
 		optional: true
 	},
 	themes: {
