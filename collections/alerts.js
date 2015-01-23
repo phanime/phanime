@@ -14,7 +14,6 @@ AlertsSchema = new SimpleSchema({
 	userId: {
 		type: String,
 		custom: function() {
-			console.log("Checking user exists for alert");
 			// Check that a user from this ID actually exists
 			if (!Meteor.users.findOne({_id: this.value})) {
 				return "No user found with this userId";

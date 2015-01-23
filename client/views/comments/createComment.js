@@ -15,7 +15,6 @@ Template.createComment.events({
 					contentId: parent._id,
 					content: commentContent,
 					userId: Meteor.userId(),
-					createdAt: new Date(),
 				};
 
 				// We clear the comment;
