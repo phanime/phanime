@@ -32,7 +32,7 @@ Template.createProfilePost.events({
 
 
 					// Add the poster's name in the profile post
-					profilePost.posterUsername = Meteor.user().username;
+					profilePost.posterUsername = Meteor.user().displayName();
 					// Send out an alert as long as it wasn't a status update					
 					if (statusUpdate === false) {
 						Meteor.call('createAlert', 'userProfilePost', profilePost, user._id, function(error, result) {
