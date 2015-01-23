@@ -1,5 +1,95 @@
 Reviews = new Meteor.Collection("reviews");
 
+ReviewsSchema = new SimpleSchema({
+	animeId: {
+		type: String,
+		custom: function() {
+			// Check that an anime from this ID actually exists
+			if (!Anime.findOne({_id: this.value})) {
+				return "No anime found with this animeId";
+			}
+		},
+		denyUpdate: true
+	},
+	userId: {
+		type: String,
+		custom: function() {
+			// Ensure the user is the current user
+			if (this.value !== Meteor.userId())
+				return "User is not current user";
+		},
+		denyUpdate: true
+	},
+	content: {
+		type: String,
+		min: 10,
+		max: 10000 // We can't have reviews be too long
+	},
+	summary: {
+		type: String,
+		min: 1,
+		max: 140
+	},
+	storyRating: {
+		type: Number,
+		min: 1,
+		max: 10
+	},
+	animationRating: {
+		type: Number,
+		min: 1,
+		max: 10
+	},
+	characterRating: {
+		type: Number,
+		min: 1,
+		max: 10
+	},
+	soundRating: {
+		type: Number,
+		min: 1,
+		max: 10
+	},
+	enjoymentRating: {
+		type: Number,
+		min: 1,
+		max: 10
+	},
+	overallRating: {
+		type: Number,
+		min: 1,
+		max: 10
+	},
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isInsert) {
+				return new Date();
+			} else if (this.isUpsert) {
+				return {$setOnInsert: new Date()};
+			} else {
+				this.unset();
+			}
+		},
+		denyUpdate: true,
+		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the createdAt value will still be generated on insert.
+	},
+	updatedAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isUpdate) {
+				return new Date();
+			}
+		},
+		denyInsert: true,
+		optional: true // this is only made optional because validation before insert will not work if it was required, however, this does not make much of a difference as the value will still be generated on update.
+	}
+});
+
+
+Reviews.attachSchema(ReviewsSchema);
+
+
 Reviews.helpers({
 	user: function() {
 		return Meteor.users.findOne({_id: this.userId});
@@ -14,11 +104,6 @@ Reviews.allow({
 		// the user must be logged in, and the review must be created by the user
 		var userCondition = (userId && doc.userId === userId);
 
-		var contentCondition = (doc.content && doc.content.length > 10 && doc.summary && doc.summary.length <= 140 );
-
-		var ratingCondition = (doc.overallRating >= 1 && doc.overallRating <= 10);
-
-
 		// We need to ensure that there is only one review per anime per user
 		var reviewCheck = Reviews.findOne({animeId: doc.animeId, userId: userId});
 		var uniqueCondition;
@@ -32,7 +117,7 @@ Reviews.allow({
 		}
 
 		
-		return userCondition && contentCondition && ratingCondition && uniqueCondition;
+		return userCondition && uniqueCondition;
 
 	},
 	update: function(userId, doc, fields, modifier) {

@@ -42,9 +42,8 @@ Template.reviewAdd.events({
 			console.log(result);
 
 			if (error) {
-				console.log('Stuff');
-				Notifications.error('Failed to Publish Review', 'Looks like something went wrong! Please ensure you have the required fields filled out');
-				//Notifications.success('Library Entry Updated', 'Your library entry status was successfully updated to ' + status);
+				console.log(error);
+				Notifications.error('Failed to Publish Review', error.message);
 			} else {
 				Notifications.success('Successfully Published Review', 'Your review should show up on the anime page in a few moments');
 
