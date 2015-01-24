@@ -23,7 +23,7 @@ EpisodesSchema = new SimpleSchema({
 	airDate: {
 		type: Date,
 		optional: true
-	}
+	},
 	episodeVersion: {
 		type: [String],
 		allowedValues: [

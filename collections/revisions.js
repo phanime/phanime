@@ -76,6 +76,7 @@ RevisionsSchema = new SimpleSchema({
 });
 
 
+Revisions.attachSchema(RevisionsSchema);
 
 Revisions.createRevisionObject = function(contentType, type, userId, username, content) {
 
