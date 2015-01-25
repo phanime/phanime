@@ -26,7 +26,13 @@ Meteor.methods({
 		// before we add in the revision
 		if (uniqueCondition && Meteor.user()) {
 
-			var revisionAnime = Revisions.createRevisionObject('Anime', 'Addition', Meteor.user()._id, Meteor.user().originalUsername, anime);
+			var revisionAnime = {
+				contentType: 'Anime',
+				type: 'Addition',
+				userId: Meteor.user()._id,
+				username: Meteor.user().displayName(),
+				content: anime
+			};
 
 			// Insert the document into the database
 			Revisions.insert(revisionAnime, function(error, _id) {
