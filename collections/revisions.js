@@ -87,7 +87,6 @@ Revisions.createRevisionObject = function(contentType, type, userId, username, c
 		username: username, // The user's name that's submitting the revision
 		status: "Open", // The status of the revision, whether it's Open, Approved, Rejected
 		content: content, // The actual object that's being sent in, this could be Anime fields, Character Fields, and so on.
-		updatedAt: new Date(),
 		createdAt: new Date(),
 	};
 

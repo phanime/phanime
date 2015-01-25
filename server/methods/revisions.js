@@ -41,22 +41,48 @@ Meteor.methods({
 
 		// The edited version of the anime is sent
 		check(anime, AnimeRevisionsSchema);
-		console.log(anime);
 		
 		var oldAnime = Anime.findOne({_id: anime._id});
 		var uniqueCondition;
 
-		console.log(oldAnime);
 
-		var changedAttributesAnime = {};
+		var changedAttributesAnime = {
+			_id: anime._id
+		};
 		// Let's add anime entries that changed
 		for (var key in anime) {
 			if (anime.hasOwnProperty(key)) {
+				if (key === "totalEpisodes") {
+					console.log(anime[key]);
+					console.log(oldAnime[key]);
+					console.log(!_.isEqual(anime[key], oldAnime[key]));
+				}
 				if (!_.isEqual(anime[key], oldAnime[key])) {
 					changedAttributesAnime[key] = anime[key];
 				}
+				// We'll delete this property from oldAnime if it has it
+				if (oldAnime[key]) {
+					delete oldAnime[key]
+				}
 			}
 		}
+
+		// Just incase, we'll clean the oldAnime object, before we add the keys
+		AnimeRevisionsSchema.clean(oldAnime, {autoConvert: false, removeEmptyStrings: false, trimStrings: false, getAutoValues: false});
+
+		// console.log("After clean");
+		// console.log(oldAnime);
+
+		// Now we'll have all the key's that  are in oldAnime that were removed in 
+		// anime, which are essentially attributes that have changed
+		// so we'll add those as well, their values will be null.
+		for(var key in oldAnime) {
+			if (oldAnime.hasOwnProperty(key) && oldAnime[key]) {
+				changedAttributesAnime[key] = null;
+			}
+		}
+
+		console.log(changedAttributesAnime);
 
 		// if the canonicalTitle of the anime was changed...
 		if (changedAttributesAnime.canonicalTitle) {
@@ -90,22 +116,30 @@ Meteor.methods({
 			throw new Meteor.Error(403, "Nothing was changed, revision not committed");
 		} 
 
-		console.log(changedAttributesAnime);
-		// Add the _id, that can't change but we'll need it for staying connected with the anime 
-		changedAttributesAnime._id = oldAnime._id;
-
 		// We want the anime to be unique and the user to be logged in
 		// and ensure the we actually had some changed attributes
 		// before we add in the revision
 		if (uniqueCondition && Meteor.user() && !_.isEmpty(changedAttributesAnime)) {
 
-			console.log(changedAttributesAnime);
+			// console.log("Changed attributes after condition check: " + changedAttributesAnime);
 
-			var revisionAnime = Revisions.createRevisionObject('Anime', 'Revision', Meteor.user()._id, Meteor.user().originalUsername, changedAttributesAnime);
+			var revisionAnime = {
+				contentType: 'Anime',
+				type: 'Revision',
+				userId: Meteor.user()._id,
+				username: Meteor.user().displayName(),
+				content: changedAttributesAnime
+			};
 
 			// Insert the document into the database
 			Revisions.insert(revisionAnime, function(error, _id) {
-				console.log(_id);
+				if (error) {
+					console.log(error);
+					// console.log("Errored!" + error.reason);
+					throw new Meteor.Error(403, error.reason);
+				} else {
+					console.log("Revision created with id: " + _id);
+				}
 			});
 
 		}
@@ -372,7 +406,6 @@ Meteor.methods({
 			if (error)
 				throw new Meteor.Error('403', error.reason);
 		});
-
 
 	},
 
