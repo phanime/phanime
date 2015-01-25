@@ -36,6 +36,12 @@
 				<tbody>
 					{{#each revisions}}
 						{{> revisionsQueueRow}}
+					{{else}}
+					<tr>
+						<td colspan="5">
+							<h3 class="sub-text centered-text">No revisions found with the currently selected filters</h3>
+						</td>
+					</tr>
 					{{/each}}
 				</tbody>
 

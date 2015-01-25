@@ -39,7 +39,7 @@ Template.revisionsQueue.events({
 	},
 
 	'click .contentFilter > button' : function(event, template) {
-		template.currentContentFilter.set($(event.target).text());
+		template.contentFilter.set($(event.target).text());
 	},
 
 	'click .statusFilter > button' : function(event, template) {
