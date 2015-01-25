@@ -6,18 +6,17 @@
 			<div class="row" style="margin-bottom: 20px;">
 				<div class="col-sm-12">
 					<div class="btn-group contentFilter">
-						<button type="button" class="btn btn-default {{contentFilter 'All'}}">All</button>
-						<button type="button" class="btn btn-default {{contentFilter 'Anime'}}">Anime</button>
-						<button type="button" class="btn btn-default {{contentFilter 'People'}}">People</button>
-						<button type="button" class="btn btn-default {{contentFilter 'Characters'}}">Characters</button>
+						<button type="button" class="btn btn-default {{currentContentFilter 'All'}}">All</button>
+						<button type="button" class="btn btn-default {{currentContentFilter 'Anime'}}">Anime</button>
+						<button type="button" class="btn btn-default {{currentContentFilter 'People'}}">People</button>
+						<button type="button" class="btn btn-default {{currentContentFilter 'Characters'}}">Characters</button>
 					</div>
 
 
 					<div class="btn-group btn-beside statusFilter">
-						<button type="button" class="btn btn-default {{statusFilter 'All'}}">All</button>
-						<button type="button" class="btn btn-info {{statusFilter 'Open'}}">Open</button>
-						<button type="button" class="btn btn-primary {{statusFilter 'Approved'}}">Approved</button>
-						<button type="button" class="btn btn-danger {{statusFilter 'Declined'}}">Declined</button>
+						<button type="button" class="btn btn-info {{currentStatusFilter 'Open'}}">Open</button>
+						<button type="button" class="btn btn-primary {{currentStatusFilter 'Approved'}}">Approved</button>
+						<button type="button" class="btn btn-danger {{currentStatusFilter 'Declined'}}">Declined</button>
 					</div>
 				</div>
 			</div>
@@ -41,6 +40,18 @@
 				</tbody>
 
 			</table>
+
+
+			{{#unless isReady}}
+				{{> rectangleLoader}}
+			{{/unless}}
+
+			{{#if isReady}}
+				{{#if hasMoreRevisions}}
+					<button id="loadMore" type="button" class="btn btn-primary btn-lg btn-full-width"><h4>Load More</h4></button>
+				{{/if}}
+			{{/if}}
+
 		</div>
 
 		<div class="block">
