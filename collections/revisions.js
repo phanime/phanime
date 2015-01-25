@@ -78,13 +78,24 @@ RevisionsSchema = new SimpleSchema({
 
 Revisions.attachSchema(RevisionsSchema);
 
+
+Revisions.helpers({
+
+	contentDoc: function() {
+		switch (this.contentType) {
+			case "Anime":
+				return Anime.findOne({_id: this.content._id});
+		}
+	}
+
+});
+
+
 Revisions.allow({
 
 	update: function(userId, doc, fields, modifier) {
-
 		// can only update revisions if you're the moderator
 		return Meteor.user().isModerator();
-
 	}
 
 

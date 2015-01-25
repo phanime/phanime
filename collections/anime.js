@@ -319,25 +319,15 @@ EasySearch.createSearchIndex('anime', {
 // });
 
 
-Anime.createAnimeObject = function(anime) {
-
-	// We're just going to add some default fields 
-	anime.createdAt = new Date();
-	anime.updatedAt = new Date();
-	anime.slug = getSlug(anime.canonicalTitle);
-
-	return anime;
-
-}
-
 AnimeRevisionsSchema = new SimpleSchema({
 	_id: {
 		type: String,
-		optional: true
+		optional: true,
+		label: " " // The only trick to hide the labels for now
 	},
 	revisionId: {
 		type: String,
-		label: '',
+		label: ' ', // The only trick to hide the labels for now
 		optional: true
 	},
 	canonicalTitle: {

@@ -9,7 +9,7 @@ RevisionsQueueController = RouteController.extend({
 	},
 
 	waitOn: function () {
-		return Meteor.subscribe('revisionsQueue');
+		return Meteor.subscribe('revisionsQueue', 20);
 	},
 
 	data: function () {
@@ -18,7 +18,6 @@ RevisionsQueueController = RouteController.extend({
 		revisions.forEach(function(revision) {
 			// This is mainly done so the content context also has the revisionId available
 			revision.content.revisionId = revision._id;
-			
 		});
 
 
