@@ -10,5 +10,4 @@ RevisionsQueueController = RouteController.extend({
 
 	// The subscriptions are handled on the template level
 
-
 });

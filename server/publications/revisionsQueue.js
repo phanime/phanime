@@ -2,7 +2,7 @@ Meteor.publishComposite("revisionsQueue", function(status, limit) {
 
 	return {
 		find: function() {
-			return Revisions.find({status: status}, {limit: limit}, {sort: {createdAt: -1}});
+			return Revisions.find({status: status}, {limit: limit, sort: {createdAt: -1}});
 		},
 		children: [{
 			find: function(revision) {
