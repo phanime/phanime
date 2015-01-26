@@ -14,7 +14,7 @@ UI.registerHelper("urlifyText", function(text) {
 		var imageRegex = /^http:\/\/.+\.(gif|png|jpg|jpeg)$/i;
 		if (imageRegex.test(url2) && imageTrigger === false) {
 			imageTrigger = true;
-			ourImage = '<a href="' + url2 + '" target="_blank"><img src="' + url2 + '"></a>'; 
+			ourImage = '<div><a href="' + url2 + '" target="_blank"><img src="' + url2 + '"></a></div>'; 
 			return '';
 		} else {
 			return '<a href="' +url2+ '" target="_blank">' + url + '</a>';

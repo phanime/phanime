@@ -998,8 +998,13 @@ ul.profile-summary-list {
 
 	.comment-list .comment-card .content {
 		margin-left: 60px;
-		word-break: break-all;
+		word-break: break-word;
 	}
+
+		.comment-list .comment-card .content img {
+			max-height: 200px;
+			max-width: 100%;
+		}
 
 	.comment-list .comment-card .username {
 		font-weight: bold;

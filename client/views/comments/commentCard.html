@@ -13,7 +13,7 @@
 				{{/with}}
 
 				<div class="content">
-					<span class="username">{{user.displayName}}</span> {{content}}
+					<span class="username">{{user.displayName}}</span> {{{urlifyText content}}}
 					<div class="created-at">{{formatDateFromNow createdAt}}</div>
 				</div>
 			</div>
