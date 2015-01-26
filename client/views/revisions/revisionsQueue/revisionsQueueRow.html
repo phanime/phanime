@@ -24,12 +24,17 @@
 					{{#if revisionUpdateFormType 'Anime' 'Revision'}}
 						<div class="col-sm-12 col-md-6">
 							<h3 class="sub-text">Proposed Revision</h3>
+							{{#each arrayifyObject content}}
+								{{#unless value}}
+									<li>{{name}} is being removed</li>
+								{{/unless}}
+							{{/each}}
 							{{> revisionAnimeUpdateEdit currentAnime=content meteorMethod="revisionAnimeUpdateEdit" buttonText="Update Revision" formId="revisionAnimeUpdateEdit"}}							
 						</div>
 
 						<div class="col-sm-12 col-md-6">
 							<h3 class="sub-text">Current Values</h3>
-							{{> revisionAnimeUpdateEdit currentAnime=contentDoc meteorMethod="revisionAnimeUpdateEdit" buttonText="Update Revision" formId="revisionAnimeUpdateEdit"}}
+							{{> animeReadOnly currentAnime=contentDoc}}
 						</div>
 
 					{{/if}}

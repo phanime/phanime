@@ -20,9 +20,12 @@ Template.revisionAnimeUpdateEdit.helpers({
 			onInitialize: function() {
 				var currentAnime = data.currentAnime;
 				var selectize = this;
-				currentAnime.genres.forEach(function(genre) {
-					selectize.addItem(genre);
-				});
+
+				if (currentAnime.genres) {
+					currentAnime.genres.forEach(function(genre) {
+						selectize.addItem(genre);
+					});
+				}
 			}
 		};
 

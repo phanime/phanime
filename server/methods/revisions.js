@@ -335,29 +335,60 @@ Meteor.methods({
 					if (revision.content._id)
 						delete revision.content._id;
 
-					// We update before, since uploadImageFromUrl will also be doing an anime update of it's own
-					Anime.update({_id: contentId}, {$set: revision.content});
 
+					// We want to unset properties that are "null"
+					// this could include the slug as well, however,
+					// that shouldn't be much of an issue considering 
+					// that it's an autovalue and it'll re-generate itself
+					var unsetProperties = {};
+					for(var key in revision.content) {
+						if (revision.content[key] === null) {
+							unsetProperties[key] = "";
+							delete revision.content[key];
+						}
 
-					// Check if we have coverImage, if we do, we assume it's a url and then try to upload it
-					if (revision.content.coverImage && contentId) {
-
-						console.log('we\'re about to upload the image');
-						Meteor.call("uploadImageFromUrl", revision.content.coverImage, 'anime', 'cover', contentId, function(error, result) {
-							if (error) {
-								throw new Meteor.Error(403, error.reason);
-							}
-						});					
 					}
+					// set properties
+					console.log("Set properties");
+					console.log(revision.content);
 
-					// Update the user's positive scoring
-					Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: 1}});
+					// unset properties
+					console.log("Unset properties");
+					console.log(unsetProperties);
+
+					// // We update before, since uploadImageFromUrl will also be doing an anime update of it's own
+					// Anime.update({_id: contentId}, {$set: revision.content});
 
 
-					// We also update the revision's status to Approved here
-					Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
+					// // Check if we have coverImage, if we do, we assume it's a url and then try to upload it
+					// if (revision.content.coverImage && contentId) {
 
-					debugger;
+					// 	console.log('we\'re about to upload the image');
+					// 	Meteor.call("uploadImageFromUrl", revision.content.coverImage, 'anime', 'cover', contentId, function(error, result) {
+					// 		if (error) {
+					// 			throw new Meteor.Error(403, error.reason);
+					// 		}
+					// 	});					
+					// }
+
+					// // Update the user's positive scoring
+					// Meteor.users.update({_id: revision.userId}, {$inc: {revisionApprovedCount: 1}});
+
+
+					// // We also update the revision's status to Approved here
+					// Revisions.update(
+					// 	{
+					// 		_id: revision._id
+					// 	}, 
+					// 	{
+					// 		$set: {
+					// 			status: "Approved", 
+					// 			updatedAt: new Date(), 
+					// 			decisionByUsername: Meteor.user().originalUsername, 
+					// 			decisionByUserId: Meteor.user()._id
+					// 		}
+					// 	}
+					// );
 
 					// We'll also send an alert to the user
 					Alerts.insert({
