@@ -26,7 +26,7 @@ ProfilePostsSchema = new SimpleSchema({
 	content: {
 		type: String,
 		min: 1,
-		max: 140
+		max: 500
 	},
 	createdAt: {
 		type: Date,
