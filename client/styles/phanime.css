@@ -962,6 +962,11 @@ ul.profile-summary-list {
 	}
 
 
+.profile-post-card .description img {
+	max-width: 100%;
+	max-height: 450px;
+}
+
 /*----------------------------------*/
 /*--------- Post Comments ----------*/
 /*----------------------------------*/
