@@ -169,8 +169,6 @@ Alerts.helpers({
 
 		}
 
-		console.log(userFriendlyText);
-
 		return userFriendlyText;
 
 	}

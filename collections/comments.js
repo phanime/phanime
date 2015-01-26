@@ -16,7 +16,7 @@ CommentsSchema = new SimpleSchema({
 	content: {
 		type: String,
 		min: 1,
-		max: 140
+		max: 500
 	},
 	userId: {
 		type: String,
