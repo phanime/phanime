@@ -183,7 +183,7 @@ Meteor.methods({
 
 			if (uniqueCondition && Meteor.user()) {
 
-				Revisions.update({_id: anime.revisionId}, {$set: {content: anime}}, function(error, num) {
+				Revisions.update({_id: anime.revisionId}, {$set: {content: anime}}, {filter: false}, function(error, num) {
 					if (error)
 						throw new Meteor.Error(403, error.reason);
 
@@ -202,6 +202,8 @@ Meteor.methods({
 
 		// currently, you can only update a revision if you're a moderator
 		if (Meteor.user().isModerator()) {
+
+			console.log(anime);
 			Revisions.update({_id: anime.revisionId}, {$set: {content: anime}}, function(error, num) {
 				if (error)
 					throw new Meteor.Error(403, error.reason);
