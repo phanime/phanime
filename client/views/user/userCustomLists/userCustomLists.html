@@ -3,6 +3,8 @@
 	<div class="container main-content">
 		{{#each customLists}}
 			{{> customListCard}}
+		{{else}}
+			<h3 class="sub-text centered-text">No custom lists found for this user</h3>
 		{{/each}}
 	</div>
 

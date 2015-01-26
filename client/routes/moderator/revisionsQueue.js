@@ -8,22 +8,6 @@ RevisionsQueueController = RouteController.extend({
 		this.next();
 	},
 
-	waitOn: function () {
-		return Meteor.subscribe('revisionsQueue');
-	},
-
-	data: function () {
-		var revisions = Revisions.find({}, {sort: {createdAt: -1}}).fetch();
-
-		revisions.forEach(function(revision) {
-			// This is mainly done so the content context also has the revisionId available
-			revision.content.revisionId = revision._id;
-			
-		});
-
-
-		return revisions;
-	}
-
+	// The subscriptions are handled on the template level
 
 });

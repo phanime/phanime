@@ -26,7 +26,13 @@ Meteor.methods({
 		// before we add in the revision
 		if (uniqueCondition && Meteor.user()) {
 
-			var revisionAnime = Revisions.createRevisionObject('Anime', 'Addition', Meteor.user()._id, Meteor.user().originalUsername, anime);
+			var revisionAnime = {
+				contentType: 'Anime',
+				type: 'Addition',
+				userId: Meteor.user()._id,
+				username: Meteor.user().displayName(),
+				content: anime
+			};
 
 			// Insert the document into the database
 			Revisions.insert(revisionAnime, function(error, _id) {
@@ -41,22 +47,54 @@ Meteor.methods({
 
 		// The edited version of the anime is sent
 		check(anime, AnimeRevisionsSchema);
-		console.log(anime);
 		
 		var oldAnime = Anime.findOne({_id: anime._id});
 		var uniqueCondition;
 
-		console.log(oldAnime);
 
-		var changedAttributesAnime = {};
+		var changedAttributesAnime = {
+			_id: anime._id
+		};
 		// Let's add anime entries that changed
 		for (var key in anime) {
 			if (anime.hasOwnProperty(key)) {
+				if (key === "totalEpisodes") {
+					console.log(anime[key]);
+					console.log(oldAnime[key]);
+					console.log(!_.isEqual(anime[key], oldAnime[key]));
+				}
 				if (!_.isEqual(anime[key], oldAnime[key])) {
 					changedAttributesAnime[key] = anime[key];
 				}
+				// We'll delete this property from oldAnime if it has it
+				if (oldAnime[key]) {
+					delete oldAnime[key]
+				}
 			}
 		}
+
+		// Just incase, we'll clean the oldAnime object, before we add the keys
+		AnimeRevisionsSchema.clean(oldAnime, {autoConvert: false, removeEmptyStrings: false, trimStrings: false, getAutoValues: false});
+
+		// console.log("After clean");
+		// console.log(oldAnime);
+
+		// Now we'll have all the key's that  are in oldAnime that were removed in 
+		// anime, which are essentially attributes that have changed
+		// so we'll add those as well, their values will be null.
+		for(var key in oldAnime) {
+			if (oldAnime.hasOwnProperty(key) && oldAnime[key]) {
+				changedAttributesAnime[key] = null;
+			}
+		}
+
+		// If we got slug set to null, we'll just remove it 
+		// from the changed attributes
+		if (changedAttributesAnime.slug === null) {
+			delete changedAttributesAnime.slug;
+		}
+
+		console.log(changedAttributesAnime);
 
 		// if the canonicalTitle of the anime was changed...
 		if (changedAttributesAnime.canonicalTitle) {
@@ -90,22 +128,30 @@ Meteor.methods({
 			throw new Meteor.Error(403, "Nothing was changed, revision not committed");
 		} 
 
-		console.log(changedAttributesAnime);
-		// Add the _id, that can't change but we'll need it for staying connected with the anime 
-		changedAttributesAnime._id = oldAnime._id;
-
 		// We want the anime to be unique and the user to be logged in
 		// and ensure the we actually had some changed attributes
 		// before we add in the revision
 		if (uniqueCondition && Meteor.user() && !_.isEmpty(changedAttributesAnime)) {
 
-			console.log(changedAttributesAnime);
+			// console.log("Changed attributes after condition check: " + changedAttributesAnime);
 
-			var revisionAnime = Revisions.createRevisionObject('Anime', 'Revision', Meteor.user()._id, Meteor.user().originalUsername, changedAttributesAnime);
+			var revisionAnime = {
+				contentType: 'Anime',
+				type: 'Revision',
+				userId: Meteor.user()._id,
+				username: Meteor.user().displayName(),
+				content: changedAttributesAnime
+			};
 
 			// Insert the document into the database
 			Revisions.insert(revisionAnime, function(error, _id) {
-				console.log(_id);
+				if (error) {
+					console.log(error);
+					// console.log("Errored!" + error.reason);
+					throw new Meteor.Error(403, error.reason);
+				} else {
+					console.log("Revision created with id: " + _id);
+				}
 			});
 
 		}
@@ -137,7 +183,7 @@ Meteor.methods({
 
 			if (uniqueCondition && Meteor.user()) {
 
-				Revisions.update({_id: anime.revisionId}, {$set: {content: anime}}, function(error, num) {
+				Revisions.update({_id: anime.revisionId}, {$set: {content: anime}}, {filter: false}, function(error, num) {
 					if (error)
 						throw new Meteor.Error(403, error.reason);
 
@@ -156,6 +202,8 @@ Meteor.methods({
 
 		// currently, you can only update a revision if you're a moderator
 		if (Meteor.user().isModerator()) {
+
+			console.log(anime);
 			Revisions.update({_id: anime.revisionId}, {$set: {content: anime}}, function(error, num) {
 				if (error)
 					throw new Meteor.Error(403, error.reason);
@@ -228,7 +276,26 @@ Meteor.methods({
 
 
 					// We also update the revision's status to Approved here
-					Revisions.update({_id: revision._id}, {$set: {status: "Approved", descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+					Revisions.update({_id: revision._id}, {$set: {status: "Approved", decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
+
+					// We'll also send an alert to the user
+					Alerts.insert({
+						event: "revisionApproved",
+						userId: revision.userId,
+						properties: {
+							decisionByUsername: Meteor.user().originalUsername,
+							decisionByUserId: Meteor.user()._id,
+							contentType: revision.contentType,
+							contentId: animeId,
+							revisionType: revision.type,
+							animeTitle: revision.content.canonicalTitle ? revision.content.canonicalTitle : null
+						},
+						createdAt: new Date(),
+						read: false
+					}, function(error, _id) {
+						if (error)
+							throw new Meteor.Error('403', error.reason);
+					});
 
 					return animeId;
 				} else {
@@ -276,14 +343,36 @@ Meteor.methods({
 					if (revision.content._id)
 						delete revision.content._id;
 
+
+					// We want to unset properties that are "null"
+					// this could include the slug as well, however,
+					// that shouldn't be much of an issue considering 
+					// that it's an autovalue and it'll re-generate itself
+					var unsetProperties = {};
+					for(var key in revision.content) {
+						if (revision.content[key] === null) {
+							unsetProperties[key] = "";
+							delete revision.content[key];
+						}
+
+					}
+					// set properties
+					console.log("Set properties");
+					console.log(revision.content);
+
+					// unset properties
+					console.log("Unset properties");
+					console.log(unsetProperties);
+
 					// We update before, since uploadImageFromUrl will also be doing an anime update of it's own
-					Anime.update({_id: contentId}, {$set: revision.content});
+					if (_.isEmpty(unsetProperties)) {
+						Anime.update({_id: contentId}, {$set: revision.content});
+					} else {
+						Anime.update({_id: contentId}, {$unset: unsetProperties, $set: revision.content});
+					}
 
 
 					// Check if we have coverImage, if we do, we assume it's a url and then try to upload it
-					console.log(revision.content.coverImage);
-					console.log(contentId);
-					console.log(revision);
 					if (revision.content.coverImage && contentId) {
 
 						console.log('we\'re about to upload the image');
@@ -299,7 +388,40 @@ Meteor.methods({
 
 
 					// We also update the revision's status to Approved here
-					Revisions.update({_id: revision._id}, {$set: {status: "Approved", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+					Revisions.update(
+						{
+							_id: revision._id
+						}, 
+						{
+							$set: {
+								status: "Approved", 
+								updatedAt: new Date(), 
+								decisionByUsername: Meteor.user().originalUsername, 
+								decisionByUserId: Meteor.user()._id
+							}
+						}
+					);
+
+					// We'll also send an alert to the user
+					Alerts.insert({
+						event: "revisionApproved",
+						userId: revision.userId,
+						properties: {
+							decisionByUsername: Meteor.user().originalUsername,
+							decisionByUserId: Meteor.user()._id,
+							contentType: revision.contentType,
+							contentId: contentId,
+							revisionType: revision.type,
+							animeTitle: revision.content.canonicalTitle ? revision.content.canonicalTitle : null
+						},
+						createdAt: new Date(),
+						read: false
+					}, function(error, _id) {
+						if (error)
+							throw new Meteor.Error('403', error.reason);
+					});
+
+
 				} else {
 					throw new Meteor.Error(403, 'Anime is not unique');
 				}
@@ -313,7 +435,27 @@ Meteor.methods({
 		Meteor.users.update({_id: revision.userId}, {$inc: {revisionDeclinedCount: 1}});
 
 		// Update the revision's status to declined
-		Revisions.update({_id: revision._id}, {$set: {status: "Declined", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+		Revisions.update({_id: revision._id}, {$set: {status: "Declined", updatedAt: new Date(), decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
+
+		// We'll also send an alert to the user
+		Alerts.insert({
+			event: "revisionDeclined",
+			userId: revision.userId,
+			properties: {
+				decisionByUsername: Meteor.user().originalUsername,
+				decisionByUserId: Meteor.user()._id,
+				contentType: revision.contentType,
+				contentId: revision.content._id,
+				revisionType: revision.type,
+				animeTitle: revision.content.canonicalTitle ? revision.content.canonicalTitle : null
+			},
+			createdAt: new Date(),
+			read: false
+		}, function(error, _id) {
+			if (error)
+				throw new Meteor.Error('403', error.reason);
+		});
+
 	},
 
 	revisionReopen: function(revision) {
@@ -329,7 +471,26 @@ Meteor.methods({
 		}
 
 		// Update the revision's status to Open
-		Revisions.update({_id: revision._id}, {$set: {status: "Open", updatedAt: new Date(), descicionByUsername: Meteor.user().originalUsername, descionByUserId: Meteor.user()._id}});
+		Revisions.update({_id: revision._id}, {$set: {status: "Open", updatedAt: new Date(), decisionByUsername: Meteor.user().originalUsername, decisionByUserId: Meteor.user()._id}});
+
+		// We'll also send an alert to the user
+		Alerts.insert({
+			event: "revisionReopened",
+			userId: revision.userId,
+			properties: {
+				decisionByUsername: Meteor.user().originalUsername,
+				decisionByUserId: Meteor.user()._id,
+				contentType: revision.contentType,
+				contentId: revision.content._id,
+				revisionType: revision.type,
+				animeTitle: revision.content.canonicalTitle ? revision.content.canonicalTitle : null
+			},
+			createdAt: new Date(),
+			read: false
+		}, function(error, _id) {
+			if (error)
+				throw new Meteor.Error('403', error.reason);
+		});
 
 	}
 });

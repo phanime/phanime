@@ -6,13 +6,13 @@ Meteor.methods({
 			event: event,
 			userId: userIdToAlert,
 			properties: properties, // Any details that defines this alert
-			read: false,
-			createdAt: new Date()
 		};
 
 		Alerts.insert(alert, function(error, result) {
-			console.log(error);
-			console.log(result);
+			if (error) {
+				console.log(error);
+				throw new Meteor.Error(403, error.reason);
+			}
 		});
 
 	},

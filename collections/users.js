@@ -29,7 +29,7 @@ Meteor.users.helpers({
 		return this.username === 'maaz' || this.username === 'lovabelle';
 	},
 	isModerator: function() {
-		return this.username === 'maaz' || this.username === 'lovabelle';
+		return this.username === 'maaz' || this.username === 'toki' || this.username === 'hippalectryon';
 	},
 	followerCount: function() {
 		if (this.followers)

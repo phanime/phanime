@@ -18,7 +18,7 @@ Meteor.methods({
 		// Follower was added
 		var properties = {
 			followerId: followerId,
-			followerUsername: Meteor.user().username
+			followerUsername: Meteor.user().displayName()
 		};
 
 		// We should alert the user that was followed 

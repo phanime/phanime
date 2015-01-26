@@ -18,14 +18,14 @@ Phanime is built using modern technologies, so our requirements are high:
 
 ## Testing
 
-No testing at the moment.
+phanime uses mocha for integration testing. You can find the tests in `/tests/` directory
 
 ## Contributing
 
-Currently contributions are made using Meteor's packaging system.
+To contribute, fork the repo and send in a pull request. We'll be happy to look at it. If you have any questions join us in the IRC on freenode's server, channel: #phanime
 
 ## License
 
-© 2014 Copyright Phanime
+© 2015 Copyright Phanime
 
 Phanime is licensed under Apache License 2.0. For more information read the [LICENSE](https://github.com/MaazAli/phanime/blob/master/LICENSE)

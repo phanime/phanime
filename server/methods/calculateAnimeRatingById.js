@@ -60,9 +60,32 @@ Meteor.methods({
 			// console.log(totalWeight);
 			averageRating = totalWeightedRatings/totalWeight;
 
-			// console.log("Average Rating for " + animeId + " : " + averageRating);
+			console.log("Average Rating for " + animeId + " : " + averageRating);
+			
 			// Update the anime with calculated ratings
-			Anime.update({_id: animeId}, {$unset: {ratingCount: ""}, $set: {rating: averageRating, totalRatings: totalRatings, ratingCounts: ratingCounts, ratingUpdatedAt: new Date()}});
+			Anime.update(
+				{
+					_id: animeId
+				}, 
+				{
+					$unset: {
+						ratingCount: ""
+					}, 
+					$set: {
+						rating: averageRating, 
+						totalRatings: totalRatings, 
+						ratingCounts: ratingCounts, 
+						ratingUpdatedAt: new Date()
+					}
+				}, 
+				{
+					// We don't want to define these keys in the schema
+					// since this is mostly meta information, so we'll just 
+					// disable the filtering and validation (We know what we're doing, hopefully)
+					filter: false, 
+					validate: false
+				}
+			);
 
 		}
 

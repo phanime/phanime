@@ -51,4 +51,7 @@ rubaxa:sortable
 tmeasday:publish-counts
 flowkey:hotkeys
 datariot:ganalytics
-jeremy:selectize
+facts
+momentjs:moment
+comerc:autoform-selectize
+chhib:selectize-bootstrap-3

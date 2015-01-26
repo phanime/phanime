@@ -319,25 +319,15 @@ EasySearch.createSearchIndex('anime', {
 // });
 
 
-Anime.createAnimeObject = function(anime) {
-
-	// We're just going to add some default fields 
-	anime.createdAt = new Date();
-	anime.updatedAt = new Date();
-	anime.slug = getSlug(anime.canonicalTitle);
-
-	return anime;
-
-}
-
 AnimeRevisionsSchema = new SimpleSchema({
 	_id: {
 		type: String,
-		optional: true
+		optional: true,
+		label: " " // The only trick to hide the labels for now
 	},
 	revisionId: {
 		type: String,
-		label: '',
+		label: ' ', // The only trick to hide the labels for now
 		optional: true
 	},
 	canonicalTitle: {
@@ -434,6 +424,33 @@ AnimeRevisionsSchema = new SimpleSchema({
 	},
 	genres: {
 		type: [String],
+		autoform: {
+			type: "selectize",
+			afFieldInput: {
+				multiple: true,
+				selectizeOptions: {
+					placeholder: "Select a few genres",
+					valueField: "name",
+					labelField: "name",
+					searchField: "name",
+					options: [],
+					load: function(query, callback) {
+							console.log(query);
+
+						if (!query) {
+							// Only make the call if query is empty.. so essentially on initialization
+							Meteor.call('getGenres', function(error, result) {
+								if (!error) {
+									callback(result.map(function(x) { return {name: x.name}}));
+								}
+							});
+						}
+
+					},
+					preload: true
+				}
+			}
+		},
 		optional: true
 	},
 	themes: {
