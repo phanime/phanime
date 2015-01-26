@@ -8,7 +8,8 @@ AlertsSchema = new SimpleSchema({
 			"userProfilePost",
 			"revisionApproved",
 			"revisionDeclined",
-			"revisionReopened"
+			"revisionReopened",
+			"comment"
 		]
 	},
 	userId: {
@@ -102,10 +103,10 @@ Alerts.helpers({
 					var decisionByProfileUrl = Router.routes['user'].path({username: this.properties.decisionByUsername.toLowerCase()});
 					if (this.properties.revisionType === 'Addition') {
 						var animeTitle = this.properties.animeTitle;
-						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>approved</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>approved</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a></span>";
 					} else {
 						var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
-						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>approved</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>approved</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a></span>";
 					}
 
 				}
@@ -119,10 +120,10 @@ Alerts.helpers({
 					var decisionByProfileUrl = Router.routes['user'].path({username: this.properties.decisionByUsername.toLowerCase()});
 					if (this.properties.revisionType === 'Addition') {
 						var animeTitle = this.properties.animeTitle;
-						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>declined</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>declined</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a></span>";
 					} else {
 						var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
-						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>declined</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>declined</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a></span>";
 					}
 
 				}
@@ -136,17 +137,39 @@ Alerts.helpers({
 					var decisionByProfileUrl = Router.routes['user'].path({username: this.properties.decisionByUsername.toLowerCase()});
 					if (this.properties.revisionType === 'Addition') {
 						var animeTitle = this.properties.animeTitle;
-						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>re-opened</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+						userFriendlyText = '<span>Your revision for ' + animeTitle + ' was <b>re-opened</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a></span>";
 					} else {
 						var animeUrl = Router.routes['anime'].path({_id: this.properties.contentId, slug: 'placeholder'});
-						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>re-opened</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a>";
+						userFriendlyText = '<span>Your revision for <a href="' + animeUrl + '"> this </a> anime was <b>re-opened</b> by <a href="' + decisionByProfileUrl + '">' + this.properties.decisionByUsername + "</a></span>";
 					}
+				}
+
+				break;
+
+			case "comment":
+				switch(this.properties.commentType) {
+
+					case "customList":
+
+						var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
+						var customListUrl = Router.routes['customList'].path({_id: this.properties.customListId, slug: getSlug(this.properties.customListTitle)});
+						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> commented on your custom list, <a href="' + customListUrl + '">' + this.properties.customListTitle + '</a>.</span>';
+
+						break;
+
+					case "profilePost":
+
+						var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
+						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> commented on your profile post</span>';
+						break;
+
 				}
 
 				break;
 
 		}
 
+		console.log(userFriendlyText);
 
 		return userFriendlyText;
 

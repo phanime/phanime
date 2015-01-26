@@ -25,6 +25,43 @@ Template.createComment.events({
 						Notifications.error('Comment creation failed!', error.reason);
 					} else {
 						$(event.target).val('');
+
+						var userIdToAlert;
+
+						if (commentType === "customList") {
+							userIdToAlert = parent.userId;
+						} else {
+							userIdToAlert = parent.posterId;
+						}
+
+						// We don't send an alert if the parent post was also posted by that user
+
+						if (userIdToAlert !== comment.userId) {
+
+							var properties = {
+								posterId: comment.userId,
+								commentType: comment.type,
+								posterUsername: Meteor.user().displayName()
+							};
+
+							if (commentType === "customList") {
+								properties.customListId = parent._id;
+								properties.customListTitle = parent.title;
+							} else if (commentType === "profilePost") {
+								properties.profilePostId = parent._id;
+								properties.userProfileId = parent.userId;
+							}
+
+
+
+							Meteor.call('createAlert', 'comment', properties, userIdToAlert, function(error, result) {
+								if (error) {
+									console.log(error.reason);
+									throw new Meteor.Error(400, error.reason);
+								}
+							});
+
+						}
 					}
 				});
 

@@ -9,8 +9,10 @@ Meteor.methods({
 		};
 
 		Alerts.insert(alert, function(error, result) {
-			if (error)
+			if (error) {
+				console.log(error);
 				throw new Meteor.Error(403, error.reason);
+			}
 		});
 
 	},
