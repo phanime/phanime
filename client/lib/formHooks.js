@@ -33,14 +33,6 @@ AutoForm.hooks({
 				Notifications.error('Revision was not updated', error.reason);
 			}
 			
-		},
-
-		docToForm: function(doc) {
-			if (doc.genres) {
-				doc.genres = doc.genres.map(function (x) { return {name: x}});
-			}
-			console.log(doc);
-			return doc;
 		}
 	}
 }, true);

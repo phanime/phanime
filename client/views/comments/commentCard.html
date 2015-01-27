@@ -13,8 +13,13 @@
 				{{/with}}
 
 				<div class="content">
-					<span class="username">{{user.displayName}}</span> {{content}}
-					<div class="created-at">{{formatDateFromNow createdAt}}</div>
+					<span class="username">{{user.displayName}}</span> {{{urlifyText content}}}
+					<div class="sub-list">
+						<span class="sub-text">{{formatDateFromNow createdAt}}</span>
+						{{#if isUserIdCurrentUser userId}}
+							<span class="remove-handle">Remove</span>
+						{{/if}}
+					</div>
 				</div>
 			</div>
 

@@ -1,4 +1,4 @@
-Template.revisionsAnimeUpdateForm.helpers({
+Template.revisionsAnimeAdd.helpers({
 	genresOptions: function() {
 		var data = Template.instance().data;
 		return {
@@ -15,7 +15,6 @@ Template.revisionsAnimeUpdateForm.helpers({
 					Meteor.call('getGenres', function(error, result) {
 						if (!error) {
 							callback(result);
-							selectize.addItems(currentAnime.genres);
 						}
 					});
 				}

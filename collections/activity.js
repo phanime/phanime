@@ -141,6 +141,13 @@ Activity.helpers({
 });
 
 
+Activity.allow({
+	remove: function(userId, doc) {
+		// can only remove activity that you own
+		return doc.userId === userId;
+	}
+})
+
 // ActivityPages = new Meteor.Pagination(Activity, {
 // 	router: 'iron-router',
 // 	routerTemplate: 'userActivity',

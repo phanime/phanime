@@ -23,6 +23,17 @@
 				{{else}}
 					<h3 class="thin-text">There are no messages on {{username}}'s profile yet.</h3>
 				{{/each}}
+
+				{{#unless isReady}}
+					{{> rectangleLoader}}
+				{{/unless}}
+
+				{{#if isReady}}
+					{{#if hasMoreProfilePosts}}
+						<button id="loadMore" type="button" class="btn btn-transparent btn-lg btn-full-width"><h4>Load More</h4></button>
+					{{/if}}
+				{{/if}}
+
 			</div>
 		</div>
 

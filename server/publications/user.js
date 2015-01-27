@@ -1,4 +1,4 @@
-Meteor.publishComposite('userWithProfilePosts', function(username) {
+Meteor.publishComposite('userWithProfilePosts', function(username, limit) {
 	return {
 		find: function() {
 			return Meteor.users.find({username: username}, {fields: requireCollectionFields.user.removeServices});
@@ -6,7 +6,7 @@ Meteor.publishComposite('userWithProfilePosts', function(username) {
 		children: [
 			{
 				find: function(user) {
-					return ProfilePosts.find({userId: user._id});
+					return ProfilePosts.find({userId: user._id}, {sort: {createdAt: -1}, limit: limit});
 				},
 				children: [
 					{
