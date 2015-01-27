@@ -1012,10 +1012,16 @@ ul.profile-summary-list {
 		padding-right: 3px;
 	}
 
-	.comment-list .comment-card .created-at {
-		color: #838383;
+	.comment-list .comment-card .sub-list {
 		margin-top: 8px;
 	}
+		.comment-list .comment-card .sub-list > span {
+			margin-right: 8px;
+		}
+
+		.comment-list .comment-card .sub-list .remove-handle {
+			cursor: pointer;
+		}
 
 
 /*-----------------------------*/

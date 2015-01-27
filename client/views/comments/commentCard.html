@@ -14,7 +14,12 @@
 
 				<div class="content">
 					<span class="username">{{user.displayName}}</span> {{{urlifyText content}}}
-					<div class="created-at">{{formatDateFromNow createdAt}}</div>
+					<div class="sub-list">
+						<span class="sub-text">{{formatDateFromNow createdAt}}</span>
+						{{#if isUserIdCurrentUser userId}}
+							<span class="remove-handle">Remove</span>
+						{{/if}}
+					</div>
 				</div>
 			</div>
 
