@@ -28,6 +28,9 @@
 						{{/with}}
 						<h5 class="thin-text">{{../friendlyText}}</h5> 
 						<h6 class="thin-text">{{formatDateFromNow ../createdAt}}</h6>
+						{{#if isUserIdCurrentUser ../userId}}
+							<span class="remove-handle" style="cursor: pointer">Remove</span>
+						{{/if}}
 					</div>
 				</div>
 			{{/with}}
