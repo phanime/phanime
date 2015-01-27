@@ -23,7 +23,8 @@ UserController = RouteController.extend({
 
 
 	waitOn: function () {
-		return Meteor.subscribe('userWithProfilePosts', this.params.username.toLowerCase());
+		var limit = 20;
+		return Meteor.subscribe('userWithProfilePosts', this.params.username.toLowerCase(), limit);
 	},
 
 	data: function (pause) {
