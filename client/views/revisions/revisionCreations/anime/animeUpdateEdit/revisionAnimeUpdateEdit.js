@@ -1,13 +1,3 @@
-Template.revisionAnimeUpdateEdit.created = function() {
-
-	Meteor.call('getGenres', function(error, result) {
-		if (!error) {
-			Session.set('genres', result);
-		}
-	});
-
-};
-
 Template.revisionAnimeUpdateEdit.helpers({
 	genresOptions: function() {
 		var data = Template.instance().data;
@@ -16,17 +6,22 @@ Template.revisionAnimeUpdateEdit.helpers({
 			valueField: "name",
 			labelField: "name",
 			searchField: "name",
-			options: Session.get('genres'),
-			onInitialize: function() {
-				var currentAnime = data.currentAnime;
+			load: function(query, callback) {
 				var selectize = this;
+				var currentAnime = data.currentAnime;
 
-				if (currentAnime.genres) {
-					currentAnime.genres.forEach(function(genre) {
-						selectize.addItem(genre);
+				if (!query) {
+					// Only make the call if query is empty.. so essentially on initialization
+					Meteor.call('getGenres', function(error, result) {
+						if (!error) {
+							callback(result);
+							selectize.addItems(currentAnime.genres);
+						}
 					});
 				}
-			}
+
+			},
+			preload: true
 		};
 
 	}
