@@ -42,31 +42,38 @@ Template.animeExplore.rendered = function() {
 	// Initialize the selectize plugin
 	var self = this;
 
-	Meteor.call('getGenres', function(error, result) {
-		if (!error) {
-			$("#selectGenre").selectize({
-				valueField: "name",
-				labelField: "name",
-				searchField: "name",
-				options: result,
-				create: false,
-				onChange: function(value) {
-					var filterObject = self.filterObject.get();
+	$("#selectGenre").selectize({
+		valueField: "name",
+		labelField: "name",
+		searchField: "name",
+		create: false,
+		onChange: function(value) {
+			var filterObject = self.filterObject.get();
 
-					if (!value) {
-						if (filterObject.genres) {
-							delete filterObject.genres;
-						}
-					} else {
-						filterObject.genres = {
-							$all: value
-						};
-					}
-
-					self.filterObject.set(filterObject);
+			if (!value) {
+				if (filterObject.genres) {
+					delete filterObject.genres;
 				}
-			});
-		}
+			} else {
+				filterObject.genres = {
+					$all: value
+				};
+			}
+
+			self.filterObject.set(filterObject);
+		},
+		load: function(query, callback) {
+			if (!query) {
+				// Only make the call if query is empty.. so essentially on initialization
+				Meteor.call('getGenres', function(error, result) {
+					if (!error) {
+						callback(result);
+					}
+				});
+			}
+
+		},
+		preload: true
 	});
 
 }
