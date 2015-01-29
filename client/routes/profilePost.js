@@ -3,21 +3,16 @@ ProfilePostController = RouteController.extend({
 	onAfterAction: function () {
 		if (this.ready()) {
 			var profilePost = this.data();
-		}
+			var poster = profilePost.poster();
+			SEO.set({
+				title: siteSettings.getFullTitle(poster.displayName() + "'s profile post"),
+				og: {
+					'title' : siteSettings.getFullTitle(poster.displayName() + "'s profile post"),
+					'image' : poster.avatarImageUrl()
+				}
+			});		
 
-		// 	SEO.set({
-		// 		title: siteSettings.getFullTitle(character.fullName()),
-		// 		meta: {
-		// 			'description' : character.biography
-		// 		},
-		// 		og: {
-		// 			'title' : siteSettings.getFullTitle(character.fullName()),
-		// 			'description' : character.biography,
-		// 			'type' : 'profile',
-		// 			'image' : character.coverImageUrl(),
-		// 		}
-		// 	});
-		// }
+		}
 	},
 
 	waitOn: function () {

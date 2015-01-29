@@ -5,10 +5,12 @@
 			<div class="row">
 				<div class="col-sm-12">
 					{{#with poster}}
-						<a href="{{pathFor 'user'}}"><div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}');"></div></a>
+						<a href="{{pathFor 'user'}}">
+							<div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}');"></div>
+						</a>
 						<h4 style="margin:0">{{displayName}}</h4>
 					{{/with}}
-					<h6 class="thin-text" style="margin:0">{{formatDateFromNow createdAt}}</h6>
+					<h6 class="thin-text"><a class="sub-text" href="{{pathFor 'profilePost'}}">{{formatDateFromNow createdAt}}</a></h6>
 				</div>
 			</div>
 			<div class="description" style="word-break: break-word;">
