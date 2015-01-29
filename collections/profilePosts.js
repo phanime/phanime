@@ -57,6 +57,12 @@ ProfilePostsSchema = new SimpleSchema({
 
 ProfilePosts.attachSchema(ProfilePostsSchema);
 
+ProfilePosts.helpers({
+	poster: function() {
+		return Meteor.users.findOne({_id: this.posterId});
+	}
+});
+
 
 ProfilePosts.allow({
 
