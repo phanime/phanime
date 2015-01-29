@@ -1,8 +1,9 @@
-ProfilePostsController = RouteController.extend({
+ProfilePostController = RouteController.extend({
 	
 	onAfterAction: function () {
 		if (this.ready()) {
 			var profilePost = this.data();
+		}
 
 		// 	SEO.set({
 		// 		title: siteSettings.getFullTitle(character.fullName()),
