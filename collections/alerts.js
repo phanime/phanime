@@ -154,13 +154,12 @@ Alerts.helpers({
 						var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
 						var customListUrl = Router.routes['customList'].path({_id: this.properties.customListId, slug: getSlug(this.properties.customListTitle)});
 						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> commented on your custom list, <a href="' + customListUrl + '">' + this.properties.customListTitle + '</a>.</span>';
-
 						break;
 
 					case "profilePost":
-
 						var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
-						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> commented on your profile post</span>';
+						var profilePostUrl = Router.routes['profilePost'].path({_id: this.properties.profilePostId});
+						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> commented on your <a href="' + profilePostUrl + '">profile post</a></span>';
 						break;
 
 				}
