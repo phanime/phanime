@@ -915,58 +915,6 @@ ul.profile-summary-list {
 	z-index: 0;
 }
 
-.create-profilePost {
-	padding: 0;
-}
-	.create-profilePost textarea {
-		position: relative;
-		z-index: 1;
-		resize: none;
-		border: none;
-		padding: 20px;
-	}
-
-	.create-profilePost textarea:focus {
-		box-shadow: none !important;
-	}
-
-	.create-profilePost textarea:focus + .action-bar {
-		margin-top: 0;
-	}
-
-	.create-profilePost .action-bar:hover {
-		margin-top: 0;
-	}
-
-	.create-profilePost button:focus + .action-bar {
-		margin-top: 0;
-	}
-
-	.create-profilePost:focus {
-		box-shadow: 1px 1px 1px #000;
-	}
-
-	.create-profilePost .action-bar {
-		background-color: #E6E6E6;
-		padding: 5px;
-		margin-top:-43px;
-		-webkit-transition: all 0.4s ease;
-		-moz-transition: all 0.4s ease;
-		-o-transition: all 0.4s ease;
-		transition: all 0.4s ease;
-	}
-
-	.create-profilePost button {
-		margin: 0;
-		padding: 5px 20px;
-	}
-
-
-.profile-post-card .description img {
-	max-width: 100%;
-	max-height: 450px;
-}
-
 /*----------------------------------*/
 /*--------- Post Comments ----------*/
 /*----------------------------------*/

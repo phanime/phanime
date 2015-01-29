@@ -68,6 +68,12 @@ Router.map(function () {
 	this.route('userActivity', {path: '/users/:username/activity', layoutTemplate: 'userProfileLayout'});
 	this.route('userRevisions', {path: '/users/:username/revisions', layoutTemplate: 'userProfileLayout'});
 	this.route('userCustomLists', {path: '/users/:username/custom-lists', layoutTemplate: 'userProfileLayout'});
+
+
+	/////////////////////////////////////////////////
+	//////////////// Profile Post ///////////////////
+	/////////////////////////////////////////////////
+	this.route('profilePost', {path: 'profile-post/:_id'});
 	
 
 	/////////////////////////////////////////////////
