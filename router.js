@@ -242,6 +242,9 @@ Router.configure({
 	layoutTemplate: 'defaultLayout',
 	notFoundTemplate: 'fourOhFour',
 	loadingTemplate: 'loading',
+	yieldTemplates: {
+		'adLeaderBoard': {to: 'advertisement'}
+	},
 	waitOn: function () {
 		if (Meteor.user()) {
 			var subscriptions = [Meteor.subscribe('userAlerts')];
