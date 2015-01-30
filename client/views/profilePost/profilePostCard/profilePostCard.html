@@ -16,6 +16,15 @@
 			<div class="description" style="word-break: break-word;">
 				{{{urlifyText content}}}
 			</div>
+
+			<div class="action-bar">
+				{{#if currentUser}}
+					<a class="sub-text toggle-like-post" href="#">{{likeText}}</a>
+				{{/if}}
+				{{#if likeCount}}
+					<span> · </span>{{likeCount}}
+				{{/if}}
+			</div>
 		</div>
 
 		<div class="block comment-list">

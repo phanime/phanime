@@ -28,6 +28,50 @@ ProfilePostsSchema = new SimpleSchema({
 		min: 1,
 		max: 500
 	},
+	likes: {
+		type: [String],
+		optional: true,
+		custom: function() {
+			if (this.value && _.uniq(this.value).length !== this.value.length) {
+				return "Duplicates found!";
+			}
+		}
+	},
+	likeCount: {
+		type: Number,
+		min: 0,
+		optional: true,
+		custom: function() {
+			// We should ensure that the count here is the same as the length of 
+			// the likes array.
+
+			// We can't use this.field("likes").value because it grabs the modified
+			// which doesn't help since it's just the value of the current user
+			var profilePost = ProfilePosts.findOne({_id: this.docId});
+			var likesArray = profilePost.likes;
+			var likeCount = profilePost.likeCount || 0;
+
+
+			// We add the +1 to the length because the likes actually has a modifier value that it's going to add
+			// which would mean the array's length will grow by one, from then we should compare the new likeCount
+			// which is what we are doing now by adding the +1/-1
+			var increment;
+			if (this.field("likes").value && this.field("likes").operator === "$push" || this.field("likes").operator === "$addToSet") {
+				increment = 1;
+			} else if (this.field("likes").value && this.field("likes").operator === "$pull") {
+				increment = -1;
+			} else {
+				// This will make the following condition fail
+				increment = 0;
+			}
+
+			debugger;
+
+			if (likesArray && likesArray.length + increment !== likeCount + this.value) {
+				return "Inconsistency between like count and actual likes";
+			}
+		}
+	},
 	createdAt: {
 		type: Date,
 		autoValue: function() {

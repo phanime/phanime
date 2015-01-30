@@ -11,11 +11,59 @@ Template.profilePostCard.events({
 		// toggle expandCommentsList
 		template.expandCommentsList.set(!template.expandCommentsList.get());
 
+	},
+
+	'click .toggle-like-post' : function(event, template) {
+		var profilePost = template.data;
+		var likes = profilePost.likes;
+
+		if (likes && likes.indexOf(Meteor.userId()) > -1) {
+			ProfilePosts.update(
+				{
+					_id: profilePost._id
+				}, 
+				{
+					$pull: {likes: Meteor.userId()}, 
+					$inc: {likeCount: -1}
+				},
+				function(error) {
+					if (error)
+						console.log(error);
+				}
+			);
+		} else {
+			ProfilePosts.update(
+				{
+					_id: profilePost._id
+				}, 
+				{
+					$addToSet: {likes: Meteor.userId()}, 
+					$inc: {likeCount: 1}
+				}, 
+				function(error) {
+					if (error)
+						console.log(error);
+				}
+			);
+		}
 	}
 
 });
 
 Template.profilePostCard.helpers({
+
+	likeText: function() {
+		var profilePost = Template.instance().data;
+		var likes = profilePost.likes;
+
+		if (likes && likes.indexOf(Meteor.userId()) > -1) {
+			return "Unlike";
+		} else {
+			return "Like";
+		}
+	},
+
+
 	commentsList: function() {
 		
 		var template = Template.instance();
