@@ -31,8 +31,23 @@ ProfilePostsSchema = new SimpleSchema({
 	likes: {
 		type: [String],
 		optional: true,
+		denyInsert: true,
 		custom: function() {
-			if (this.value && _.uniq(this.value).length !== this.value.length) {
+
+			if (this.isInsert || !this.docId)
+				return
+
+			var profilePost = ProfilePosts.findOne({_id: this.docId});
+			var likesArray = profilePost.likes;
+			var increment = 0;
+
+			if (this.operator === "$push" || this.operator === "$addToSet") {
+				likesArray.push(this.value);
+			} else if (this.operator === "$pull") {
+				likesArray = _.without(likesArray, this.value);
+			}
+
+			if (this.value && _.uniq(likesArray).length !== likesArray.length) {
 				return "Duplicates found!";
 			}
 		}
@@ -41,12 +56,19 @@ ProfilePostsSchema = new SimpleSchema({
 		type: Number,
 		min: 0,
 		optional: true,
+		denyInsert: true,
 		custom: function() {
 			// We should ensure that the count here is the same as the length of 
 			// the likes array.
 
 			// We can't use this.field("likes").value because it grabs the modified
 			// which doesn't help since it's just the value of the current user
+
+			// if this is an insert, we'll just return 
+			if (this.isInsert || !this.docId)
+				return;
+
+
 			var profilePost = ProfilePosts.findOne({_id: this.docId});
 			var likesArray = profilePost.likes;
 			var likeCount = profilePost.likeCount || 0;
@@ -64,8 +86,6 @@ ProfilePostsSchema = new SimpleSchema({
 				// This will make the following condition fail
 				increment = 0;
 			}
-
-			debugger;
 
 			if (likesArray && likesArray.length + increment !== likeCount + this.value) {
 				return "Inconsistency between like count and actual likes";

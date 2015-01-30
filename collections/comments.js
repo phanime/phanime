@@ -31,8 +31,22 @@ CommentsSchema = new SimpleSchema({
 	likes: {
 		type: [String],
 		optional: true,
+		denyInsert: true,
 		custom: function() {
-			if (this.value && _.uniq(this.value).length !== this.value.length) {
+			if (this.isInsert || !this.docId)
+				return
+
+			var comment = Comments.findOne({_id: this.docId});
+			var likesArray = comment.likes;
+			var increment = 0;
+
+			if (this.operator === "$push" || this.operator === "$addToSet") {
+				likesArray.push(this.value);
+			} else if (this.operator === "$pull") {
+				likesArray = _.without(likesArray, this.value);
+			}
+
+			if (this.value && _.uniq(likesArray).length !== likesArray.length) {
 				return "Duplicates found!";
 			}
 		}
@@ -41,35 +55,39 @@ CommentsSchema = new SimpleSchema({
 		type: Number,
 		min: 0,
 		optional: true,
+		denyInsert: true,
 		custom: function() {
 			// We should ensure that the count here is the same as the length of 
 			// the likes array.
 
 			// We can't use this.field("likes").value because it grabs the modified
 			// which doesn't help since it's just the value of the current user
-			var comment = Comments.findOne({_id: this.docId});
-			var likesArray = comment.likes;
-			var likeCount = comment.likeCount || 0;
+
+				// if this is an insert, we'll just return 
+				if (this.isInsert || !this.docId)
+					return;
+
+				var comment = Comments.findOne({_id: this.docId});
+				var likesArray = comment.likes;
+				var likeCount = comment.likeCount || 0;
 
 
-			// We add the +1 to the length because the likes actually has a modifier value that it's going to add
-			// which would mean the array's length will grow by one, from then we should compare the new likeCount
-			// which is what we are doing now by adding the +1/-1
-			var increment;
-			if (this.field("likes").value && this.field("likes").operator === "$push" || this.field("likes").operator === "$addToSet") {
-				increment = 1;
-			} else if (this.field("likes").value && this.field("likes").operator === "$pull") {
-				increment = -1;
-			} else {
-				// This will make the following condition fail
-				increment = 0;
-			}
+				// We add the +1 to the length because the likes actually has a modifier value that it's going to add
+				// which would mean the array's length will grow by one, from then we should compare the new likeCount
+				// which is what we are doing now by adding the +1/-1
+				var increment;
+				if (this.field("likes").value && this.field("likes").operator === "$push" || this.field("likes").operator === "$addToSet") {
+					increment = 1;
+				} else if (this.field("likes").value && this.field("likes").operator === "$pull") {
+					increment = -1;
+				} else {
+					// This will make the following condition fail
+					increment = 0;
+				}
 
-			debugger;
-
-			if (likesArray && likesArray.length + increment !== likeCount + this.value) {
-				return "Inconsistency between like count and actual likes";
-			}
+				if (likesArray && likesArray.length + increment !== likeCount + this.value) {
+					return "Inconsistency between like count and actual likes";
+				}
 		}
 	},
 	createdAt: {
