@@ -240,7 +240,7 @@ Router.onStop(routerOnStopHooks.removeSearch);
 Router.configure({
 	fastRender: true,
 	layoutTemplate: 'defaultLayout',
-	// notFoundTemplate: 'fourOhFour',
+	notFoundTemplate: 'fourOhFour',
 	loadingTemplate: 'loading',
 	waitOn: function () {
 		if (Meteor.user()) {
