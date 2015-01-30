@@ -3,7 +3,6 @@ accounts-password@1.0.6
 aldeed:autoform@4.2.2
 aldeed:collection2@2.3.1
 aldeed:simple-schema@1.1.0
-alethes:pages@1.7.2
 amplify@1.0.0
 application-configuration@1.0.4
 autoupdate@1.1.5
@@ -29,7 +28,6 @@ deps@1.0.6
 dfischer:phantomjs@1.0.4
 ejson@1.0.5
 email@1.0.5
-ephemer:reactive-datatables@1.0.3
 facts@1.0.3
 fastclick@1.0.2
 flowkey:hotkeys@1.1.1
@@ -91,7 +89,6 @@ percolatestudio:synced-cron@1.1.0
 phanime:mal-import@1.0.0
 practicalmeteor:chai@1.9.2_3
 practicalmeteor:loglevel@1.1.0_3
-raix:http-methods@1.0.0
 random@1.0.2
 reactive-dict@1.0.5
 reactive-var@1.0.4

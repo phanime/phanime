@@ -5,7 +5,6 @@
 
 standard-app-packages
 iron:router
-raix:http-methods
 aldeed:autoform
 accounts-base
 accounts-password
@@ -17,7 +16,6 @@ dandv:jquery-rateit
 mizzao:bootstrap-3
 percolatestudio:synced-cron
 rosh93:aws-sdk
-alethes:pages
 email
 manuelschoebel:ms-seo
 maazalik:malihu-jquery-custom-scrollbar
@@ -46,7 +44,6 @@ dburles:spacebars-tohtml
 meteorhacks:fast-render
 dfischer:phantomjs
 service-configuration
-ephemer:reactive-datatables
 rubaxa:sortable
 tmeasday:publish-counts
 flowkey:hotkeys
