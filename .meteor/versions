@@ -85,6 +85,7 @@ npm-bcrypt@0.7.7
 npm-container@1.0.0
 observe-sequence@1.0.4
 ordered-dict@1.0.2
+percolate:migrations@0.7.2
 percolatestudio:synced-cron@1.1.0
 phanime:mal-import@1.0.0
 practicalmeteor:chai@1.9.2_3
