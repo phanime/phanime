@@ -16,9 +16,19 @@
 					<span class="username">{{user.displayName}}</span> {{{urlifyText content}}}
 					<div class="sub-list">
 						<span class="sub-text">{{formatDateFromNow createdAt}}</span>
+
 						{{#if isUserIdCurrentUser userId}}
-							<span class="remove-handle">Remove</span>
+							<span>·</span><span class="sub-text remove-handle">Remove</span>
 						{{/if}}
+
+						{{#if currentUser}}
+							<span>·</span><span><a class="sub-text toggle-like-comment" href="#">{{likeText}}</a></span>
+						{{/if}}
+
+						{{#if likeCount}}
+							<span>·</span><span>{{likeCount}}</span>
+						{{/if}}
+						
 					</div>
 				</div>
 			</div>

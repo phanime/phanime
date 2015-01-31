@@ -11,11 +11,43 @@ Template.profilePostCard.events({
 		// toggle expandCommentsList
 		template.expandCommentsList.set(!template.expandCommentsList.get());
 
+	},
+
+	'click .toggle-like-post' : function(event, template) {
+		var profilePost = template.data;
+		var likes = profilePost.likes;
+
+		if (likes && likes.indexOf(Meteor.userId()) > -1) {
+			Meteor.call("unlikeProfilePost", profilePost, function(error) {
+				if (error) {
+					console.log(error);
+				}
+			});
+		} else {
+			Meteor.call("likeProfilePost", profilePost, function(error) {
+				if (error) {
+					console.log(error);
+				}
+			});			
+		}
 	}
 
 });
 
 Template.profilePostCard.helpers({
+
+	likeText: function() {
+		var profilePost = Template.instance().data;
+		var likes = profilePost.likes;
+
+		if (likes && likes.indexOf(Meteor.userId()) > -1) {
+			return "Unlike";
+		} else {
+			return "Like";
+		}
+	},
+
+
 	commentsList: function() {
 		
 		var template = Template.instance();

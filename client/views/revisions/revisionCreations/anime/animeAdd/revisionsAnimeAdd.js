@@ -8,8 +8,6 @@ Template.revisionsAnimeAdd.helpers({
 			searchField: "name",
 			load: function(query, callback) {
 				var selectize = this;
-				var currentAnime = data.currentAnime;
-
 				if (!query) {
 					// Only make the call if query is empty.. so essentially on initialization
 					Meteor.call('getGenres', function(error, result) {

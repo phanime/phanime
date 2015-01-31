@@ -68,6 +68,12 @@ Router.map(function () {
 	this.route('userActivity', {path: '/users/:username/activity', layoutTemplate: 'userProfileLayout'});
 	this.route('userRevisions', {path: '/users/:username/revisions', layoutTemplate: 'userProfileLayout'});
 	this.route('userCustomLists', {path: '/users/:username/custom-lists', layoutTemplate: 'userProfileLayout'});
+
+
+	/////////////////////////////////////////////////
+	//////////////// Profile Post ///////////////////
+	/////////////////////////////////////////////////
+	this.route('profilePost', {path: 'profile-post/:_id'});
 	
 
 	/////////////////////////////////////////////////
@@ -234,8 +240,11 @@ Router.onStop(routerOnStopHooks.removeSearch);
 Router.configure({
 	fastRender: true,
 	layoutTemplate: 'defaultLayout',
-	// notFoundTemplate: 'fourOhFour',
+	notFoundTemplate: 'fourOhFour',
 	loadingTemplate: 'loading',
+	yieldTemplates: {
+		'adLeaderBoard': {to: 'advertisement'}
+	},
 	waitOn: function () {
 		if (Meteor.user()) {
 			var subscriptions = [Meteor.subscribe('userAlerts')];
