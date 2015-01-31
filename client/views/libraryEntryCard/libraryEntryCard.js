@@ -6,8 +6,6 @@ Template.libraryEntryCard.rendered = function() {
 
 	$('.fa.entry').tooltip();
 
-	// $('.entry-rating').tooltip();
-
 };
 
 Template.libraryEntryCard.events({
