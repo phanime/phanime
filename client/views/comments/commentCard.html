@@ -18,11 +18,11 @@
 						<span class="sub-text">{{formatDateFromNow createdAt}}</span>
 
 						{{#if isUserIdCurrentUser userId}}
-							<span>·</span><span class="remove-handle">Remove</span>
+							<span>·</span><span class="sub-text remove-handle">Remove</span>
 						{{/if}}
 
 						{{#if currentUser}}
-							<span>·</span><span><a class="toggle-like-comment" href="#">{{likeText}}</a></span>
+							<span>·</span><span><a class="sub-text toggle-like-comment" href="#">{{likeText}}</a></span>
 						{{/if}}
 
 						{{#if likeCount}}
