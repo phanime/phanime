@@ -34,7 +34,7 @@ uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 
 		});
 
-	}
+	};
 
 	if (file) {
 		reader.readAsBinaryString(file);
