@@ -9,33 +9,17 @@ Template.commentCard.events({
 		var likes = comment.likes;
 
 		if (likes && likes.indexOf(Meteor.userId()) > -1) {
-			Comments.update(
-				{
-					_id: comment._id
-				}, 
-				{
-					$pull: {likes: Meteor.userId()}, 
-					$inc: {likeCount: -1}
-				},
-				function(error) {
-					if (error)
-						console.log(error);
+			Meteor.call("unlikeComment", comment, function(error) {
+				if (error) {
+					console.log(error);
 				}
-			);
+			});
 		} else {
-			Comments.update(
-				{
-					_id: comment._id
-				}, 
-				{
-					$addToSet: {likes: Meteor.userId()}, 
-					$inc: {likeCount: 1}
-				}, 
-				function(error) {
-					if (error)
-						console.log(error);
+			Meteor.call("likeComment", comment, function(error) {
+				if (error) {
+					console.log(error);
 				}
-			);
+			});
 		}
 	}
 });

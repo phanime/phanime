@@ -145,3 +145,41 @@ Comments.helpers({
 		return Meteor.users.findOne({_id: this.userId});
 	}
 });
+
+
+
+Meteor.methods({
+
+	likeComment: function(comment) {
+		Comments.update(
+			{
+				_id: comment._id
+			}, 
+			{
+				$addToSet: {likes: Meteor.userId()}, 
+				$inc: {likeCount: 1}
+			}, 
+			function(error) {
+				if (error)
+					console.log(error);
+			}
+		);
+	},
+
+	unlikeComment: function(comment) {
+		Comments.update(
+			{
+				_id: comment._id
+			}, 
+			{
+				$pull: {likes: Meteor.userId()}, 
+				$inc: {likeCount: -1}
+			},
+			function(error) {
+				if (error)
+					console.log(error);
+			}
+		);
+	}
+
+});
