@@ -18,33 +18,17 @@ Template.profilePostCard.events({
 		var likes = profilePost.likes;
 
 		if (likes && likes.indexOf(Meteor.userId()) > -1) {
-			ProfilePosts.update(
-				{
-					_id: profilePost._id
-				}, 
-				{
-					$pull: {likes: Meteor.userId()}, 
-					$inc: {likeCount: -1}
-				},
-				function(error) {
-					if (error)
-						console.log(error);
+			Meteor.call("unlikeProfilePost", profilePost, function(error) {
+				if (error) {
+					console.log(error);
 				}
-			);
+			});
 		} else {
-			ProfilePosts.update(
-				{
-					_id: profilePost._id
-				}, 
-				{
-					$addToSet: {likes: Meteor.userId()}, 
-					$inc: {likeCount: 1}
-				}, 
-				function(error) {
-					if (error)
-						console.log(error);
+			Meteor.call("likeProfilePost", profilePost, function(error) {
+				if (error) {
+					console.log(error);
 				}
-			);
+			});			
 		}
 	}
 

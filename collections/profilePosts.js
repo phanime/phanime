@@ -149,3 +149,42 @@ ProfilePosts.allow({
 
 
 });
+
+
+
+Meteor.methods({
+
+	likeProfilePost : function(profilePost) {
+		ProfilePosts.update(
+			{
+				_id: profilePost._id
+			}, 
+			{
+				$addToSet: {likes: Meteor.userId()}, 
+				$inc: {likeCount: 1}
+			}, 
+			function(error) {
+				if (error)
+					console.log(error);
+			}
+		);
+	},
+
+	unlikeProfilePost: function(profilePost) {
+		ProfilePosts.update(
+			{
+				_id: profilePost._id
+			}, 
+			{
+				$pull: {likes: Meteor.userId()}, 
+				$inc: {likeCount: -1}
+			},
+			function(error) {
+				if (error) {
+					console.log(error);
+				}
+			}
+		);
+	}
+
+});
