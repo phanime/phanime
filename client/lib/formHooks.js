@@ -14,11 +14,7 @@ AutoForm.hooks({
 			}
 			
 		}
-	}
-}, true);
-
-
-AutoForm.hooks({
+	},
 	updateRevisionsAnime: {
 
 		onSuccess: function(operation, result, template) {
@@ -34,11 +30,7 @@ AutoForm.hooks({
 			}
 			
 		}
-	}
-}, true);
-
-
-AutoForm.hooks({
+	},
 	revisionsAnimeAddEdit: {
 
 		onSuccess: function(operation, result, template) {
@@ -54,11 +46,7 @@ AutoForm.hooks({
 			}
 			
 		}
-	}
-}, true);
-
-
-AutoForm.hooks({
+	},
 	revisionAnimeUpdateEdit: {
 
 		onSuccess: function(operation, result, template) {
