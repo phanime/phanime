@@ -160,8 +160,21 @@ Meteor.methods({
 				$inc: {likeCount: 1}
 			}, 
 			function(error) {
-				if (error)
+				if (error) {
 					console.log(error);
+				} else {
+					// Create an alert
+					var properties = {
+						likerUsername: Meteor.user().displayName(),
+						commentType: comment.type,
+						contentId: comment.contentId
+					};
+
+					// Only create the alert if the person alerting isn't the one that took the action
+					if (comment.userId !== Meteor.userId()) {
+						Meteor.call("createAlert", "likeComment", properties, comment.userId);
+					}
+				}
 			}
 		);
 	},
@@ -176,8 +189,9 @@ Meteor.methods({
 				$inc: {likeCount: -1}
 			},
 			function(error) {
-				if (error)
+				if (error) {
 					console.log(error);
+				}
 			}
 		);
 	}

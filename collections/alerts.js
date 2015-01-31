@@ -9,7 +9,9 @@ AlertsSchema = new SimpleSchema({
 			"revisionApproved",
 			"revisionDeclined",
 			"revisionReopened",
-			"comment"
+			"comment",
+			"likeProfilePost",
+			"likeComment"
 		]
 	},
 	userId: {
@@ -165,6 +167,29 @@ Alerts.helpers({
 				}
 
 				break;
+
+			case "likeComment":
+
+				var likerProfileUrl = Router.routes['user'].path({username: this.properties.likerUsername.toLowerCase()});
+				var commentUrl;
+				if (this.properties.commentType === "customList") {
+					commentUrl = Router.routes['customList'].path({_id: this.properties.contentId, slug: "placeholder"});
+				} else if (this.properties.commentType === "profilePost") {
+					commentUrl = Router.routes['profilePost'].path({_id: this.properties.contentId});
+				}
+
+				userFriendlyText = '<span><a href="' + likerProfileUrl + '">' + this.properties.likerUsername + '</a> liked your <a href="' + commentUrl + '">comment</a></span>';
+
+				break;
+
+
+			case "likeProfilePost":
+				var likerProfileUrl = Router.routes['user'].path({username: this.properties.likerUsername.toLowerCase()});
+				var profilePostUrl = Router.routes['profilePost'].path({_id: this.properties.profilePostId});
+
+				userFriendlyText = '<span><a href="' + likerProfileUrl + '">' + this.properties.likerUsername + '</a> liked your <a href="' + profilePostUrl + '">profile post</a></span>';
+
+				break;			
 
 		}
 

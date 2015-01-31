@@ -164,8 +164,20 @@ Meteor.methods({
 				$inc: {likeCount: 1}
 			}, 
 			function(error) {
-				if (error)
+				if (error) {
 					console.log(error);
+				} else {
+					// Create an alert
+					var properties = {
+						likerUsername: Meteor.user().displayName(),
+						profilePostId: profilePost._id
+					};
+
+					// Only create the alert if the person alerting isn't the one that took the action
+					if (profilePost.posterId !== Meteor.userId()) {
+						Meteor.call("createAlert", "likeProfilePost", properties, profilePost.posterId);
+					}
+				}
 			}
 		);
 	},
