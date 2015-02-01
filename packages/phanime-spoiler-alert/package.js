@@ -1,11 +1,10 @@
 Package.describe({
   summary: "spoiler-alert.js wrapper for Meteor",
-  version: "1.0.0",
-  git: ""
+  version: "1.0.0"
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('METEOR@0.9.3.1');
+
   api.use('jquery');
 
   // JS

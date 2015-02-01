@@ -32,8 +32,6 @@ meteorhacks:npm
 
 
 npm-container
-maazalik:spoiler-alert
-phanime:mal-import
 aldeed:collection2
 multiply:iron-router-progress
 velocity:core
@@ -53,3 +51,5 @@ momentjs:moment
 comerc:autoform-selectize
 chhib:selectize-bootstrap-3
 percolate:migrations
+phanime-spoiler-alert
+phanime-mal-import
