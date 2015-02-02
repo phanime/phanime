@@ -86,6 +86,7 @@ observe-sequence@1.0.4
 ordered-dict@1.0.2
 percolate:migrations@0.7.2
 percolatestudio:synced-cron@1.1.0
+phanime-homepage-activeentries@0.0.1
 phanime-homepage-userfeed@0.0.1
 phanime-mal-import@1.0.0
 phanime-spoiler-alert@1.0.0
