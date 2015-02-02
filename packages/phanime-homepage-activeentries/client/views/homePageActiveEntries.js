@@ -16,3 +16,15 @@ Template.homePageActiveEntries.created = function() {
 	});
 
 };
+
+Template.homePageActiveEntries.helpers({
+
+	activeEntries: function() {
+		return Template.instance().activeEntries.get();
+	},
+
+	isReady: function() {
+		return Template.instance().ready.get();	
+	}
+
+});
