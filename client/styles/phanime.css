@@ -298,6 +298,7 @@ ul.nav > li> a {
 	text-rendering: optimizeLegibility;
 	font-size: 16px;
 	letter-spacing: 0.5px;
+	word-wrap: break-word;
 }
 
 .global-notice {
@@ -946,7 +947,7 @@ ul.profile-summary-list {
 
 	.comment-list .comment-card .content {
 		margin-left: 60px;
-		word-break: break-word;
+		word-wrap: break-word;
 	}
 
 		.comment-list .comment-card .content img {
