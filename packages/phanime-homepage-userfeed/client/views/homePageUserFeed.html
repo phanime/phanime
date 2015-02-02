@@ -1,0 +1,18 @@
+<template name="homePageUserFeed">
+
+	{{#each profilePosts}}
+		{{> profilePostCard}}
+	{{/each}}
+
+
+	{{#unless isReady}}
+		{{> rectangleLoader}}
+	{{/unless}}
+
+	{{#if isReady}}
+		{{#if hasMoreProfilePosts}}
+			<button type="button" class="btn btn-transparent btn-lg btn-full-width loadMore"><h4>Load More</h4></button>
+		{{/if}}
+	{{/if}}
+
+</template>
