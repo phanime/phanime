@@ -8,7 +8,8 @@ Package.onUse(function(api) {
 
 	// Add standard app packages to both server and client
 	api.use([
-		'standard-app-packages'
+		'standard-app-packages',
+		'phanime-lib'
 	], ['server', 'client']);
 
 

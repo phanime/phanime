@@ -1,7 +1,7 @@
 Package.describe({
-	name: 'phanime-homepage-activeentries',
+	name: 'phanime-homepage-recommendedanime',
 	version: '0.0.1',
-	summary: 'Active entries module for the homepage',
+	summary: 'Recommended Anime module for the homepage',
 });
 
 Package.onUse(function(api) {
@@ -21,12 +21,12 @@ Package.onUse(function(api) {
 
 	// Add the view to the client
 	api.addFiles([
-		'client/views/homePageActiveEntries.html',
-		'client/views/homePageActiveEntries.js'
+		'client/views/homePageRecommendedAnime.html',
+		'client/views/homePageRecommendedAnime.js'
 	], ['client']);
 
 	// Add publication to the server
 	api.addFiles([
-		'server/publications/homePageActiveEntries.js'
+		'server/publications/homePageRecommendedAnime.js'
 	], ['server']);
 });
