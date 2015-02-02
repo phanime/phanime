@@ -2,7 +2,44 @@
 
 	<div class="container main-content">
 
-		{{> homePageUserFeed}}
+		<div class="row">
+			<div class="col-sm-12">
+
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-6">
+				{{> homePageUserFeed}}
+			</div>
+				{{#if libraryEntries}}
+					<h2 class="thin-text sub-text inline-text">Active Entries</h2>
+					{{#with currentUser}}
+						<a href="{{pathFor 'userLibrary'}}" style="margin-top: -5px; margin-bottom: 10px; margin-left: 10px" class="btn btn-primary btn-sm btn-transparent">View Library</a>
+					{{/with}}
+				{{/if}}
+				{{#each libraryEntries}}
+						{{> UI.dynamic template="libraryEntryCard" data=this}}
+				{{else}}
+					<div class="col-sm-12">
+						<div class="block centered-text">
+							<h2 class="thin-text sub-text">Plan to watch & Watching anime will appear here</h2>	
+						
+							<a style="margin-top: 30px; margin-bottom: 20px;" href="{{pathFor 'animeExplore'}}" class="btn btn-primary btn-lg btn-transparent">Add Library Entries</a>
+						</div>
+					</div>
+
+				{{/each}}
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+
+
+			</div>
+		</div>
+
 
 		{{#if libraryEntries}}
 			<h2 class="thin-text sub-text inline-text">Active Entries</h2>

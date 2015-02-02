@@ -19,7 +19,7 @@ Meteor.publishComposite('homePageUserFeed', function(limit) {
 						// Publish the poster if it's not the current user
 						find: function(profilePost, user) {
 							if (profilePost.posterId !== this.userId) {
-								return Meteor.users.find({_id: profilePost.posterId}, {fields: {username: 1, profile: 1}});
+								return Meteor.users.find({_id: profilePost.posterId}, {fields: {originalUsername: 1, username: 1, profile: 1}});
 							}
 						}
 					},
@@ -35,7 +35,7 @@ Meteor.publishComposite('homePageUserFeed', function(limit) {
 								find: function(comment, profilePost, user) {
 									// Publish users if it isn't published 
 									if (comment.userId !== user._id && comment.userId !== profilePost.posterId) {
-										return Meteor.users.find({_id: comment.userId}, {fields: {username: 1, profile: 1}});
+										return Meteor.users.find({_id: comment.userId}, {fields: {originalUsername: 1, username: 1, profile: 1}});
 									}
 								}
 							}
