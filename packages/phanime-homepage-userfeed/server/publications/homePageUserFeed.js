@@ -2,7 +2,7 @@ Meteor.publishComposite('homePageUserFeed', function(limit) {
 	return {
 		find: function() {
 			// Find the current user
-			return Meteor.users.find({_id: this.userId});
+			return Meteor.users.find({_id: this.userId}, {fields: {services: 0}});
 		},
 		children: [
 			// For some reason this causes some errors, need to figure out what's wrong exactly

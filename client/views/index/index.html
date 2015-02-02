@@ -2,32 +2,20 @@
 
 	<div class="container main-content">
 
+		<div class="row">
+			<div class="col-sm-12">
+				{{> homePageActiveEntries}}
+			</div>
+		</div>
+
 
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-sm-6">
 				{{> homePageUserFeed}}
 			</div>
-
-			<div class="row">
-				{{> homePageActiveEntries}}
-				{{> homePageRecommendedAnime}}
-			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-sm-12">
-
-
-			</div>
-		</div>
-
-
-
-		<div class="row">
-			<div class="col-sm-12">
-				<hr class="background-hr">
-			</div>
-		</div>
+		{{> homePageRecommendedAnime}}
 
 	</div>
 

@@ -5,12 +5,12 @@
 	{{/with}}
 
 
+
 	{{#each profilePosts}}
 		{{> profilePostCard}}
 	{{else}}
 		<h3 class="sub-text">Follow some people to fill up your feed</h3>
 	{{/each}}
-
 
 	{{#unless isReady}}
 		{{> rectangleLoader}}
