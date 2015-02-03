@@ -20,12 +20,12 @@ uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 				// This is a temporary way of doing it for now
 
 				if (contentDirectory === "users" && typeDirectory === "avatar") {
-					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.avatarImage": file.name}});
+					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.avatarImage": result.imageName}});
 					Notifications.success('Upload Successful', 'Your avatar was successfully saved', {timeout: 0});
 				}
 
 				if (contentDirectory === "users" && typeDirectory === "profileBanner") {
-					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.profileBannerImage": file.name}});
+					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.profileBannerImage": result.imageName}});
 					Notifications.success('Upload Successful', 'Your profile banner was successfully saved', {timeout: 0});
 				}
 

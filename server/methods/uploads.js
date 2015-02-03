@@ -1,13 +1,9 @@
 Meteor.methods({
 	uploadImage: function(image, imageName, imageSize, imageType, contentDirectory, typeDirectory, contentId) {
 
-		var imageTypes = ['image/gif', 'image/jpeg', 'image/png'];
-
-		console.log(imageTypes.indexOf(imageType));
-		console.log(imageSize);
-
 		// We'll use the unix timestamp as the name of the file.
-		imageName = new Date().getTime();
+		var imageName = uploadToS3Helpers.buildImageNameWithExtension(new Date().getTime(), imageType);
+		var key = uploadToS3Helpers.buildUploadUrl(imageName, contentDirectory, typeDirectory, contentId);
 
 
 		// We don't want the upload to block other requests!
@@ -15,31 +11,22 @@ Meteor.methods({
 
 
 		// Ensure we only get images
-		if (imageTypes.indexOf(imageType) === -1)
-			throw new Meteor.Error(403, 'Only image files allowed (gif, jpeg, png)');
-
-		// Ensure size is less than 2 MB
-		// The imageSize variable is in bytes
-		if (imageSize > 2000000)
+		if (!uploadToS3Helpers.imageSizeInLimit(imageSize)) {
 			throw new Meteor.Error(403, 'Max file size of 2 MB allowed');
+		} 
 
-		// Temporary, for testing purposes
-		// should move to environment variables
-		// after
+		if (!uploadToS3Helpers.fileIsImage(imageType)) {
+			// console.log('Not image file');
+			throw new Meteor.Error(403, 'Only images are allowed (gif, jpeg, png)');
+		}
+
+
 		AWS.config.update({
 			accessKeyId: privateSiteSettings.awsAccessKeyId, 
 			secretAccessKey: privateSiteSettings.awsSecretAccessKey,
 		});
 
 		var s3 = new AWS.S3();
-		var key;
-
-		// If content ID exists we should add that in
-		if (contentId) {
-			key = "images/" + contentDirectory + "/" + typeDirectory + "/" + contentId + "/" + imageName + "." + imageType;
-		} else {
-			key = "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName + "." + imageType;
-		}
 
 		if (image) {
 			s3.createBucket({Bucket: Meteor.settings.awsBucket}, function() {
@@ -67,7 +54,7 @@ Meteor.methods({
 			
 
 			return {
-				imageName: imageName + "." + imageType,
+				imageName: imageName,
 				imageUrl: "http://cdn.phanime.com/" + key,
 			}
 		}
