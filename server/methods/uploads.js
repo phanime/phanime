@@ -6,9 +6,9 @@ Meteor.methods({
 		console.log(imageTypes.indexOf(imageType));
 		console.log(imageSize);
 
-		// We're going to sluggify the image name so we 
-		// don't end up with random characters
-		imageName = getSlug(imageName);
+		// We'll use the unix timestamp as the name of the file.
+		imageName = new Date().getTime();
+
 
 		// We don't want the upload to block other requests!
 		this.unblock();
@@ -36,9 +36,9 @@ Meteor.methods({
 
 		// If content ID exists we should add that in
 		if (contentId) {
-			key = "images/" + contentDirectory + "/" + typeDirectory + "/" + contentId + "/" + imageName;
+			key = "images/" + contentDirectory + "/" + typeDirectory + "/" + contentId + "/" + imageName + "." + imageType;
 		} else {
-			key = "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName;
+			key = "images/" + contentDirectory + "/" + typeDirectory + "/" + imageName + "." + imageType;
 		}
 
 		if (image) {
@@ -67,7 +67,7 @@ Meteor.methods({
 			
 
 			return {
-				imageName: imageName,
+				imageName: imageName + "." + imageType,
 				imageUrl: "http://cdn.phanime.com/" + key,
 			}
 		}
