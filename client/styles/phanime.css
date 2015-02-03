@@ -298,7 +298,6 @@ ul.nav > li> a {
 	text-rendering: optimizeLegibility;
 	font-size: 16px;
 	letter-spacing: 0.5px;
-	word-wrap: break-word;
 }
 
 .global-notice {
