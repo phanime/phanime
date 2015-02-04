@@ -1,10 +1,5 @@
-# Ignore any local packages that are being developed
-/packages/*
-
-# Include these packages (as core)
-	!/packages/npm-container/
-	!/packages/maazalik:spoiler-alert/
-	!/packages/phanime:mal-import/
+# Ignore local stuff
+/packages/tests-proxy/
 
 # Ignore private site settings api keys
 /server/privateSiteSettings.js

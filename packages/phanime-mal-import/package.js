@@ -1,5 +1,5 @@
 Package.describe({
-	name: 'phanime:mal-import',
+	name: 'phanime-mal-import',
 	summary: 'Imports MAL user anime lists into phanime',
 	version: '1.0.0',
 	git: ''

@@ -25,15 +25,12 @@ reactive-var
 reywood:publish-composite
 maazalik:highcharts
 maazalik:discourse-sso
-meteorhacks:kadira
 hellogerard:reststop2
 chrismbeckett:fontawesome4
 meteorhacks:npm
 
 
 npm-container
-maazalik:spoiler-alert
-phanime:mal-import
 aldeed:collection2
 multiply:iron-router-progress
 velocity:core
@@ -52,3 +49,11 @@ facts
 momentjs:moment
 comerc:autoform-selectize
 chhib:selectize-bootstrap-3
+percolate:migrations
+phanime-spoiler-alert
+phanime-mal-import
+meteorhacks:kadira
+phanime-homepage-userfeed
+phanime-homepage-activeentries
+phanime-homepage-recommendedanime
+phanime-homepage-schedule
