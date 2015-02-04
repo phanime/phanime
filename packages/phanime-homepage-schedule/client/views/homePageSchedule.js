@@ -49,17 +49,29 @@ Template.homePageSchedule.created = function() {
 			libraryEntries.forEach(function(entry) {
 				var anime = Anime.findOne({_id: entry.animeId});
 				var dayNumber = moment(anime.startDate).day();
-				if (schedule[dayNumber]) {
-					schedule[dayNumber].push(entry);
+				if (schedule[dayNumber].entries) {
+					schedule[dayNumber].entries.push(entry);
 				} else {
-					schedule[dayNumber] = [entry];
+					schedule[dayNumber] = {
+						day: days[dayNumber],
+						entries: [entry]
+					};
 				}
 			});
-
+			self.schedule.set(schedule);
 			self.ready.set(true);
 		} else {
 			self.ready.set(false);
 		}
 	});
 };
+
+Template.homePageSchedule.helpers({
+	schedule: function() {
+		return Template.instance().schedule.get();
+	},
+	isReady: function() {
+		return Template.instance().ready.get();
+	}
+});
 
