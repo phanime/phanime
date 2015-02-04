@@ -43,13 +43,13 @@ Template.homePageSchedule.created = function() {
 
 			var animeIds = _.pluck(anime.fetch(), '_id');
 
-			var libraryEntries = LibraryEntries.find({status: "Watching", animeId: {$in: animeIds}});
+			var libraryEntries = LibraryEntries.find({userId: Meteor.userId(), status: "Watching", animeId: {$in: animeIds}});
 			var schedule = [];
 
 			libraryEntries.forEach(function(entry) {
 				var anime = Anime.findOne({_id: entry.animeId});
 				var dayNumber = moment(anime.startDate).day();
-				if (schedule[dayNumber].entries) {
+				if (schedule[dayNumber] && schedule[dayNumber].entries) {
 					schedule[dayNumber].entries.push(entry);
 				} else {
 					schedule[dayNumber] = {

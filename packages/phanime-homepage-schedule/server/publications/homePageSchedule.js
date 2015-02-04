@@ -1,5 +1,10 @@
 Meteor.publish('homePageSchedule', function() {
 
+	if (!this.userId) {
+		// User must be logged in
+		return;
+	}
+
 
 	var anime = Anime.find({
 				$and: [
@@ -25,7 +30,7 @@ Meteor.publish('homePageSchedule', function() {
 
 	var animeIds = _.pluck(anime.fetch(), '_id');
 
-	var libraryEntries = LibraryEntries.find({status: "Watching", animeId: {$in: animeIds}});
+	var libraryEntries = LibraryEntries.find({userId: this.userId, status: "Watching", animeId: {$in: animeIds}});
 
 	return [
 		anime,

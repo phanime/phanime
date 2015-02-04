@@ -1,3 +1,17 @@
 <template name="homePageSchedule">
-Hello
+	<div class="centered-text">
+	<h2 class="sub-text">What to watch</h2>
+	<hr class="background-hr">
+	{{#each schedule}}
+		<div class="row">
+			<div class="col-sm-12">
+				<h3 class="sub-text">{{day}}</h3>
+				<hr class="background-hr">
+			</div>
+			{{#each entries}}
+				{{> libraryEntryCard}}
+			{{/each}}
+		</div>
+	{{/each}}
+	</div>
 </template>
