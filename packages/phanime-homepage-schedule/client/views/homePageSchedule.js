@@ -56,12 +56,10 @@ Template.homePageSchedule.created = function() {
 				}
 			});
 
-
-			debugger;
-
 			self.ready.set(true);
 		} else {
 			self.ready.set(false);
 		}
 	});
 };
+
