@@ -1,21 +1,25 @@
 Meteor.publishComposite('indexCurrentUser', function() {
 	return {
 		find: function() {
-			return Meteor.users.find({_id: this.userId}, {fields: requireCollectionFields.user.defaultWithRecommended});
+			return Meteor.users.find({_id: this.userId});
 		},
 		children: [
 
-			// For some reason this causes some errors, need to figure out what's wrong exactly
-			// Possibly an issue with the user.following not being an array / or user.following not existing
+			// // For some reason this causes some errors, need to figure out what's wrong exactly
+			// // Possibly an issue with the user.following not being an array / or user.following not existing
 			// {
 			// 	find: function(user) {
-			// 		return ProfilePosts.find({$or: [{userId: user._id}, {userId: {$in: user.following}}]});
+			// 		if (!user.following) {
+			// 			user.following = [];
+			// 		}
+
+			// 		return ProfilePosts.find({$or: [{userId: user._id}, {statusUpdate: true, userId: {$in: user.following}}]});
 			// 	},
 			// 	children: [
 			// 		{
-			// 			// Publish the poster as well if it wasn't a status update
+			// 			// Publish the poster if it's not the current user
 			// 			find: function(profilePost, user) {
-			// 				if (profilePost.statusUpdate === false) {
+			// 				if (profilePost.posterId !== this.userId) {
 			// 					return Meteor.users.find({_id: profilePost.posterId}, {fields: {username: 1, profile: 1}});
 			// 				}
 			// 			}

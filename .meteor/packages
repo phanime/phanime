@@ -25,7 +25,6 @@ reactive-var
 reywood:publish-composite
 maazalik:highcharts
 maazalik:discourse-sso
-meteorhacks:kadira
 hellogerard:reststop2
 chrismbeckett:fontawesome4
 meteorhacks:npm
@@ -53,3 +52,8 @@ chhib:selectize-bootstrap-3
 percolate:migrations
 phanime-spoiler-alert
 phanime-mal-import
+meteorhacks:kadira
+phanime-homepage-userfeed
+phanime-homepage-activeentries
+phanime-homepage-recommendedanime
+phanime-homepage-schedule

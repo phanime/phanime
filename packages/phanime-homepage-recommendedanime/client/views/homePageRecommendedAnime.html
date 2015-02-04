@@ -1,0 +1,27 @@
+<template name="homePageRecommendedAnime">
+	{{#if recommendedAnime}}
+		<h2 class="thin-text sub-text">Recommendations</h2>
+	{{/if}}
+
+	<div class="row">
+		{{#each recommendedAnime}}
+			{{> UI.dynamic template="animeCard" data=this}}
+		{{else}}
+			<div class="col-sm-12">
+				<div class="block centered-text">
+					<h2 class="thin-text sub-text">We don't have any recommendations for you yet</h2>	
+				
+					<button id="requestRecommendation" style="margin-top: 30px; margin-bottom: 20px;" class="btn btn-primary btn-lg btn-transparent">Request Recommendations</button>
+					<h6 class="sub-text">Add more library entries for better recommendations</h6>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+
+	{{#if recommendedAnime}}
+		<div class="centered-text">
+			<button id="requestRecommendation" style="margin-top: 30px; margin-bottom: 20px;" class="btn btn-primary btn-lg btn-transparent">Request Recommendations</button>
+			<h6 class="sub-text">Add more library entries for better recommendations</h6>
+		</div>
+	{{/if}}
+</template>
