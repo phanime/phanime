@@ -20,7 +20,6 @@ email
 manuelschoebel:ms-seo
 maazalik:malihu-jquery-custom-scrollbar
 matteodem:easy-search
-mizzao:user-status
 reactive-var
 reywood:publish-composite
 maazalik:highcharts
@@ -38,7 +37,6 @@ velocity:html-reporter
 mike:mocha
 dburles:spacebars-tohtml
 
-meteorhacks:fast-render
 dfischer:phantomjs
 service-configuration
 rubaxa:sortable
@@ -52,8 +50,9 @@ chhib:selectize-bootstrap-3
 percolate:migrations
 phanime-spoiler-alert
 phanime-mal-import
-meteorhacks:kadira
 phanime-homepage-userfeed
 phanime-homepage-activeentries
 phanime-homepage-recommendedanime
 phanime-homepage-schedule
+meteorhacks:fast-render
+meteorhacks:kadira
