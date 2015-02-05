@@ -9,7 +9,6 @@ aldeed:autoform
 accounts-base
 accounts-password
 less
-gfk:notifications
 dburles:collection-helpers
 spiderable
 dandv:jquery-rateit
@@ -44,7 +43,6 @@ tmeasday:publish-counts
 flowkey:hotkeys
 datariot:ganalytics
 facts
-momentjs:moment
 comerc:autoform-selectize
 chhib:selectize-bootstrap-3
 percolate:migrations
@@ -56,3 +54,5 @@ phanime-homepage-recommendedanime
 phanime-homepage-schedule
 meteorhacks:fast-render
 meteorhacks:kadira
+momentjs:moment
+gfk:notifications
