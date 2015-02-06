@@ -20,6 +20,14 @@ Template.createComment.events({
 				// We clear the comment;
 				$(event.target).val('');
 
+				Meteor.call('phanimeLib__parseTextForMentions', commentContent, function(error, result) {
+					if (error) {
+						Notifications.error('Failed to create a comment', error.reason);
+					} else {
+						console.log(result);
+					}
+				});
+
 				Comments.insert(comment, function(error, _id) {
 					if (error) {
 						Notifications.error('Comment creation failed!', error.reason);
