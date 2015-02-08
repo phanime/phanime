@@ -9,7 +9,6 @@ aldeed:autoform
 accounts-base
 accounts-password
 less
-gfk:notifications
 dburles:collection-helpers
 spiderable
 dandv:jquery-rateit
@@ -20,7 +19,6 @@ email
 manuelschoebel:ms-seo
 maazalik:malihu-jquery-custom-scrollbar
 matteodem:easy-search
-mizzao:user-status
 reactive-var
 reywood:publish-composite
 maazalik:highcharts
@@ -38,7 +36,6 @@ velocity:html-reporter
 mike:mocha
 dburles:spacebars-tohtml
 
-meteorhacks:fast-render
 dfischer:phantomjs
 service-configuration
 rubaxa:sortable
@@ -46,14 +43,17 @@ tmeasday:publish-counts
 flowkey:hotkeys
 datariot:ganalytics
 facts
-momentjs:moment
 comerc:autoform-selectize
 chhib:selectize-bootstrap-3
 percolate:migrations
 phanime-spoiler-alert
 phanime-mal-import
-meteorhacks:kadira
 phanime-homepage-userfeed
 phanime-homepage-activeentries
 phanime-homepage-recommendedanime
 phanime-homepage-schedule
+meteorhacks:fast-render
+meteorhacks:kadira
+gfk:notifications
+momentjs:moment
+phanime-alerts

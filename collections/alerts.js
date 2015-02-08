@@ -11,7 +11,9 @@ AlertsSchema = new SimpleSchema({
 			"revisionReopened",
 			"comment",
 			"likeProfilePost",
-			"likeComment"
+			"likeComment",
+			"mentionComment",
+			"mentionProfilePost"
 		]
 	},
 	userId: {
@@ -86,7 +88,7 @@ Alerts.helpers({
 			case "userFollow": 
 
 				var followerProfileUrl = Router.routes['user'].path({username: this.properties.followerUsername.toLowerCase()});	
-				userFriendlyText = "<span><a href='" + followerProfileUrl + "'>" + this.properties.followerUsername + "</a></span> started following you ";
+				userFriendlyText = "<span><a href='" + followerProfileUrl + "'>" + this.properties.followerUsername + "</a></span> started following you";
 
 				break;
 			case "userProfilePost":
@@ -189,7 +191,33 @@ Alerts.helpers({
 
 				userFriendlyText = '<span><a href="' + likerProfileUrl + '">' + this.properties.likerUsername + '</a> liked your <a href="' + profilePostUrl + '">profile post</a></span>';
 
-				break;			
+				break;
+
+			case "mentionComment":
+				switch(this.properties.commentType) {
+
+					case "customList":
+
+						var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
+						var customListUrl = Router.routes['customList'].path({_id: this.properties.customListId, slug: getSlug(this.properties.customListTitle)});
+						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> mentioned you in a comment on this custom list: <a href="' + customListUrl + '">' + this.properties.customListTitle + '</a>.</span>';
+						break;
+
+					case "profilePost":
+						var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
+						var profilePostUrl = Router.routes['profilePost'].path({_id: this.properties.profilePostId});
+						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> mentioned you in a comment on this <a href="' + profilePostUrl + '">profile post</a></span>';
+						break;
+
+				}
+
+				break;
+
+			case "mentionProfilePost":
+				var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
+				var profilePostUrl = Router.routes['profilePost'].path({_id: this.properties.profilePostId});
+				userFriendlyText = "<span><a href='" + posterProfileUrl + "'>" + this.properties.posterUsername + "</a> mentioned you in this <a href='" + profilePostUrl + "'>profile post</a></span> ";
+
 
 		}
 

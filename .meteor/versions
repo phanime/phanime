@@ -1,8 +1,8 @@
 accounts-base@1.1.3
 accounts-password@1.0.6
 aldeed:autoform@4.2.2
-aldeed:collection2@2.3.1
-aldeed:simple-schema@1.1.0
+aldeed:collection2@2.3.2
+aldeed:simple-schema@1.3.0
 amplify@1.0.0
 application-configuration@1.0.4
 autoupdate@1.1.5
@@ -21,7 +21,7 @@ comerc:autoform-selectize@2.1.7
 dandv:jquery-rateit@1.0.22_2
 datariot:ganalytics@0.2.1
 dburles:collection-helpers@1.0.2
-dburles:mongo-collection-instances@0.2.5
+dburles:mongo-collection-instances@0.2.6
 dburles:spacebars-tohtml@1.0.0
 ddp@1.0.14
 deps@1.0.6
@@ -33,7 +33,7 @@ fastclick@1.0.2
 flowkey:hotkeys@1.1.1
 follower-livedata@1.0.3
 geojson-utils@1.0.2
-gfk:notifications@1.1.1
+gfk:notifications@1.1.2
 hellogerard:reststop2@0.7.1
 html-tools@1.0.3
 htmljs@1.0.3
@@ -58,12 +58,13 @@ maazalik:discourse-sso@0.2.0
 maazalik:highcharts@0.2.3
 maazalik:malihu-jquery-custom-scrollbar@3.0.6
 manuelschoebel:ms-seo@0.4.1
-matteodem:easy-search@1.4.7
+matteodem:easy-search@1.4.10
 meteor@1.1.4
 meteor-platform@1.2.1
 meteorhacks:async@1.0.0
-meteorhacks:fast-render@2.2.0
-meteorhacks:kadira@2.17.0
+meteorhacks:fast-render@2.3.1
+meteorhacks:inject-data@1.2.2
+meteorhacks:kadira@2.17.5
 meteorhacks:kadira-binary-deps@1.3.1
 meteorhacks:meteorx@1.2.1
 meteorhacks:npm@1.2.2
@@ -72,10 +73,8 @@ mike:mocha@0.5.1
 minifiers@1.1.3
 minimongo@1.0.6
 mizzao:bootstrap-3@3.3.1_1
-mizzao:timesync@0.2.2
-mizzao:user-status@0.6.3
 mobile-status-bar@1.0.2
-momentjs:moment@2.8.4
+momentjs:moment@2.9.0
 mongo@1.0.11
 mongo-livedata@1.0.7
 mousetrap:mousetrap@1.4.6
@@ -86,6 +85,7 @@ observe-sequence@1.0.4
 ordered-dict@1.0.2
 percolate:migrations@0.7.2
 percolatestudio:synced-cron@1.1.0
+phanime-alerts@0.0.1
 phanime-homepage-activeentries@0.0.1
 phanime-homepage-recommendedanime@0.0.1
 phanime-homepage-schedule@0.0.1
@@ -103,7 +103,7 @@ retry@1.0.2
 reywood:publish-composite@1.3.5
 rosh93:aws-sdk@0.0.2
 routepolicy@1.0.4
-rubaxa:sortable@1.0.0_1
+rubaxa:sortable@1.0.1
 service-configuration@1.0.3
 session@1.0.5
 sha@1.0.2
@@ -119,7 +119,7 @@ ui@1.0.5
 underscore@1.0.2
 url@1.0.3
 velocity:core@0.4.5
-velocity:html-reporter@0.4.1
+velocity:html-reporter@0.4.2
 velocity:node-soft-mirror@0.2.4
 velocity:shim@0.1.0
 velocity:test-proxy@0.0.4

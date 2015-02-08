@@ -34,25 +34,23 @@ Template.createComment.events({
 							userIdToAlert = parent.posterId;
 						}
 
+						var properties = {
+							posterId: comment.userId,
+							commentType: comment.type,
+							posterUsername: Meteor.user().displayName()
+						};
+
+						if (commentType === "customList") {
+							properties.customListId = parent._id;
+							properties.customListTitle = parent.title;
+						} else if (commentType === "profilePost") {
+							properties.profilePostId = parent._id;
+							properties.userProfileId = parent.userId;
+						}
+
 						// We don't send an alert if the parent post was also posted by that user
 
 						if (userIdToAlert !== comment.userId) {
-
-							var properties = {
-								posterId: comment.userId,
-								commentType: comment.type,
-								posterUsername: Meteor.user().displayName()
-							};
-
-							if (commentType === "customList") {
-								properties.customListId = parent._id;
-								properties.customListTitle = parent.title;
-							} else if (commentType === "profilePost") {
-								properties.profilePostId = parent._id;
-								properties.userProfileId = parent.userId;
-							}
-
-
 
 							Meteor.call('createAlert', 'comment', properties, userIdToAlert, function(error, result) {
 								if (error) {
@@ -60,8 +58,20 @@ Template.createComment.events({
 									throw new Meteor.Error(400, error.reason);
 								}
 							});
-
 						}
+
+
+						Meteor.call('phanimeLib__parseTextForMentions', commentContent, function(error, result) {
+							if (error) {
+								Notifications.error('Failed to create a comment', error.reason);
+							} else {
+								Meteor.call('phanimeAlerts__alertUsernames', 'mentionComment', properties, result, function(error, result) {
+									console.log(error);
+									console.log(result);
+								});
+							}
+						});
+
 					}
 				});
 
