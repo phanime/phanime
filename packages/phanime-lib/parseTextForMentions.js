@@ -16,4 +16,4 @@ Meteor.methods({
 
 		return usernames;
 	}
-})
+});

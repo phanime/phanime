@@ -4,4 +4,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
+	api.addFiles([
+		'methods/alert.js'
+	], ['server', 'client'])
 });

@@ -11,7 +11,9 @@ AlertsSchema = new SimpleSchema({
 			"revisionReopened",
 			"comment",
 			"likeProfilePost",
-			"likeComment"
+			"likeComment",
+			"mentionComment",
+			"mentionProfilePost"
 		]
 	},
 	userId: {
