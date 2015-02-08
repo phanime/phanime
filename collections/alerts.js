@@ -191,7 +191,27 @@ Alerts.helpers({
 
 				userFriendlyText = '<span><a href="' + likerProfileUrl + '">' + this.properties.likerUsername + '</a> liked your <a href="' + profilePostUrl + '">profile post</a></span>';
 
-				break;			
+				break;
+
+			case "mentionComment":
+				switch(this.properties.commentType) {
+
+					case "customList":
+
+						var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
+						var customListUrl = Router.routes['customList'].path({_id: this.properties.customListId, slug: getSlug(this.properties.customListTitle)});
+						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> mentioned you in the custom list: <a href="' + customListUrl + '">' + this.properties.customListTitle + '</a>.</span>';
+						break;
+
+					case "profilePost":
+						var posterProfileUrl = Router.routes['user'].path({username: this.properties.posterUsername.toLowerCase()});
+						var profilePostUrl = Router.routes['profilePost'].path({_id: this.properties.profilePostId});
+						userFriendlyText = '<span><a href="' + posterProfileUrl + '">' + this.properties.posterUsername + '</a> mentioned you in this <a href="' + profilePostUrl + '">profile post</a></span>';
+						break;
+
+				}
+
+				break;						
 
 		}
 
