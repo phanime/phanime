@@ -4,6 +4,7 @@ UI.registerHelper("urlifyText", function(text) {
 	var text = _.escape(text);
 
 	var urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g;
+	var userRegex = /@[a-zA-Z0-9_]+/g;
 
 	// Only one image allowed per post, the rest will be turned into urls
 	var imageTrigger = false;
@@ -20,6 +21,11 @@ UI.registerHelper("urlifyText", function(text) {
 			return '<a href="' +url2+ '" target="_blank">' + url + '</a>';
 		}
 	}); 
+
+	text = text.replace(userRegex, function(match) {
+		var userProfileUrl = Router.routes['user'].path({username: match.slice(1, match.length).toLowerCase()});
+		return '<a href="' + userProfileUrl + '" class="user-mention">' + match + "</a>";
+	});
 
 	if (ourImage) {
 		text += "\n";
