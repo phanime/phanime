@@ -1,6 +1,6 @@
 Meteor.methods({
 	phanimeLib__parseTextForMentions: function(text) {
-		var userRegex = /@[a-zA-Z0-9_]+$/g;
+		var userRegex = /@[a-zA-Z0-9_]+/g;
 		var usernames = [];
 		var maxMentions = 5;
 		text.replace(userRegex, function(match, text, urlId) {

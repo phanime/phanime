@@ -9,6 +9,7 @@ LibraryEntriesSchema = new SimpleSchema({
 				return "No user found with this userId";
 			}
 		},
+		index: 1,
 		denyUpdate: true
 	},
 	animeId: {
