@@ -8,7 +8,6 @@ iron:router
 aldeed:autoform
 accounts-base
 accounts-password
-less
 dburles:collection-helpers
 spiderable
 dandv:jquery-rateit
@@ -57,3 +56,5 @@ meteorhacks:kadira
 gfk:notifications
 momentjs:moment
 phanime-alerts
+fourseven:scss@2.0.0-beta_3
+meta:susy
