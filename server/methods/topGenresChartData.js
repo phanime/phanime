@@ -1,6 +1,7 @@
 Meteor.methods({
 
 	topGenresChartData: function(userId) {
+		this.unblock();
 		// Get the user's library entries
 		var libraryEntries  = LibraryEntries.find({userId: userId}, {fields: {animeId: 1}}).fetch();
 		// Grab the animeIds from libraryEntries
