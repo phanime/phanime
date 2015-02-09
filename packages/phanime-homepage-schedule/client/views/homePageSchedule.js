@@ -74,4 +74,3 @@ Template.homePageSchedule.helpers({
 		return Template.instance().ready.get();
 	}
 });
-
