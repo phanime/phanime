@@ -4,14 +4,16 @@ Meteor.methods({
 		// Let's grab user's library entries.
 		var libraryEntries = LibraryEntries.find({userId: userId}).fetch();
 		
-		// These are anime that we cannot recommend again! 
+		// These are anime that we cannot recommend again!
 		var animeIdsAlready = _.pluck(libraryEntries, 'animeId');
 		var recommendedAnime = {};
 
 
 
 		libraryEntries.forEach(function(libraryEntry) {
+
 			var anime = Anime.findOne({_id: libraryEntry.animeId});
+
 			// Ignore any entry that's rated below 7..
 			// ideally we want to get the average rating of this user
 			// and then use that number as our base rating. Since there 
@@ -19,7 +21,7 @@ Meteor.methods({
 
 			// We also don't want to recommend anime that are similar to the ones 
 			// the user has dropped, so we shouldn't look at their dropped anime
-			if (libraryEntry.rating >= 7 || libraryEntry.status !== 'Dropped') {
+			if ((libraryEntry.rating >= 6 || libraryEntry.status !== 'Dropped') && anime && anime.genres) {
 				var potentialAnime = Anime.find({genres: {$in: anime.genres}, _id: {$nin: animeIdsAlready}}, {fields: {_id: 1}}).fetch();
 				
 				potentialAnime.forEach(function(anime) {

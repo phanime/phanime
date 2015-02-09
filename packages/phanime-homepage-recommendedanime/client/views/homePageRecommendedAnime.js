@@ -28,6 +28,8 @@ Template.homePageRecommendedAnime.events({
 		Meteor.call('generateAnimeRecommendations', Meteor.userId(), function(error, results) {
 			if (!error) {
 				console.log('recommendations finished');
+			} else {
+				console.log(error);
 			}
 			// We change the button back
 			$('#loading').attr('id', 'requestRecommendation');
