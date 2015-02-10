@@ -8,7 +8,6 @@ iron:router
 aldeed:autoform
 accounts-base
 accounts-password
-less
 dburles:collection-helpers
 spiderable
 dandv:jquery-rateit
