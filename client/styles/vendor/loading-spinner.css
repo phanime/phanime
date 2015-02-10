@@ -1,5 +1,3 @@
-@import "../partials/_base.scss";
-
 .loading-spinner{
   position: relative;
   margin: 10px auto;
