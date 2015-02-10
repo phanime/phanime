@@ -47,6 +47,7 @@ iron:location@1.0.7
 iron:middleware-stack@1.0.7
 iron:router@1.0.7
 iron:url@1.0.7
+jnoble:multi-styl@0.1.0
 jquery@1.11.3
 json@1.0.2
 launch-screen@1.0.1
