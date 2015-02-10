@@ -32,7 +32,6 @@ facts@1.0.3
 fastclick@1.0.2
 flowkey:hotkeys@1.1.1
 follower-livedata@1.0.3
-fourseven:scss@2.0.0-beta_3
 geojson-utils@1.0.2
 gfk:notifications@1.1.2
 hellogerard:reststop2@0.7.1
@@ -60,7 +59,6 @@ maazalik:highcharts@0.2.3
 maazalik:malihu-jquery-custom-scrollbar@3.0.6
 manuelschoebel:ms-seo@0.4.1
 matteodem:easy-search@1.4.10
-meta:susy@2.1.1
 meteor@1.1.4
 meteor-platform@1.2.1
 meteorhacks:async@1.0.0
