@@ -47,7 +47,6 @@ iron:location@1.0.7
 iron:middleware-stack@1.0.7
 iron:router@1.0.7
 iron:url@1.0.7
-jnoble:multi-styl@0.1.0
 jquery@1.11.3
 json@1.0.2
 launch-screen@1.0.1
@@ -113,6 +112,7 @@ spacebars-compiler@1.0.4
 spiderable@1.0.6
 srp@1.0.2
 standard-app-packages@1.0.4
+stylus@1.0.6
 templating@1.0.11
 tmeasday:publish-counts@0.3.4
 tracker@1.0.5
