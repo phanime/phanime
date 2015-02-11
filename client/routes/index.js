@@ -11,14 +11,7 @@ IndexController = RouteController.extend({
 		// 		'description' : 'Explore anime like never before on phanime'
 		// 	}
 		// });
-		console.log("Other acctions");
-		debugger;
 		this.next();
-	},
-
-	action: function() {
-		console.log("Action");
-		debugger;
 	},
 
 	// Disable iron-router progress on static page

@@ -16,8 +16,6 @@ Template.signIn.events({
 		Meteor.loginWithPassword(identification, password, function(error) {
 			var currentRouteName = Router.current().route.name;
 
-			debugger;
-
 			if (error) {
 				Notifications.error('Login Unsuccessful', 'Username or password is invalid');
 			} else {
