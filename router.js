@@ -1,6 +1,8 @@
 Router.map(function () {
 
-	this.route('index', {path: '/', template: 'index', layoutTemplate: 'indexLayout'});
+	this.route('index', {path: '/', layoutTemplate: 'indexLayout'});
+
+	this.route('dashboard');
 
 	/////////////////////////////////////////////////
 	///////////////////// Anime /////////////////////
@@ -73,7 +75,7 @@ Router.map(function () {
 	//////////////// Profile Post ///////////////////
 	/////////////////////////////////////////////////
 	this.route('profilePost', {path: 'profile-post/:_id'});
-	
+
 
 	/////////////////////////////////////////////////
 	/////////////////// Account /////////////////////
@@ -210,7 +212,7 @@ Router.onBeforeAction('loading');
 Router.onBeforeAction(routerBeforeHooks.logPageViews);
 
 // These routes require login
-Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {only: ['accountPersonalDetails', 'accountPreferences', 'accountSecurity', 'accountImports', 'revisionsAnimeAdd', 'revisionsQueue', 'customListsCreate', 'customListEdit']});
+Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {only: ['dashboard', 'accountPersonalDetails', 'accountPreferences', 'accountSecurity', 'accountImports', 'revisionsAnimeAdd', 'revisionsQueue', 'customListsCreate', 'customListEdit']});
 
 // If the user is already logged in, then they shouldn't be able to visit the following routes
 Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp', 'forgotPassword', 'resetPassword']});

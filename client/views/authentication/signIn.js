@@ -3,7 +3,7 @@ Template.signIn.events({
 		event.preventDefault();
 		// Get input
 
-		// We are using toLowerCase to ensure any version of the username will 
+		// We are using toLowerCase to ensure any version of the username will
 		// log the user in.
 		var identification = $('#identification').val().toLowerCase();
 		var password = $('#password').val();
@@ -12,10 +12,11 @@ Template.signIn.events({
 		// Get template data
 		var data = template.data;
 
-		// Check if the login request is coming from discourse or not 
+		// Check if the login request is coming from discourse or not
 		Meteor.loginWithPassword(identification, password, function(error) {
-			console.log(error);
 			var currentRouteName = Router.current().route.name;
+
+			debugger;
 
 			if (error) {
 				Notifications.error('Login Unsuccessful', 'Username or password is invalid');
@@ -28,7 +29,7 @@ Template.signIn.events({
 					console.log(user.avatarImageUrl());
 
 					user.avatarImageUrl = user.avatarImageUrl();
-					
+
 					// Temporary way to send the user to the right place after verification
 					Meteor.call('discourseSSO', data.sso, data.sig, user, function (error, result) {
 						console.log(result);
@@ -38,15 +39,17 @@ Template.signIn.events({
 					});
 
 				} else {
-					
-					// Let's authenticate the user in discourse as well 
-					// This will direct us to /community/sso route where the 
-					// discourse authentication will be done, that route will then 
+
+					// Let's authenticate the user in discourse as well
+					// This will direct us to /community/sso route where the
+					// discourse authentication will be done, that route will then
 					// eventually lead to the index route
 
-					
+
 					if (Meteor.settings.public.enableDiscourseAuth === true) {
 						window.location = "http://community.phanime.com/session/sso?return_path=http://phanime.com/";
+					} else {
+						Router.go('dashboard');
 					}
 
 
