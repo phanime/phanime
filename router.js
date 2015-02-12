@@ -111,9 +111,9 @@ Router.map(function () {
 	// Related routes
 
 
-	this.route('signIn', {path: 'sign-in'});
+	this.route('signIn', {path: 'sign-in', layoutTemplate: 'indexLayout'});
 	this.route('signOut', {path: 'sign-out'});
-	this.route('signUp', {path: 'sign-up'});
+	this.route('signUp', {path: 'sign-up', layoutTemplate: 'indexLayout'});
 	this.route('forgotPassword', {path: 'forgot-password'});
 	this.route('resetPassword', {path: 'reset-password/:token'});
 
