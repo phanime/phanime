@@ -1,5 +1,4 @@
 IndexController = RouteController.extend({
-	template: "landing",
 	onBeforeAction: function () {
 		if (Meteor.user()) {
 			Router.go('dashboard');
@@ -13,7 +12,6 @@ IndexController = RouteController.extend({
 		// });
 		this.next();
 	},
-
 	// Disable iron-router progress on static page
 	progress: false
 

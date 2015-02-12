@@ -1,6 +1,6 @@
 Router.map(function () {
 
-	this.route('index', {path: '/', layoutTemplate: 'indexLayout'});
+	this.route('index', {path: '/', template: 'signUp', layoutTemplate: 'indexLayout'});
 
 	this.route('dashboard');
 
@@ -169,13 +169,6 @@ var routerBeforeHooks = {
 			this.next();
 		}
 	},
-	landingPage: function() {
-		if (!(Meteor.loggingIn() || Meteor.user())) {
-			this.render('landing');
-		} else {
-			this.next();
-		}
-	},
 
 	// remove the search template / set sesion variable to false
 	removeSearch: function() {
@@ -216,9 +209,6 @@ Router.onBeforeAction(routerBeforeHooks.isLoggedIn, {only: ['dashboard', 'accoun
 
 // If the user is already logged in, then they shouldn't be able to visit the following routes
 Router.onBeforeAction(routerBeforeHooks.isAlreadyLoggedIn, {only: ['signIn', 'signUp', 'forgotPassword', 'resetPassword']});
-
-// Render the landing page if the user isn't logged in on index
-Router.onBeforeAction(routerBeforeHooks.landingPage, {only: ['index']});
 
 // Router.onBeforeAction(routerBeforeHooks.removeSearch);
 
