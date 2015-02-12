@@ -446,19 +446,12 @@ a.user-mention {
 	left: 0;
 	bottom: 0;
 	z-index: 10;
-	max-width: 650px;
+	max-width: 300px;
 	margin: auto;
 	max-height: 250px;
 	color: #fff;
 }
 
-	.invite-block .col-sm-5, .invite-block .col-sm-7 {
-		padding: 0;
-	}
-
-	.invite-block .input-group {
-		margin: 0 auto;
-	}
 		.invite-block .input-group span {
 			display: block;
 			width: 100%;
@@ -469,25 +462,6 @@ a.user-mention {
 		width: 100%;
 	}
 
-	.invite-block input, .invite-block button, .invite-block button:hover {
-		border-radius: 0;
-		border-color: transparent;
-		margin: 0 !important;
-	}
-
-	.invite-block .form-control:focus {
-		border-color: rgba(139, 195, 74, 0.6);
-		outline: 0;
-		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 195, 74, 0.6);
-		box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 195, 74, 0.6);
-	}
-
-	.invite-block h1 {
-		margin-bottom: 30px;
-	}
-	.invite-block h3 {
-		margin-bottom: 30px;
-	}
 		.invite-block h3 span {
 			color: #83BD40;
 		}
@@ -1051,16 +1025,12 @@ ul.profile-summary-list {
 }
 /*--- Inputs ---*/
 
-input.form-control, select.form-control, textarea.form-control {
-	border-radius: 2px;
-}
-
-	input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
+	/*input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
 		border-color: rgba(139, 195, 74, 0.6);
 		outline: 0;
 		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 195, 74, 0.6);
 		box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(139, 195, 74, 0.6);
-	}
+	}*/
 
 input.form-control.input-inline {
 	width: auto;

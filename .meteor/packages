@@ -11,7 +11,6 @@ accounts-password
 dburles:collection-helpers
 spiderable
 dandv:jquery-rateit
-mizzao:bootstrap-3
 percolatestudio:synced-cron
 rosh93:aws-sdk
 email
