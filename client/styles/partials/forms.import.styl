@@ -13,7 +13,19 @@ input, textarea {
 }
 
 .input-group-horizontal {
+  margin-bottom: 20px;
   > input {
+    border-radius: 0;
+    border-bottom: 1px solid $lightGrey;
+  }
 
+  > input:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+
+  > input:last-child {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
   }
 }
