@@ -3,11 +3,43 @@
 
 global-reset()
 
-html, body {
-  margin: 0px
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  padding: 0;
+  margin: 0;
   font: $baseFontSize $baseFontFamily;
   background-color: $bodyBackgroundColor;
   font-smoothing: antialiased;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: $bodyFontColor;
+}
+
+a {
+  color: $linkColor;
+  cursor: pointer;
+  text-decoration: none;
+  word-wrap: break-word;
+  transition: color 0.15s linear;
+
+  &:hover {
+    color: lighten($linkColor, 35%);
+  }
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizelegibility;
 }
