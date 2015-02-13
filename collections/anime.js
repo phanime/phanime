@@ -284,7 +284,20 @@ EasySearch.createSearchIndex('anime', {
 	'use' : 'elastic-search',
 	'field' : ['canonicalTitle', 'englishTitle', 'romajiTitle', 'titleSynonyms'],
 	'collection' : Anime,
-	'limit' : 20,
+	'limit' : 24,
+	transform: function(doc) {
+		if (doc.startDate) {
+			delete doc.startDate;
+		}
+
+		if (doc.endDate) {
+			delete doc.endDate;
+		}
+
+		if (doc.ratingCounts) {
+			delete doc.ratingCounts;
+		}
+	},
 	'changeResults' : function (results) {
 		// We should attach libraryEntries to anime if the user exists
 
