@@ -114,8 +114,8 @@ Router.map(function () {
 	this.route('signIn', {path: 'sign-in', layoutTemplate: 'indexLayout'});
 	this.route('signOut', {path: 'sign-out'});
 	this.route('signUp', {path: 'sign-up', layoutTemplate: 'indexLayout'});
-	this.route('forgotPassword', {path: 'forgot-password'});
-	this.route('resetPassword', {path: 'reset-password/:token'});
+	this.route('forgotPassword', {path: 'forgot-password', layoutTemplate: 'indexLayout'});
+	this.route('resetPassword', {path: 'reset-password/:token', layoutTemplate: 'indexLayout'});
 
 	this.route('verifyEmail', {path: 'verify-email'});
 
