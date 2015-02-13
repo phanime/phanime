@@ -4,30 +4,30 @@ AnimeSchema = new SimpleSchema({
 	canonicalTitle: {
 		type: String,
 		label: "Canonical Title",
-		index: 1, 
+		index: 1,
 		unique: true,
 		min: 1,
-		max: 500 // sanity check max value 
+		max: 500 // sanity check max value
 	},
 	romajiTitle: {
 		type: String,
 		label: "Romaji Title",
 		min: 1,
-		max: 500, // sanity check max value 
-		optional: true	
+		max: 500, // sanity check max value
+		optional: true
 	},
 	englishTitle: {
 		type: String,
 		label: "English Title",
-		min: 1, 
-		max: 500, // sanity check max value 
+		min: 1,
+		max: 500, // sanity check max value
 		optional: true
 	},
 	japaneseTitle: {
 		type: String,
 		label: "Japanese Title",
-		min: 1, 
-		max: 500, // sanity check max value 
+		min: 1,
+		max: 500, // sanity check max value
 		optional: true
 	},
 	slug: {
@@ -35,7 +35,7 @@ AnimeSchema = new SimpleSchema({
 		label: "Slug",
 		autoform: {
 			disabled: true,
-			value: null				
+			value: null
 		},
 		autoValue: function() {
 			// Let's grab the document
@@ -160,7 +160,7 @@ AnimeSchema = new SimpleSchema({
 			rows: 10
 		},
 		min: 0,
-		max: 10000, // sanity check max value 
+		max: 10000, // sanity check max value
 		optional: true
 	},
 	myAnimeListId: {
@@ -246,7 +246,7 @@ Anime.helpers({
 			} else {
 				return "http://cdn.phanime.com/images/site/na.gif";
 			}
-		}		
+		}
 	},
 	title: function() {
 		// For the time being we just choose
@@ -261,8 +261,8 @@ Anime.helpers({
 Anime.allow({
 
 	insert: function(userId, doc) {
-		
-		// We need to ensure that there is only one anime per canonicalTitle 
+
+		// We need to ensure that there is only one anime per canonicalTitle
 		var titleCheck = Anime.findOne({canonicalTitle: doc.canonicalTitle});
 		var slugCheck = Anime.findOne({slug: doc.slug});
 
@@ -281,13 +281,22 @@ Anime.allow({
 });
 
 EasySearch.createSearchIndex('anime', {
-	'use' : 'mongo-db',
+	'use' : 'elastic-search',
 	'field' : ['canonicalTitle', 'englishTitle', 'romajiTitle', 'titleSynonyms'],
 	'collection' : Anime,
-	'limit' : 20,
-	'query' : function(searchString) {
-		var query = EasySearch.getSearcher('mongo-db').defaultQuery(this, searchString);
-		return query;
+	'limit' : 24,
+	transform: function(doc) {
+		if (doc.startDate) {
+			delete doc.startDate;
+		}
+
+		if (doc.endDate) {
+			delete doc.endDate;
+		}
+
+		if (doc.ratingCounts) {
+			delete doc.ratingCounts;
+		}
 	},
 	'changeResults' : function (results) {
 		// We should attach libraryEntries to anime if the user exists
@@ -297,27 +306,12 @@ EasySearch.createSearchIndex('anime', {
 		// 		anime.libraryEntry = LibraryEntries.findOne({userId: Meteor.userId(), animeId: anime._id});
 		// 	});
 		// }
-		var ids = _.pluck(results.results, "_id");
+		// var ids = _.pluck(results.results, "_id");
+		// return results;
+		console.log(results);
 		return results;
 	}
 });
-
-
-// Pages seems to be causing spiderable not to work properly
-// AnimePages = new Meteor.Pagination(Anime, {
-// 	router: 'iron-router',
-// 	routerTemplate: 'animeExplore',
-// 	homeRoute: '/anime/explore/',
-// 	route: '/anime/explore/page/',
-// 	perPage: 30,
-// 	itemTemplate: 'animeCardProxy',
-// 	routerLayout: 'defaultLayout',
-// 	sort: {canonicalTitle: 1},
-// 	templateName: 'animeSpecificExplore',
-// 	/*infiniteItemsLimit: 30,*/
-
-// });
-
 
 AnimeRevisionsSchema = new SimpleSchema({
 	_id: {
@@ -354,7 +348,7 @@ AnimeRevisionsSchema = new SimpleSchema({
 		label: "Slug",
 		autoform: {
 			disabled: true,
-			value: null			
+			value: null
 		},
 		optional: true,
 	},
