@@ -1002,7 +1002,7 @@ ul.profile-summary-list {
 }
 
 /*--- Button ---*/
-.btn {
+/*.btn {
 	border-radius: 2px;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
@@ -1022,7 +1022,7 @@ ul.profile-summary-list {
 
 .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
 	outline: 0px;
-}
+}*/
 /*--- Inputs ---*/
 
 	/*input.form-control:focus, select.form-control:focus, textarea.form-control:focus {

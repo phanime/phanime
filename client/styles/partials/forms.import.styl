@@ -43,23 +43,43 @@ input, textarea {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 2px;
+  transition: all 0.2s ease-in-out;
+  outline: 0;
 
-  &.tall {
+  &:active {
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.4);
+  }
+
+  &:hover {
+
+  }
+
+
+  &.big {
     padding: 10px 30px;
     font-size: $bigFontSize;
+  }
+
+  &.full-width {
+    width: 100%;
   }
 
   &.primary {
     color: #FFF;
     background-color: $lightGreen;
     border-color: darken($lightGreen, 20%);
+    &:hover, &:active, &:focus {
+      background-color: darken($lightGreen, 10%);
+      border-color: darken($lightGreen, 30%);
+    }
+
+    &:active {
+      box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.4);
+    }
   }
 
   &.secondary {
