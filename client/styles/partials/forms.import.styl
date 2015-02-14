@@ -54,11 +54,6 @@ input, textarea {
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.4);
   }
 
-  &:hover {
-
-  }
-
-
   &.big {
     padding: 10px 30px;
     font-size: $bigFontSize;
@@ -69,26 +64,46 @@ input, textarea {
   }
 
   &.primary {
-    color: #FFF;
+    color: #FFFFFF;
     background-color: $lightGreen;
     border-color: darken($lightGreen, 20%);
+
     &:hover, &:active, &:focus {
       background-color: darken($lightGreen, 10%);
       border-color: darken($lightGreen, 30%);
     }
-
-    &:active {
-      box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.4);
-    }
   }
 
   &.secondary {
-    color: #FFF;
+    color: #FFFFFF;
     background-color: $medGrey;
+    border-color: darken($medGrey, 20%);
+
+    &:hover, &:active, &:focus {
+      background-color: darken($medGrey, 10%);
+      border-color: darken($medGrey, 30%);
+    }
+
   }
 
   &.transparent {
     background-color: transparent;
+    border-color: $medGrey;
+    color: $medGrey;
+
+    &:hover, &:active, &:focus {
+      color: $lightGreen;
+      border-color: $lightGreen;
+    }
+
+    &.white {
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+      &:hover, &:active, &:focus {
+        color: $lightGreen;
+        border-color: $lightGreen;
+      }
+    }
   }
 
 }
