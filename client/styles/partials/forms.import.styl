@@ -9,7 +9,7 @@ input, textarea {
   border: none;
   box-sizing: border-box;
   border-radius: 2px;
-
+  color: $bodyFontColor;
 }
 
 .input-group-vertical {
@@ -28,4 +28,47 @@ input, textarea {
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
   }
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: $baseFontSize;
+  font-weight: normal;
+  line-height: $baseLineHeight;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+
+  &.tall {
+    padding: 10px 30px;
+    font-size: $bigFontSize;
+  }
+
+  &.primary {
+    color: #FFF;
+    background-color: $lightGreen;
+    border-color: darken($lightGreen, 20%);
+  }
+
+  &.secondary {
+    color: #FFF;
+    background-color: $medGrey;
+  }
+
+  &.transparent {
+    background-color: transparent;
+  }
+
 }
