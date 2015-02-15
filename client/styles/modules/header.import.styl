@@ -1,9 +1,12 @@
+$headerHeight = 54px;
+$headerItemPadding = ($headerHeight - ($baseFontSize))/2
+
 #header {
-  height: 54px;
+  height: $headerHeight;
   top: 0;
   width: 100%;
   background: #FFFFFF;
-  border-bottom: 1px solid $medGrey;
+  border-bottom: 1px solid $lightGrey;
   padding: 0 20px;
   z-index: 99;
   position: absolute;
@@ -12,5 +15,33 @@
 
   &.fixed {
     position: fixed;
+  }
+
+  ul {
+    &.right {
+
+    }
+
+    &.left {
+
+    }
+
+    &.inline > li {
+      position: relative;
+      display: block;
+      float: left;
+    }
+
+    > li {
+      > a {
+        display: block;
+        line-height: 1;
+        font-size: $baseFontSize;
+        padding-top: $headerItemPadding;
+        padding-bottom: $headerItemPadding;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
   }
 }

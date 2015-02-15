@@ -1,7 +1,10 @@
 <template name="header">
-	<header id="header">
+	<header id="header" class="fixed">
 
-		Hey
+		<ul class="right inline">
+			<li><a href="{{pathFor 'index'}}">Home</a></li>
+			<li><a href="{{pathFor 'animeExplore'}}">Anime</a></li>
+		</ul>
 
 	</header>
 
