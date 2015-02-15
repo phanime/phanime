@@ -18,6 +18,7 @@ chrismbeckett:fontawesome4@4.2.2
 chuangbo:cookie@1.1.0
 coffeescript@1.0.5
 comerc:autoform-selectize@2.1.7
+cryptoquick:stylus-multi@1.2.1
 dandv:jquery-rateit@1.0.22_2
 datariot:ganalytics@0.2.1
 dburles:collection-helpers@1.0.2
@@ -111,7 +112,6 @@ spacebars-compiler@1.0.4
 spiderable@1.0.6
 srp@1.0.2
 standard-app-packages@1.0.4
-stylus@1.0.6
 templating@1.0.11
 tmeasday:publish-counts@0.3.4
 tracker@1.0.5

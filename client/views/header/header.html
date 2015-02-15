@@ -1,12 +1,19 @@
 <template name="header">
 	<header id="header" class="fixed">
+		<div class="container-fluid">
+			<ul class="left inline">
+				<li><a href="{{pathFor 'index'}}">Home</a></li>
+				<li><a href="{{pathFor 'animeExplore'}}">Anime</a></li>
+			</ul>
+			<ul class="right inline">
+				{{#if currentUser}}
+					{{#with currentUser}}
+						<li><a href="{{pathFor 'user'}}">{{currentUser.displayName}}</a></li>
+					{{/with}}
+				{{/if}}
 
-		<ul class="right inline">
-			<li><a href="{{pathFor 'index'}}">Home</a></li>
-			<li><a href="{{pathFor 'animeExplore'}}">Anime</a></li>
-		</ul>
-
+			</ul>
+		</div>
 	</header>
-
-	<div style="margin-top: 50px"></div>
+	<div style="margin-top: 54px"></div>
 </template>

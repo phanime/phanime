@@ -1,6 +1,3 @@
-@import url("http://fonts.googleapis.com/css?family=Roboto:400,300")
-@import "nib"
-
 global-reset();
 
 *,
@@ -48,4 +45,24 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  +below(1360px) {
+    width: 100%;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.clearfix,
+.container,
+.container-fluid {
+  clearfix();
+}
+
+
+#velocity-status-widget {
+  z-index: 0 !important;
 }

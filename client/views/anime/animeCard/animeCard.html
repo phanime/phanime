@@ -1,17 +1,17 @@
 <template name="animeCard">
-	<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+	<div class="anime-card-container">
 		{{#unless currentUser}}
-			<a href="{{pathFor 'anime'}}">	
+			<a href="{{pathFor 'anime'}}">
 				<div class="anime-card img-lg" data-anime-id="{{_id}}" style="background-image: url('{{coverImageUrl}}')">
 					<div class="important">
 						{{title}}
 					</div>
-					<div class="banner-gradient"></div>			
+					<div class="banner-gradient"></div>
 				</div>
 			</a>
 		{{else}}
 			<div class="anime-card img-lg" data-anime-id="{{_id}}" style="background-image: url('{{coverImageUrl}}')">
-				
+
 				<div class="important">
 					{{title}}
 				</div>
@@ -24,9 +24,9 @@
 					{{/with}}
 				{{else}}
 					{{> libraryEntryCardAdd}}
-				{{/if}}				
+				{{/if}}
 			</div>
 		{{/unless}}
-		
+
 	</div>
 </template>
