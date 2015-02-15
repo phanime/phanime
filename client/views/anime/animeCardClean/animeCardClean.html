@@ -1,9 +1,9 @@
 <template name="animeCardClean">
 
 	{{#with anime}}
-		<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+		<div class="anime-card-container">
 			{{#if ../isLinked}}
-				<a href="{{pathFor 'anime'}}">	
+				<a href="{{pathFor 'anime'}}">
 					{{> animeCardCleanCore anime=this cssStyle=../cssStyle}}
 				</a>
 			{{else}}
@@ -21,7 +21,7 @@
 		<div class="important">
 			{{title}}
 		</div>
-		<div class="banner-gradient"></div>			
+		<div class="banner-gradient"></div>
 	</div>
 	{{/with}}
 </template>
