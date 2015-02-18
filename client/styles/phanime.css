@@ -1,53 +1,7 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
-
 /*-------------------------------*/
 /*---------- General ------------*/
 /*-------------------------------*/
 
-
-::-moz-selection { /* Code for Firefox */
-	color: #fff;
-	background: #575757;
-}
-
-::selection {
-	color: #fff;
-	background: #575757;
-}
-
-textarea {
-	resize: vertical;
-}
-
-ul.no-list-style {
-	list-style: none;
-	padding: 0;
-}
-
-.thin-text {
-	font-weight: 300;
-}
-
-.centered-text {
-	text-align: center;
-}
-
-.sub-text {
-	color: #949494;
-}
-
-.inline-text {
-	display: inline-block;
-}
-
-.margin-text {
-	margin-top: 20px !important;
-}
-
-.background-hr {
-	width: 90%;
-	border-color: #E0E0E0;
-}
 
 .block {
 	border: 1px solid #d8d8d8;
@@ -203,22 +157,6 @@ ul.nav > li> a {
 		animation: resize-height-short 0.75s; /* IE 10+ */
 	}
 
-.banner-gradient {
-	background: -moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(0,0,0,0)),color-stop(100%,rgba(0,0,0,0.65)));
-	background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-	background: -o-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-	background: -ms-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-	background: linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000',endColorstr='#a6000000',GradientType=0);
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	z-index: 1;
-}
-
 .main-content {
 	padding-top: 30px;
 	padding-bottom:20px;
@@ -254,62 +192,6 @@ ul.nav > li> a {
 		color: #fff;
 	}
 
-	/*---------------------------------*/
-	/*---------- IMG Sizes ------------*/
-	/*---------------------------------*/
-
-	.img {
-		width: 100%; /* for now */
-	}
-
-	.img.img-sm {
-		width: 50px;
-	}
-
-	.img.img-md {
-		width: 100px;
-	}
-
-	.img.img-lg {
-		width: 190px;
-	}
-
-
-	.img.avatar {
-		background-size: cover;
-		background-position: center center;
-		border-radius: 5px;
-		float: left;
-		margin-right: 10px;
-	}
-		.avatar.img-sm {
-			height: 50px;
-		}
-
-		.img-sm.avatar.bordered {
-			border: 2px solid #fff;
-			box-shadow: 0 0 3px rgba(0,0,0,0.5);
-			border-radius:0;
-		}
-
-	.img.cover {
-		background-size: cover;
-		background-position: center center;
-		border-radius: 5px;
-		float: left;
-		margin-right: 10px;
-	}
-		.img.cover.no-float {
-			float: none;
-		}
-
-		.img.cover.img-md {
-			height: 150px;
-		}
-
-		.img.cover.img-lg {
-			height: 285px;
-		}
 
 .btn.btn-transparent {
 	background-color: transparent;

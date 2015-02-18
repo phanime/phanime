@@ -1,0 +1,116 @@
+//////////////////////////////////
+////////// TEXT Utils ////////////
+//////////////////////////////////
+
+.thin-text {
+  font-weight: 300;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.sub-text {
+  color: $medGrey;
+}
+
+.inline-text {
+  display: inline-block;
+}
+
+.margin-text {
+  margin-top: 20px !important;
+}
+
+
+
+.background-hr {
+  width: 90%;
+  border-color: $medGrey;
+}
+
+
+.banner-gradient {
+  background: -moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(0,0,0,0)),color-stop(100%,rgba(0,0,0,0.65)));
+  background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: -o-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: -ms-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+
+/*---------------------------------*/
+/*---------- IMG Sizes ------------*/
+/*---------------------------------*/
+
+.img {
+  width: 100%; /* for now */
+
+  &.img-xs {
+    width: 32px;
+
+    &.avatar {
+      height: 32px;
+    }
+  }
+
+  &.img-sm {
+    width: 40px;
+
+    &.avatar {
+      height: 40px;
+    }
+  }
+
+  &.img-md {
+    width: 50px;
+
+    &.avatar {
+      height: 50px;
+    }
+  }
+
+  &.img-lg {
+    width: 190px;
+  }
+
+  &.avatar {
+    background-size: cover;
+    background-position: center center;
+    border-radius: 1000px;
+    float: left;
+    margin-right: 10px;
+
+    &.bordered {
+      border: 2px solid #fff;
+      box-shadow: 0 0 3px rgba(0,0,0,0.5);
+      border-radius: 0;
+    }
+  }
+}
+
+.img.cover {
+  background-size: cover;
+  background-position: center center;
+  border-radius: 5px;
+  float: left;
+  margin-right: 10px;
+}
+.img.cover.no-float {
+  float: none;
+}
+
+.img.cover.img-md {
+  height: 150px;
+}
+
+.img.cover.img-lg {
+  height: 285px;
+}
