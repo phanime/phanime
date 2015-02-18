@@ -2,22 +2,11 @@
 
 	<div class="container main-content">
 
-		<div class="row">
-			<div class="col-sm-12">
-				{{> homePageActiveEntries}}
-			</div>
-		</div>
+		{{> homePageActiveEntries}}
+		
+		{{> homePageUserFeed}}
 
-
-		<div class="row">
-			<div class="col-sm-6">
-				{{> homePageUserFeed}}
-			</div>
-
-			<div class="col-sm-6">
-				{{> homePageSchedule}}
-			</div>
-		</div>
+		{{> homePageSchedule}}
 
 		{{> homePageRecommendedAnime}}
 

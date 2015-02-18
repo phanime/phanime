@@ -590,39 +590,6 @@ a.user-mention {
 /*---------- ANIME ------------*/
 /*-----------------------------*/
 
-/*.anime-card {
-	position: relative;
-	width: 190px;
-	height: 285px;
-	background-size: cover;
-	background-position: center;
-	margin: 10px auto;
-	border: 5px solid #FFF;
-	box-shadow: 0 0 3px rgba(0,0,0,0.5);
-	padding: 5px;
-	color: #EEE;
-	text-align: center;
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}*/
-
-	.anime-card .important {
-		opacity: 1;
-		position: absolute;
-		bottom: 0;
-		z-index: 2;
-		font-size: 15px;
-		padding: 5px;
-		text-shadow: 0 0 3px rgba(0,0,0,.8);
-		text-align: left;
-		-webkit-transition: all 0.33s ease-in-out;
-		-moz-transition: all 0.33s ease-in-out;
-		-o-transition: all 0.33s ease-in-out;
-		transition: all 0.33s ease-in-out;
-	}
-
 .fancy-heading .container .anime-important {
 	position: absolute;
 	bottom: 0;
