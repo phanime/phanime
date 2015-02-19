@@ -10,6 +10,10 @@
 # Ignore start script
 /startScript
 
+# Ignore tmp and log directories
+/tmp/
+/log/
+
 # Ignore generated bundles
 *.7z
 *.dmg
@@ -21,7 +25,7 @@
 *.zip
 
 
-# Ignore OS generated files 
+# Ignore OS generated files
 .DS_Store
 .DS_Store?
 ._*
