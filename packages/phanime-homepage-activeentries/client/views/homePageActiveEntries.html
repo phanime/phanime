@@ -9,6 +9,7 @@
 				<a href="{{pathFor 'userLibrary'}}" style="margin-top: -5px; margin-bottom: 10px; margin-left: 10px" class="btn btn-primary btn-sm btn-transparent">View Library</a>
 			{{/with}}
 		{{/if}}
+		<div class="clearfix">
 		{{#each activeEntries}}
 				{{> libraryEntryCard}}
 		{{else}}
@@ -20,5 +21,6 @@
 				</div>
 			</div>
 		{{/each}}
+		</div>
 	{{/unless}}
 </template>

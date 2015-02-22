@@ -2,17 +2,19 @@
 
 	<div class="container main-content">
 
-		<h1 class="thin-text sub-text">Recently Added</h1>
+		<section>
+			<h1 class="thin-text sub-text">Recently Added</h1>
 
-		<div class="row">
-			{{#each recentlyAdded.entries}}
-				{{> UI.dynamic template="libraryEntryCard" data=this}}		
-			{{/each}}
-		</div>
+			<div class="clearfix">
+				{{#each recentlyAdded.entries}}
+					{{> UI.dynamic template="libraryEntryCard" data=this}}
+				{{/each}}
+			</div>
+		</section>
 
-		<hr>
-
-		{{> userLibrarySection user=this}}
+		<section>
+			{{> userLibrarySection user=this}}
+		</section>
 
 	</div>
 

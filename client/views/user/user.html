@@ -1,8 +1,8 @@
 <template name="user">
 	<div class="container main-content">
 
-		<div class="row">
-			<div class="col-sm-12 col-md-6 col-lg-6">
+		<section>
+			<article class="half-width">
 
 				{{#if topGenresChartObject}}
 					<div class="block">
@@ -10,14 +10,14 @@
 					</div>
 				{{/if}}
 
-			</div>
+			</article>
 
-			<div class="col-sm-12 col-md-6 col-lg-6">
+			<article class="half-width">
 
 				{{#if currentUser}}
 					{{> createProfilePost}}
 				{{/if}}
-				
+
 				{{#each profilePosts}}
 					{{> profilePostCard}}
 				{{else}}
@@ -34,8 +34,8 @@
 					{{/if}}
 				{{/if}}
 
-			</div>
-		</div>
+			</article>
+		</section>
 
 
 	</div>
