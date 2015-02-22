@@ -2,13 +2,23 @@
 
 	<div class="container main-content">
 
-		{{> homePageActiveEntries}}
-		
-		{{> homePageUserFeed}}
+		<section>
+			{{> homePageActiveEntries}}
+		</section>
 
-		{{> homePageSchedule}}
+		<section>
+			<article class="half-width">
+				{{> homePageUserFeed}}
+			</article>
 
-		{{> homePageRecommendedAnime}}
+			<article class="half-width">
+				{{> homePageSchedule}}
+			</article>
+		</section>
+
+		<section>
+			{{> homePageRecommendedAnime}}
+		</section>
 
 		{{> loading}}
 
