@@ -4,7 +4,7 @@
 	<div class="fancy-heading" style="background-image: url('{{profileBannerImageUrl}}')">
 		<div class="container">
 			<div class="user-important">
-			
+
 				{{#if isUserIdCurrentUser _id}}
 					<a href="{{pathFor 'accountPersonalDetails'}}">
 						<div class="user-avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
@@ -85,22 +85,14 @@
 
 	<nav class="navbar navbar-default profile-nav-container" role="navigation">
 		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#profile-nav-collapse">
-					<i class="fa fa-tasks"></i>
-				</button>
-			</div>
-
-			<div class="collapse navbar-collapse profile-nav" id="profile-nav-collapse">
-				<ul class="nav navbar-nav">
+				<ul class="inline-list">
 					<li class="{{activeRoute 'user'}}"><a href="{{pathFor 'user'}}">Summary</a></li>
 					<li class="{{activeRoute 'userActivity'}}"><a href="{{pathFor 'userActivity'}}">Activity</a></li>
 					<li class="{{activeRoute 'userLibrary'}}"><a href="{{pathFor 'userLibrary'}}">Library</a></li>
 					<li class="{{activeRoute 'userFollowers'}}"><a href="{{pathFor 'userFollowers'}}">Followers ({{followerCount}})</a></li>
 					<li class="{{activeRoute 'userFollowing'}}"><a href="{{pathFor 'userFollowing'}}">Following ({{followingCount}})</a></li>
 					<li class="{{activeRoute 'userCustomLists'}}"><a href="{{pathFor 'userCustomLists'}}">Custom lists</a></li>
-				</ul>				
-			</div>
+				</ul>
 		</div>
 	</nav>
 
