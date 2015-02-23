@@ -1,0 +1,32 @@
+.user-card {
+  position: relative;
+  width: 300px;
+  height: 225px;
+
+  .banner {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 150px;
+    background-size: cover;
+    background-position: center center;
+    margin-bottom: 30px;
+  }
+
+  .avatar {
+    position: absolute;
+    z-index: 1;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -50px;
+  }
+
+  &.block {
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.08);
+  }
+}

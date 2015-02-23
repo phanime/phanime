@@ -28,7 +28,10 @@
 		</div>
 
 		<div class="block comment-list">
-			<div class="expand-comments-list sub-text">{{expandCommentsText}}</div>
+			{{#if commentsList}}
+				<div class="expand-comments-list sub-text">{{expandCommentsText}}</div>
+			{{/if}}
+			
 			{{#each commentsList}}
 				{{> UI.dynamic template="commentCard" data=this}}
 			{{/each}}
