@@ -1,16 +1,26 @@
+gridify-item($containerWidth, $containerPadding, $colCount) {
+  $itemWidth = ($containerWidth - 2*$containerPadding)/$colCount;
+  column(1/$colCount, cycle: $colCount);
+  for $i in $colCount..2 {
+    +below($itemWidth*$i) {
+      column(1/($i - 1), uncycle: $i, cycle: ($i - 1));
+    }
+  }
+}
+
 .half-width {
   column(1/2);
 }
 
 
 .grid-col-4 {
-  column(1/4, cycle: 4);
+  gridify-item($containerWidth, $containerPadding, 4);
 }
 
 .grid-col-5 {
-  column(1/5, cycle: 5);
+  gridify-item($containerWidth, $containerPadding, 5);
 }
 
 .grid-col-6 {
-  column(1/6, cycle: 6);
+  gridify-item($containerWidth, $containerPadding, 6);
 }

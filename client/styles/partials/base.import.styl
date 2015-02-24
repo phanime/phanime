@@ -77,16 +77,16 @@ h6 {
 }
 
 .container {
-  center(1360px, 15px);
-  +below(1360px) {
+  center($containerWidth, $containerPadding);
+  +below($containerWidth) {
     width: 100%;
   }
 }
 
 .container-fluid {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-left: $containerPadding;
+  padding-right: $containerPadding;
 }
 
 .clearfix,
