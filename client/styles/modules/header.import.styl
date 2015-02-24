@@ -1,5 +1,7 @@
-$headerHeight = 54px;
-$headerItemPadding = ($headerHeight - ($baseFontSize))/2
+$headerHeight = 60px;
+$headerLineHeight = 32px;
+$headerFontSize = $baseFontSize + 4px;
+$headerItemPadding = ($headerHeight - $headerLineHeight)/2
 
 #header {
   height: $headerHeight;
@@ -12,6 +14,7 @@ $headerItemPadding = ($headerHeight - ($baseFontSize))/2
   position: absolute;
   transform: translate(0,0);
   transition: all .3s;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
 
   &.fixed {
     position: fixed;
@@ -37,8 +40,8 @@ $headerItemPadding = ($headerHeight - ($baseFontSize))/2
     > li {
       > a {
         display: block;
-        line-height: 1;
-        font-size: $baseFontSize;
+        line-height: 32px;
+        font-size: $headerFontSize;
         padding-top: $headerItemPadding;
         padding-bottom: $headerItemPadding;
         padding-right: 15px;

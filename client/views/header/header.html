@@ -8,6 +8,12 @@
 			<ul class="right inline">
 				{{#if currentUser}}
 					{{#with currentUser}}
+						<li>
+							<a href="{{pathFor 'user'}}">
+								<div class="img img-xs avatar" style="background-image: url('{{currentUser.avatarImageUrl}}')"></div>
+							</a>
+						</li>
+
 						<li><a href="{{pathFor 'user'}}">{{currentUser.displayName}}</a></li>
 					{{/with}}
 				{{/if}}
