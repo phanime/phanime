@@ -2,7 +2,7 @@
 	<div class="anime-card-container">
 		{{#unless currentUser}}
 			<a href="{{pathFor 'anime'}}">
-				<div class="anime-card img" data-src="{{coverImageUrl}}" data-anime-id="{{_id}}">
+				<div class="anime-card img" data-src="{{coverImageUrl}}" data-anime-id="{{_id}}" style="background-image: url('{{coverImageUrl}}')">
 					<div class="important">
 						{{title}}
 					</div>
@@ -10,7 +10,7 @@
 				</div>
 			</a>
 		{{else}}
-			<div class="anime-card img" data-src="{{coverImageUrl}}" data-anime-id="{{_id}}">
+			<div class="anime-card img" data-src="{{coverImageUrl}}" data-anime-id="{{_id}}" style="background-image: url('{{coverImageUrl}}')">
 
 				<div class="important">
 					{{title}}
