@@ -85,6 +85,7 @@ ordered-dict@1.0.2
 percolate:migrations@0.7.2
 percolatestudio:synced-cron@1.1.0
 phanime-alerts@0.0.1
+phanime-blazy@0.0.1
 phanime-homepage-activeentries@0.0.1
 phanime-homepage-recommendedanime@0.0.1
 phanime-homepage-schedule@0.0.1
