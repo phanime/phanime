@@ -11,7 +11,11 @@
 
 		<section class="content">
 			<h3 class="centered-text thin-text">{{displayName}}</h3>
-			<button class="btn secondary full-width">Follow</button>
+			{{#if isCurrentUserAFollower followers}}
+				<button id="unfollow" type="button" class="btn primary full-width">Following</button>
+			{{else}}
+				<button id="follow" type="button" class="btn secondary full-width">Follow</button>
+			{{/if}}
 		</section>
 
 	</article>
