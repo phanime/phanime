@@ -20,7 +20,7 @@
 		<div class="row">
 			{{#each anime}}
 				<div class="grid-col-6">
-					{{> animeCard}}
+					{{> animeCard anime=this wrapLink=false}}
 				</div>
 			{{else}}
 				<h3 class="sub-text">We couldn't find any anime with the currently applied filters</h3>

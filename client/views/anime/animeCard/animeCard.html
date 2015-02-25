@@ -1,22 +1,35 @@
 <template name="animeCard">
-	{{#unless currentUser}}
-		<a href="{{pathFor 'anime'}}">
-			<div class="anime-card img" data-src="{{coverImageUrl}}" data-anime-id="{{_id}}" style="background-image: url('{{coverImageUrl}}')">
-				<div class="important">
-					{{title}}
-				</div>
-				<div class="banner-gradient"></div>
-			</div>
-		</a>
+
+	{{#if wrapLink}}
+		{{#with anime}}
+			<a href="{{pathFor 'anime'}}">
+				{{> _animeCard_core anime=this cssStyle=../cssStyle}}
+			</a>
+		{{/with}}
 	{{else}}
-		<div class="anime-card img" data-src="{{coverImageUrl}}" data-anime-id="{{_id}}" style="background-image: url('{{coverImageUrl}}')">
 
-			<div class="important">
-				{{title}}
-			</div>
+		{{#unless currentUser}}
+			{{#with anime}}
+				<a href="{{pathFor 'anime'}}">
+					{{> _animeCard_core anime=this cssStyle=../cssStyle isEntryEnabled=false}}
+				</a>
+			{{/with}}
+		{{else}}
+			{{> _animeCard_core anime=anime cssStyle=cssStyle isEntryEnabled=true}}
+		{{/unless}}
+	{{/if}}
 
-			<div class="banner-gradient"></div>
+</template>
 
+<template name="_animeCard_core">
+	{{#with anime}}
+	<div class="anime-card" data-anime-id="{{_id}}" style="background-image: url('{{coverImageUrl}}'); {{../cssStyle}}">
+		<div class="important">
+			{{title}}
+		</div>
+		<div class="banner-gradient"></div>
+
+		{{#if ../isEntryEnabled}}
 			{{#if libraryEntry}}
 				{{#with libraryEntry}}
 					{{> libraryEntryCardEdit}}
@@ -24,6 +37,7 @@
 			{{else}}
 				{{> libraryEntryCardAdd}}
 			{{/if}}
-		</div>
-	{{/unless}}
+		{{/if}}
+	</div>
+	{{/with}}
 </template>

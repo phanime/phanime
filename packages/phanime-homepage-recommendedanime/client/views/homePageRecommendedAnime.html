@@ -6,7 +6,7 @@
 	<div class="row">
 		{{#each recommendedAnime}}
 			<div class="grid-col-6">
-				{{> animeCard}}
+				{{> animeCard anime=this wrapLink=false}}
 			</div>
 		{{else}}
 			<div class="col-sm-12">

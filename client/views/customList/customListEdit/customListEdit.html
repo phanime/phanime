@@ -7,7 +7,7 @@
 					<div class="col-sm-12">
 						<h3>{{title}}</h3>
 						<h5 class="sub-text">{{description}}</h5>
-						
+
 						<hr>
 
 						<div class="row">
@@ -49,10 +49,12 @@
 									{{#unless ready}}
 										{{> rectangleLoader}}
 									{{/unless}}
-									<div class="row">
+									<div class="clearfix">
 										{{#each searchResults}}
-											<div class="custom-list-wrapper" data-content-id="{{_id}}">
-												{{> animeCardClean anime=this cssStyle='cursor: pointer;'}}
+											<div class="grid-col-6">
+												<div class="custom-list-wrapper" data-content-id="{{_id}}">
+													{{> animeCard anime=this wrapLink=false cssStyle='cursor: pointer;'}}
+												</div>
 											</div>
 										{{/each}}
 									</div>
