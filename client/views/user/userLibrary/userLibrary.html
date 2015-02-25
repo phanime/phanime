@@ -7,7 +7,9 @@
 
 			<div class="clearfix">
 				{{#each recentlyAdded.entries}}
-					{{> UI.dynamic template="libraryEntryCard" data=this}}
+					<div class="grid-col-6">
+						{{> libraryEntryCard}}
+					</div>
 				{{/each}}
 			</div>
 		</section>

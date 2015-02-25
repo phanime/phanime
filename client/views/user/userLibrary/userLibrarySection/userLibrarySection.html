@@ -38,13 +38,13 @@
 	{{#if libraryViewCheck 'Cover'}}
 		<h1 class="thin-text sub-text">{{selectedStatus}}</h1>
 
-		<div class="row">
+		<div class="clearfix">
 			{{#each libraryEntries}}
-				{{> UI.dynamic template="libraryEntryCard" data=this}}
-			{{else}}
-				<div class="col-sm-12">
-					<h3 class="thin-text sub-text">{{user.displayName}} has no anime with {{selectedStatus}} status</h3>
+				<div class="grid-col-6">
+					{{> UI.dynamic template="libraryEntryCard" data=this}}
 				</div>
+			{{else}}
+				<h3 class="thin-text sub-text">{{user.displayName}} has no anime with {{selectedStatus}} status</h3>
 			{{/each}}
 		</div>
 	{{/if}}

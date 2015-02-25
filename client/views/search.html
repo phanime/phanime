@@ -23,7 +23,9 @@
 			{{else}}
 				<div class="row">
 					{{#esEach index="anime"}}
-						{{> UI.dynamic template="animeCardProxy" data=this}}
+						<div class="grid-col-6">
+							{{> animeCard}}
+						</div>
 					{{/esEach}}
 				</div>
 			{{/ifEsIsSearching}}

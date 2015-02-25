@@ -1,7 +1,6 @@
 <template name="animeCardClean">
 
 	{{#with anime}}
-		<div class="anime-card-container">
 			{{#if ../isLinked}}
 				<a href="{{pathFor 'anime'}}">
 					{{> animeCardCleanCore anime=this cssStyle=../cssStyle}}
@@ -9,8 +8,6 @@
 			{{else}}
 				{{> animeCardCleanCore anime=this cssStyle=../cssStyle}}
 			{{/if}}
-
-		</div>
 	{{/with}}
 
 </template>

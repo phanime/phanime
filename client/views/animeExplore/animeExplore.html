@@ -17,16 +17,16 @@
 
 		</div>
 
-		<hr class="background-hr">
-
 		<div class="row">
 			{{#each anime}}
-				{{> UI.dynamic template="animeCard" data=this}}
+				<div class="grid-col-6">
+					{{> animeCard}}
+				</div>
 			{{else}}
 				<h3 class="sub-text">We couldn't find any anime with the currently applied filters</h3>
 			{{/each}}
 		</div>
-	
+
 		{{#unless isReady}}
 			{{> rectangleLoader}}
 		{{/unless}}
