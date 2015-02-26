@@ -196,6 +196,9 @@
 // // Move Swordplay genre to theme
 // db.anime.update({genres: {$in: ["Swordplay"]}}, {$pull: {genres: "Swordplay"}, $push: {themes: "Swordplay"}});
 //
+// // Move Parody genre to theme
+// db.anime.update({genres: {$in: ["Parody"]}}, {$pull: {genres: "Parody"}, $push: {themes: "Parody"}});
+//
 // // Remove target audiences from anime
 // db.anime.find({genres: {$in: [
 // 	"Josei",
@@ -288,7 +291,10 @@
 // 	"Mecha",
 // 	"Military",
 // 	"Music",
+//  "Parody",
+//  "Pastiche",
 // 	"Samurai",
+//  "Satire",
 // 	"School Life",
 // 	"Space",
 // 	"Sports",

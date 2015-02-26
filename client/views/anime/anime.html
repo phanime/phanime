@@ -2,9 +2,6 @@
 
 <div class="container main-content">
 
-	{{> reviewAddModal}}
-	{{> revisionAnimeEditModal}}
-
 	<div class="row">
 		<div class="col-sm-12 block">
 			<div class="row">
@@ -145,15 +142,15 @@
 						<button class="btn btn-primary" data-toggle="modal" data-target="#reviewAddModal">Write Review</button>
 					{{/if}}
 				</div>
-			
+
 				{{#each reviews}}
 					{{> UI.dynamic template="reviewCard" data=this}}
 				{{/each}}
-			
+
 		</div>
 
 		<div class="col-sm-7 col-md-8">
-			
+
 			<div class="block green scroll-ready">
 				<h2 class="thin-text">Episodes</h2>
 
@@ -179,9 +176,9 @@
 						</tbody>
 					</table>
 				</div>
-			
+
 			</div>
-			
+
 		</div>
 
 
