@@ -2,29 +2,27 @@
 
 	<div class="progress" style="width: {{getPercentage episodesSeen anime.totalEpisodes}}"></div>
 
-	<div class="libraryEntryForm">						
+	<div class="library-entry-form">
 
-		<div class="form-group">
-			<button class="btn btn-default dropdown-toggle change-entry-status-btn" type="button" id="watchStatus" data-toggle="dropdown">
-				{{status}}
-				<span class="caret"></span>
-			</button>
+		<section>
+			<div class="dropdown-menu-wrapper">
+				<button class="btn full-width secondary handler">{{status}}</button>
+				<ul class="dropdown-menu">
+					{{#each watchStatuses}}
+						<li><a class="status-item" data-status="{{this}}">{{this}}</a></li>
+					{{/each}}
+				</ul>
+			</div>
+		</section>
 
-			<ul class="dropdown-menu" style="left:auto; width: 180px; margin-top: -10px; top: 55px;" role="menu" aria-labelledby="watchStatus">
-				{{#each watchStatuses}}
-					<li><a class="status-item" style="cursor: pointer" data-status="{{this}}">{{this}}</a></li>
-				{{/each}}
-			</ul>
-		</div>							
-
-		<div class="form-group">
+		<section>
 			<div title="1" class="entry-rating" id="rating_{{_id}}" data-rateit-value="{{rating}}"></div>
-		</div>
+		</section>
 
-		<div class="form-group">
-			<input type="number" class="form-control input-sm input-inline entry-episodesSeen" placeholder="#" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
-			<div class="entry-episodes"> / {{anime.totalEpisodes}}</div>
-		</div>
+		<section>
+			<input type="number" class="entry-episodes-seen" placeholder="#" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
+			<div class="entry-total-episodes"> / {{anime.totalEpisodes}}</div>
+		</section>
 
 		<div class="icon-group">
 			<i data-toggle="tooltip" data-placement="left" title="{{rewatchingToolText rewatching}}" class="fa entry libraryEntryIcons entry-rewatching {{entryRewatchingClass rewatching}}"></i>
@@ -32,7 +30,7 @@
 			<i data-toggle="tooltip" data-placement="right" title="{{privacyToolText privacy}}" class="fa entry libraryEntryIcons entry-privacy {{entryPrivacyClass privacy}}"></i>
 		</div>
 
-		<textarea class="form-control entry-comments" placeholder="Personal comments" value="{{comments}}" maxlength="140" rows="3"></textarea>
+		<textarea class="entry-comments" placeholder="Personal comments" value="{{comments}}" maxlength="140"></textarea>
 
 		<div class="thin-text centered" style="margin-top: 3px">
 			{{#with anime}}<a href="{{pathFor 'anime'}}">Go to Anime <i class="fa fa-arrow-circle-right"></i></a>{{/with}}

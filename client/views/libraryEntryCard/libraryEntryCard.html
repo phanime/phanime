@@ -1,5 +1,5 @@
 <template name="libraryEntryCard">
-	<div class="anime-card library-entry img-lg animated fadeIn" style="background-image: url('{{anime.coverImageUrl}}')">
+	<div class="anime-card animated fadeIn" style="background-image: url('{{anime.coverImageUrl}}')">
 
 		<div class="important">
 			{{anime.title}}
@@ -12,7 +12,7 @@
 		{{#if isUserIdCurrentUser userId}}
 			{{> libraryEntryCardEdit}}
 		{{else}}
-			<div class="libraryEntryForm">
+			<div class="library-entry-form">
 
 				<div class="form-group">
 					<button class="btn btn-default change-entry-status-btn" type="button">

@@ -1,30 +1,3 @@
-$animeCardWidthAndMargin = 190px + 20px;
-$twoCards = $animeCardWidthAndMargin*2;
-$threeCards = $animeCardWidthAndMargin*3;
-$fourCards = $animeCardWidthAndMargin*4;
-$fiveCards = $animeCardWidthAndMargin*5;
-$sixCards = $animeCardWidthAndMargin*6;
-
-
-.anime-card-container {
-  column(1/6, cycle: 6);
-  +below($sixCards) {
-    column(1/5, uncycle: 6, cycle: 5);
-  }
-  +below($fiveCards) {
-    column(1/4, uncycle: 5, cycle: 4);
-  }
-  +below($fourCards) {
-    column(1/3, uncycle: 4, cycle: 3);
-  }
-  +below($threeCards) {
-    column(1/2, uncycle: 3, cycle: 2);
-  }
-  +below($twoCards) {
-    column(1/1, uncycle: 2, cycle: 1);
-  }
-}
-
 .anime-card {
   position: relative;
   width: 190px;
@@ -50,4 +23,30 @@ $sixCards = $animeCardWidthAndMargin*6;
     text-align: left;
     color: $lightGrey;
   }
+
+  .banner-gradient {
+  	opacity: 1;
+  	-webkit-transition: all 0.3s ease-in-out;
+  	-moz-transition: all 0.3s ease-in-out;
+  	-o-transition: all 0.3s ease-in-out;
+  	transition: all 0.3s ease-in-out;
+  }
+
+  .progress {
+  	position: absolute;
+  	z-index: 1;
+  	top: 0;
+  	left: 0;
+  	background-color: #8bc34a;
+  	min-width: 5px;
+  	width: 5px;
+  	border-radius: 0;
+  	opacity: 0.7;
+  	height: 5px;
+  }
+
+  &:hover .library-entry-form {
+    opacity: 1;
+  }
+
 }

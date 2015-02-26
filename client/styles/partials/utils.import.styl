@@ -46,6 +46,78 @@
 }
 
 
+.dropdown-menu-wrapper {
+  position: relative;
+
+  &:hover .dropdown-menu {
+    display: block;
+  }
+
+  .handler:hover + .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 40px;
+    left: 5px;
+    right: 5px;
+    z-index: 2;
+    display: none;
+    /* Styles */
+    background: white;
+    border-radius: inherit;
+    border: 1px solid rgba(0,0,0,0.17);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-weight: normal;
+    transition: all 0.5s ease-in;
+    list-style: none;
+
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      bottom: 100%;
+      right: 15px;
+      border-width: 0 6px 6px 6px;
+      border-style: solid;
+      border-color: #fff transparent;
+    }
+
+    &:before {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      bottom: 100%;
+      right: 13px;
+      border-width: 0 8px 8px 8px;
+      border-style: solid;
+      border-color: rgba(0,0,0,0.1) transparent;
+    }
+
+    &:hover {
+      display: block;
+    }
+
+    > li > a {
+      font-size: $baseFontSize + 2px;
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: $medGrey;
+      border-bottom: 1px solid $lightGrey;
+      transition: all 0.3s ease-out;
+
+      &:hover {
+        background-color: $lightGrey;
+      }
+    }
+  }
+}
+
+
 /*---------------------------------*/
 /*---------- IMG Sizes ------------*/
 /*---------------------------------*/

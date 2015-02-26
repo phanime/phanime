@@ -1,0 +1,66 @@
+.library-entry-form {
+  position: absolute;
+  opacity: 0;
+  width: 190px;
+  background-color: #FFF;
+  left: -5px;
+  z-index: 3;
+  padding: 5px;
+  top: -5px;
+  height: 285px;
+  color: #696969;
+  /*box-shadow: 0 0 15px rgba(0,0,0,0.5);*/
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+
+  section {
+    &:first-child {
+      margin-top: 0;
+    }
+    margin: 15px 0;
+  }
+
+  .entry-episodes-seen {
+    display: inline;
+    width: 45px !important;
+    padding: 5px 0 0 5px;
+    border: 0;
+    border-bottom: 1px solid $lightGrey;
+  }
+
+  .entry-total-episodes {
+    display: inline;
+    font-size: 16px;
+
+    span {
+      font-size: 18px;
+    }
+
+  }
+
+  .icon-group, .libraryEntryRowEdit .icon-group {
+    margin: 10px auto;
+    color: #888;
+  }
+
+  .icon-group i, .libraryEntryRowEdit .icon-group i {
+    font-size: 25px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  textarea {
+    height: 75px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    vertical-align: top;
+  }
+
+  .comments {
+    max-height: 80px;
+    overflow-y: auto;
+  }
+}

@@ -16,7 +16,7 @@ Template.libraryEntryCardEdit.events({
 	'click .status-item' : function(event, template) {
 
 		var status = $(event.target).text();
-		
+
 
 		// Set the current library entry
 		var libraryEntry = template.data;
@@ -31,7 +31,7 @@ Template.libraryEntryCardEdit.events({
 			} else if (status !== libraryEntry.status) {
 
 				LibraryEntries.update({_id: libraryEntry._id}, {$set: {
-					status: status, 
+					status: status,
 					episodesSeen: (anime.totalEpisodes && status === 'Completed' ? anime.totalEpisodes : libraryEntry.episodesSeen),
 					updatedAt: new Date(),
 				}});
@@ -58,7 +58,7 @@ Template.libraryEntryCardEdit.events({
 
 		var libraryEntry = template.data;
 		var rating = $(event.target).rateit('value');
-		
+
 		// Update library entry
 		// console.log(rating);
 		// console.log(libraryEntry.rating);
@@ -80,7 +80,7 @@ Template.libraryEntryCardEdit.events({
 
 		var libraryEntry = template.data;
 		var rating = $(event.target).rateit('value');
-		
+
 		// Update library entry
 		// console.log(rating);
 		// console.log(libraryEntry.rating);
@@ -103,7 +103,7 @@ Template.libraryEntryCardEdit.events({
 	},
 	// Change the episodes seen
 
-	'change .entry-episodesSeen' : function(event, template) {
+	'change .entry-episodes-seen' : function(event, template) {
 		var episodesSeen = $(event.target).val();
 		var libraryEntry = template.data;
 		var anime = libraryEntry.anime();
@@ -145,7 +145,7 @@ Template.libraryEntryCardEdit.events({
 
 		// The privacy icon was clicked
 		if (icon.hasClass('entry-privacy')) {
-			
+
 			if (libraryEntry.privacy === true) {
 				privacy = false;
 				toolTitle = "Public";
@@ -156,7 +156,7 @@ Template.libraryEntryCardEdit.events({
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {privacy: privacy, updatedAt: new Date()}});
 
-			// Fix the tooltip text update it to the newest 
+			// Fix the tooltip text update it to the newest
 			$('.libraryEntryIcons.entry-privacy').attr('title', toolTitle).tooltip('fixTitle');
 
 
@@ -172,7 +172,7 @@ Template.libraryEntryCardEdit.events({
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {rewatching: rewatching, updatedAt: new Date()}});
 
-			// Fix the tooltip text update it to the newest 
+			// Fix the tooltip text update it to the newest
 			$('.libraryEntryIcons.entry-rewatching').attr('title', toolTitle).tooltip('fixTitle');
 
 			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'rewatching', rewatching);
@@ -196,18 +196,17 @@ Template.libraryEntryCardEdit.events({
 
 			LibraryEntries.update({_id: libraryEntry._id}, {$set: {highPriority: highPriority, updatedAt: new Date()}});
 
-			// Fix the tooltip text update it to the newest 
+			// Fix the tooltip text update it to the newest
 			$('.libraryEntryIcons.entry-highPriority').attr('title', toolTitle).tooltip('fixTitle');
 
 			var libraryEntryActivity = Activity.libraryEntryFields('anime', anime._id, 'highPriority', highPriority);
 
 			// Generate an activity for this action
 			Meteor.call('createActivity', 'libraryEntry', Meteor.user()._id, libraryEntryActivity, function(error, result) {
-				// console.log(error);
-				// console.log(result);
+				if (error) {
+					console.log(error);
+				}
 			});
-
-
 
 		}
 
@@ -219,16 +218,12 @@ Template.libraryEntryCardEdit.events({
 		var comments = $(event.target).val().trim();
 		var libraryEntry = template.data;
 
-		// Some simple cleaning 
+		// Some simple cleaning
 		comments = comments.trim();
 
-		if (comments === '') {
-			LibraryEntries.update({_id: libraryEntry._id}, {$unset: {comments: ''}, $set: {updatedAt: new Date()}});
-		}
-
 		// Ensure comments are different from before
-		if (comments !== libraryEntry.comments) {
-			LibraryEntries.update({_id: libraryEntry._id}, {$set: {comments: comments, updatedAt: new Date()}});
+		if (comments != libraryEntry.comments && (libraryEntry.comments !== undefined || comments !== "")) {
+			LibraryEntries.update({_id: libraryEntry._id}, {$set: {comments: comments}});
 		} else {
 			console.log('Comments were not changed');
 		}
