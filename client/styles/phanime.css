@@ -572,63 +572,7 @@ ul.profile-summary-list {
 /*--------- LIBRARY  ----------*/
 /*-----------------------------*/
 
-	.libraryEntryForm {
-		position: absolute;
-		opacity: 0;
-		width: 190px;
-		background-color: #FFF;
-		left: -5px;
-		z-index: 3;
-		padding: 5px;
-		top: -5px;
-		height: 285px;
-		color: #696969;
-		/*box-shadow: 0 0 15px rgba(0,0,0,0.5);*/
-		-webkit-transition: all 0.2s ease-in-out;
-		-moz-transition: all 0.2s ease-in-out;
-		-o-transition: all 0.2s ease-in-out;
-		transition: all 0.2s ease-in-out;
-	}
 
-	.libraryEntryForm .change-entry-status-btn {
-		width: 100%;
-	}
-
-		.libraryEntryForm .entry-episodesSeen {
-			width: 70px !important;
-		}
-
-		.libraryEntryForm .entry-episodes {
-			display: inline;
-			font-size: 16px;
-		}
-			.libraryEntryForm .entry-episodes span {
-				font-size: 18px;
-			}
-
-		.libraryEntryForm .icon-group, .libraryEntryRowEdit .icon-group {
-			margin: 10px auto;
-			color: #888;
-		}
-
-		.libraryEntryForm .icon-group i, .libraryEntryRowEdit .icon-group i {
-			font-size: 25px;
-			padding: 5px 10px;
-			cursor: pointer;
-		}
-
-		.libraryEntryForm textarea {
-			height: 55px;
-			box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			-webkit-box-sizing: border-box;
-			vertical-align: top;
-		}
-
-		.libraryEntryForm .comments {
-			max-height: 80px;
-			overflow-y: auto;
-		}
 
 
 /*-- Tabular version ---*/
