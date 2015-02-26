@@ -44,12 +44,6 @@ Template.revisionsQueue.events({
 
 	'click .statusFilter > button' : function(event, template) {
 		template.statusFilter.set($(event.target).text());
-	},
-
-	'click #generateThemes' : function(event, template) {
-		Meteor.call('addThemes', function(error) {
-			console.log(error);
-		});
 	}
 });
 
