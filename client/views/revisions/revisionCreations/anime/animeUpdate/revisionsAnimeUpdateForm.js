@@ -6,6 +6,7 @@ Template.revisionsAnimeUpdateForm.helpers({
 			valueField: "name",
 			labelField: "name",
 			searchField: "name",
+			sortField: "name",
 			load: function(query, callback) {
 				var selectize = this;
 				var currentAnime = data.currentAnime;
@@ -31,6 +32,7 @@ Template.revisionsAnimeUpdateForm.helpers({
 			valueField: "name",
 			labelField: "name",
 			searchField: "name",
+			sortField: "name",
 			load: function(query, callback) {
 				var selectize = this;
 				var currentAnime = data.currentAnime;

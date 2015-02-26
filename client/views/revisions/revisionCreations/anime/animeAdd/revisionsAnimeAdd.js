@@ -6,6 +6,7 @@ Template.revisionsAnimeAdd.helpers({
 			valueField: "name",
 			labelField: "name",
 			searchField: "name",
+			sortField: "name",
 			load: function(query, callback) {
 				var selectize = this;
 				if (!query) {
@@ -28,6 +29,7 @@ Template.revisionsAnimeAdd.helpers({
 			valueField: "name",
 			labelField: "name",
 			searchField: "name",
+			sortField: "name",
 			load: function(query, callback) {
 				var selectize = this;
 				if (!query) {
