@@ -44,6 +44,12 @@ Template.revisionsQueue.events({
 
 	'click .statusFilter > button' : function(event, template) {
 		template.statusFilter.set($(event.target).text());
+	},
+
+	'click #generateThemes' : function(event, template) {
+		Meteor.call('addThemes', function(error) {
+			console.log(error);
+		});
 	}
 });
 
@@ -56,7 +62,7 @@ Template.revisionsQueue.helpers({
 
 	hasMoreRevisions: function() {
 		var template = Template.instance();
-		var currentContentFilter = template.contentFilter.get();	
+		var currentContentFilter = template.contentFilter.get();
 		var currentStatusFilter = template.statusFilter.get();
 
 		var filter = {
@@ -82,7 +88,7 @@ Template.revisionsQueue.helpers({
 		var currentContentFilter = template.contentFilter.get();
 
 		return content === currentContentFilter ? 'active' : '';
-		
+
 	},
 	currentStatusFilter: function(status) {
 
@@ -90,12 +96,12 @@ Template.revisionsQueue.helpers({
 		var currentStatusFilter = template.statusFilter.get();
 
 		return status === currentStatusFilter ? 'active' : '';
-		
+
 	},
 	revisions: function() {
 
 		var template = Template.instance();
-		var currentContentFilter = template.contentFilter.get();	
+		var currentContentFilter = template.contentFilter.get();
 		var currentStatusFilter = template.statusFilter.get();
 
 		var filter = {
@@ -113,7 +119,7 @@ Template.revisionsQueue.helpers({
 
 		var revisions = Revisions.find(filter, {sort: {createdAt: -1}}).fetch();
 
-		
+
 		revisions.forEach(function(revision) {
 			return revision.content.revisionId = revision._id;
 		});
