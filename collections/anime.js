@@ -428,6 +428,12 @@ AnimeRevisionsSchema = new SimpleSchema({
 	},
 	themes: {
 		type: [String],
+		autoform: {
+			type: "selectize",
+			afFieldInput: {
+				multiple: true
+			}
+		},
 		optional: true
 	},
 	studios: {

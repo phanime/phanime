@@ -9,7 +9,7 @@
 
 
 		{{> afQuickField name='revisionId' type="hidden"}}
-		
+
 
 		{{#if coverImage}}
 			{{> afQuickField name='coverImage' placeholder="Please provide a URL of the image"}}
@@ -63,7 +63,7 @@
 		{{/if}}
 
 		{{#if themes}}
-			{{> afQuickField name='themes'}}
+			{{> afQuickField name='themes' selectizeOptions=themesOptions}}
 		{{/if}}
 
 		{{#if studios}}

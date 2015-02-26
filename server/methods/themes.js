@@ -1,4 +1,7 @@
 Meteor.methods({
+  getThemes: function() {
+    return Themes.find({}, {sort: {name: 1}}).fetch();
+  },
   addThemes : function() {
       var themes = [
         "Cars",
