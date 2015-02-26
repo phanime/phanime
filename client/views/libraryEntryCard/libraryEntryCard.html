@@ -14,19 +14,17 @@
 		{{else}}
 			<div class="library-entry-form">
 
-				<div class="form-group">
-					<button class="btn btn-default change-entry-status-btn" type="button">
-						{{status}}
-					</button>
-				</div>
+				<section>
+					<button class="btn full-width secondary handler">{{status}}</button>
+				</section>
 
-				<div class="form-group">
+				<section>
 					<div class="entry-rating" id="rating_{{_id}}" data-rateit-readonly="true" data-rateit-value="{{rating}}"></div>
-				</div>
+				</section>
 
-				<div class="form-group">
-					<div class="entry-episodes"> <span>{{hyphenNotExist episodesSeen}}</span> / {{anime.totalEpisodes}}</div>
-				</div>
+				<section>
+					<div class="entry-total-episodes"> <span>{{hyphenNotExist episodesSeen}}</span> / {{anime.totalEpisodes}}</div>
+				</section>
 
 				<div class="icon-group">
 					<i data-toggle="tooltip" data-placement="left" title="{{rewatchingToolText rewatching}}" class="fa entry entry-rewatching {{entryRewatchingClass rewatching}}"></i>
@@ -44,6 +42,5 @@
 
 			</div>
 		{{/if}}
-
 	</div>
 </template>
