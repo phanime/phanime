@@ -10,7 +10,7 @@ Router.map(function () {
 
 	// Defined for compatibilty with pages
 	this.route('animeExplore', {path: '/anime/explore'});
-	this.route('anime', {path: '/anime/:_id/:slug'});
+	this.route('anime', {path: '/anime/:_id/:slug', layoutTemplate: 'animeLayout'});
 
 	/////////////////////////////////////////////////
 	////////////////// Character ////////////////////
