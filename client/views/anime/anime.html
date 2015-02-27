@@ -51,17 +51,16 @@
 	</section>
 
 	<div class="clearfix">
-	<section class="block half-width">
+	<div class="half-width">
+	<section class="block">
 		<h3 class="title thin-text">Castings</h3>
 		<div class="clearfix">
 		{{#each castings}}
 			{{#if isEnglish}}
 				{{#with character}}
-				<div class="grid-col-9">
+				<div class="grid-col-5">
 					<div class="anime__character-card">
-						<a href="{{pathFor 'character'}}">
-							<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
-						</a>
+						<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
 						<h5 class="name centered-text">{{fullName}}</h5>
 						<h6 class="name centered-text">{{../person.fullName}}</h6>
 					</div>
@@ -71,17 +70,17 @@
 		{{/each}}
 		</div>
 	</section>
+	</div>
 
-	<section class="block half-width">
+	<div class="half-width">
+	<section class="block">
 		<h3 class="title thin-text">Staff Members</h3>
 		<div class="clearfix">
 			{{#each staffMembers}}
 					{{#with person}}
-						<div class="grid-col-9">
+						<div class="grid-col-5">
 							<div class="anime__character-card">
-								<a href="{{pathFor 'person'}}">
-									<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
-								</a>
+								<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
 								<h5 class="name centered-text">{{fullName}}</h5>
 								<h6 class="name centered-text">{{../staffPosition}}</h6>
 							</div>
@@ -90,6 +89,7 @@
 			{{/each}}
 		</div>
 	</section>
+	</div>
 	</div>
 
 	<div class="row">
