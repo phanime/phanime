@@ -2,26 +2,28 @@
 
 <div class="container main-content">
 
-	<div class="row">
+	<section class="block">
+		<div class="clearfix">
+			<div class="anime-side">
+				<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
+			</div>
+			<div class="anime-main">
+				<ul class="anime-info">
+					{{#if type}}<li>{{type}}</li>{{/if}}
+					{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
+					{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
+					{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
+					<li>{{airingText}} {{formatDateUTC startDate}} to {{#if isMomentDatePresent endDate}} {{formatDateUTC endDate}}{{else}} - {{/if}}</li>
+				</ul>
+				<div class="description thin-text">{{#if description}}{{description}}{{else}}No description available.{{/if}}</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="row">
 		<div class="col-sm-12 block">
 			<div class="row">
-				<div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
-					<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
-				</div>
 				<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
-					<h1 style="margin-top:0">
-						{{title}} {{#if currentUser}}<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#revisionAnimeEditModal">Edit</button>{{/if}}
-					</h1>
-
-					<ul class="anime-info">
-						{{#if type}}<li>{{type}}</li>{{/if}}
-						{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
-						{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
-						{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
-						<li>{{airingText}} {{formatDateUTC startDate}} to {{#if isMomentDatePresent endDate}} {{formatDateUTC endDate}}{{else}} - {{/if}}</li>
-					</ul>
-
-					<div class="description thin-text">{{#if description}}{{description}}{{else}}No description available.{{/if}}</div>
 
 					<div class="genresList">
 						{{#if genres}}
@@ -46,91 +48,49 @@
 
 		</div>
 
+	</section>
+
+	<div class="clearfix">
+	<section class="block half-width">
+		<h3 class="title thin-text">Castings</h3>
+		<div class="clearfix">
+		{{#each castings}}
+			{{#if isEnglish}}
+				{{#with character}}
+				<div class="grid-col-9">
+					<div class="anime__character-card">
+						<a href="{{pathFor 'character'}}">
+							<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
+						</a>
+						<h5 class="name centered-text">{{fullName}}</h5>
+						<h6 class="name centered-text">{{../person.fullName}}</h6>
+					</div>
+				</div>
+				{{/with}}
+			{{/if}}
+		{{/each}}
+		</div>
+	</section>
+
+	<section class="block half-width">
+		<h3 class="title thin-text">Staff Members</h3>
+		<div class="clearfix">
+			{{#each staffMembers}}
+					{{#with person}}
+						<div class="grid-col-9">
+							<div class="anime__character-card">
+								<a href="{{pathFor 'person'}}">
+									<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
+								</a>
+								<h5 class="name centered-text">{{fullName}}</h5>
+								<h6 class="name centered-text">{{../staffPosition}}</h6>
+							</div>
+						</div>
+					{{/with}}
+			{{/each}}
+		</div>
+	</section>
 	</div>
-
-	<div class="row">
-		<div class="col-sm-6 col-md-4">
-			<div class="col-sm-12 block green">
-				<h2 class="thin-text">Rating Overview</h2>
-
-				{{#if rating}}
-					<div class="row">
-						<div class="col-xs-4 col-lg-4">
-							<h2 class="thin-text centered-text" style="margin-top: 35px">{{roundDecimal 2 rating}}</h2>
-						</div>
-						<div class="col-xs-8 col-lg-8">
-							<div title="{{ratingCounts.[10]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[10] totalRatings}}"></div>
-							<div title="{{ratingCounts.[9]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[9] totalRatings}}"></div>
-							<div title="{{ratingCounts.[8]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[8] totalRatings}}"></div>
-							<div title="{{ratingCounts.[7]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[7] totalRatings}}"></div>
-							<div title="{{ratingCounts.[6]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[6] totalRatings}}"></div>
-							<div title="{{ratingCounts.[5]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[5] totalRatings}}"></div>
-							<div title="{{ratingCounts.[4]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[4] totalRatings}}"></div>
-							<div title="{{ratingCounts.[3]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[3] totalRatings}}"></div>
-							<div title="{{ratingCounts.[2]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[2] totalRatings}}"></div>
-							<div title="{{ratingCounts.[1]}}" class="rating-bar" style="width: {{getPercentage ratingCounts.[1] totalRatings}}"></div>
-						</div>
-					</div>
-				{{else}}
-					No rating available
-				{{/if}}
-			</div>
-		</div>
-
-		<div class="col-sm-6 col-md-4">
-			<div id="test" class="block green scroll-ready">
-				<h2 class="thin-text">Casting</h2>
-
-					<div class="blaze-wrapper">
-					{{#each castings}}
-						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
-							<div class="col-sm-6">
-								{{#with character}}
-								<a href="{{pathFor 'character'}}">{{fullName}}</a>: {{../role}}
-								{{/with}}
-							</div>
-
-							<div class="col-sm-6">
-								{{#with person}}
-								<a href="{{pathFor 'person'}}"> {{fullName}}</a>: {{../language}}
-								{{/with}}
-							</div>
-						</div>
-					{{else}}
-						<h4 class="thin-text">No castings found</h4>
-					{{/each}}
-					</div>
-
-			</div>
-		</div>
-
-		<div class="col-sm-6 col-md-4">
-			<div class="col-sm-12 block green scroll-ready">
-				<h2 class="thin-text">Staff Members</h2>
-					<div class="blaze-wrapper">
-					{{#each staffMembers}}
-						<div class="row" style="padding: 5px 0; border-bottom: 1px solid #EBEBEB;">
-							<div class="col-sm-6">
-								{{#with person}}
-									<a href="{{pathFor 'person'}}">{{fullName}}</a>
-								{{/with}}
-							</div>
-
-							<div class="col-sm-6">
-								{{staffPosition}}
-							</div>
-						</div>
-					{{else}}
-						<h4 class="thin-text">No staff members found</h4>
-					{{/each}}
-					</div>
-
-			</div>
-		</div>
-
-
-	</div>
-
 
 	<div class="row">
 

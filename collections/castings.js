@@ -9,6 +9,9 @@ Castings.helpers({
 	},
 	person: function() {
 		return People.findOne({_id: this.personId});
+	},
+	isEnglish: function() {
+		return this.language === "English";
 	}
 });
 

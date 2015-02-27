@@ -109,13 +109,6 @@ ul.nav > li> a {
 		padding: 15px;
 	}
 
-
-	.anime-cover {
-		padding-bottom: 150%;
-		background-position: center center;
-		background-size: cover;
-	}
-
 	.episodeCover {
 		height: 150px;
 		padding-top: 20px;

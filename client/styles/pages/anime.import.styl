@@ -59,11 +59,54 @@
   }
 }
 
-.fancy-heading .container .anime-important {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	padding: 20px;
+
+.anime-side {
+  column(1/5);
+
+  +at(3) {
+    column(1/4);
+  }
+
+  +at(2) {
+    display: none;
+  }
+}
+
+.anime-main {
+  column(4/5);
+
+  +at(3) {
+    column(3/4);
+  }
+
+  +at(2) {
+    column(1/1);
+  }
+}
+
+
+
+.anime-cover {
+  width: 100%;
+  padding-bottom: 150%;
+  background-position: center center;
+  background-size: cover;
+}
+
+.anime__character-card {
+  width: 100px;
+
+  .character-cover {
+    background-size: cover;
+    border-radius: 10px;
+    height: 150px;
+  }
+
+  .name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .add-library-button {
@@ -146,15 +189,23 @@
 	font-size: 15px;
 	font-weight: 300;
 	padding: 0;
-}
-	.anime-info li {
-		display: inline-block;
-		word-spacing: break-word;
+
+  +at(3) {
+    font-size: 13px;
+  }
+
+  +at(2) {
+    font-size: 13px;
+  }
+
+  li {
+		display: inline;
 	}
 
-	.anime-info li + li:before{
+	li + li:before{
 		content: " | ";
 		padding: 0 7px;
 		color: #868686;
 		font-size: 10px;
 	}
+}
