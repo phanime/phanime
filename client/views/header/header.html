@@ -11,7 +11,7 @@
 					{{#with currentUser}}
 						<li>
 							<a href="#" id="alertsToggle">
-								<i class="fa {{alertsClass}}" style=>
+								<i class="fa {{alertsClass}}">
 									<span class="counter">{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span>
 								</i>
 							</a>
@@ -21,8 +21,6 @@
 								<div class="img img-xs avatar" style="background-image: url('{{currentUser.avatarImageUrl}}')"></div>
 							</a>
 						</li>
-
-						<li><a href="{{pathFor 'user'}}">{{currentUser.displayName}}</a></li>
 					{{/with}}
 				{{/if}}
 

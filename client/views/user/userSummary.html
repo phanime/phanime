@@ -23,13 +23,12 @@
 						{{/if}}
 					{{else}}
 						{{#if currentUser}}
-							{{#if isCurrentUserAFollower followers}}
-								<button id="unfollow" type="button" class="btn btn-default btn-sm follow-button unfollow">Following</button>
-							{{else}}
-								<button id="follow" type="button" class="btn btn-default btn-sm follow-button follow">Follow</button>
-							{{/if}}
+							{{> userFollowButton
+								user=this
+								followClasses="btn transparent"
+								followingClasses="btn transparent"
+							}}
 						{{/if}}
-
 					{{/if}}
 					{{#if isEditing}}
 					    <input id="profileAboutInput" placeholder="Tell us about yourself" class="form-control" value="{{profile.about}}">

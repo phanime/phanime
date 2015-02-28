@@ -12,11 +12,13 @@
 		<section class="content">
 			<h3 class="centered-text thin-text">{{displayName}}</h3>
 			{{#unless isUserIdCurrentUser _id}}
-				{{> userFollowButton
-					user=this
-					followClasses="btn secondary full-width"
-					followingClasses="btn primary full-width"
-				}}
+				{{#if currentUser}}
+					{{> userFollowButton
+						user=this
+						followClasses="btn secondary full-width"
+						followingClasses="btn primary full-width"
+					}}
+				{{/if}}
 			{{/unless}}
 		</section>
 
