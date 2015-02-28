@@ -10,6 +10,13 @@
 				{{#if currentUser}}
 					{{#with currentUser}}
 						<li>
+							<a href="#" id="alertsToggle">
+								<i class="fa {{alertsClass}}" style=>
+									<span class="counter">{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span>
+								</i>
+							</a>
+						</li>
+						<li>
 							<a href="{{pathFor 'user'}}">
 								<div class="img img-xs avatar" style="background-image: url('{{currentUser.avatarImageUrl}}')"></div>
 							</a>
