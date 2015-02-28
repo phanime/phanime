@@ -56,17 +56,13 @@
 		<h3 class="title thin-text">Castings</h3>
 		<div class="clearfix">
 		{{#each castings}}
-			{{#if isEnglish}}
 				{{#with character}}
-				<div class="grid-col-5">
 					<div class="anime__character-card">
 						<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
 						<h5 class="name centered-text">{{fullName}}</h5>
 						<h6 class="name centered-text">{{../person.fullName}}</h6>
 					</div>
-				</div>
 				{{/with}}
-			{{/if}}
 		{{/each}}
 		</div>
 	</section>
@@ -78,12 +74,10 @@
 		<div class="clearfix">
 			{{#each staffMembers}}
 					{{#with person}}
-						<div class="grid-col-5">
-							<div class="anime__character-card">
-								<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
-								<h5 class="name centered-text">{{fullName}}</h5>
-								<h6 class="name centered-text">{{../staffPosition}}</h6>
-							</div>
+						<div class="anime__character-card">
+							<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
+							<h5 class="name centered-text">{{fullName}}</h5>
+							<h6 class="name centered-text">{{../staffPosition}}</h6>
 						</div>
 					{{/with}}
 			{{/each}}
