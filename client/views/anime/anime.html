@@ -20,124 +20,99 @@
 		</div>
 	</section>
 
-	<section class="row">
-		<div class="col-sm-12 block">
-			<div class="row">
-				<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
-
-					<div class="genresList">
-						{{#if genres}}
-							<h4 class="thin-text inline-text">Genres: </h4>
-							{{#each genres}}
-								<a>{{this}}</a>
-							{{/each}}
-						{{/if}}
-					</div>
-
-					<div class="themesList">
-						{{#if themes}}
-							<h4 class="thin-text inline-text">Themes:</h4>
-							{{#each themes}}
-								<a>{{this}}</a>
-							{{/each}}
-						{{/if}}
-					</div>
-
-				</div>
-			</div>
-
+	<section class="block">
+		<div class="genresList">
+			{{#if genres}}
+				<h4 class="thin-text inline-text">Genres: </h4>
+				{{#each genres}}
+					<a>{{this}}</a>
+				{{/each}}
+			{{/if}}
 		</div>
 
-	</section>
-
-	<div class="clearfix">
-	<div class="half-width">
-	<section class="block">
-		<h3 class="title thin-text">Castings</h3>
-		<div class="clearfix">
-		{{#each castings}}
-				{{#with character}}
-					<div class="anime__character-card">
-						<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
-						<h5 class="name centered-text">{{fullName}}</h5>
-						<h6 class="name centered-text">{{../person.fullName}}</h6>
-					</div>
-				{{/with}}
-		{{/each}}
+		<div class="themesList">
+			{{#if themes}}
+				<h4 class="thin-text inline-text">Themes:</h4>
+				{{#each themes}}
+					<a>{{this}}</a>
+				{{/each}}
+			{{/if}}
 		</div>
 	</section>
-	</div>
 
-	<div class="half-width">
-	<section class="block">
-		<h3 class="title thin-text">Staff Members</h3>
-		<div class="clearfix">
-			{{#each staffMembers}}
-					{{#with person}}
-						<div class="anime__character-card">
-							<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
-							<h5 class="name centered-text">{{fullName}}</h5>
-							<h6 class="name centered-text">{{../staffPosition}}</h6>
-						</div>
-					{{/with}}
+	<section class="clearfix">
+		<div class="grid-col-4">
+			{{#each reviews}}
+				{{> UI.dynamic template="reviewCard" data=this}}
 			{{/each}}
 		</div>
 	</section>
-	</div>
-	</div>
 
-	<div class="row">
 
-		<div class="col-sm-5 col-md-4">
-
-				<div class="block">
-					<h1 class="thin-text">Reviews</h1>
-					{{#if currentUser}}
-						<button class="btn btn-primary" data-toggle="modal" data-target="#reviewAddModal">Write Review</button>
-					{{/if}}
-				</div>
-
-				{{#each reviews}}
-					{{> UI.dynamic template="reviewCard" data=this}}
+	<div class="clearfix">
+		<div class="half-width">
+			<section class="block">
+				<h3 class="title thin-text">Castings</h3>
+				<div class="clearfix">
+				{{#each castings}}
+						{{#with character}}
+							<div class="anime__character-card">
+								<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
+								<h5 class="name centered-text">{{fullName}}</h5>
+								<h6 class="name centered-text">{{../person.fullName}}</h6>
+							</div>
+						{{/with}}
+				{{else}}
+					<h3 class="centered-text thin-text">No castings found</h3>
 				{{/each}}
-
-		</div>
-
-		<div class="col-sm-7 col-md-8">
-
-			<div class="block green scroll-ready">
-				<h2 class="thin-text">Episodes</h2>
-
-
-				<div class="table-responsive">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<td>#</td>
-								<td>Episode Title</td>
-								<td>Air Date</td>
-							</tr>
-						</thead>
-
-						<tbody>
-							{{#each episodes}}
-								<tr class="thin-text">
-									<td>{{episodeNumber}}</td>
-									<td>{{#if episodeTitle}} {{episodeTitle}} {{else}} -- {{/if}}</td>
-									<td>{{#if isMomentDatePresent airDate}} {{formatDateUTC airDate}} {{else}} -- {{/if}}</td>
-								</tr>
-							{{/each}}
-						</tbody>
-					</table>
 				</div>
-
-			</div>
-
+			</section>
 		</div>
 
-
+		<div class="half-width">
+			<section class="block">
+				<h3 class="title thin-text">Staff Members</h3>
+				<div class="clearfix">
+					{{#each staffMembers}}
+							{{#with person}}
+								<div class="anime__character-card">
+									<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
+									<h5 class="name centered-text">{{fullName}}</h5>
+									<h6 class="name centered-text">{{../staffPosition}}</h6>
+								</div>
+							{{/with}}
+					{{else}}
+						<h3 class="centered-text thin-text">No staff members found</h3>
+					{{/each}}
+				</div>
+			</section>
+		</div>
 	</div>
 
+	<section class="block">
+		<h3 class="title thin-text">Episodes</h3>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td>#</td>
+					<td>Episode Title</td>
+					<td>Air Date</td>
+				</tr>
+			</thead>
+
+			<tbody>
+				{{#each episodes}}
+					<tr class="thin-text">
+						<td>{{episodeNumber}}</td>
+						<td>{{#if episodeTitle}} {{episodeTitle}} {{else}} -- {{/if}}</td>
+						<td>{{#if isMomentDatePresent airDate}} {{formatDateUTC airDate}} {{else}} -- {{/if}}</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+	</section>
 </div>
 
 {{#if currentUser}}

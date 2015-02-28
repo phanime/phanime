@@ -1,12 +1,4 @@
 Template.anime.rendered = function() {
-	// Make a call to anime ratings calculator 
-	// We should limit this maybe, every 24 hours 
-	// using ratingUpdatedAt field. However, best 
-	// to do this in a node job
-	// Meteor.call('calculateAnimeRatingById', this.data._id, function(error, result) {
-	// 	console.log(error);
-	// 	console.log(result);
-	// });
 
 	$('.block.scroll-ready').mCustomScrollbar({
 		theme: 'dark',
@@ -24,7 +16,7 @@ Template.anime.destroyed = function() {
 
 Template.anime.helpers({
 	airingText: function() {
-		// We should check if startDate is equal to endDate 
+		// We should check if startDate is equal to endDate
 		if (this.startDate !== undefined && this.endDate !== undefined && this.startDate === this.endDate) {
 			return "Aired on";
 		} else if (this.startDate !== undefined && this.endDate !== undefined && moment(this.startDate).year() && moment(this.endDate).year()) {
