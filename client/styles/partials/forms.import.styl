@@ -51,10 +51,16 @@ textarea {
   cursor: pointer;
   user-select: none;
   background-image: none;
-  border: 1px solid transparent;
+  border: 1px solid $lightGrey;
   border-radius: 3px;
   transition: all 0.2s ease-in-out;
   outline: 0;
+  background-color: #FFFFFF;
+
+  &:hover, &:focus, &.active {
+    background-color: darken(#FFFFFF, 5%);
+    border-color: darken($lightGrey, 10%);
+  }
 
   &:active {
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.4);
@@ -112,4 +118,28 @@ textarea {
     }
   }
 
+}
+
+.btn-group {
+  .btn {
+    border-radius: 0;
+    // Fighting the space between inline-block elements
+    margin-left: -4px;
+    border-right: 0;
+
+    &.active {
+      border-right: 1px;
+    }
+  }
+  .btn:first-child {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    margin-left: 0;
+  }
+
+  .btn:last-child {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    border-right: 1px;
+  }
 }

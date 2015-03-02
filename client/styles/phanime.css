@@ -191,13 +191,10 @@ a.user-mention {
 		max-width: 500px;
 	}
 
-		.user-important .user-summary #editProfile,
-		.user-important .user-summary #saveProfile {
+		.user-important .user-summary .btn {
 			position: relative;
 			top: -7px;
 			margin-left: 10px;
-			color: #fff;
-			border-color: #fff;
 		}
 
 	.user-important .username {

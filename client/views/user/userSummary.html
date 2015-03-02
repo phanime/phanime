@@ -17,16 +17,16 @@
 					<h1 class="username">{{displayName}}</h1>
 					{{#if isUserIdCurrentUser _id}}
 						{{#if isEditing}}
-							<button id="saveProfile" type="button" class="btn btn-transparent btn-sm">Save</button>
+							<button id="saveProfile" type="button" class="btn transparent white">Save</button>
 						{{else}}
-							<button id="editProfile" type="button" class="btn btn-transparent btn-sm">Edit</button>
+							<button id="editProfile" type="button" class="btn transparent white">Edit</button>
 						{{/if}}
 					{{else}}
 						{{#if currentUser}}
 							{{> userFollowButton
 								user=this
-								followClasses="btn transparent"
-								followingClasses="btn transparent"
+								followClasses="btn transparent white"
+								followingClasses="btn transparent white"
 							}}
 						{{/if}}
 					{{/if}}
