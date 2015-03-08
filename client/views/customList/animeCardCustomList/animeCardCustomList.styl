@@ -1,14 +1,14 @@
-.anime-card-custom-list-item {
+.anime-card-custom-list {
 	position: relative;
 	background-color: #fff;
 	border-bottom: 1px solid #EDEDED;
 	padding: 20px 0;
-}
-	.anime-card-custom-list-item .content-title {
+
+	.content-title {
 		margin-right: 70px;
 	}
 
-	.anime-card-custom-list-item .sort-handle {
+	.sort-handle {
 		position: absolute;
 		top: 10px;
 		right: 10px;
@@ -18,7 +18,7 @@
 		text-shadow: 1px 1px 2px rgba(0,0,0,0.13);
 	}
 
-	.anime-card-custom-list-item .remove-handle {
+	.remove-handle {
 		position: absolute;
 		top: 10px;
 		right: 45px;
@@ -30,8 +30,9 @@
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
 		transition: all 0.3s ease-in-out;
-	}
 
-		.anime-card-custom-list-item .remove-handle:hover {
+		&:hover {
 			color: red;
 		}
+	}
+}

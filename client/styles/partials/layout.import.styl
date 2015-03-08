@@ -19,6 +19,13 @@ gridify-item($containerWidth, $containerPadding, $colCount) {
   }
 }
 
+.side-bar {
+  column(1/4);
+}
+
+.main {
+  column(3/4);
+}
 
 .grid-col-4 {
   gridify-item($containerWidth, $containerPadding, 4);
@@ -42,4 +49,9 @@ gridify-item($containerWidth, $containerPadding, $colCount) {
 
 .grid-col-9 {
   gridify-item($containerWidth, $containerPadding, 9);
+}
+
+
+.flex {
+  display: flex;
 }

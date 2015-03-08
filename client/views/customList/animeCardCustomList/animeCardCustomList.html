@@ -1,15 +1,15 @@
 <template name="animeCardCustomList">
 
 	{{#with entry.content}}
-		<li class="anime-card-custom-list-item" data-contentId="{{_id}}">
-			<div class="row">
-				<div class="col-sm-4 col-md-3 col-lg-2">
+		<li class="anime-card-custom-list" data-contentId="{{_id}}">
+			<div class="clearfix">
+				<div class="anime-side">
 					<a href="{{pathFor 'anime'}}">
 						<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
 					</a>
 				</div>
 
-				<div class="col-sm-8 col-md-9 col-lg-10">
+				<div class="anime-main">
 					<h3 class="content-title">{{incrementByOne ../entry.sortOrder}}. {{canonicalTitle}}</h3>
 					<ul class="anime-info">
 						{{#if type}}<li>{{type}}</li>{{/if}}
