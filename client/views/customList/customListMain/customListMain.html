@@ -1,44 +1,48 @@
 <template name="customListMain">
 	<div class="clearfix">
 		<div class="main block">
-			<h3 style="margin-top: 0">{{title}} {{#if isUserIdCurrentUser userId}} <a class="btn btn-transparent btn-sm" href="{{pathFor 'customListEdit'}}">Edit</a> {{/if}}</h3>
-			<h5 class="sub-text description">{{description}}</h5>
-			<h5 class="sub-text">Created: {{formatDateFromNow createdAt}} | Last Updated: {{formatDateFromNow updatedAt}}</h5>
+			<section>
+				<h3 style="margin-top: 0">{{title}} {{#if isUserIdCurrentUser userId}} <a class="btn btn-transparent btn-sm" href="{{pathFor 'customListEdit'}}">Edit</a> {{/if}}</h3>
+				<h5 class="sub-text description">{{description}}</h5>
+				<h5 class="sub-text">Created: {{formatDateFromNow createdAt}} | Last Updated: {{formatDateFromNow updatedAt}}</h5>
+			</section>
 
-			<ul class="no-list-style" id="entries">
-				{{#each entriesWithContent}}
-					{{#if ../isTypeAnime}}
-						{{> animeCardCustomList entry=this customList=..}}
-					{{/if}}
+			<section>
+				<ul class="no-list-style" id="entries">
+					{{#each entriesWithContent}}
+						{{#if ../isTypeAnime}}
+							{{> animeCardCustomList entry=this customList=..}}
+						{{/if}}
+					{{else}}
+						<h4 class="sub-text">This list has no entries, maybe the author is still working on it. Check back later!</h4>
+					{{/each}}
+				</ul>
+			</section>
+
+			<section>
+				{{#if disableComments}}
+					<h4 class="sub-text">Comments are disabled for this list</h4>
 				{{else}}
-					<h4 class="sub-text">This list has no entries, maybe the author is still working on it. Check back later!</h4>
-				{{/each}}
-			</ul>
+					{{> createComment commentType="customList" textForGuests="Please login to post a comment" parent=this}}
+					<div class="comment-list">
+					{{#each comments}}
+						{{> commentCard}}
+					{{else}}
+						<h4 class="sub-text">No comments yet, be the first!</h4>
+					{{/each}}
 
-			{{#if disableComments}}
-				<h4 class="sub-text">Comments are disabled for this list</h4>
-			{{else}}
-				{{> createComment commentType="customList" textForGuests="Please login to post a comment" parent=this}}
-				<div class="comment-list">
-				{{#each comments}}
-					{{> commentCard}}
-				{{else}}
-					<h4 class="sub-text">No comments yet, be the first!</h4>
-				{{/each}}
+					{{#unless isReady}}
+						{{> rectangleLoader}}
+					{{/unless}}
 
-				{{#unless isReady}}
-					{{> rectangleLoader}}
-				{{/unless}}
-
-				{{#if isReady}}
-					{{#if hasMoreComments}}
-						<button id="loadMore" type="button" class="btn btn-primary btn-lg btn-full-width" style="margin-top: 10px"><h4>Load More</h4></button>
+					{{#if isReady}}
+						{{#if hasMoreComments}}
+							<button id="loadMore" type="button" class="btn btn-primary btn-lg btn-full-width" style="margin-top: 10px"><h4>Load More</h4></button>
+						{{/if}}
 					{{/if}}
+					</div>
 				{{/if}}
-
-
-				</div>
-			{{/if}}
+			</section>
 		</div>
 		<div class="side-bar">
 			{{> Template.dynamic template="userCard" data=user}}
