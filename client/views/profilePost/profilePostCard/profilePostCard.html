@@ -8,9 +8,9 @@
 						<a href="{{pathFor 'user'}}">
 							<div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}');"></div>
 						</a>
-						<h4 style="margin:0">{{displayName}}</h4>
+						<h5>{{displayName}}</h5>
 					{{/with}}
-					<h6 class="thin-text"><a class="sub-text" href="{{pathFor 'profilePost'}}">{{formatDateFromNow createdAt}}</a></h6>
+					<p class="thin-text"><a class="sub-text" href="{{pathFor 'profilePost'}}">{{formatDateFromNow createdAt}}</a></p>
 				</div>
 			</div>
 			<div class="description">
@@ -31,7 +31,7 @@
 			{{#if commentsList}}
 				<div class="expand-comments-list sub-text">{{expandCommentsText}}</div>
 			{{/if}}
-			
+
 			{{#each commentsList}}
 				{{> UI.dynamic template="commentCard" data=this}}
 			{{/each}}
