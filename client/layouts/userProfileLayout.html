@@ -1,14 +1,14 @@
 <template name="userProfileLayout">
 	{{> header}}
 
-	{{> userSummary}}
+	{{> userProfileSummary}}
 
 	{{> yield "advertisement"}}
 
 	{{> yield}}
 
 	{{> footer}}
-	
+
 	{{#if isSearchingGlobal}}
 		{{> search}}
 	{{/if}}

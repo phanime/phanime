@@ -1,12 +1,12 @@
-Template.userSummary.created = function() {
+Template.userProfileSummary.created = function() {
 	this.isEditing = new ReactiveVar(false);
 };
 
-Template.userSummary.rendered = function() {
+Template.userProfileSummary.rendered = function() {
 	// Add a tool tip init here
 };
 
-Template.userSummary.events({
+Template.userProfileSummary.events({
 	'click #editProfile' : function(event, template) {
 		template.isEditing.set(!template.isEditing.get());
 	},
@@ -47,7 +47,7 @@ Template.userSummary.events({
 });
 
 
-Template.userSummary.helpers({
+Template.userProfileSummary.helpers({
 	isEditing: function() {
 		return Template.instance().isEditing.get();
 	}
