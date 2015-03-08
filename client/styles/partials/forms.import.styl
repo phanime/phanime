@@ -121,14 +121,17 @@ textarea {
 }
 
 .btn-group {
+  display: flex;
   .btn {
     border-radius: 0;
     // Fighting the space between inline-block elements
-    margin-left: -4px;
+    margin-left: 0px;
     border-right: 0;
 
     &.active {
-      border-right: 1px;
+      position: relative;
+      z-index: 1;
+      border-right: 2px;
     }
   }
   .btn:first-child {

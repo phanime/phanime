@@ -28,12 +28,12 @@
 		</div>
 
 		{{#unless isReady}}
-			{{> rectangleLoader}}
+			{{> loading}}
 		{{/unless}}
 
 		{{#if isReady}}
 			{{#if hasMoreAnime}}
-				<button id="loadMore" type="button" class="btn btn-primary btn-lg btn-full-width" style='margin-top: 20px;'><h4>Load More</h4></button>
+				<button id="loadMore" type="button" class="btn btn-primary btn-lg full-width" style='margin-top: 20px;'><h4>Load More</h4></button>
 			{{/if}}
 		{{/if}}
 
