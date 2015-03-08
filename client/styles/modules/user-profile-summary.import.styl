@@ -1,13 +1,26 @@
 .user-profile-summary {
   &__important {
     padding: 40px 20px;
+
+    &__avatar {
+      +at(3) {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
   }
 
   &__content {
     margin-left: 210px;
-    position: absolute;
+    position: relative;
     top: 15%;
-    max-width: 500px;
+    width: 500px;
+
+    +at(3) {
+      margin-top: 210px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     &__username {
       display: inline-block;

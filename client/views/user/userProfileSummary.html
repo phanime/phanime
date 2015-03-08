@@ -6,10 +6,10 @@
 
 					{{#if isUserIdCurrentUser _id}}
 						<a href="{{pathFor 'accountPersonalDetails'}}">
-							<div class="img img-xl avatar bordered" style="background-image: url('{{avatarImageUrl}}')"></div>
+							<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
 						</a>
 					{{else}}
-						<div class="img img-xl avatar bordered" style="background-image: url('{{avatarImageUrl}}')"></div>
+						<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
 					{{/if}}
 
 					<div class="user-profile-summary__content">
@@ -24,36 +24,29 @@
 							{{#if currentUser}}
 								{{> userFollowButton
 									user=this
-									followClasses="btn transparent white"
-									followingClasses="btn transparent white"
+									followClasses="btn transparent white user-profile-summary__content__btn"
+									followingClasses="btn transparent white user-profile-summary__content__btn"
 								}}
 							{{/if}}
 						{{/if}}
 						{{#if isEditing}}
-						    <input id="profileAboutInput" placeholder="Tell us about yourself" class="form-control" value="{{profile.about}}">
-							<div class="row">
-								<div class="col-sm-6">
-									<i style="margin-right: 10px" class="fa fa-map-marker"></i>
-								    <input id="profileLocationInput" placeholder="Location" class="form-control" value="{{profile.location}}">
-								</div>
-
-								<div class="col-sm-6">
-									<i class="fa fa-globe"></i>
-								    <input id="profileWebsiteInput" placeholder="Website" class="form-control" value="{{profile.website}}">
-								</div>
-							</div>
+							<input id="profileAboutInput" placeholder="Tell us about yourself" class="input--naked" value="{{profile.about}}">
+					    <input id="profileLocationInput" placeholder="Location" class="input--naked" value="{{profile.location}}">
+					    <input id="profileWebsiteInput" placeholder="Website" class="input--naked" value="{{profile.website}}">
 						{{else}}
-							<h3 style="margin-top: 2px;">
-							{{#if profile.about}}<p class="description">{{profile.about}}</p>{{/if}}
-							{{#if profile.location}}
-								<i data-toggle="tooltip" data-placement="bottom" title="{{profile.location}}" style="margin-right: 10px" class="tooltipped fa fa-map-marker"></i>
-							{{/if}}
+							<section class="no-margin">
+								{{#if profile.about}}
+									<p class="description">{{profile.about}}</p>
+								{{/if}}
+								{{#if profile.location}}
+									<i data-toggle="tooltip" data-placement="bottom" title="{{profile.location}}" style="margin-right: 10px" class="tooltipped fa fa-map-marker"></i>
+								{{/if}}
 
-							{{#if profile.website}}
-								<a href="{{profile.website}}">
-									<i data-toggle="tooltip" data-placement="bottom" title="{{profile.website}}" class="tooltipped fa fa-globe"></i>
-								</a>
-							{{/if}}
+								{{#if profile.website}}
+									<a href="{{profile.website}}">
+										<i data-toggle="tooltip" data-placement="bottom" title="{{profile.website}}" class="tooltipped fa fa-globe"></i>
+									</a>
+								{{/if}}
 
 								<div style="display: inline; margin-left: 10px">
 									<span data-toggle="tooltip" data-placement="bottom" title="Revisions Approved" class="tooltipped" style="color: #83BD40">
@@ -72,8 +65,7 @@
 										{{/if}}
 									</span>
 								</div>
-
-							</h3>
+							</section>
 						{{/if}}
 					</div>
 				</div>

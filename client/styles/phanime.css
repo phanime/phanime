@@ -163,52 +163,6 @@ a.user-mention {
 
 
 
-
-
-/*-----------------------------*/
-/*---------- USER  ------------*/
-/*-----------------------------*/
-.fancy-heading .container .user-important {
-	padding: 40px 20px;
-}
-
-	.user-important .user-summary {
-		margin-left: 210px;
-		position: absolute;
-		top: 15%;
-		max-width: 500px;
-	}
-
-		.user-important .user-summary .btn {
-			position: relative;
-			top: -7px;
-			margin-left: 10px;
-		}
-
-	.user-important .username {
-		display: inline-block;
-	}
-
-.profile-nav-container {
-	background-color: #fff;
-	padding: 5px 0;
-}
-
-	.profile-nav .navbar-nav > li > a {
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
-
-ul.profile-summary-list {
-	margin: 0;
-	list-style: none;
-	padding:0;
-
-}
-	ul.profile-summary-list > li {
-		padding: 5px 0;
-	}
-
 /*-----------------------------*/
 /*--------- LIBRARY  ----------*/
 /*-----------------------------*/
