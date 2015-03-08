@@ -2,12 +2,13 @@
 	<header id="header" class="fixed">
 		<div class="container-fluid">
 			<ul class="left inline">
-				<li><a href="{{pathFor 'index'}}">Home</a></li>
 				<li><a href="{{pathFor 'animeExplore'}}">Anime</a></li>
 				<li><a href="http://community.phanime.com">Community</a></li>
 			</ul>
 			<div class="logo center">
-				<img src="https://s3.amazonaws.com/phanimedev/images/Phanime+logo+full+Quad.png" height="50px">
+				<a href="{{pathFor 'dashboard'}}">
+					<img src="https://s3.amazonaws.com/phanimedev/images/Phanime+logo+full+Quad.png" height="50px">
+				</a>
 			</div>
 			<ul class="right inline">
 				{{#if currentUser}}
