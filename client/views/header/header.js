@@ -11,7 +11,7 @@ Template.header.events({
 		return false;
 	},
 	'click #alertsToggle' : function(event) {
-		// Once the user clicks the alert toggle, we should mark all the unread alerts as read 
+		// Once the user clicks the alert toggle, we should mark all the unread alerts as read
 		Meteor.call('markAllAlertsRead', Meteor.userId(), function(error, result) {
 			if (!error) {
 				// All alerts were marked read successfully
@@ -27,7 +27,7 @@ Template.header.events({
 
 Template.header.helpers({
 
-	// We're setting these in 
+	// We're setting these in
 	alerts: function() {
 		var unreadAlertCount = Alerts.find({userId: Meteor.userId(), read: false}).count();
 		var alerts = Alerts.find({userId: Meteor.userId()}, {sort: {createdAt: -1}, limit: 10});
@@ -52,6 +52,10 @@ Template.header.helpers({
 			return 'fa-bell';
 		}
 
+	},
+
+	logoUrl: function() {
+		return siteSettings.logoUrl;
 	}
 
 });

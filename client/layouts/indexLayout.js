@@ -15,4 +15,8 @@ Template.indexLayout.helpers({
     return randGif;
   },
 
+  logoUrl: function() {
+    return siteSettings.logoUrl;
+  }
+
 });

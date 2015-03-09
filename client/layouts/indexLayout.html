@@ -5,18 +5,9 @@
 		<div class="landing-page-image-wrapper">
 			<div class="landing-page-image blur-image" style="background-image: url('{{landingImage}}');"></div>
 		</div>
-		<div class="container">
-			<ul class="list-inline main-content" style="position: relative; z-index: 5; text-align: center">
-				<li><a class="btn btn-transparent white" href="{{pathFor 'animeExplore'}}">Anime</a></li>
-				<li><a class="btn btn-transparent white" href="{{pathFor 'characters'}}">Characters</a></li>
-				<li><a class="btn btn-transparent white" href="{{pathFor 'people'}}">People</a></li>
-				<li><a class="btn btn-transparent white" href="http://community.phanime.com/">Community</a></li>
-			</ul>
-		</div>
-
 
 		<div class="invite-block animated bounceIn">
-			<h1 class="thin-text">phanime</h1>
+			<div class="centered-text margin-text"><img src="{{logoUrl}}" height="50px"></div>
 			{{> yield}}
 		</div>
 
