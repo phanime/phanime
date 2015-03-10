@@ -9,7 +9,7 @@
     z-index: 1;
     background-color: #000;
 
-    +mobile() {
+    +below(2) {
       background-color: transparent;
     }
   }
@@ -26,7 +26,7 @@
     background-position: center center;
     transform: translate3d(0, 0, 0);
 
-    +mobile() {
+    +below(2) {
       background-image: none !important;
       background-color: darken($lightGreen, 40%);
       opacity: 1;
