@@ -1,29 +1,16 @@
 <template name="signUp">
+	<div class="centered-text margin-text">
+		If you already have an account <a href="{{pathFor 'signIn'}}">sign in</a>.
+	</div>
 
-		<div class="row">
-
-			<div class="col-sm-12">
-
-				<div class="form-group">
-					<div class="centered-text margin-text">
-						If you already have an account <a href="{{pathFor 'signIn'}}">sign in</a>.
-					</div>
-				</div>
-
-				<form role="form">
-					<div class="input-group-vertical">
-						<input type="text" id="username" class="form-control" placeholder="Username">
-						<input type="email" id="email" class="form-control" placeholder="Email">
-						<input type="password" id="password" class="form-control" placeholder="Password">
-					</div>
-
-					<button type="button" id="signUpButton" class="btn primary big full-width margin-text">Sign up</button>
-
-				</form>
-
-			</div>
-
+	<form role="form">
+		<div class="input-group-vertical">
+			<input type="text" id="username" class="form-control" placeholder="Username">
+			<input type="email" id="email" class="form-control" placeholder="Email">
+			<input type="password" id="password" class="form-control" placeholder="Password">
 		</div>
 
+		<button type="button" id="signUpButton" class="btn primary big full-width margin-text">Sign up</button>
 
+	</form>
 </template>
