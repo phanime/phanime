@@ -56,14 +56,14 @@ livedata@1.0.12
 localstorage@1.0.2
 logging@1.0.6
 maazalik:discourse-sso@0.2.0
-maazalik:highcharts@0.2.3
+maazalik:highcharts@0.2.4
 maazalik:malihu-jquery-custom-scrollbar@3.0.6
 manuelschoebel:ms-seo@0.4.1
 matteodem:easy-search@1.4.13
 meteor@1.1.4
 meteor-platform@1.2.1
 meteorhacks:async@1.0.0
-meteorhacks:cluster@1.5.0
+meteorhacks:cluster@1.6.0
 meteorhacks:fast-render@2.3.1
 meteorhacks:inject-data@1.2.2
 meteorhacks:kadira@2.19.6
@@ -83,7 +83,7 @@ npm-bcrypt@0.7.7
 npm-container@1.0.0
 observe-sequence@1.0.4
 ordered-dict@1.0.2
-percolate:migrations@0.7.2
+percolate:migrations@0.7.3
 percolatestudio:synced-cron@1.1.0
 phanime-alerts@0.0.1
 phanime-blazy@0.0.1
