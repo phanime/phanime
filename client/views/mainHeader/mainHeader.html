@@ -2,8 +2,8 @@
 	<header class="main-header main-header--fixed">
 		<div class="container-fluid">
 			<ul class="main-header__nav main-header__nav--left">
-				<li class="main-header__nav__item"><a href="{{pathFor 'animeExplore'}}">Anime</a></li>
-				<li class="main-header__nav__item"><a href="http://community.phanime.com">Community</a></li>
+				<li class="main-header__nav__item"><a class="main-header__nav__item__inner" href="{{pathFor 'animeExplore'}}">Anime</a></li>
+				<li class="main-header__nav__item"><a class="main-header__nav__item__inner" href="http://community.phanime.com">Community</a></li>
 			</ul>
 			<div class="main-header__logo">
 				<a href="{{pathFor 'dashboard'}}">
@@ -13,14 +13,11 @@
 			<ul class="main-header__nav main-header__nav--right">
 				{{#if currentUser}}
 					{{#with currentUser}}
-						{{#clickableDropdown}}
-							<li class="main-header__nav__item clickable-dropdown__handler">
-								<a href="#" id="alertsToggle">
-									<i class="fa fa-bell-o">
-										<span class="counter">{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span>
-									</i>
-								</a>
-							</li>
+						{{#clickableDropdown class="main-header__nav__item"}}
+
+							<i class="main-header__nav__item__inner clickable-dropdown__handler fa fa-bell-o">
+								<span class="counter">{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span>
+							</i>
 
 							<ul class="clickable-dropdown__menu">
 								Testing :)
@@ -28,7 +25,7 @@
 						{{/clickableDropdown}}
 
 						<li class="main-header__nav__item">
-							<a href="{{pathFor 'user'}}">
+							<a class="main-header__nav__item__inner" href="{{pathFor 'user'}}">
 								<div class="img img-xs avatar" style="background-image: url('{{currentUser.avatarImageUrl}}')"></div>
 							</a>
 						</li>
