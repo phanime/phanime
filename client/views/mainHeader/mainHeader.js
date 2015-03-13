@@ -1,11 +1,11 @@
-Template.header.created = function() {
+Template.mainHeader.created = function() {
 
 	// Init with 0 and then have it update in rendered
 	this.unreadAlertCount = new ReactiveVar(0);
 
 };
 
-Template.header.events({
+Template.mainHeader.events({
 	'click #signOut': function(event) {
 		Meteor.logout();
 		return false;
@@ -25,7 +25,7 @@ Template.header.events({
 });
 
 
-Template.header.helpers({
+Template.mainHeader.helpers({
 
 	// We're setting these in
 	alerts: function() {

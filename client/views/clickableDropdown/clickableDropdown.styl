@@ -1,0 +1,25 @@
+.clickable-dropdown {
+  position: relative;
+
+  &__menu {
+    position: absolute;
+    top: 40px;
+    left: 5px;
+    right: 5px;
+    z-index: 2;
+    display: none;
+    background: #fff;
+    border-radius: inherit;
+    border: 1px solid rgba(0,0,0,0.17);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-weight: normal;
+    transition: all 0.5s ease-in;
+    list-style: none;
+  }
+
+  &__menu--open {
+    display: block;
+  }
+
+
+}
