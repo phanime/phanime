@@ -1,7 +1,10 @@
+@import "client/styles/variables.import"
+
 $headerHeight = 60px;
 $headerLineHeight = 32px;
 $headerFontSize = $baseFontSize + 4px;
-$headerItemPadding = ($headerHeight - $headerLineHeight)/2
+$headerItemPadding = ($headerHeight - $headerLineHeight)/2;
+$logoWidth = 239px;
 
 .main-header {
   height: $headerHeight;
@@ -20,7 +23,7 @@ $headerItemPadding = ($headerHeight - $headerLineHeight)/2
       position: absolute;
       padding: 5px 0;
       left: 50%;
-      margin-left: (-239/2)px;
+      margin-left: -($logoWidth/2);
   }
 
   &--fixed {
@@ -43,14 +46,18 @@ $headerItemPadding = ($headerHeight - $headerLineHeight)/2
       position: relative;
       display: block;
       float: left;
+
       &__inner {
         display: block;
-        line-height: 32px;
+        line-height: $headerHeight;
         font-size: $headerFontSize;
-        padding-top: $headerItemPadding;
-        padding-bottom: $headerItemPadding;
         padding-right: 15px;
         padding-left: 15px;
+        cursor: pointer;
+      }
+
+      &__inner--icon {
+        font-size: $headerFontSize + 10px;
       }
     }
   }

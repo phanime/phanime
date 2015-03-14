@@ -13,14 +13,21 @@
 			<ul class="main-header__nav main-header__nav--right">
 				{{#if currentUser}}
 					{{#with currentUser}}
-						{{#clickableDropdown class="main-header__nav__item"}}
-
-							<i class="main-header__nav__item__inner clickable-dropdown__handler fa fa-bell-o">
+					{{#each alerts}}
+						test
+					{{/each}}
+						{{#clickableDropdown class="main-header__nav__item" test=this}}
+							{{test}}
+							<i class="main-header__nav__item__inner main-header__nav__item__inner--icon clickable-dropdown__handler fa fa-bell-o">
 								<span class="counter">{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span>
 							</i>
 
 							<ul class="clickable-dropdown__menu">
-								Testing :)
+								{{#each alerts}}
+									<li>{{{userFriendlyText}}} {{formatDateFromNow createdAt}}</li>
+								{{else}}
+									<h4 class="thin-text">You have no alerts</h4>
+								{{/each}}
 							</ul>
 						{{/clickableDropdown}}
 
