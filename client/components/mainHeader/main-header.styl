@@ -7,99 +7,114 @@ $headerItemPadding = ($headerHeight - $headerLineHeight)/2;
 $logoWidth = 239px;
 
 .main-header {
-  height: $headerHeight;
-  top: 0;
-  width: 100%;
-  background: #FFFFFF;
-  border-bottom: 1px solid $lightGrey;
-  padding: 0;
-  z-index: 99;
-  position: absolute;
-  transform: translate(0,0);
-  transition: all .3s;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+	height: $headerHeight;
+	top: 0;
+	width: 100%;
+	background: #FFFFFF;
+	border-bottom: 1px solid $lightGrey;
+	padding: 0;
+	z-index: 99;
+	position: absolute;
+	transform: translate(0,0);
+	transition: all .3s;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
 
 
-  &__nav-toggle-left {
-    position: absolute;
-    line-height: $headerHeight;
-    font-size: $headerFontSize + 10px;
-    display: none;
-    cursor: pointer;
+	&__nav-toggle-left {
+		position: absolute;
+		line-height: $headerHeight;
+		font-size: $headerFontSize + 10px;
+		display: none;
+		cursor: pointer;
 
-    +below(3) {
-      display: block;
-    }
-  }
+		+below(3) {
+			display: block;
+		}
+	}
 
-  &__collapsed {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    background-color: #FFFFFF;
-    +below(3) {
-      height: $headerHeight - 1px;
-    }
-  }
+	&__collapsed {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+		background-color: #FFFFFF;
+		+below(3) {
+			height: $headerHeight - 1px;
+		}
+	}
 
-  &__logo {
-      position: absolute;
-      padding: 5px 0;
-      left: 50%;
-      margin-left: -($logoWidth/2);
-  }
+	&__logo {
+			position: absolute;
+			padding: 5px 0;
+			left: 50%;
+			margin-left: -($logoWidth/2);
+	}
 
-  &--fixed {
-    position: fixed;
-  }
+	&--fixed {
+		position: fixed;
+	}
 
-  &__nav {
-    clearfix()
-    transition: all 0.2s ease-in;
+	&__nav {
+		clearfix()
+		transition: all 0.2s ease-in;
 
-    &--right {
-      float: right;
-    }
+		&--right {
+			float: right;
+		}
 
-    &--left {
-      float: left;
-    }
+		&--left {
+			float: left;
+		}
 
-    &__item {
-      position: relative;
-      display: block;
-      float: left;
+		&__item {
+			position: relative;
+			display: block;
+			float: left;
 
-      &__inner {
-        display: block;
-        line-height: $headerHeight;
-        font-size: $headerFontSize;
-        padding-right: 15px;
-        padding-left: 15px;
-        cursor: pointer;
-      }
+			&__inner {
+				display: block;
+				line-height: $headerHeight;
+				font-size: $headerFontSize;
+				padding-right: 15px;
+				padding-left: 15px;
+				cursor: pointer;
+			}
 
-      &__inner--icon {
-        font-size: $headerFontSize + 10px;
-      }
-    }
+			&__inner--icon {
+				font-size: $headerFontSize + 10px;
+			}
+		}
 
-    +below(3) {
-      &--left {
-        position: absolute;
-        bottom: ($headerHeight + 1px);
-        left: 0;
-        right: 0;
-        float: none;
-        width: 100%;
-        background-color: #FFFFFF;
-        border-top: 1px solid $lightGrey;
-      }
+		+below(3) {
+			&--left {
+				position: absolute;
+				bottom: ($headerHeight + 1px);
+				left: 0;
+				right: 0;
+				float: none;
+				width: 100%;
+				background-color: #FFFFFF;
+				border-top: 1px solid $lightGrey;
+			}
 
-      &--open {
-        bottom: -($headerHeight + 1px);
-      }
-    }
-
-  }
+			&--open {
+				bottom: -($headerHeight + 1px);
+			}
+		}
+	}
+	
+	&__notifications-menu {
+		padding: 10px;
+		background-color: $lightGrey;
+		
+		&:after {
+			border-color: $lightGrey transparent;
+		}
+		> li {
+			background-color: #FFFFFF;
+			margin-bottom: 10px;
+			padding: 5px;
+		  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		  border-radius: 3px;
+		}
+	}
 }
