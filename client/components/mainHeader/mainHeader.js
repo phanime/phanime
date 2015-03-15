@@ -25,15 +25,15 @@ Template.mainHeader.events({
 			Session.set('isSearchingGlobal', true);
 	},
 
-    'click .main-header__nav-toggle-left' : function(event) {
-        var el = $('.main-header__nav--left');
+	'click .main-header__nav-toggle-left' : function(event) {
+		var el = $('.main-header__nav--left');
 
-        if (el.hasClass('main-header__nav--open')) {
-            $('.main-header__nav--left').removeClass('main-header__nav--open');
-        } else {
-            $('.main-header__nav--left').addClass('main-header__nav--open');
-        }
-    }
+		if (el.hasClass('main-header__nav--open')) {
+			$('.main-header__nav--left').removeClass('main-header__nav--open');
+		} else {
+			$('.main-header__nav--left').addClass('main-header__nav--open');
+		}
+	}
 });
 
 
