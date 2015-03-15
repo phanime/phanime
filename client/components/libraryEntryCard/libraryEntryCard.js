@@ -3,9 +3,6 @@ Template.libraryEntryCard.rendered = function() {
 		max: 10,
 		step: 1
 	});
-
-	$('.fa.entry').tooltip();
-
 };
 
 Template.libraryEntryCard.events({

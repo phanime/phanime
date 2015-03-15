@@ -3,11 +3,6 @@ Template.libraryEntryCardEdit.rendered = function() {
 		max: 10,
 		step: 1
 	});
-
-	$('.fa.entry').tooltip();
-
-	// $('.entry-rating').tooltip();
-
 };
 
 Template.libraryEntryCardEdit.events({

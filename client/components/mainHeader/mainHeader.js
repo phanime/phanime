@@ -1,10 +1,6 @@
 Template.mainHeader.created = function() {
-
 	// Init with 0 and then have it update in rendered
 	this.unreadAlertCount = new ReactiveVar(0);
-
-	console.log(this);
-
 };
 
 Template.mainHeader.events({
