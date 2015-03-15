@@ -69,18 +69,26 @@ $logoWidth = 239px;
 			position: relative;
 			display: block;
 			float: left;
-
+			padding-right: 15px;
+			padding-left: 15px;
+			
 			&__inner {
 				display: block;
 				line-height: $headerHeight;
 				font-size: $headerFontSize;
-				padding-right: 15px;
-				padding-left: 15px;
 				cursor: pointer;
 			}
 
 			&__inner--icon {
 				font-size: $headerFontSize + 10px;
+			}
+			
+			&__inner--avatar {
+				padding-top: 10px;
+			}
+			
+			&:last-child {
+				padding-right: 0;
 			}
 		}
 
