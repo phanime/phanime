@@ -5,11 +5,9 @@
 		<section>
 			<h1 class="thin-text sub-text">Recently Added</h1>
 
-			<div class="clearfix">
+			<div class="flex-center">
 				{{#each recentlyAdded.entries}}
-					<div class="grid-col-6">
-						{{> libraryEntryCard}}
-					</div>
+					{{> libraryEntryCard}}
 				{{/each}}
 			</div>
 		</section>
