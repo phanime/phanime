@@ -1,9 +1,9 @@
 <template name="animeExplore">
 
-	<div class="container main-content">
+	<div class="anime-explore container main-content">
 
-		<div class="row">
-			<div class="col-sm-6 col-md-5 col-lg-4">
+		<div class="clearfix anime-explore__filters">
+			<div class="half-width">
 				<div class="btn-group">
 					<button type="button" id="noneDate" class="btn btn-default {{dateCurrentlyActive 'None'}}">None</button>
 					<button type="button" id="currentlyAiring" class="btn btn-default {{dateCurrentlyActive 'Currently Airing'}}">Currently Airing</button>
@@ -11,17 +11,14 @@
 				</div>
 			</div>
 
-			<div class="col-sm-6 col-md-7 col-lg-8">
+			<div class="half-width">
 				<select id="selectGenre" name="genres[]" multiple placeholder="Select some genres"></select>
 			</div>
-
 		</div>
 
-		<div class="row">
+		<div class="anime-explore__card-container">
 			{{#each anime}}
-				<div class="grid-col-6">
-					{{> animeCard anime=this wrapLink=false}}
-				</div>
+				{{> animeCard anime=this wrapLink=false}}
 			{{else}}
 				<h3 class="sub-text">We couldn't find any anime with the currently applied filters</h3>
 			{{/each}}
