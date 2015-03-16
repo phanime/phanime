@@ -3,11 +3,9 @@
 		<h2 class="thin-text sub-text">Recommendations</h2>
 	{{/if}}
 
-	<div class="row">
+	<div class="flex-center">
 		{{#each recommendedAnime}}
-			<div class="grid-col-6">
-				{{> animeCard anime=this wrapLink=false}}
-			</div>
+			{{> animeCard anime=this wrapLink=false}}
 		{{else}}
 			<div class="col-sm-12">
 				<div class="block centered-text">

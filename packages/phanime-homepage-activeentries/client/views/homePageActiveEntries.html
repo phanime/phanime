@@ -9,11 +9,9 @@
 				<a href="{{pathFor 'userLibrary'}}" style="margin-top: -5px; margin-bottom: 10px; margin-left: 10px" class="btn btn-primary btn-sm btn-transparent">View Library</a>
 			{{/with}}
 		{{/if}}
-		<div class="clearfix">
+		<div class="flex-center">
 		{{#each activeEntries}}
-			<div class="grid-col-6">
-				{{> libraryEntryCard}}
-			</div>
+			{{> libraryEntryCard}}
 		{{else}}
 			<div class="col-sm-12">
 				<div class="block centered-text">
