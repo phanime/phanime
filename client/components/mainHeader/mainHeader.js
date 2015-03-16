@@ -8,7 +8,7 @@ Template.mainHeader.events({
 		Meteor.logout();
 		return false;
 	},
-	'click #alertsToggle' : function(event) {
+	'click .main-header__nav--notification-handler' : function(event) {
 		// Once the user clicks the alert toggle, we should mark all the unread alerts as read
 		Meteor.call('markAllAlertsRead', Meteor.userId(), function(error, result) {
 			if (!error) {

@@ -15,6 +15,12 @@ Template.clickableDropdown.events({
 		}
 	},
 
+	'click .clickable-dropdown__menu' : function(event, template) {
+		var dropdownEl = $(event.target).parents('.clickable-dropdown').children('.clickable-dropdown__menu');
+		dropdownEl.removeClass('clickable-dropdown__menu--open');
+		template.isOpen.set(false);		
+	},
+
 	'click .clickable-dropdown__backdrop' : function(event, template) {
 		var dropdownEl = $(event.target).parents('.clickable-dropdown').children('.clickable-dropdown__menu');
 		dropdownEl.removeClass('clickable-dropdown__menu--open');
@@ -27,3 +33,6 @@ Template.clickableDropdown.helpers({
 		return Template.instance().isOpen.get();
 	}
 });
+asdfasdf
+
+
