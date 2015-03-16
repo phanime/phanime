@@ -73,6 +73,7 @@ $logoWidth = 239px;
 			padding-left: 15px;
 			
 			&__inner {
+				display: relative;
 				display: block;
 				line-height: $headerHeight;
 				font-size: $headerFontSize;
@@ -90,6 +91,7 @@ $logoWidth = 239px;
 			&:last-child {
 				padding-right: 0;
 			}
+			
 		}
 
 		+below(3) {
@@ -109,6 +111,23 @@ $logoWidth = 239px;
 			}
 		}
 	}
+	
+	&__counter {
+		position: absolute;
+		background-color: #83BD40;
+		color: #fff;
+		top: 3px;
+		right: 0;
+		padding: 4px 5px;
+		line-height: 8px;
+		font-size: 11px;
+		border-radius: 50px;
+		
+		&:empty {
+			padding: 0;
+		}
+	}
+
 	
 	&__notifications-menu {
 		padding: 10px;
