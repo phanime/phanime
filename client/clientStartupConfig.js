@@ -35,3 +35,11 @@ Accounts.onEmailVerificationLink(function(token, done) {
 		}
 	});
 });
+
+
+Session.set("Mongol", {
+	'collections': ['ProfilePosts', 'Anime'],
+	'display': true,
+	'opacity_normal': ".7",
+	'opacity_expand': "1",
+});
