@@ -1,58 +1,69 @@
+@import "client/styles/variables.import"
+
 .clickable-dropdown {
-  position: relative;
+	position: relative;
 
-  &__menu {
-    position: absolute;
-    top: 60px;
-    z-index: 1001;
-    min-width: 160px;
-    display: none;
-    background: #fff;
-    border-radius: inherit;
-    border: 1px solid rgba(0,0,0,0.17);
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    font-weight: normal;
-    transition: all 0.5s ease-in;
-    list-style: none;
-    right: 6px;
-    padding: 10px 15px;
+	&__menu {
+		position: absolute;
+		top: 60px;
+		z-index: 1001;
+		min-width: 160px;
+		display: none;
+		background: #fff;
+		border-radius: inherit;
+		border: 1px solid rgba(0,0,0,0.17);
+		box-shadow: 0 0 5px rgba(0,0,0,0.1);
+		font-weight: normal;
+		transition: all 0.5s ease-in;
+		list-style: none;
+		right: 6px;
+		padding: 0;
 
-    &:after {
-      content: "";
-      width: 0;
-      height: 0;
-      position: absolute;
-      bottom: 100%;
-      right: 15px;
-      border-width: 0 6px 6px 6px;
-      border-style: solid;
-      border-color: #fff transparent;
-    }
+		&:after {
+			content: "";
+			width: 0;
+			height: 0;
+			position: absolute;
+			bottom: 100%;
+			right: 15px;
+			border-width: 0 6px 6px 6px;
+			border-style: solid;
+			border-color: #fff transparent;
+		}
 
-    &:before {
-      content: "";
-      width: 0;
-      height: 0;
-      position: absolute;
-      bottom: 100%;
-      right: 13px;
-      border-width: 0 8px 8px 8px;
-      border-style: solid;
-      border-color: rgba(0,0,0,0.1) transparent;
-    }
-  }
+		&:before {
+			content: "";
+			width: 0;
+			height: 0;
+			position: absolute;
+			bottom: 100%;
+			right: 13px;
+			border-width: 0 8px 8px 8px;
+			border-style: solid;
+			border-color: rgba(0,0,0,0.1) transparent;
+		}
 
-  &__menu--open {
-    display: block;
-  }
+		> li > a {
+			display: block;
+			padding: 8px 10px;
+			
+			&:hover {
+				background-color: lighten($lightGrey, 65%);
+			}
+		}
+	}
 
-  &__backdrop {
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 100%;
-  }
+	&__menu--open {
+		display: block;
+	}
+
+	&__backdrop {
+		position: fixed;
+		z-index: 1000;
+		top: 0;
+		right: 0;
+		height: 100vh;
+		width: 100%;
+	}
 
 }
