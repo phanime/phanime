@@ -11,6 +11,7 @@
 				<ul class="main-header__nav main-header__nav--right">
 					{{#if currentUser}}
 						{{#with currentUser}}
+
 							{{#clickableDropdown class="main-header__nav__item"}}
 								<i class="main-header__nav__item__inner main-header__nav__item__inner--icon clickable-dropdown__handler main-header__nav--notification-handler fa fa-bell-o">
 									<span class="main-header__counter">{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span>
@@ -25,11 +26,21 @@
 								</ul>
 							{{/clickableDropdown}}
 
-							<li class="main-header__nav__item">
-								<a class="main-header__nav__item__inner main-header__nav__item__inner--avatar" href="{{pathFor 'user'}}">
-									<div class="img img-sm avatar" style="background-image: url('{{currentUser.avatarImageUrl}}')"></div>
-								</a>
-							</li>
+							{{#clickableDropdown class="main-header__nav__item"}}
+								<div class="main-header__nav__item__inner main-header__nav__item__inner--avatar clickable-dropdown__handler img img-sm avatar" style="background-image: url('{{currentUser.avatarImageUrl}}')"></div>
+
+								<ul class="clickable-dropdown__menu">								
+									<li><a href="{{pathFor 'user'}}">Profile</a></li>
+									<li><a href="{{pathFor 'userLibrary'}}">Library</a></li>
+									<li class="divider"></li>
+									<li><a href="{{pathFor 'accountPersonalDetails'}}">Personal Details</a></li>
+									<li><a href="{{pathFor 'accountSecurity'}}">Security</a></li>
+									<li><a href="{{pathFor 'accountImports'}}">Imports</a></li>
+									<li class="divider"></li>
+									<li><a id="signOut" href="#">Sign out</a></li>
+								</ul>
+							{{/clickableDropdown}}
+
 						{{/with}}
 					{{/if}}
 				</ul>
