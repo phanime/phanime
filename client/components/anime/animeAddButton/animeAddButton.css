@@ -23,17 +23,17 @@
 	display: block;
 }
 
-.libraryCardWrapperAnime > .libraryEntryForm {
-	position: fixed !important;
-	bottom: 0 !important;
-	right: 0 !important;
-	top: auto !important;
-	left: auto !important;
-	opacity: 1 !important;
+.libraryCardWrapperAnime > .library-entry-form {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	top: auto;
+	left: auto;
+	opacity: 1;
 	text-align: center;
 	margin: 50px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); 
-	z-index: 100 !important;
+	z-index: 100;
 }
 
 #closeLibraryCard {
