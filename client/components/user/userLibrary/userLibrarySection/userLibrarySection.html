@@ -15,16 +15,13 @@
 				<button type="button" class="btn btn-default {{activeLibraryView 'List'}}">List</button>
 			</div>
 
-			<div class="dropdown" style="display: inline-block">
-				<button class="btn btn-default dropdown-toggle" type="button" id="sortByButton" data-toggle="dropdown">
-					{{selectedSortField}}
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu" aria-labelby="dropdownSortField">
+			{{#clickableDropdown}}
+				<button class="btn clickable-dropdown__handler" type="button" id="sortByButton">{{selectedSortField}}</button>
+				<ul class="clickable-dropdown__menu clickable-dropdown__menu--left" role="menu">
 					<li><a class="sortField" style="cursor: pointer" data-sortField="canonicalTitle">Alphabetical</a></li>
 					<li><a class="sortField" style="cursor: pointer" data-sortField="updatedAt">Last Updated</a></li>
 				</ul>
-			</div>
+			{{/clickableDropdown}}
 
 			<button type="button" class="btn btn-default sortOrder">{{selectedSortOrder}}</button>
 

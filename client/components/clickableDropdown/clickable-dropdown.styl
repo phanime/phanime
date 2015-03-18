@@ -55,6 +55,22 @@
 				background-color: lighten($lightGrey, 65%);
 			}
 		}
+		
+		&--left {
+			right: auto;
+			left: 0;
+			top: 40px;
+			
+			&:after {
+				right: auto;
+				left: 2px;
+			}
+			
+			&:before {
+				right: auto;
+				left: 0;
+			}
+		}
 	}
 
 	&__menu--open {
