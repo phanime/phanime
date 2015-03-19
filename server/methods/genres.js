@@ -1,7 +1,7 @@
 Meteor.methods({
-	
+
 	getGenres: function() {
-		return Genres.find().fetch();
+		return Genres.find({}, {sort: {name: 1}}).fetch();
 	}
 
 });

@@ -313,7 +313,6 @@ EasySearch.createSearchIndex('anime', {
 	}
 });
 
-
 AnimeRevisionsSchema = new SimpleSchema({
 	_id: {
 		type: String,
@@ -429,6 +428,12 @@ AnimeRevisionsSchema = new SimpleSchema({
 	},
 	themes: {
 		type: [String],
+		autoform: {
+			type: "selectize",
+			afFieldInput: {
+				multiple: true
+			}
+		},
 		optional: true
 	},
 	studios: {

@@ -46,6 +46,7 @@ Template.animeExplore.rendered = function() {
 		valueField: "name",
 		labelField: "name",
 		searchField: "name",
+		sortField: "name",
 		create: false,
 		onChange: function(value) {
 			var filterObject = self.filterObject.get();
@@ -92,7 +93,7 @@ Template.animeExplore.events({
 		// Upcoming anime should have their start date be greater than today's date
 		var filterObject = template.filterObject.get();
 
-		// We'll remove the $or because it's for currently airing 
+		// We'll remove the $or because it's for currently airing
 		if (filterObject.$and)
 			delete filterObject.$and;
 
@@ -105,10 +106,10 @@ Template.animeExplore.events({
 		template.filterObject.set(filterObject);
 	},
 	'click #currentlyAiring' : function(event, template) {
-		// Currently airing anime would either not have endDate field or it's value will be greater than 
+		// Currently airing anime would either not have endDate field or it's value will be greater than
 		// today's date and will have their start date before today's value
 		var filterObject = template.filterObject.get();
-		// We'll have to remove any other date conditions on here first 
+		// We'll have to remove any other date conditions on here first
 		if (filterObject.startDate)
 			delete filterObject.startDate;
 
@@ -134,14 +135,14 @@ Template.animeExplore.events({
 		template.filterObject.set(filterObject);
 	},
 	'click #noneDate' : function(event, template) {
-		// This method essentially resets and date restrictions we had 
+		// This method essentially resets and date restrictions we had
 		// like upcoming or currentlyAiring
 		var filterObject = template.filterObject.get();
 
 		if (filterObject.startDate)
 			delete filterObject.startDate;
 
-		if (filterObject.$and) 
+		if (filterObject.$and)
 			delete filterObject.$and;
 
 		template.dateCurrentlyActive.set("None");
