@@ -73,14 +73,12 @@
 		</table>
 	{{/if}}
 
-	{{#unless isReady}}
-		{{> rectangleLoader}}
-	{{/unless}}
-
 	{{#if isReady}}
 		{{#if hasMorelibraryEntries}}
-			<button id="loadMore" type="button" class="btn btn-primary btn-lg btn-full-width"><h4>Load More</h4></button>
+			<button id="loadMore" type="button" class="btn full-width"><h4>Load More</h4></button>
 		{{/if}}
+	{{else}}
+		{{> loading}}
 	{{/if}}
 
 </template>
