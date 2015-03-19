@@ -17,8 +17,7 @@ Template.mainHeader.events({
 		});
 	},
 	'click #searchGlobal' : function(event) {
-		if (Meteor.user())
-			Session.set('isSearchingGlobal', true);
+		Session.set('isSearchingGlobal', true);
 	},
 
 	'click .main-header__nav-toggle-left' : function(event) {
