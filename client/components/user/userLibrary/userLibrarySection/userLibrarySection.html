@@ -1,8 +1,8 @@
 <template name="userLibrarySection">
 
 	<div class="row">
-		<div class="clearfix">
-			<div class="btn-group statusFilter">
+		<div class="clearfix flex-center filters">
+			<div class="filters__item btn-group statusFilter">
 				<button type="button" class="btn btn-default {{activeStatusFilter 'Watching'}}">Watching</button>
 				<button type="button" class="btn btn-default {{activeStatusFilter 'Completed'}}">Completed</button>
 				<button type="button" class="btn btn-default {{activeStatusFilter 'Plan to watch'}}">Plan to watch</button>
@@ -10,27 +10,24 @@
 				<button type="button" class="btn btn-default {{activeStatusFilter 'Dropped'}}">Dropped</button>
 			</div>
 
-			<div class="btn-group btn-beside libraryView">
+			<div class="filters__item btn-group btn-beside libraryView">
 				<button type="button" class="btn btn-default {{coverViewDisabled}} {{activeLibraryView 'Cover'}}">Cover</button>
 				<button type="button" class="btn btn-default {{activeLibraryView 'List'}}">List</button>
 			</div>
 
 			{{#clickableDropdown}}
-				<button class="btn clickable-dropdown__handler" type="button" id="sortByButton">{{selectedSortField}}</button>
+				<button class="filters__item btn clickable-dropdown__handler" type="button" id="sortByButton">{{selectedSortField}}</button>
 				<ul class="clickable-dropdown__menu clickable-dropdown__menu--left" role="menu">
 					<li><a class="sortField" style="cursor: pointer" data-sortField="canonicalTitle">Alphabetical</a></li>
 					<li><a class="sortField" style="cursor: pointer" data-sortField="updatedAt">Last Updated</a></li>
 				</ul>
 			{{/clickableDropdown}}
 
-			<button type="button" class="btn btn-default sortOrder">{{selectedSortOrder}}</button>
-
-		</div>
-
-		<div class="col-lg-4 col-md-5 col-sm-12">
-			<input id="searchLibrary" class="form-control" placeholder="Search {{user.displayName}}'s library">
+			<button type="button" class="filters__item btn btn-default sortOrder">{{selectedSortOrder}}</button>
 		</div>
 	</div>
+
+	<input id="searchLibrary" class="filters__item" placeholder="Search {{user.displayName}}'s library">
 
 	{{#if libraryViewCheck 'Cover'}}
 		<h1 class="thin-text sub-text">{{selectedStatus}}</h1>
@@ -48,34 +45,32 @@
 
 
 	{{#if libraryViewCheck 'List'}}
-		<div class="table-responsive">
-			<table class="table table-striped block table-hover">
-				<thead>
+		<table class="table table-striped block table-hover">
+			<thead>
+				<tr>
+					<td>Title</td>
+					<td>Score</td>
+					<td>Progress</td>
+					<td>Type</td>
+				</tr>
+
+			</thead>
+
+
+			<tbody>
+				<tr>
+					<td colspan="4"><h5 class="centered-text">{{selectedStatus}}</h5></td>
+				</tr>
+
+				{{#each libraryEntries}}
+					{{> UI.dynamic template="libraryEntryRow" data=this}}
+				{{else}}
 					<tr>
-						<td>Title</td>
-						<td>Score</td>
-						<td>Progress</td>
-						<td>Type</td>
+						<td colspan="4"><h5 class="thin-text centered-text">{{user.displayName}} has no anime with {{selectedStatus}} status</h5></td>
 					</tr>
-
-				</thead>
-
-
-				<tbody>
-					<tr>
-						<td colspan="4"><h5 class="centered-text">{{selectedStatus}}</h5></td>
-					</tr>
-
-					{{#each libraryEntries}}
-						{{> UI.dynamic template="libraryEntryRow" data=this}}
-					{{else}}
-						<tr>
-							<td colspan="4"><h5 class="thin-text centered-text">{{user.displayName}} has no anime with {{selectedStatus}} status</h5></td>
-						</tr>
-					{{/each}}
-				</tbody>
-			</table>
-		</div>
+				{{/each}}
+			</tbody>
+		</table>
 	{{/if}}
 
 	{{#unless isReady}}
