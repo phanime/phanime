@@ -69,7 +69,7 @@ Template.profilePostCard.helpers({
 			returnedHtml = '<div class="profile-post-card__featured">' + ourImage + "</div>";
 		}
 
-		returnedHtml += '<div class="description profile-post-card__text">' + text + '</div>';
+		returnedHtml += '<div class="description profile-post-card__text">' + text.trim() + '</div>';
 
 		return returnedHtml;
 	},
