@@ -1,45 +1,47 @@
 .create-profile-post {
 	padding: 0 !important;
-}
-.create-profile-post textarea {
-	position: relative;
-	z-index: 1;
-	resize: none;
-	border: none;
-	padding: 20px;
-}
 
-.create-profile-post textarea:focus {
-	box-shadow: none !important;
-}
+	&:focus {
+		box-shadow: 1px 1px 1px #000;
+	}	
 
-.create-profile-post textarea:focus + .action-bar {
-	margin-top: 0;
-}
+	&__textarea {
+		position: relative;
+		z-index: 1;
+		resize: none;
+		border: none;
+		padding: 20px;
 
-.create-profile-post .action-bar:hover {
-	margin-top: 0;
-}
+		&:focus {
+			box-shadow: none !important;
+		}
+	}
 
-.create-profile-post button:focus + .action-bar {
-	margin-top: 0;
-}
+	&__textarea:focus + &__action-bar {
+		margin-top: 0;
+	}
 
-.create-profile-post:focus {
-	box-shadow: 1px 1px 1px #000;
-}
+	&__action-bar {
+		background-color: #E6E6E6;
+		padding: 5px;
+		margin-top:-43px;
+		-webkit-transition: all 0.4s ease;
+		-moz-transition: all 0.4s ease;
+		-o-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+		
+		&:hover {
+				margin-top: 0;
+		}
 
-.create-profile-post .action-bar {
-	background-color: #E6E6E6;
-	padding: 5px;
-	margin-top:-43px;
-	-webkit-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-}
+		&__post-btn {
+			float: right;
+			margin: 0;
+			padding: 5px 20px;
+		}
 
-.create-profile-post button {
-	margin: 0;
-	padding: 5px 20px;
+		&__post-btn:focus + & {
+			margin-top: 0;
+		}
+	}
 }
