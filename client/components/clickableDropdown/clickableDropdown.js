@@ -33,6 +33,5 @@ Template.clickableDropdown.helpers({
 		return Template.instance().isOpen.get();
 	}
 });
-asdfasdf
 
 

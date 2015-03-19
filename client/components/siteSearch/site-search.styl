@@ -1,0 +1,33 @@
+@import "client/styles/variables.import"
+
+.site-search {
+	position: fixed;
+	top: 0;
+	z-index: 100000;
+	background-color: rgba(233, 233, 233, 0.95);
+	width: 100%;
+	height: 100%;
+	
+	&__close {
+		position: absolute;
+		top: 0;
+		right: 10px;
+		font-size: 50px;
+		color: #878787;
+		cursor: pointer;
+	}
+	
+	&__input {
+		font-size: 50px;
+		border: 0;
+		border-bottom: 1px solid $medGrey;
+		background-color: transparent;
+	}
+	
+	&__results {
+		margin-top: 50px;
+		padding-bottom: 50px;
+		height: calc(100vh - 150px);
+		overflow-y: auto;
+	}
+}

@@ -1,0 +1,31 @@
+<template name="siteSearch">
+
+	<div class="main-content site-search">
+		<div class="container">
+			<div class="site-search__close">
+				<i class="fa fa-times-circle close-search-handler"></i>
+			</div>
+
+			{{> esInput index="anime" reactive=false class="site-search__input" placeholder="Search..."}}
+
+			<div class="container row site-search__results">
+				<div class="col-sm-12">
+				{{#ifEsIsSearching index="anime"}}
+					{{> loading}}
+				{{else}}
+					<div class="flex-center">
+						{{#esEach index="anime"}}
+							{{> animeCard anime=this wrapLink=true}}
+						{{/esEach}}
+					</div>
+				{{/ifEsIsSearching}}
+
+				{{#ifEsHasNoResults index="anime"}}
+					<h2 class="thin-text" style="text-align: center;">No results found!</h2>
+				{{/ifEsHasNoResults}}
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>
