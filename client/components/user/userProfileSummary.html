@@ -1,0 +1,92 @@
+<template name="userProfileSummary">
+	<div class="user-profile-summary">
+		<div class="fancy-heading" style="background-image: url('{{profileBannerImageUrl}}')">
+			<div class="container">
+				<div class="user-profile-summary__important">
+
+					{{#if isUserIdCurrentUser _id}}
+						<a href="{{pathFor 'accountPersonalDetails'}}">
+							<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
+						</a>
+					{{else}}
+						<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
+					{{/if}}
+
+					<div class="user-profile-summary__content">
+						<h1 class="user-profile-summary__content__username">{{displayName}}</h1>
+						{{#if isUserIdCurrentUser _id}}
+							{{#if isEditing}}
+								<button id="saveProfile" type="button" class="btn transparent white user-profile-summary__content__btn">Save</button>
+							{{else}}
+								<button id="editProfile" type="button" class="btn transparent white user-profile-summary__content__btn">Edit</button>
+							{{/if}}
+						{{else}}
+							{{#if currentUser}}
+								{{> userFollowButton
+									user=this
+									followClasses="btn transparent white user-profile-summary__content__btn"
+									followingClasses="btn transparent white user-profile-summary__content__btn"
+								}}
+							{{/if}}
+						{{/if}}
+						{{#if isEditing}}
+							<input id="profileAboutInput" placeholder="Tell us about yourself" class="input--naked" value="{{profile.about}}">
+					    <input id="profileLocationInput" placeholder="Location" class="input--naked" value="{{profile.location}}">
+					    <input id="profileWebsiteInput" placeholder="Website" class="input--naked" value="{{profile.website}}">
+						{{else}}
+							<section class="no-margin">
+								{{#if profile.about}}
+									<p class="description">{{profile.about}}</p>
+								{{/if}}
+
+								<div class="user-profile-summary__icons">
+									{{#if profile.location}}
+										<i data-toggle="tooltip" data-placement="bottom" title="{{profile.location}}" style="margin-right: 10px" class="tooltipped fa fa-map-marker"></i>
+									{{/if}}
+
+									{{#if profile.website}}
+										<a href="{{profile.website}}">
+											<i data-toggle="tooltip" data-placement="bottom" title="{{profile.website}}" class="tooltipped fa fa-globe"></i>
+										</a>
+									{{/if}}
+
+									<div style="display: inline; margin-left: 10px">
+										<span data-toggle="tooltip" data-placement="bottom" title="Revisions Approved" class="tooltipped" style="color: #83BD40">
+											{{#if revisionApprovedCount}}
+												{{revisionApprovedCount}}
+											{{else}}
+												0
+											{{/if}}
+										</span>
+										/
+										<span data-toggle="tooltip" data-placement="bottom" title="Revisions Declined" class="tooltipped" style="color: #FF9595">
+											{{#if revisionDeclinedCount}}
+												{{revisionDeclinedCount}}
+											{{else}}
+												0
+											{{/if}}
+										</span>
+									</div>
+								</div>
+							</section>
+						{{/if}}
+					</div>
+				</div>
+			</div>
+			<div class="banner-gradient"></div>
+		</div>
+
+		<nav class="user-profile-summary__nav" role="navigation">
+			<div class="container">
+					<ul class="inline-list flex-center">
+						<li class="{{activeRoute 'user'}}"><a href="{{pathFor 'user'}}">Summary</a></li>
+						<li class="{{activeRoute 'userActivity'}}"><a href="{{pathFor 'userActivity'}}">Activity</a></li>
+						<li class="{{activeRoute 'userLibrary'}}"><a href="{{pathFor 'userLibrary'}}">Library</a></li>
+						<li class="{{activeRoute 'userFollowers'}}"><a href="{{pathFor 'userFollowers'}}">Followers ({{followerCount}})</a></li>
+						<li class="{{activeRoute 'userFollowing'}}"><a href="{{pathFor 'userFollowing'}}">Following ({{followingCount}})</a></li>
+						<li class="{{activeRoute 'userCustomLists'}}"><a href="{{pathFor 'userCustomLists'}}">Custom lists</a></li>
+					</ul>
+			</div>
+		</nav>
+	</div>
+</template>

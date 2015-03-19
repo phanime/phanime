@@ -1,0 +1,16 @@
+<template name="signIn">
+	<div class="centered-text margin-text">
+		Don't have an account? <a href="{{pathFor 'signUp'}}">Register</a>
+	</div>
+
+	<form role="form">
+		<div class="input-group-vertical">
+			<input type="text" id="identification" class="form-control" placeholder="Username or Email">
+			<input type="password" id="password" class="form-control" placeholder="Password">
+		</div>
+
+		<a href="{{pathFor 'forgotPassword'}}">Forgot your password?</a>
+
+		<button type="button" id="signInButton" class="btn full-width secondary big margin-text">Sign In</button>
+	</form>
+</template>

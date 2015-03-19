@@ -1,0 +1,41 @@
+<template name="libraryEntryRowEdit">
+	<tr>
+		<td colspan="4">
+			<div class="library-entry-row-edit container">
+				<div class="clearfix">
+					<div class="half-width">
+						<section>
+							<div class="dropdown-menu-wrapper">
+								<button class="btn full-width secondary handler">{{status}}</button>
+								<ul class="dropdown-menu">
+									{{#each watchStatuses}}
+										<li><a class="status-item" data-status="{{this}}">{{this}}</a></li>
+									{{/each}}
+								</ul>
+							</div>
+						</section>
+
+						<section>
+							<div title="1" class="entry-rating" id="rating_{{_id}}" data-rateit-value="{{rating}}"></div>
+						</section>
+					</div>
+					<div class="half-width">
+						<section>
+							<input type="number" class="entry-episodes-seen" placeholder="#" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
+							<div class="entry-total-episodes"> / {{anime.totalEpisodes}}</div>
+						</section>
+						<div class="icon-group">
+							<i data-toggle="tooltip" data-placement="left" title="{{rewatchingToolText rewatching}}" class="fa entry libraryEntryIcons entry-rewatching {{entryRewatchingClass rewatching}}"></i>
+							<i data-toggle="tooltip" data-placement="top" title="{{highPriorityToolText highPriority}}" class="fa entry libraryEntryIcons entry-highPriority {{entryHighPriorityClass highPriority}}"></i>
+							<i data-toggle="tooltip" data-placement="right" title="{{privacyToolText privacy}}" class="fa entry libraryEntryIcons entry-privacy {{entryPrivacyClass privacy}}"></i>
+						</div>
+					</div>
+				</div>
+
+				<section>
+					<textarea class="entry-comments" placeholder="Personal comments" value="{{comments}}" maxlength="140"></textarea>
+				</section>
+			</div>
+		</td>	
+	</tr>
+</template>

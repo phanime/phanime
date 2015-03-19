@@ -1,0 +1,42 @@
+<template name="profilePostCard">
+
+	<div class="animated zoomInDown profile-post-card">
+		<div class="block profile-post-card__block">
+			<div class="profile-post-card__top-bar">
+				{{#with poster}}
+					<a href="{{pathFor 'user'}}">
+						<div class="img img-sm avatar" style="background-image: url('{{avatarImageUrl}}');"></div>
+					</a>
+					<h5>{{displayName}}</h5>
+				{{/with}}
+				<p class="thin-text"><a class="sub-text" href="{{pathFor 'profilePost'}}">{{formatDateFromNow createdAt}}</a></p>
+			</div>
+
+			{{{formatContent content}}}
+
+			<div class="profile-post-card__action-bar">
+				{{#if currentUser}}
+					<a class="sub-text toggle-like-post" href="#">{{likeText}}</a>
+				{{/if}}
+				{{#if likeCount}}
+					<span> · </span>{{likeCount}}
+				{{/if}}
+			</div>
+		</div>
+
+		<div class="block comment-list">
+			{{#if commentsList}}
+				<div class="expand-comments-list sub-text">{{expandCommentsText}}</div>
+			{{/if}}
+
+			{{#each commentsList}}
+				{{> UI.dynamic template="commentCard" data=this}}
+			{{/each}}
+
+			{{#if currentUser}}
+				{{> createComment commentType="profilePost" textForGuests="" parent=this}}
+			{{/if}}
+		</div>
+	</div>
+
+</template>

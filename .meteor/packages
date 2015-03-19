@@ -11,7 +11,6 @@ accounts-password
 dburles:collection-helpers
 spiderable
 dandv:jquery-rateit
-mizzao:bootstrap-3
 percolatestudio:synced-cron
 rosh93:aws-sdk
 email
@@ -56,4 +55,8 @@ meteorhacks:kadira
 gfk:notifications
 momentjs:moment
 phanime-alerts
+phanime-blazy
 meteorhacks:cluster
+mquandalle:stylus
+phanime-masonry
+msavin:mongol

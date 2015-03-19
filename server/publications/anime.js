@@ -12,11 +12,11 @@ Meteor.publishComposite("anime", function(animeId) {
 			{
 				find: function(anime) {
 					return Episodes.find({animeId: anime._id});
-				} 
+				}
 			},
 			{
 				find: function(anime) {
-					return Castings.find({animeId: anime._id});
+					return Castings.find({animeId: anime._id, language: "Japanese"}, {limit: 5});
 				},
 				children: [
 					{
@@ -29,11 +29,11 @@ Meteor.publishComposite("anime", function(animeId) {
 							return People.find({_id: casting.personId});
 						}
 					}
-				]  
+				]
 			},
 			{
 				find: function(anime) {
-					return StaffMembers.find({animeId: anime._id});
+					return StaffMembers.find({animeId: anime._id}, {limit: 5});
 				},
 				children: [
 					{
@@ -41,7 +41,7 @@ Meteor.publishComposite("anime", function(animeId) {
 							return People.find({_id: staffMember.personId});
 						}
 					}
-				] 
+				]
 			},
 			{
 				find: function(anime) {
@@ -50,7 +50,7 @@ Meteor.publishComposite("anime", function(animeId) {
 			},
 			{
 				find: function(anime) {
-					return Reviews.find({animeId: anime._id});
+					return Reviews.find({animeId: anime._id}, {limit: 5});
 				},
 				children: [
 					{

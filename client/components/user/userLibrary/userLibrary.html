@@ -1,0 +1,21 @@
+<template name="userLibrary">
+
+	<div class="container main-content">
+
+		<section>
+			<h1 class="thin-text sub-text">Recently Added</h1>
+
+			<div class="flex-center">
+				{{#each recentlyAdded.entries}}
+					{{> libraryEntryCard}}
+				{{/each}}
+			</div>
+		</section>
+
+		<section>
+			{{> userLibrarySection user=this}}
+		</section>
+
+	</div>
+
+</template>

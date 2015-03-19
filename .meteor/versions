@@ -3,8 +3,10 @@ accounts-password@1.1.0
 aldeed:autoform@4.2.2
 aldeed:collection2@2.3.2
 aldeed:simple-schema@1.3.0
+aldeed:template-extension@3.4.1
 amplify@1.0.0
 autoupdate@1.2.0
+babrahams:editable-json@0.3.9
 base64@1.0.3
 binary-heap@1.0.3
 blaze@2.1.0
@@ -20,7 +22,7 @@ comerc:autoform-selectize@2.2.2
 dandv:jquery-rateit@1.0.22_2
 datariot:ganalytics@0.2.1
 dburles:collection-helpers@1.0.2
-dburles:mongo-collection-instances@0.2.6
+dburles:mongo-collection-instances@0.3.3
 dburles:spacebars-tohtml@1.0.0
 ddp@1.1.0
 deps@1.0.7
@@ -32,6 +34,7 @@ fastclick@1.0.3
 flowkey:hotkeys@1.1.1
 geojson-utils@1.0.3
 gfk:notifications@1.1.2
+gwendall:session-json@0.1.7
 hellogerard:reststop2@0.7.1
 html-tools@1.0.4
 htmljs@1.0.4
@@ -47,6 +50,7 @@ iron:router@1.0.7
 iron:url@1.0.7
 jquery@1.11.3_2
 json@1.0.3
+lai:collection-extensions@0.1.3
 launch-screen@1.0.2
 less@1.0.13
 livedata@1.0.13
@@ -70,12 +74,13 @@ meteorhacks:picker@1.0.1
 mike:mocha@0.5.2
 minifiers@1.1.4
 minimongo@1.0.7
-mizzao:bootstrap-3@3.3.1_1
 mobile-status-bar@1.0.3
 momentjs:moment@2.9.0
 mongo@1.1.0
 mongo-livedata@1.0.8
 mousetrap:mousetrap@1.4.6
+mquandalle:stylus@1.1.0
+msavin:mongol@1.0.2
 multiply:iron-router-progress@1.0.1
 npm-bcrypt@0.7.8_1
 npm-container@1.0.0
@@ -84,12 +89,14 @@ ordered-dict@1.0.3
 percolate:migrations@0.7.3
 percolatestudio:synced-cron@1.1.0
 phanime-alerts@0.0.1
+phanime-blazy@0.0.1
 phanime-homepage-activeentries@0.0.1
 phanime-homepage-recommendedanime@0.0.1
 phanime-homepage-schedule@0.0.1
 phanime-homepage-userfeed@0.0.1
 phanime-lib@0.0.1
 phanime-mal-import@1.0.0
+phanime-masonry@0.0.1
 phanime-spoiler-alert@1.0.0
 practicalmeteor:chai@1.9.2_3
 practicalmeteor:loglevel@1.1.0_3

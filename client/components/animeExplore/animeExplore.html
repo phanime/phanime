@@ -1,0 +1,37 @@
+<template name="animeExplore">
+
+	<div class="anime-explore container main-content">
+
+		<div class="clearfix anime-explore__filters">
+			<div class="half-width">
+				<div class="btn-group">
+					<button type="button" id="noneDate" class="btn btn-default {{dateCurrentlyActive 'None'}}">None</button>
+					<button type="button" id="currentlyAiring" class="btn btn-default {{dateCurrentlyActive 'Currently Airing'}}">Currently Airing</button>
+					<button type="button" id="upcomingAnime" class="btn btn-default {{dateCurrentlyActive 'Upcoming'}}">Upcoming</button>
+				</div>
+			</div>
+
+			<div class="half-width">
+				<select id="selectGenre" name="genres[]" multiple placeholder="Select some genres"></select>
+			</div>
+		</div>
+
+		<div class="anime-explore__card-container">
+			{{#each anime}}
+				{{> animeCard anime=this wrapLink=false}}
+			{{else}}
+				<h3 class="sub-text">We couldn't find any anime with the currently applied filters</h3>
+			{{/each}}
+		</div>
+
+			<button id="loadMore" type="button" class="btn btn-primary btn-lg full-width" style='margin-top: 20px;'>
+				{{#if isReady}}
+					<h4>Load More</h4>
+				{{else}}
+					{{> loading}}
+				{{/if}}
+			</button>
+
+	</div>
+
+</template>

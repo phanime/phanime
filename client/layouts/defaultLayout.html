@@ -1,5 +1,5 @@
 <template name="defaultLayout">
-	{{> header}}
+	{{> mainHeader}}
 
 	{{> globalNotice}}
 
@@ -10,8 +10,8 @@
 	{{> footer}}
 
 	{{#if isSearchingGlobal}}
-		{{> search}}
+		{{> siteSearch}}
 	{{/if}}
-	
+
 	{{> notifications}}
 </template>

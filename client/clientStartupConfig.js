@@ -6,6 +6,8 @@ Meteor.startup(function () {
         timeout: 3000
     });
 
+    var blazy = new Blazy();
+
 });
 
 
@@ -32,4 +34,12 @@ Accounts.onEmailVerificationLink(function(token, done) {
 			done();
 		}
 	});
+});
+
+
+Session.set("Mongol", {
+	'collections': ['ProfilePosts', 'Anime'],
+	'display': true,
+	'opacity_normal': ".7",
+	'opacity_expand': "1",
 });

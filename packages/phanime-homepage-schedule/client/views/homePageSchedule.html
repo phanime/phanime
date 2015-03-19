@@ -1,7 +1,6 @@
 <template name="homePageSchedule">
 	<div class="centered-text">
 	<h2 class="sub-text">Schedule</h2>
-	<hr class="background-hr">
 
 	{{#unless isReady}}
 		{{> loading}}
@@ -12,9 +11,11 @@
 					<h3 class="sub-text">{{day}}</h3>
 					<hr class="background-hr">
 				</div>
-				{{#each entries}}
-					{{> libraryEntryCard}}
-				{{/each}}
+				<div class="flex-center">
+					{{#each entries}}
+						{{> libraryEntryCard}}
+					{{/each}}
+				</div>
 			</div>
 		{{else}}
 			<h4 class="sub-text">Sorry, seems like the anime you're currently watching aren't on-going.</h4>

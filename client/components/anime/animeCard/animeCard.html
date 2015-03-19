@@ -1,0 +1,43 @@
+<template name="animeCard">
+
+	{{#if wrapLink}}
+		{{#with anime}}
+			<a href="{{pathFor 'anime'}}">
+				{{> _animeCard_core anime=this cssStyle=../cssStyle}}
+			</a>
+		{{/with}}
+	{{else}}
+
+		{{#unless currentUser}}
+			{{#with anime}}
+				<a href="{{pathFor 'anime'}}">
+					{{> _animeCard_core anime=this cssStyle=../cssStyle isEntryEnabled=false}}
+				</a>
+			{{/with}}
+		{{else}}
+			{{> _animeCard_core anime=anime cssStyle=cssStyle isEntryEnabled=true}}
+		{{/unless}}
+	{{/if}}
+
+</template>
+
+<template name="_animeCard_core">
+	{{#with anime}}
+	<div class="anime-card" data-anime-id="{{_id}}" style="background-image: url('{{coverImageUrl}}'); {{../cssStyle}}">
+		<div class="important">
+			{{title}}
+		</div>
+		<div class="banner-gradient"></div>
+
+		{{#if ../isEntryEnabled}}
+			{{#if libraryEntry}}
+				{{#with libraryEntry}}
+					{{> libraryEntryCardEdit}}
+				{{/with}}
+			{{else}}
+				{{> libraryEntryCardAdd}}
+			{{/if}}
+		{{/if}}
+	</div>
+	{{/with}}
+</template>

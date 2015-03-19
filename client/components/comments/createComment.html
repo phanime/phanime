@@ -1,0 +1,18 @@
+<template name="createComment">
+
+	{{#if currentUser}}
+	<div class="create-comment">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="img img-sm avatar" style="background-image: url('{{currentUser.avatarImageUrl}}')"></div>
+				<div class="textarea-container">
+					<textarea class="form-control" maxlength="500" placeholder="Write a comment..." rows="1"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{else}}
+		<h5 class="sub-text">{{textForGuests}}</h5>
+	{{/if}}
+
+</template>

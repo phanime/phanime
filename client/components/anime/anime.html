@@ -1,0 +1,120 @@
+<template name="anime">
+
+<div class="container main-content">
+
+	<section class="block">
+		<div class="clearfix">
+			<div class="anime-side">
+				<div style="background-image: url('{{coverImageUrl}}')" class="anime-cover"></div>
+			</div>
+			<div class="anime-main">
+				<ul class="anime-info">
+					{{#if type}}<li>{{type}}</li>{{/if}}
+					{{#if totalEpisodes}}<li>{{totalEpisodes}} episodes</li>{{/if}}
+					{{#if episodeDuration}}<li>{{episodeDuration}} mins.</li>{{/if}}
+					{{#if ageRating}}<li>{{ageRating}}</li>{{/if}}
+					<li>{{airingText}} {{formatDateUTC startDate}} to {{#if isMomentDatePresent endDate}} {{formatDateUTC endDate}}{{else}} - {{/if}}</li>
+				</ul>
+				<div class="description thin-text">{{#if description}}{{description}}{{else}}No description available.{{/if}}</div>
+
+				<div class="genresList">
+					{{#if genres}}
+						<h4 class="thin-text inline-text">Genres: </h4>
+						{{#each genres}}
+							<a>{{this}}</a>
+						{{/each}}
+					{{/if}}
+				</div>
+
+				<div class="themesList">
+					{{#if themes}}
+						<h4 class="thin-text inline-text">Themes:</h4>
+						{{#each themes}}
+							<a>{{this}}</a>
+						{{/each}}
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="clearfix">
+		<div class="grid-col-4">
+			{{#each reviews}}
+				{{> UI.dynamic template="reviewCard" data=this}}
+			{{/each}}
+		</div>
+	</section>
+
+
+	<div class="clearfix">
+		<div class="half-width">
+			<section class="block">
+				<h3 class="title thin-text">Castings</h3>
+				<div class="flex-center">
+				{{#each castings}}
+						{{#with character}}
+							<div class="anime__character-card">
+								<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
+								<h5 class="name thin-text centered-text">{{fullName}}</h5>
+								<h6 class="name thin-text centered-text">{{../person.fullName}}</h6>
+							</div>
+						{{/with}}
+				{{else}}
+					<h3 class="centered-text thin-text">No castings found</h3>
+				{{/each}}
+				</div>
+			</section>
+		</div>
+
+		<div class="half-width">
+			<section class="block">
+				<h3 class="title thin-text">Staff Members</h3>
+				<div class="flex-center">
+					{{#each staffMembers}}
+							{{#with person}}
+								<div class="anime__character-card">
+									<div class="character-cover img-sm" style="background-image: url('{{coverImageUrl}}')"></div>
+									<h5 class="name thin-text centered-text">{{fullName}}</h5>
+									<h6 class="name thin-text centered-text">{{../staffPosition}}</h6>
+								</div>
+							{{/with}}
+					{{else}}
+						<h3 class="centered-text thin-text">No staff members found</h3>
+					{{/each}}
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<section class="block">
+		<h3 class="title thin-text">Episodes</h3>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td>#</td>
+					<td>Episode Title</td>
+					<td>Air Date</td>
+				</tr>
+			</thead>
+
+			<tbody>
+				{{#each episodes}}
+					<tr class="thin-text">
+						<td>{{episodeNumber}}</td>
+						<td>{{#if episodeTitle}} {{episodeTitle}} {{else}} -- {{/if}}</td>
+						<td>{{#if isMomentDatePresent airDate}} {{formatDateUTC airDate}} {{else}} -- {{/if}}</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+	</section>
+</div>
+
+{{#if currentUser}}
+	{{> animeAddButton}}
+{{/if}}
+
+</template>

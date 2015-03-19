@@ -1,0 +1,232 @@
+//////////////////////////////////
+////////// TEXT Utils ////////////
+//////////////////////////////////
+
+.thin-text {
+  font-weight: 300;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.white-text {
+  color: #FFFFFF;
+
+  &.dropshadow {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  }
+}
+
+.sub-text {
+  color: $medGrey;
+}
+
+.inline-text {
+  display: inline-block;
+}
+
+.margin-text {
+  margin: 20px 0;
+}
+
+.no-top-margin {
+  margin-top: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+
+.background-hr {
+  width: 90%;
+  border-color: $medGrey;
+}
+
+
+.banner-gradient {
+  background: -moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(0,0,0,0)),color-stop(100%,rgba(0,0,0,0.65)));
+  background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: -o-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: -ms-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background: linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+
+.dropdown-menu-wrapper {
+  position: relative;
+
+  &:hover .dropdown-menu {
+    display: block;
+  }
+
+  .handler:hover + .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 40px;
+    left: 5px;
+    right: 5px;
+    z-index: 2;
+    display: none;
+    /* Styles */
+    background: white;
+    border-radius: inherit;
+    border: 1px solid rgba(0,0,0,0.17);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-weight: normal;
+    transition: all 0.5s ease-in;
+    list-style: none;
+
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      bottom: 100%;
+      right: 15px;
+      border-width: 0 6px 6px 6px;
+      border-style: solid;
+      border-color: #fff transparent;
+    }
+
+    &:before {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      bottom: 100%;
+      right: 13px;
+      border-width: 0 8px 8px 8px;
+      border-style: solid;
+      border-color: rgba(0,0,0,0.1) transparent;
+    }
+
+    &:hover {
+      display: block;
+    }
+
+    > li > a {
+      font-size: $baseFontSize + 2px;
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: $medGrey;
+      border-bottom: 1px solid $lightGrey;
+      transition: all 0.3s ease-out;
+
+      &:hover {
+        background-color: $lightGrey;
+      }
+    }
+  }
+}
+
+
+/*---------------------------------*/
+/*---------- IMG Sizes ------------*/
+/*---------------------------------*/
+
+.img {
+  width: 100%; /* for now */
+
+  &.img-xs {
+    width: 32px;
+
+    &.avatar {
+      height: 32px;
+    }
+  }
+
+  &.img-sm {
+    width: 40px;
+
+    &.avatar {
+      height: 40px;
+    }
+  }
+
+  &.img-md {
+    width: 50px;
+
+    &.avatar {
+      height: 50px;
+    }
+  }
+
+  &.img-lg {
+    width: 100px;
+    &.avatar {
+      height: 100px;
+    }
+  }
+
+  &.img-xl {
+    width: 190px;
+    &.avatar {
+      height: 190px;
+    }
+  }
+
+  &.avatar {
+    background-size: cover;
+    background-position: center center;
+    border-radius: 1000px;
+    float: left;
+    margin-right: 10px;
+
+    &.bordered {
+      border: 4px solid #fff;
+      box-shadow: 0 0 3px rgba(0,0,0,0.5);
+      background-color: #fff;
+    }
+  }
+}
+
+.img.cover {
+  background-size: cover;
+  background-position: center center;
+  border-radius: 5px;
+  float: left;
+  margin-right: 10px;
+}
+.img.cover.no-float {
+  float: none;
+}
+
+.img.cover.img-md {
+  height: 75px;
+}
+
+.img.cover.img-lg {
+  height: 150px;
+}
+
+
+ul.inline-list {
+  inline-list()
+}
+
+
+// -------- FLEX utils ---------//
+.flex-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-space-between {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

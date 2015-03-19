@@ -1,0 +1,158 @@
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: 10px 13px;
+  font-size: $baseFontSize + 2px;
+  line-height: $baseLineHeight;
+  margin: 0;
+  outline: 0;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 2px;
+  color: $bodyFontColor;
+  border: 1px solid $lightGrey;
+}
+
+.input--naked {
+  color: $lightGrey;
+  background-color: transparent;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding: 5px 2px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+
+.input-group-vertical {
+  > input {
+    border-radius: 0;
+    border-bottom: 1px solid $lightGrey;
+  }
+
+  > input:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+
+  > input:last-child {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: $baseFontSize;
+  font-weight: normal;
+  line-height: $baseLineHeight;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border: 1px solid $lightGrey;
+  border-radius: 3px;
+  transition: all 0.2s ease-in-out;
+  outline: 0;
+  background-color: #FFFFFF;
+
+  &:hover, &:focus, &.active {
+    background-color: darken(#FFFFFF, 5%);
+    border-color: darken($lightGrey, 10%);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.4);
+  }
+
+  &.big {
+    padding: 10px 30px;
+    font-size: $bigFontSize;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.primary {
+    color: #FFFFFF;
+    background-color: $lightGreen;
+    border-color: darken($lightGreen, 20%);
+
+    &:hover, &:active, &:focus {
+      background-color: darken($lightGreen, 10%);
+      border-color: darken($lightGreen, 30%);
+    }
+  }
+
+  &.secondary {
+    color: #FFFFFF;
+    background-color: $medGrey;
+    border-color: darken($medGrey, 20%);
+
+    &:hover, &:active, &:focus {
+      background-color: darken($medGrey, 10%);
+      border-color: darken($medGrey, 30%);
+    }
+
+  }
+
+  &.transparent {
+    background-color: transparent;
+    border-color: $medGrey;
+    color: $medGrey;
+
+    &:hover, &:active, &:focus {
+      color: $lightGreen;
+      border-color: $lightGreen;
+    }
+
+    &.white {
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+      &:hover, &:active, &:focus {
+        color: $lightGreen;
+        border-color: $lightGreen;
+      }
+    }
+  }
+
+}
+
+.btn-group {
+  display: flex;
+  .btn {
+    border-radius: 0;
+    // Fighting the space between inline-block elements
+    margin-left: 0px;
+    margin-right: -1px;
+
+    &.active {
+      position: relative;
+      z-index: 2;
+    }
+    
+    &:hover {
+      position: relative;
+      z-index: 2;
+    }
+  }
+  .btn:first-child {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+  }
+
+  .btn:last-child {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+}

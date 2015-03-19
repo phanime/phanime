@@ -1,0 +1,148 @@
+@import "client/styles/variables.import"
+
+$headerHeight = 60px;
+$headerLineHeight = 32px;
+$headerFontSize = $baseFontSize + 4px;
+$headerItemPadding = ($headerHeight - $headerLineHeight)/2;
+$logoWidth = 239px;
+
+.main-header {
+	height: $headerHeight;
+	top: 0;
+	width: 100%;
+	background: #FFFFFF;
+	border-bottom: 1px solid $lightGrey;
+	padding: 0;
+	z-index: 99;
+	position: absolute;
+	transform: translate(0,0);
+	transition: all .3s;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+
+
+	&__nav-toggle-left {
+		position: absolute;
+		line-height: $headerHeight;
+		font-size: $headerFontSize + 10px;
+		display: none;
+		cursor: pointer;
+
+		+below(3) {
+			display: block;
+		}
+	}
+
+	&__collapsed {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+		background-color: #FFFFFF;
+		+below(3) {
+			height: $headerHeight - 1px;
+		}
+	}
+
+	&__logo {
+			position: absolute;
+			padding: 5px 0;
+			left: 50%;
+			margin-left: -($logoWidth/2);
+	}
+
+	&--fixed {
+		position: fixed;
+	}
+
+	&__nav {
+		clearfix()
+		transition: all 0.2s ease-in;
+
+		&--right {
+			float: right;
+		}
+
+		&--left {
+			float: left;
+		}
+
+		&__item {
+			position: relative;
+			display: block;
+			float: left;
+			padding-right: 15px;
+			padding-left: 15px;
+			
+			&__inner {
+				display: relative;
+				display: block;
+				line-height: $headerHeight;
+				font-size: $headerFontSize;
+				cursor: pointer;
+			}
+
+			&__inner--icon {
+				font-size: $headerFontSize + 10px;
+			}
+			
+			&__inner--avatar {
+				margin-top: 10px;
+			}
+			
+			&:last-child {
+				padding-right: 0;
+			}
+			
+		}
+
+		+below(3) {
+			&--left {
+				position: absolute;
+				bottom: ($headerHeight + 1px);
+				left: 0;
+				right: 0;
+				float: none;
+				width: 100%;
+				background-color: #FFFFFF;
+				border-top: 1px solid $lightGrey;
+			}
+
+			&--open {
+				bottom: -($headerHeight + 1px);
+			}
+		}
+	}
+	
+	&__counter {
+		position: absolute;
+		background-color: #83BD40;
+		color: #fff;
+		top: 3px;
+		right: 0;
+		padding: 4px 5px;
+		line-height: 8px;
+		font-size: 11px;
+		border-radius: 50px;
+		
+		&:empty {
+			padding: 0;
+		}
+	}
+
+	
+	&__notifications-menu {
+		padding: 10px;
+		min-width: 300px;
+		background-color: $lightGrey;
+		
+		&:after {
+			border-color: $lightGrey transparent;
+		}
+		> li {
+			background-color: #FFFFFF;
+			margin-bottom: 10px;
+			padding: 5px;
+		  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		  border-radius: 3px;
+		}
+	}
+}
