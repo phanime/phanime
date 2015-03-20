@@ -1,5 +1,4 @@
 <template name="customListEdit">
-
 	<div class="container main-content">
 		{{#if isUserIdCurrentUser userId}}
 			<div class="clearfix">
@@ -30,12 +29,10 @@
 						{{#unless ready}}
 							{{> loading}}
 						{{/unless}}
-						<div class="clearfix">
+						<div class="flex-center">
 							{{#each searchResults}}
-								<div class="grid-col-6">
-									<div class="custom-list-wrapper" data-content-id="{{_id}}">
-										{{> animeCard anime=this wrapLink=false cssStyle='cursor: pointer;'}}
-									</div>
+								<div class="custom-list-wrapper" data-content-id="{{_id}}">
+									{{> animeCard anime=this wrapLink=false cssStyle='cursor: pointer;'}}
 								</div>
 							{{/each}}
 						</div>
