@@ -90,14 +90,12 @@ ordered-dict@1.0.3
 percolate:migrations@0.7.3
 percolatestudio:synced-cron@1.1.0
 phanime-alerts@0.0.1
-phanime-blazy@0.0.1
 phanime-homepage-activeentries@0.0.1
 phanime-homepage-recommendedanime@0.0.1
 phanime-homepage-schedule@0.0.1
 phanime-homepage-userfeed@0.0.1
 phanime-lib@0.0.1
 phanime-mal-import@1.0.0
-phanime-masonry@0.0.1
 phanime-spoiler-alert@1.0.0
 practicalmeteor:chai@1.9.2_3
 practicalmeteor:loglevel@1.1.0_3
