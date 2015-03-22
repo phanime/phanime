@@ -7,7 +7,10 @@ Meteor.publishComposite('userWithFollowers', function(username) {
 			{
 				find: function(user) {
 					if (user.followers) {
-						return Meteor.users.find({_id: {$in: user.followers}}, {fields: requireCollectionFields.user.defaultFields});
+						// We also want their followers
+						var fields = requireCollectionFields.user.defaultFields;
+						fields.followers = 1;
+						return Meteor.users.find({_id: {$in: user.followers}}, {fields: fields});
 					}
 				}
 			}

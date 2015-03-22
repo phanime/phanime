@@ -1,0 +1,46 @@
+<template name="libraryEntryCard">
+	<div class="anime-card animated fadeIn" style="background-image: url('{{anime.coverImageUrl}}')">
+
+		<div class="important">
+			{{anime.title}}
+		</div>
+
+		<div class="banner-gradient"></div>
+
+		<div class="progress" style="width: {{getPercentage episodesSeen anime.totalEpisodes}}"></div>
+
+		{{#if isUserIdCurrentUser userId}}
+			{{> libraryEntryCardEdit}}
+		{{else}}
+			<div class="library-entry-form">
+
+				<section>
+					<button class="btn full-width secondary handler">{{status}}</button>
+				</section>
+
+				<section>
+					<div class="entry-rating" id="rating_{{_id}}" data-rateit-readonly="true" data-rateit-value="{{rating}}"></div>
+				</section>
+
+				<section>
+					<div class="entry-total-episodes"> <span>{{hyphenNotExist episodesSeen}}</span> / {{anime.totalEpisodes}}</div>
+				</section>
+
+				<div class="icon-group">
+					<i data-toggle="tooltip" data-placement="left" title="{{rewatchingToolText rewatching}}" class="fa entry entry-rewatching {{entryRewatchingClass rewatching}}"></i>
+					<i data-toggle="tooltip" data-placement="top" title="{{highPriorityToolText highPriority}}" class="fa entry entry-highPriority {{entryHighPriorityClass highPriority}}"></i>
+					<i data-toggle="tooltip" data-placement="right" title="{{privacyToolText privacy}}" class="fa entry entry-privacy {{entryPrivacyClass privacy}}"></i>
+				</div>
+
+				<div class="comments">
+					{{comments}}
+				</div>
+
+				<div class="thin-text centered" style="margin-top: 3px">
+					{{#with anime}}<a href="{{pathFor 'anime'}}">Go to Anime <i class="fa fa-arrow-circle-right"></i></a>{{/with}}
+				</div>
+
+			</div>
+		{{/if}}
+	</div>
+</template>

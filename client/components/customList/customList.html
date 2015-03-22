@@ -1,0 +1,17 @@
+<template name="customList">
+
+	<div class="container main-content">
+		{{#if privacy}}
+			{{#if isUserIdCurrentUser userId}}
+				{{> customListMain}}
+			{{else}}
+				<div class="block">
+					<h3 class="sub-text centered-text">Sorry, this list is private.</h3>
+				</div>
+			{{/if}}
+		{{else}}
+			{{> customListMain}}
+		{{/if}}
+	</div>
+
+</template>

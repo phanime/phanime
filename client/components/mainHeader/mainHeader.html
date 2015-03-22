@@ -1,0 +1,59 @@
+<template name="mainHeader">
+	<header class="main-header main-header--fixed">
+		<div class="container-fluid">
+			<div class="main-header__collapsed">
+				<i class="fa fa-bars main-header__nav-toggle-left"></i>
+				<div class="main-header__logo">
+					<a href="{{pathFor 'dashboard'}}">
+						<img src="{{logoUrl}}" height="50px">
+					</a>
+				</div>
+				<ul class="main-header__nav main-header__nav--right">
+					<li class="main-header__nav__item">
+						<i id="searchGlobal" class="main-header__nav__item__inner main-header__nav__item__inner--icon fa fa-search"></i>
+					</li>
+					{{#if currentUser}}
+						{{#with currentUser}}
+
+							{{#clickableDropdown class="main-header__nav__item"}}
+								<i class="main-header__nav__item__inner main-header__nav__item__inner--icon clickable-dropdown__handler main-header__nav--notification-handler fa fa-bell-o">
+									<span class="main-header__counter">{{#if unreadAlertCount}}{{unreadAlertCount}}{{/if}}</span>
+								</i>
+
+								<ul class="clickable-dropdown__menu main-header__notifications-menu">
+									{{#each alerts}}
+										<li>{{{userFriendlyText}}} {{formatDateFromNow createdAt}}</li>
+									{{else}}
+										<h4 class="thin-text">You have no alerts</h4>
+									{{/each}}
+								</ul>
+							{{/clickableDropdown}}
+
+							{{#clickableDropdown class="main-header__nav__item"}}
+								<div class="main-header__nav__item__inner main-header__nav__item__inner--avatar clickable-dropdown__handler img img-sm avatar" style="background-image: url('{{currentUser.avatarImageUrl}}')"></div>
+
+								<ul class="clickable-dropdown__menu">								
+									<li><a href="{{pathFor 'user'}}">Profile</a></li>
+									<li><a href="{{pathFor 'userLibrary'}}">Library</a></li>
+									<li class="divider"></li>
+									<li><a href="{{pathFor 'accountPersonalDetails'}}">Personal Details</a></li>
+									<li><a href="{{pathFor 'accountSecurity'}}">Security</a></li>
+									<li><a href="{{pathFor 'accountImports'}}">Imports</a></li>
+									<li class="divider"></li>
+									<li><a id="signOut" href="#">Sign out</a></li>
+								</ul>
+							{{/clickableDropdown}}
+
+						{{/with}}
+					{{/if}}
+				</ul>
+			</div>
+
+			<ul class="main-header__nav main-header__nav--left">
+				<li class="main-header__nav__item"><a class="main-header__nav__item__inner" href="{{pathFor 'animeExplore'}}">Anime</a></li>
+				<li class="main-header__nav__item"><a class="main-header__nav__item__inner" href="http://community.phanime.com">Community</a></li>
+			</ul>
+		</div>
+	</header>
+	<div style="margin-top: 60px"></div>
+</template>

@@ -1,24 +1,24 @@
 <template name="homePageUserFeed">
 
-	{{#with currentUser}}
-		{{> createProfilePost}}
-	{{/with}}
+	<div class="user-feed">
+		{{#with currentUser}}
+			{{> createProfilePost}}
+		{{/with}}
 
-
-
-	{{#each profilePosts}}
-		{{> profilePostCard}}
-	{{else}}
-		<h3 class="sub-text">Follow some people to fill up your feed</h3>
-	{{/each}}
+		{{#each profilePosts}}
+			{{> profilePostCard}}
+		{{else}}
+			<h3 class="sub-text">Follow some people to fill up your feed</h3>
+		{{/each}}
+	</div>
 
 	{{#unless isReady}}
-		{{> rectangleLoader}}
+		{{> loading}}
 	{{/unless}}
 
 	{{#if isReady}}
 		{{#if hasMoreProfilePosts}}
-			<button type="button" class="btn btn-transparent btn-lg btn-full-width loadMore"><h4>Load More</h4></button>
+			<button type="button" class="btn transparent btn-lg full-width loadMore"><h4>Load More</h4></button>
 		{{/if}}
 	{{/if}}
 

@@ -281,8 +281,8 @@ Anime.allow({
 });
 
 EasySearch.createSearchIndex('anime', {
-	'use' : 'elastic-search',
-	'field' : ['canonicalTitle', 'englishTitle', 'romajiTitle'],
+	'use' : 'mongo-db',
+	'field' : ['canonicalTitle', 'englishTitle', 'romajiTitle', 'titleSynonyms'],
 	'collection' : Anime,
 	'limit' : 24,
 	transform: function(doc) {

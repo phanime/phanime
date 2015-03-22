@@ -1,6 +1,6 @@
 ul.notifications {
 	position: fixed;
-	bottom: 0;
+	bottom: 10px;
 	top: auto;
 }
 

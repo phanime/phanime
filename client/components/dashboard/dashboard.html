@@ -1,0 +1,28 @@
+<template name="dashboard">
+
+	<div class="container main-content">
+
+		<section>
+			{{> homePageActiveEntries}}
+		</section>
+
+		<section>
+			<article class="half-width">
+				{{> homePageUserFeed}}
+			</article>
+
+			<article class="half-width">
+				{{> homePageSchedule}}
+			</article>
+		</section>
+
+		<section>
+			{{> homePageRecommendedAnime}}
+		</section>
+
+		{{> loading}}
+
+
+	</div>
+
+</template>

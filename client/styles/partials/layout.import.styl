@@ -1,0 +1,57 @@
+gridify-item($containerWidth, $containerPadding, $colCount) {
+  $itemWidth = ($containerWidth - 2*$containerPadding)/$colCount;
+  column(1/$colCount, cycle: $colCount);
+  for $i in $colCount..2 {
+    +below($itemWidth*$i) {
+      column(1/($i - 1), uncycle: $i, cycle: ($i - 1));
+    }
+  }
+}
+
+.half-width {
+  column(1/2);
+  +at(3) {
+    column(1);
+  }
+
+  +at(2) {
+    column(1);
+  }
+}
+
+.side-bar {
+  column(1/4);
+}
+
+.main {
+  column(3/4);
+}
+
+.grid-col-4 {
+  gridify-item($containerWidth, $containerPadding, 4);
+}
+
+.grid-col-5 {
+  gridify-item($containerWidth, $containerPadding, 5);
+}
+
+.grid-col-6 {
+  gridify-item($containerWidth, $containerPadding, 6);
+}
+
+.grid-col-7 {
+  gridify-item($containerWidth, $containerPadding, 7);
+}
+
+.grid-col-8 {
+  gridify-item($containerWidth, $containerPadding, 8);
+}
+
+.grid-col-9 {
+  gridify-item($containerWidth, $containerPadding, 9);
+}
+
+
+.flex {
+  display: flex;
+}

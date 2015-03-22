@@ -1,0 +1,9 @@
+<template name="clickableDropdown">
+	<div class="clickable-dropdown {{class}}">
+		{{> Template.contentBlock}}
+
+		{{#if isOpen}}
+			<div class="clickable-dropdown__backdrop"></div>
+		{{/if}}
+	</div>
+</template>

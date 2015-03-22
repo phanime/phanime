@@ -1,0 +1,7 @@
+<template name="userFollowButton">
+  {{#if isCurrentUserAFollower user.followers}}
+    <button type="button" id="userFollowButtonUnFollow" class="{{followingClasses}}">Following</button>
+  {{else}}
+    <button type="button" id="userFollowButtonFollow" class="{{followClasses}}">Follow</button>
+  {{/if}}
+</template>

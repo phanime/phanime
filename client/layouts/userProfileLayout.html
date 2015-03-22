@@ -1,17 +1,11 @@
 <template name="userProfileLayout">
-	{{> header}}
+	{{> mainHeader}}
 
-	{{> userSummary}}
+	{{> userProfileSummary}}
 
 	{{> yield "advertisement"}}
 
 	{{> yield}}
 
-	{{> footer}}
-	
-	{{#if isSearchingGlobal}}
-		{{> search}}
-	{{/if}}
-
-	{{> notifications}}
+	{{> commonLayout}}
 </template>

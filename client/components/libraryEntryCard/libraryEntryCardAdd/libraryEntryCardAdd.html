@@ -1,0 +1,23 @@
+<template name="libraryEntryCardAdd">
+
+	<div class="library-entry-form">
+
+		<section>
+			<div class="dropdown-menu-wrapper">
+				<button id="watchStatus" class="btn full-width secondary handler">Add to Library</button>
+				<ul class="dropdown-menu">
+					{{#each watchStatuses}}
+						<li><a class="status-item" data-status="{{this}}">{{this}}</a></li>
+					{{/each}}
+				</ul>
+			</div>
+		</section>
+
+		<div class="thin-text centered" style="margin-top: 3px">
+			<a href="{{pathFor 'anime'}}">Go to Anime <i class="fa fa-arrow-circle-right"></i></a>
+		</div>
+
+	</div>
+
+
+</template>

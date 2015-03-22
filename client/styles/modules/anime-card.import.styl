@@ -1,0 +1,52 @@
+.anime-card {
+  position: relative;
+  width: 190px;
+  height: 285px;
+  background-size: cover;
+  background-position: center;
+  margin: 10px;
+  border: 5px solid #FFF;
+  box-shadow: 0 0 3px rgba(0,0,0,0.5);
+  padding: 5px;
+  color: $medGrey;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+
+  .important {
+    opacity: 1;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    font-size: 15px;
+    padding: 5px;
+    text-shadow: 0 0 3px rgba(0,0,0,.8);
+    text-align: left;
+    color: $lightGrey;
+  }
+
+  .banner-gradient {
+  	opacity: 1;
+  	-webkit-transition: all 0.3s ease-in-out;
+  	-moz-transition: all 0.3s ease-in-out;
+  	-o-transition: all 0.3s ease-in-out;
+  	transition: all 0.3s ease-in-out;
+  }
+
+  .progress {
+  	position: absolute;
+  	z-index: 1;
+  	top: 0;
+  	left: 0;
+  	background-color: #8bc34a;
+  	min-width: 5px;
+  	width: 5px;
+  	border-radius: 0;
+  	opacity: 0.7;
+  	height: 5px;
+  }
+
+  &:hover .library-entry-form {
+    opacity: 1;
+  }
+
+}

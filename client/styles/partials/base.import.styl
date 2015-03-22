@@ -1,0 +1,153 @@
+normalize-css();
+global-reset();
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
+::-moz-selection { /* Code for Firefox */
+  color: #FFFFFF;
+  background-color: $medGrey;
+}
+
+::selection {
+  color: #FFFFFF;
+  background-color: $medGrey;
+}
+
+
+html {
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  font: $baseFontSize $baseFontFamily;
+  background-color: $bodyBackgroundColor;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $bodyFontColor;
+}
+
+a {
+  color: $linkColor;
+  cursor: pointer;
+  text-decoration: none;
+  word-wrap: break-word;
+  transition: color 0.15s linear;
+
+  &:hover {
+    color: lighten($linkColor, 35%);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizelegibility;
+}
+
+for $i in 1..6 {
+  h{$i} {
+    h{$i}();
+    margin: 0;
+  }
+}
+
+table {
+  table();
+}
+
+table > thead {
+  border-bottom: 2px solid $lightGrey;
+}
+
+.container {
+  center($containerWidth, $containerPadding);
+  +below($containerWidth) {
+    width: 100%;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: $containerPadding;
+  padding-right: $containerPadding;
+}
+
+.clearfix,
+section,
+.container,
+.container-fluid
+{
+  clearfix();
+}
+
+section {
+  margin: 20px 0;
+}
+
+* > section:first-child {
+  margin-top: 0;
+}
+
+blockquote {
+  blockquote: $lightGreen;
+}
+
+.block {
+	border: 1px solid #d8d8d8;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #fff;
+	border-bottom-width: 2px;
+	margin: 10px 0 20px 0;
+	padding: 20px 20px;
+
+  .title {
+    margin-top: -20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 10px 20px;
+    background-color: #F4F4F4;
+    margin-bottom: 20px;
+  }
+
+  .green {
+  	border-top: 5px solid #8bc34a;
+  }
+
+  .scroll-ready {
+    max-height: 300px;
+  }
+}
+
+.main-content {
+	padding-top: 30px;
+	padding-bottom:20px;
+}
+
+.global-notice {
+	padding: 15px;
+	font-size: 25px;
+	background-color: #9D9D9D;
+	color: #fff;
+	text-align: center;
+	box-shadow: inset 0px 0px 10px #A7A7A7;
+
+  a {
+    color: #BCFD71;
+  }
+}
+
+
+#velocity-status-widget {
+  z-index: 0 !important;
+}

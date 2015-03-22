@@ -1,0 +1,51 @@
+.user-profile-summary {
+  &__important {
+    padding: 40px 20px;
+
+    &__avatar {
+      +at(3) {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  &__content {
+    margin-left: 210px;
+    position: relative;
+    top: 15%;
+    width: 500px;
+
+    +at(3) {
+      margin-top: 210px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &__username {
+      display: inline-block;
+    }
+
+    &__btn {
+      position: relative;
+      top: -7px;
+      margin-left: 10px;
+    }
+  }
+  
+  &__icons {
+    margin-top: 5px;
+    font-size: 25px;
+  }
+
+  &__nav {
+    background-color: #FFFFFF;
+
+    ul > li > a {
+      display: block;
+      line-height: 32px;
+      font-size: 16px;
+      padding: 8px 10px;
+    }
+  }
+}

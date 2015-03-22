@@ -1,0 +1,38 @@
+<template name="libraryEntryCardEdit">
+	<div class="progress" style="width: {{getPercentage episodesSeen anime.totalEpisodes}}"></div>
+
+	<div class="library-entry-form">
+
+		<section>
+			<div class="dropdown-menu-wrapper">
+				<button class="btn full-width secondary handler">{{status}}</button>
+				<ul class="dropdown-menu">
+					{{#each watchStatuses}}
+						<li><a class="status-item" data-status="{{this}}">{{this}}</a></li>
+					{{/each}}
+				</ul>
+			</div>
+		</section>
+
+		<section>
+			<div title="1" class="entry-rating" id="rating_{{_id}}" data-rateit-value="{{rating}}"></div>
+		</section>
+
+		<section>
+			<input type="number" class="entry-episodes-seen" placeholder="#" value="{{episodesSeen}}" min="1" max="{{anime.totalEpisodes}}" >
+			<div class="entry-total-episodes"> / {{anime.totalEpisodes}}</div>
+		</section>
+
+		<div class="icon-group">
+			<i data-tooltip-direction="e" data-tooltip="{{rewatchingToolText rewatching}}" title="{{rewatchingToolText rewatching}}" class="fa entry libraryEntryIcons entry-rewatching {{entryRewatchingClass rewatching}}"></i>
+			<i data-toggle="tooltip" data-placement="top" title="{{highPriorityToolText highPriority}}" class="fa entry libraryEntryIcons entry-highPriority {{entryHighPriorityClass highPriority}}"></i>
+			<i data-toggle="tooltip" data-placement="right" title="{{privacyToolText privacy}}" class="fa entry libraryEntryIcons entry-privacy {{entryPrivacyClass privacy}}"></i>
+		</div>
+
+		<textarea class="entry-comments" placeholder="Personal comments" value="{{comments}}" maxlength="140"></textarea>
+
+		<div class="thin-text centered" style="margin-top: 3px">
+			{{#with anime}}<a href="{{pathFor 'anime'}}">Go to Anime <i class="fa fa-arrow-circle-right"></i></a>{{/with}}
+		</div>
+	</div>
+</template>

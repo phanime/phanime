@@ -1,6 +1,6 @@
 <template name="accountLayout">
 
-	{{> header}}
+	{{> mainHeader}}
 
 	{{> globalNotice}}
 
@@ -25,13 +25,6 @@
 
 	</div>
 
-	{{> footer}}
-
-	{{#if isSearchingGlobal}}
-		{{> search}}
-	{{/if}}
-
-	{{> notifications}}	
-
+	{{> commonLayout}}
 
 </template>

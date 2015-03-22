@@ -1,0 +1,50 @@
+<template name="customListEdit">
+	<div class="container main-content">
+		{{#if isUserIdCurrentUser userId}}
+			<div class="clearfix">
+				<div class="main block">
+					<section>
+						<h3>{{title}}</h3>
+						<h5 class="sub-text">{{description}}</h5>
+					</section>
+
+					<section>
+						<ul class="no-list-style" id="entries">
+							{{#each entriesWithContent}}
+								{{#if ../isTypeAnime}}
+									{{> animeCardCustomList isEditMode=true entry=this customList=..}}
+								{{/if}}
+							{{else}}
+								<h3 style="margin-top: 30px" class="centered-text sub-text">There are no {{../type}} in this list, search below and click on one to add it.</h3>
+							{{/each}}
+						</ul>
+					</section>
+
+					<section class="flex">
+						<input type="text" class="form-control" id="search" placeholder="Search for {{type}} and press enter">
+						<button type="button" id="saveBtn" class="btn btn-transparent btn-default btn-md btn-full-width">Save & view</button>
+					</section>
+
+					<section>
+						{{#unless ready}}
+							{{> loading}}
+						{{/unless}}
+						<div class="flex-center">
+							{{#each searchResults}}
+								<div class="custom-list-wrapper" data-content-id="{{_id}}">
+									{{> animeCard anime=this wrapLink=false cssStyle='cursor: pointer;'}}
+								</div>
+							{{/each}}
+						</div>
+					</section>
+				</div>
+
+				<div class="sidebar">
+					{{> Template.dynamic template="userCard" data=user}}
+				</div>
+			</div>
+		{{else}}
+			<h3 class="sub-text">You can only edit your own lists</h3>
+		{{/if}}
+	</div>
+</template>

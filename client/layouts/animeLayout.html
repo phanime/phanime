@@ -1,0 +1,38 @@
+<template name="animeLayout">
+	{{> mainHeader}}
+
+	<div class="anime-heading fancy-heading" style="background-image: url('http://i.imgur.com/9p4WxtV.png')">
+		<div class="banner-gradient"></div>
+	</div>
+
+	<div class="container">
+		<div class="anime-rating-overlap">
+			<h1 class="centered-text white-text dropshadow margin-text">{{title}}</h1>
+			{{#if isRatingMature}}
+				<h2 class="centered-text white-text dropshadow">Score: {{roundDecimal 2 rating}}</h2>
+			{{/if}}
+		</div>
+
+		{{#if isRatingMature}}
+			<ul class="anime-rating-bars">
+				<li title="{{ratingCounts.[1]}}" class="rating-bar" style="left: 0;"><div style="height: {{getRatingHeight 300 ratingCounts.[1] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[2]}}" class="rating-bar" style="left: 60px;"><div style="height: {{getRatingHeight 300 ratingCounts.[2] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[3]}}" class="rating-bar" style="left: 120px;"><div style="height: {{getRatingHeight 300 ratingCounts.[3] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[4]}}" class="rating-bar" style="left: 180px;"><div style="height: {{getRatingHeight 300 ratingCounts.[4] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[5]}}" class="rating-bar" style="left: 240px;"><div style="height: {{getRatingHeight 300 ratingCounts.[5] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[6]}}" class="rating-bar" style="left: 300px;"><div style="height: {{getRatingHeight 300 ratingCounts.[6] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[7]}}" class="rating-bar" style="left: 360px;"><div style="height: {{getRatingHeight 300 ratingCounts.[7] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[8]}}" class="rating-bar" style="left: 420px;"><div style="height: {{getRatingHeight 300 ratingCounts.[8] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[9]}}" class="rating-bar" style="left: 480px;"><div style="height: {{getRatingHeight 300 ratingCounts.[9] totalRatings}}"></div></li>
+				<li title="{{ratingCounts.[10]}}" class="rating-bar" style="left: 540px;"><div style="height: {{getRatingHeight 300 ratingCounts.[10] totalRatings}}"></div></li>
+			</ul>
+		{{else}}
+			<div style="height: 200px"></div>
+		{{/if}}
+	</div>
+
+
+	{{> yield}}
+
+	{{> commonLayout}}
+</template>

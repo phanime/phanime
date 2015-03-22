@@ -1,5 +1,5 @@
 <template name="defaultLayout">
-	{{> header}}
+	{{> mainHeader}}
 
 	{{> globalNotice}}
 
@@ -7,11 +7,5 @@
 
 	{{> yield}}
 
-	{{> footer}}
-
-	{{#if isSearchingGlobal}}
-		{{> search}}
-	{{/if}}
-	
-	{{> notifications}}
+	{{> commonLayout}}
 </template>

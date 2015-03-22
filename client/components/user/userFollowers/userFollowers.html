@@ -1,0 +1,15 @@
+<template name="userFollowers">
+
+	<div class="container main-content">
+		<div class="clearfix">
+			{{#each followersFull}}
+				<div class="grid-col-5">
+					{{> UI.dynamic template="userCard" data=this}}
+				</div>
+			{{else}}
+				<h2 class="thin-text">{{username}} has no followers</h2>
+			{{/each}}
+		</div>
+	</div>
+
+</template>

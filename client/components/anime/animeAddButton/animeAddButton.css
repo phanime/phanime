@@ -1,0 +1,71 @@
+#animeAddButton {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 25px;
+	height: 50px;
+	width: 50px;
+	border-radius: 300px;
+	background-color: #8BC34A;
+	padding: 13px;
+	padding-top: 12px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); 
+	cursor: pointer;
+	z-index: 101;
+}
+
+	#animeAddButton > .fa {
+		font-size: 30px;
+		color: #fff;
+	}
+
+.libraryCardWrapperAnime {
+	display: block;
+}
+
+.libraryCardWrapperAnime > .library-entry-form {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	top: auto;
+	left: auto;
+	opacity: 1;
+	text-align: center;
+	margin: 50px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); 
+	z-index: 100;
+}
+
+#closeLibraryCard {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	right: 5px;
+	margin: 25px;
+	font-size: 25px;
+	z-index: 101;
+	cursor: pointer;
+}
+
+
+#animeFavourite {
+	position: fixed;
+	bottom: 0;
+	right: 75px;
+	margin: 25px;
+	height: 50px;
+	width: 50px;
+	border-radius: 300px;
+	background-color: rgb(255, 144, 144);
+	color: rgb(255, 220, 226);
+	padding: 12px;
+	padding-top: 14px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+	cursor: pointer;
+	z-index: 102;
+
+}
+
+	#animeFavourite > .fa {
+		font-size: 25px;
+	}

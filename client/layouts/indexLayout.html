@@ -1,0 +1,26 @@
+<template name="indexLayout">
+
+
+	<div class="landing-page">
+		<div class="landing-page-image-wrapper">
+			<div class="landing-page-image blur-image" style="background-image: url('{{landingImage}}');"></div>
+		</div>
+
+		<div class="invite-block animated bounceIn">
+			<a href="{{pathFor 'index'}}">
+				<div class="centered-text margin-text"><img src="{{logoWhiteUrl}}" height="50px"></div>
+			</a>
+			{{> yield}}
+		</div>
+
+
+		<div class="footer-block">
+			{{> facebookLikeButton}}
+		</div>
+
+
+	</div>
+
+	{{> notifications}}
+
+</template>
