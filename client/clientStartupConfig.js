@@ -6,8 +6,6 @@ Meteor.startup(function () {
         timeout: 3000
     });
 
-    var blazy = new Blazy();
-
 });
 
 
