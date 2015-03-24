@@ -14,7 +14,7 @@ Template.profilePostCard.events({
 	},
 
 	'click .toggle-like-post' : function(event, template) {
-		var profilePost = template.data;
+		var profilePost = template.data.profilePost;
 		var likes = profilePost.likes;
 
 		if (likes && likes.indexOf(Meteor.userId()) > -1) {
@@ -75,7 +75,7 @@ Template.profilePostCard.helpers({
 	},
 
 	likeText: function() {
-		var profilePost = Template.instance().data;
+		var profilePost = Template.instance().data.profilePost;
 		var likes = profilePost.likes;
 
 		if (likes && likes.indexOf(Meteor.userId()) > -1) {
@@ -89,7 +89,7 @@ Template.profilePostCard.helpers({
 	commentsList: function() {
 		
 		var template = Template.instance();
-		var profilePost = template.data;
+		var profilePost = template.data.profilePost;
 		var expandCommentsList = template.expandCommentsList.get();
 		var comments;
 
@@ -106,7 +106,7 @@ Template.profilePostCard.helpers({
 	expandCommentsText: function() {
 
 		var template = Template.instance();
-		var profilePost = template.data;
+		var profilePost = template.data.profilePost;
 		var expandCommentsList = template.expandCommentsList.get();
 		var commentsCount = Comments.find({contentId: profilePost._id, type: 'profilePost'}).count();
 

@@ -81,6 +81,7 @@ mongo@1.1.0
 mongo-livedata@1.0.8
 mousetrap:mousetrap@1.4.6
 mquandalle:stylus@1.1.0
+mrt:jquery-imagesloaded@0.0.2
 msavin:mongol@1.0.2
 multiply:iron-router-progress@1.0.1
 npm-bcrypt@0.7.8_1
@@ -111,6 +112,7 @@ rubaxa:sortable@1.1.0
 service-configuration@1.0.4
 session@1.1.0
 sha@1.0.3
+sjors:meteor-masonry@0.0.1
 spacebars@1.0.6
 spacebars-compiler@1.0.5
 spiderable@1.0.7

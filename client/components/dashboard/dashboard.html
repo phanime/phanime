@@ -6,23 +6,29 @@
 			{{> homePageActiveEntries}}
 		</section>
 
-		<section>
-			<article class="half-width">
-				{{> homePageUserFeed}}
-			</article>
+		{{#if isReady}}
+			{{> dashboard__userFeed profilePosts=profilePosts }}
+		{{/if}}
 
-			<article class="half-width">
-				{{> homePageSchedule}}
-			</article>
-		</section>
+		{{#unless isReady}}
+			{{> loading}}
+		{{/unless}}
 
-		<section>
-			{{> homePageRecommendedAnime}}
-		</section>
-
-		{{> loading}}
-
-
+		{{#if isReady}}
+			{{#if hasMoreProfilePosts}}
+				<button type="button" class="btn transparent btn-lg full-width loadMore"><h4>Load More</h4></button>
+			{{/if}}
+		{{/if}}
 	</div>
 
+</template>
+
+<template name="dashboard__userFeed">
+	<div class="user-feed">
+		{{#each profilePosts}}
+			{{> profilePostCard profilePost=this class="profile-post-card--multi-col"}}
+		{{else}}
+			<h3 class="sub-text">Follow some people to fill up your feed</h3>
+		{{/each}}
+	</div>
 </template>

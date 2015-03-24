@@ -33,6 +33,17 @@ Template.homePageUserFeed.created = function() {
 	});
 };
 
+Template.homePageUserFeed.onRendered(function() {
+	var container = $('.user-feed');
+
+	container.imagesLoaded(function() {
+		container.masonry({
+			itemSelector: '.profile-post-card'
+		});
+	});
+});
+
+
 Template.homePageUserFeed.events({
 
 	'click .loadMore' : function(event, template) {

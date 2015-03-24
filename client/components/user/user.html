@@ -19,7 +19,7 @@
 				{{/if}}
 
 				{{#each profilePosts}}
-					{{> profilePostCard}}
+					{{> profilePostCard profilePost=this class="animated zoomIn"}}
 				{{else}}
 					<h3 class="thin-text">There are no messages on {{username}}'s profile yet.</h3>
 				{{/each}}

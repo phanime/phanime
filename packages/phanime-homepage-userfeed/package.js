@@ -9,7 +9,9 @@ Package.onUse(function(api) {
 	// Add standard app packages to both server and client
 	api.use([
 		'standard-app-packages',
-		'phanime-lib'
+		'phanime-lib',
+		'sjors:meteor-masonry',
+		'mrt:jquery-imagesloaded'
 	], ['server', 'client']);
 
 
