@@ -2,7 +2,7 @@ Meteor.methods({
 	discourseSSO: function(payload, sig, user) {
 		var sso = new discourse_sso(privateSiteSettings.discourseSSOKey);
 		var nonce;
-		// We're using this for now...
+		// We'll just use the current user
 		user = Meteor.user();
 		// validate sig with payload
 		if (sso.validate(payload, sig)) {
@@ -14,7 +14,7 @@ Meteor.methods({
 				"email": user.emails[0].address, // we just grab the first address
 				"username": user.originalUsername,
 				"name": (user.profile) ? user.profile.name : '',
-				"avatar_url": user.avatarImageUrl(), // This is not using the normal helper, it is manually being added to the user that's passed in 
+				"avatar_url": user.avatarImageUrl(),
 				"about_me": (user.profile) ? user.profile.about : '',
 			};
 
@@ -65,11 +65,33 @@ Meteor.methods({
 	/////////////////////////////////////////////////////////////
 	//* ---- Refreshes current user details in discourse ---- *//
 	/////////////////////////////////////////////////////////////
-	discourseRefreshDetails: function() {
+	discourseRefreshSSOPayload: function() {
 		var user = Meteor.user();
 		
 		if (!user) {
 			throw new Meteor.Error('user-unavailable', 'User must be logged in to perform this action');
 		}
+
+		console.log(user.avatarImageUrl());
+
+		HTTP.post('http://community.phanime.com/admin/users/sync_sso', {
+			params: {
+				api_username: Meteor.settings.discourseApiUsername,
+				api_key: Meteor.settings.discourseApiKey				
+			},
+			data: {
+				external_id: user._id,
+				email: user.emails[0].address, // we just grab the first address
+				username: user.originalUsername,
+				name: (user.profile) ? user.profile.name : '',
+				avatar_url: user.avatarImageUrl(),
+				about_me: (user.profile) ? user.profile.about : '',
+				avatar_force_update: true
+			}
+		}, function(error, result) {
+			console.log(error);
+			console.log(result);
+		});
+
 	}
 });

@@ -19,6 +19,10 @@ Template.accountPersonalDetails.events({
 				Notifications.success('Changes saved', 'Your personal details were saved successfully');
 			}
 		});
+
+		Meteor.call('discourseRefreshSSOPayload', function(error) {
+			console.log(error);
+		});
 	} 
 
 });

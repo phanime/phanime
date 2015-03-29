@@ -21,6 +21,12 @@ uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 
 				if (contentDirectory === "users" && typeDirectory === "avatar") {
 					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.avatarImage": result.imageName}});
+					// Ping discourse to let it know to update the avatar there
+					// This is terribly bad, we need to pass these into callbacks
+					// but there is no real way to communicate with other 'components' yet
+					Meteor.call('discourseRefreshSSOPayload', function(error) {
+						console.log(error);
+					});
 					Notifications.success('Upload Successful', 'Your avatar was successfully saved', {timeout: 5000});
 				}
 
