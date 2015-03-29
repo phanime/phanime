@@ -7,8 +7,6 @@ Meteor.methods({
 		// validate sig with payload
 		if (sso.validate(payload, sig)) {
 			var nonce = sso.getNonce(payload);
-			// console.log(nonce);
-
 
 			var userParams = {
 				"nonce": nonce,
@@ -20,14 +18,58 @@ Meteor.methods({
 				"about_me": (user.profile) ? user.profile.about : '',
 			};
 
-			// console.log(user.avatarImageUrl());
-
 			var queryParams = sso.buildLoginString(userParams);
-			// console.log(queryParams);
 			var returnUrl = "http://community.phanime.com/session/sso_login?" + queryParams;
 
-
 			return returnUrl;
+		}
+	},
+	//////////////////////////////////////
+	//* ---- Logs out current user ----*//
+	//////////////////////////////////////
+	discourseLogout: function() {
+		var user = Meteor.user();
+
+		if (!user) {
+			throw new Meteor.Error('user-unavailable', 'User must be logged in to perform this action');
+		}
+
+		console.log(Meteor.settings.discourseApiUsername);
+		console.log(Meteor.settings.discourseApiKey);
+
+		HTTP.get('http://community.phanime.com/users/by-external/' + user._id + '.json', {
+			params: {
+				api_username: Meteor.settings.discourseApiUsername,
+				api_key: Meteor.settings.discourseApiKey
+			}
+		}, Meteor.bindEnvironment(function(error, result) {
+
+			var discourseUserId = result.data.user.id;
+			console.log(discourseUserId);
+			if (discourseUserId) {
+				HTTP.post('http://community.phanime.com/admin/users/' + discourseUserId + '/log_out', {
+					params: {
+						api_username: Meteor.settings.discourseApiUsername,
+						api_key: Meteor.settings.discourseApiKey
+					},
+					data: {}
+				}, Meteor.bindEnvironment(function(error, result) {
+					console.log(result);
+				}));
+			}
+		}));
+
+
+	},
+
+	/////////////////////////////////////////////////////////////
+	//* ---- Refreshes current user details in discourse ---- *//
+	/////////////////////////////////////////////////////////////
+	discourseRefreshDetails: function() {
+		var user = Meteor.user();
+		
+		if (!user) {
+			throw new Meteor.Error('user-unavailable', 'User must be logged in to perform this action');
 		}
 	}
 });
