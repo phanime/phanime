@@ -1,3 +1,7 @@
+Template.accountPersonalDetails.onCreated(function() {
+	this.avatarUploader = new Slingshot.Upload("uploadUserAvatar");
+});
+
 Template.accountPersonalDetails.events({
 	
 	'click button' : function(event, template) {
@@ -23,6 +27,33 @@ Template.accountPersonalDetails.events({
 		Meteor.call('discourseRefreshSSOPayload', function(error) {
 			console.log(error);
 		});
-	} 
+	},
 
+	'change .upload-avatar' : function(event, template) {
+		var file = template.find(event.target).files[0];
+
+		template.avatarUploader.send(file, function(error, downloadUrl) {
+			if (error) {
+				Notifications.error('Avatar upload failed', error.reason);
+			} else {
+				console.log(downloadUrl);
+			}
+		});
+	}
+
+});
+
+Template.accountPersonalDetails.helpers({
+  avatarProgress: function () {
+  	var template = Template.instance();
+    return Math.round(template.avatarUploader.progress() * 100);
+  },
+  avatarPreviewUrl: function() {
+  	var template = Template.instance();
+  	return this.uploader.url(true);
+  },
+  profileBannerProgress: function() {
+  	var template = Template.instance();
+  	return Math.round(template.profileBannerUploader.progress() * 100);
+  }
 });
