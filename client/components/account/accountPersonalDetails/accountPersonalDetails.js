@@ -52,6 +52,7 @@ Template.accountPersonalDetails.helpers({
   	var template = Template.instance();
   	return this.uploader.url(true);
   },
+  
   profileBannerProgress: function() {
   	var template = Template.instance();
   	return Math.round(template.profileBannerUploader.progress() * 100);
