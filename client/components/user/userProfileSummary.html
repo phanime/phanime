@@ -5,9 +5,9 @@
 				<div class="user-profile-summary__important">
 
 					{{#if isUserIdCurrentUser _id}}
-						<a href="{{pathFor 'accountPersonalDetails'}}">
-							<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
-						</a>
+						<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')">
+							{{> imageUploader class="btn transparent white" accept="image/*"}}
+						</div>
 					{{else}}
 						<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')"></div>
 					{{/if}}
@@ -31,8 +31,8 @@
 						{{/if}}
 						{{#if isEditing}}
 							<input id="profileAboutInput" placeholder="Tell us about yourself" class="input--naked" value="{{profile.about}}">
-					    <input id="profileLocationInput" placeholder="Location" class="input--naked" value="{{profile.location}}">
-					    <input id="profileWebsiteInput" placeholder="Website" class="input--naked" value="{{profile.website}}">
+							<input id="profileLocationInput" placeholder="Location" class="input--naked" value="{{profile.location}}">
+							<input id="profileWebsiteInput" placeholder="Website" class="input--naked" value="{{profile.website}}">
 						{{else}}
 							<section class="no-margin">
 								{{#if profile.about}}

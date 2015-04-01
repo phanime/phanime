@@ -2,13 +2,15 @@ Template.userProfileSummary.created = function() {
 	this.isEditing = new ReactiveVar(false);
 };
 
-Template.userProfileSummary.rendered = function() {
-	// Add a tool tip init here
-};
+Template.userProfileSummary.onRendered(function() {
+	this.fileInput = this.$('<input type="file">');
+});
 
 Template.userProfileSummary.events({
 	'click #editProfile' : function(event, template) {
 		template.isEditing.set(!template.isEditing.get());
+		debugger;
+		template.fileInput.click();
 	},
 
 	'click #saveProfile' : function(event, template) {
@@ -25,23 +27,6 @@ Template.userProfileSummary.events({
 
 		// Toggle the isEditing reactive var
 		template.isEditing.set(!template.isEditing.get());
-	},
-
-	'click #follow' : function(event, template) {
-		var user = template.data;
-		Meteor.call('followUser', Meteor.userId(), user._id, function(error, result) {
-			console.log(error);
-			console.log(result);
-		});
-
-	},
-
-	'click #unfollow' : function (event, template) {
-		var user = template.data;
-		Meteor.call('unFollowUser', Meteor.userId(), user._id, function(error, result) {
-			console.log(error);
-			console.log(result);
-		});
 	}
 
 });
