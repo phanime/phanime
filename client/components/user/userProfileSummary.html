@@ -6,7 +6,7 @@
 
 					{{#if isUserIdCurrentUser _id}}
 						<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')">
-							{{> imageUploader class="btn transparent white" accept="image/*"}}
+							{{> imageUploader class="btn transparent white" accept="image/*" directive="uploadUserAvatar"}}
 						</div>
 					{{else}}
 						<div class="img img-xl avatar bordered user-profile-summary__important__avatar" style="background-image: url('{{avatarImageUrl}}')"></div>

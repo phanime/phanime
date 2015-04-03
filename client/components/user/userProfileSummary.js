@@ -9,8 +9,6 @@ Template.userProfileSummary.onRendered(function() {
 Template.userProfileSummary.events({
 	'click #editProfile' : function(event, template) {
 		template.isEditing.set(!template.isEditing.get());
-		debugger;
-		template.fileInput.click();
 	},
 
 	'click #saveProfile' : function(event, template) {
