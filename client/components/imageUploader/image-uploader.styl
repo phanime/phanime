@@ -1,0 +1,53 @@
+@import "client/styles/variables.import";
+
+.image-uploader {
+	&__image {
+		position: relative;
+		overflow: hidden;
+	}
+
+	&__overlay {
+		position: absolute;
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0,0.6);
+		
+		&--visible {
+			opacity: 1;
+		}
+	}
+	
+	&__image:hover &__overlay {
+		opacity: 1;
+	}
+	
+	&__btn {
+		position: absolute;
+		top: 50%;
+		margin-top: -(33/2)px;
+		left: 50%;
+		margin-left: -(70/2)px;
+	}
+	
+	&__progress-bar {
+		position: absolute;
+		left: 2%;
+		width: 96%;
+		height: 30px;
+		min-width: 30px;
+		top: 50%;
+		margin-top: -15px;
+		border: 1px solid #FFFFFF;
+		
+		& > span {
+			position: absolute;
+			text-align: center;
+			height: 28px;
+			line-height: 28px;
+			font-size: 24px;
+			background-color: $lightGreen;
+		}
+	}
+
+}

@@ -16,6 +16,9 @@
 /tmp/
 /log/
 
+# Ignore builds
+/phanime_build/
+
 # Ignore generated bundles
 *.7z
 *.dmg

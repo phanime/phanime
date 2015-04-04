@@ -5,8 +5,17 @@ Template.mainHeader.created = function() {
 
 Template.mainHeader.events({
 	'click #signOut': function(event) {
-		Meteor.logout();
-		return false;
+		// Log the user out on discourse
+		Meteor.call('discourseLogout', function(error) {
+			console.log(error);
+		});
+
+		// Finally log the user out
+		Meteor.logout(function(error) {
+			if (error) {
+				Notifications.error('Logout failed', 'We were unable to log you out, try again?');
+			}
+		});
 	},
 	'click .main-header__nav--notification-handler' : function(event) {
 		// Once the user clicks the alert toggle, we should mark all the unread alerts as read

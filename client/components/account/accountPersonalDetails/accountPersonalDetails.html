@@ -3,25 +3,18 @@
 	<div class="block" style="margin-top:0">
 
 		<form role="form" class="form-horizontal">
-			<div class="form-group" style="margin-bottom: 20px">
-				<label class="col-sm-3">Avatar</label>
 				<div class="col-sm-9">
-					{{> uploadFile contentDirectory="users" typeDirectory="avatar" contentId=currentUser._id}}
+					<input type="file" class="upload-avatar">
+					{{avatarProgress}}
 					<h5 class="sub-text">Recommended size: 190px by 190px</h5>
 					<h5 class="sub-text">Max size: 2 MB</h5>
 				</div>
-			</div>
 
-			<hr>
-
-			<div class="form-group" style="margin-bottom: 20px">
-				<label class="col-sm-3">Profile Banner</label>
 				<div class="col-sm-9">
 					{{> uploadFile contentDirectory="users" typeDirectory="profileBanner" contentId=currentUser._id}}
 					<h5 class="sub-text">Recommended size: 1920px by 350px or of the same aspect ratio</h5>
 					<h5 class="sub-text">Max size: 2 MB</h5>
 				</div>
-			</div>
 
 			<hr>
 

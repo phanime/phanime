@@ -15,12 +15,17 @@ uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 				Session.set('fileUrl', result.imageName);
 				$('.imagePreview').attr('src', result.fileUrl);
 
-
 				// Update respective document
 				// This is a temporary way of doing it for now
 
 				if (contentDirectory === "users" && typeDirectory === "avatar") {
 					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.avatarImage": result.imageName}});
+					// Ping discourse to let it know to update the avatar there
+					// This is terribly bad, we need to pass these into callbacks
+					// but there is no real way to communicate with other 'components' yet
+					Meteor.call('discourseRefreshSSOPayload', function(error) {
+						console.log(error);
+					});
 					Notifications.success('Upload Successful', 'Your avatar was successfully saved', {timeout: 5000});
 				}
 
@@ -28,10 +33,7 @@ uploadImage = function(file, contentDirectory, typeDirectory, contentId) {
 					Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.profileBannerImage": result.imageName}});
 					Notifications.success('Upload Successful', 'Your profile banner was successfully saved', {timeout: 5000});
 				}
-
-
 			}
-
 		});
 
 	};
