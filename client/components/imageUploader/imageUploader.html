@@ -1,4 +1,18 @@
 <template name="imageUploader">
-	<input class="image-uploader__input" type="file" accept="{{accept}}" style="display: none">
-	<button type="button" class="image-uploader__btn {{class}}">Upload</button>
+	<div class="image-uploader">
+		<div class="image-uploader__image {{imageClass}}" style="background-image: url('{{imagePreviewUrl}}');">
+			{{> Template.contentBlock}}
+
+			<div class="image-uploader__overlay">
+				{{#if isUploading}}
+					<div class="image-uploader__progress-bar">
+						<span style="width: {{uploadPercentage}}">{{uploadPercentage}}</span>
+					</div>
+				{{else}}
+					<button type="button" class="image-uploader__btn btn transparent white">Upload</button>
+					<input class="image-uploader__input" type="file" accept="image/*" style="display: none">
+				{{/if}}
+			</div>
+		</div>
+	</div>
 </template>
